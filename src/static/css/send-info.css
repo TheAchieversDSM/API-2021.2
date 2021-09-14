@@ -29,19 +29,19 @@ header button {
 header button a {
     text-decoration: none;
     color: white;
-    font-size: 1.5em;
+    font-size: 16pt;
 }
 
 header button:hover {
-    background-color: white;
-    border: white;
+    background-color: #C4C4C4;
+    border: #C4C4C4;
     width: 100px;
     height: 50px;
     border: 10px;
 }
 
 header button a:hover {
-    color: #AB101A
+    color: black;
 }
 
 main {
@@ -53,6 +53,104 @@ main {
     margin-top: 50px;
     padding: 10px;
     text-align: center;
+}
+
+.divExterna {
+    background-color: #3A4952;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.divInterna {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+textarea {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+}
+
+table {
+    min-width: 100%;
+    max-width: 300px;
+}
+
+table p {
+    font-size: 14pt;
+    padding: 5px;
+}
+
+th {
+    background-color: #C4C4C4;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16pt;
+}
+
+textarea {
+    min-width: 100%;
+    max-width: 300px;
+    height: 400px;
+    line-height: 1.7;
+    margin-top: 25px;
+}
+
+.info-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16pt;
+    width: 100px;
+    height: 50px;
+    margin-top: 15px;
+}
+
+button a {
+    text-decoration: none;
+}
+
+.enviar {
+    background-color: #AB101A;
+    border: #AB101A;
+}
+
+.enviar a {
+    color: white;
+}
+
+.enviar:hover {
+    background-color: #C4C4C4;
+    border: #C4C4C4;
+    border-radius: 10px;
+}
+
+.enviar a:hover {
+    color: black;
+}
+
+.anexo{
+    background-color: #C4C4C4;
+    border: #C4C4C4;
+    border-radius: 10px;
+}
+
+.anexo a {
+    color: black;
+}
+
+.anexo:hover {
+    background-color: #AB101A;
+    border: #AB101A;
+    border-radius: 10px;
+}
+
+.anexo a:hover {
+    color: white;
 }
 
 footer {
