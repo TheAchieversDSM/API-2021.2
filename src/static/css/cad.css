@@ -1,0 +1,60 @@
+body{
+    background-color: #1b1c21;
+    font-family: sans-serif;
+    ;
+}
+.logo{
+    position: absolute;
+    max-width: 300px;
+    max-height: 300px;
+    left: 5%;
+}
+.cadastro input[type = "text"],.cadastro input[type = "date"],.cadastro input[type = "password"]
+{
+    border: 0;
+    background: #c4c4c4;
+    display: block;
+    border-radius: 10px;
+    font-size:  25px;
+    padding: 6px 115px 6px 6px;
+    position: absolute;
+    left: 10%;
+    width: 320px;
+}
+.botao{
+    display: block;
+    position:  absolute;
+    border: 0;
+    border-radius: 10px;
+    background-color: #ab101a;
+    color: #ffff;
+    font-size: 25px;
+    width: 40%;
+    height: 8%;
+    bottom: 5% ;
+    left: 30%;
+}
+p{
+    color: #ffff;
+    text-align: left;
+    font-size: 25px;
+    position: relative;
+    left: 10%;
+    top: 2%;
+}
+.cadastro{
+    position:absolute;
+    width: 550px;
+    height:  750px;
+    left: 380px;
+    top: 170px;    
+    background-color: rgba(66, 85, 95, 0.8) ;
+    border-radius: 15px;
+    color: #ffff;    
+}  
+.botao:hover{
+    background-color: #c4c4c4;
+    border-color: #c4c4c4;
+    color: black;
+    
+}
