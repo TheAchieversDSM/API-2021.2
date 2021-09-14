@@ -1,16 +1,21 @@
 body{
     background-color: #1b1c21;
     font-family: sans-serif;
-    ;
+    height: 1000px;
 }
-.logo{
-    position: absolute;
-    max-width: 300px;
-    max-height: 300px;
-    left: 5%;
+
+header {
+    padding: 10px;
+    margin-left: 10%;
+    margin-top: 20px;
 }
-.cadastro input[type = "text"],.cadastro input[type = "date"],.cadastro input[type = "password"]
-{
+
+main {
+    width: 500px;
+    margin-top: 20px;
+}
+
+.cadastro input[type = "text"],.cadastro input[type = "date"],.cadastro input[type = "password"] {
     border: 0;
     background: #c4c4c4;
     display: block;
@@ -21,7 +26,8 @@ body{
     left: 10%;
     width: 320px;
 }
-.botao{
+
+.botao {
     display: block;
     position:  absolute;
     border: 0;
@@ -29,12 +35,13 @@ body{
     background-color: #ab101a;
     color: #ffff;
     font-size: 25px;
-    width: 40%;
-    height: 8%;
-    bottom: 5% ;
-    left: 30%;
+    width: 150px;
+    height: 50px;
+    bottom: 10px;
+    left: 35%;
 }
-p{
+
+p {
     color: #ffff;
     text-align: left;
     font-size: 25px;
@@ -42,19 +49,20 @@ p{
     left: 10%;
     top: 2%;
 }
-.cadastro{
+
+.cadastro {
     position:absolute;
     width: 550px;
-    height:  750px;
-    left: 380px;
-    top: 170px;    
+    height:  700px;
+    left: 35%;
+    top: 250px;    
     background-color: rgba(66, 85, 95, 0.8) ;
     border-radius: 15px;
     color: #ffff;    
 }  
-.botao:hover{
+
+.botao:hover {
     background-color: #c4c4c4;
     border-color: #c4c4c4;
-    color: black;
-    
+    color: black; 
 }
