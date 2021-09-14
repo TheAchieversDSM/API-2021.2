@@ -67,25 +67,28 @@ main {
     padding: 20px;
 }
 
-textarea {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12pt;
-}
-
-table {
-    min-width: 100%;
-    max-width: 300px;
-}
-
-table p {
-    font-size: 14pt;
-    padding: 5px;
-}
-
-th {
+.filter {
+    display: flex;
+    max-width: 100%;
+    min-width: 25%;
     background-color: #C4C4C4;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16pt;
+    border-radius: 10px;
+    justify-content: space-around;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.date input {
+    background-color: #C4C4C4;
+    border: #C4C4C4;
+    font-size: 14pt;
+}
+
+select {  
+    background-color: #C4C4C4;
+    border: #C4C4C4;
+    font-size: 14pt;
+    width: 130px;
 }
 
 textarea {
@@ -93,7 +96,9 @@ textarea {
     max-width: 300px;
     height: 400px;
     line-height: 1.7;
-    margin-top: 25px;
+    margin-top: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
 }
 
 .info-buttons {
@@ -133,24 +138,23 @@ button a {
     color: black;
 }
 
-.anexo{
+::-webkit-file-upload-button {
+    font-size: 12pt;
+    margin-top: 15px;
     background-color: #C4C4C4;
+    color: black;
     border: #C4C4C4;
+    width: 130px;
+    height: 50px;
     border-radius: 10px;
 }
 
-.anexo a {
-    color: black;
-}
-
-.anexo:hover {
+::-webkit-file-upload-button:hover {
     background-color: #AB101A;
     border: #AB101A;
-    border-radius: 10px;
-}
-
-.anexo a:hover {
     color: white;
+    width: 130px;
+    height: 50px;
 }
 
 footer {
