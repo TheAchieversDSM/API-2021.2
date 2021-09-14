@@ -1,26 +1,30 @@
-body{
+body {
     background-color: #1b1c21;
     font-family: sans-serif;
 }
-.logo{
-    position: absolute;
-    max-width: 300px;
-    max-height: 300px;
-    left: 5%;
-}
-.login{
 
+header {
+    padding: 10px;
+    margin-left: 10%;
+    margin-top: 20px;
+}
+
+main {
+    width: 500px;
+}
+
+.login {
     position: absolute;
     width: 450px;
     height: 450px;
-    left: 400px;
-    top: 150px;    
+    margin-left: 40%;
+    top: 250px;    
     background-color: rgba(66, 85, 95, 0.8) ;
     border-radius: 15px;
     color: #ffff;
-  
 }
-.login input[type = "text"],.login input[type = "password"]{
+
+.login input[type = "text"],.login input[type = "password"] {
     border: 0;
     background: #c4c4c4;
     display: block;
@@ -30,7 +34,8 @@ body{
     position: absolute;
     left: 10%;
 }
-.botao{
+
+.botao {
     display: block;
     position:  absolute;
     border: 0;
@@ -42,10 +47,9 @@ body{
     height: 13%;
     bottom: 30%;
     left: 30%;
-
-
 }
-.p1{
+
+.p1 {
     color: #ffff;
     text-align: left;
     font-size: 25px;
@@ -53,10 +57,23 @@ body{
     left: 10%;
     top: 5%;
 }
-.p2{
+
+.p2 {
     position: absolute;
     bottom: 10%;
     left: 10%;
     font-size: 18px;
 }
-    
+
+.p2 a {
+    color: #ab101a;
+    text-shadow: black;
+    text-decoration: none;
+}
+
+.p2 a:hover {
+    background-color: #ab101a;
+    color: #c4c4c4;
+    padding: 5px;
+    border-radius: 10px;
+}
