@@ -61,3 +61,15 @@ Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
 Melhorias contínuas | Alta | Não iniciada
 
+### :chart_with_downwards_trend: Backlog das sprints:
+
+Sprint | Nome da tarefa | Prioridade | Status
+-------|----------------|------------|-------
+#1 | Wireframe da interface de login do status | Alta | Completa
+#1 | Wireframe da interface de cadastro de usuário | Alta | Completa
+#1 | Wireframe da interface de divulgação de informações prioritárias | Alta | Completa
+#1 | Repositório do projeto | Alta | Completa
+#1 | Documentação do sistema | Alta | Em andamento
+#1 | Interface de login do sistema | Alta | Completa
+#1 | Interface de cadastro de usuário | Alta | Completa
+#1 | Interface de divulgação de informações prioritárias | Alta | Completa
