@@ -18,6 +18,7 @@ Função | Nome
 -------|------
 Scrum Master | Evora de Castro
 Product Owner | Fernando Satoru Eto
+Dev Team | Gizeli Martins Fonseca
 Dev Team | Maria Clara Alves de Faria
 Dev Team | Mariana Ayumi Tamay
 Dev Team | Matheus Henrique Lemes Sakuragui
