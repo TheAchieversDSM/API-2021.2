@@ -49,6 +49,13 @@ main {
     left: 30%;
 }
 
+.botao:hover {
+    background-color: #C4C4C4;
+    border: #C4C4C4;
+    border-radius: 10px;
+    color: black;
+}
+
 .p1 {
     color: #ffff;
     text-align: left;
