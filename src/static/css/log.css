@@ -35,7 +35,7 @@ main {
     left: 10%;
 }
 
-.botao {
+.botao{
     display: block;
     position:  absolute;
     border: 0;
@@ -47,7 +47,9 @@ main {
     height: 13%;
     bottom: 30%;
     left: 30%;
+
 }
+.botao a{text-decoration: none; color: #ffff;}
 
 .botao:hover {
     background-color: #C4C4C4;
@@ -55,6 +57,7 @@ main {
     border-radius: 10px;
     color: black;
 }
+.botao a:hover{color: black;}
 
 .p1 {
     color: #ffff;

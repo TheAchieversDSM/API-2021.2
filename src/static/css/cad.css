@@ -39,7 +39,16 @@ main {
     height: 50px;
     bottom: 10px;
     left: 35%;
+    
 }
+.botao a{ text-decoration: none; color: #ffff;}
+
+.botao:hover {
+    background-color: #c4c4c4;
+    border-color: #c4c4c4;
+    color: black; 
+}
+.botao a:hover{color: black;}
 
 p {
     color: #ffff;
@@ -61,8 +70,4 @@ p {
     color: #ffff;    
 }  
 
-.botao:hover {
-    background-color: #c4c4c4;
-    border-color: #c4c4c4;
-    color: black; 
-}
+
