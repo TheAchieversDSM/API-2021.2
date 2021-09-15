@@ -1,15 +1,42 @@
-# API - The Achievers 
-#### Scrum Master: Evora de Castro
-#### Product Owner: Fernando Satoru Eto
-#### Development Team: Maria Clara Alves de Faria, Mariana Ayumi Tamay, Matheus Henrique Lemes Sakuragui & Rikio Anzai
-##### Curso: Desenvolvimento de Software Multiplataforma - 1º Semestre
+<h1 align="center">A.P.I - The Achievers</h1>
+ <p align="center">
+     <a href="#sobre">Sobre</a> • 
+     <a href="#status">Status</a> • 
+     <a href="#tecnologias">Tecnologias</a> • 
+     <a href="#organizacao">Organização</a> • 
+     <a href="#user-stories">User Stories</a> • 
+     <a href="#requisitos">Requisitos</a> • 
+     <a href="#backlog-produto">Backlog do Produto</a> • 
+     <a href="#backlog-sprints">Backlog das Sprints</a>
+</p>
 
-### Sobre o projeto:
-<p>Esse projeto está sendo desenvolvido de acordo com os requisitos acordados com o cliente, o qual pediu um portal de informações, tanto para docentes, quanto para discentes, a fim de exibir avisos que seguem um determinado filtro. Os comunicados são visualizados de maneira hierárquica e, devido ao recurso de filtro, a busca por esses será mais sucinta, resolvendo o problema raíz: o grande volume de mensagens recebidas e, consequentemente, perdidas devido à grande procura durante a pandemia do novo Covid-19.
+
+### :busts_in_silhouette: Equipe:
+Função | Nome 
+-------|------
+Scrum Master | Evora de Castro
+Product Owner | Fernando Satoru Eto
+Dev Team | Maria Clara Alves de Faria
+Dev Team | Mariana Ayumi Tamay
+Dev Team | Matheus Henrique Lemes Sakuragui
+Dev Team | Rikio Anzai
+
+> Instituição: Fatec São José dos Campos - Prof. Jessen Vidal
+> 
+> Curso: Desenvolvimento de Software Multiplataforma/1º Semestre
+
+<span id="sobre">
+
+### :mag_right: Sobre o projeto:
+<p>Esse projeto está sendo desenvolvido de acordo com os requisitos acordados com o cliente, o qual pediu um portal de informações, tanto para docentes, quanto para discentes, a fim de exibir avisos que seguem um determinado filtro. Os comunicados são visualizados de maneira hierárquica e, devido ao recurso de filtro, a busca por esses será mais sucinta, resolvendo o problema raíz: o grande volume de mensagens recebidas e, consequentemente, perdidas devido à grande procura durante a pandemia do novo Covid-19.</p>
+ 
+ <span id="status">
 
  ### :bookmark_tabs: Status do projeto: em andamento... :hourglass_flowing_sand:
+  
+ <span id="tecnologias">
 
- ### :computer: Recursos utilizados até o momento:
+ ### :computer: Tecnologias utilizadas até o momento:
 <p>
     <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"></img>
     <img src="https://img.shields.io/badge/Microsoft_Teams-6264A7?style=for-the-badge&logo=microsoft-teams&logoColor=white"></img>
@@ -19,7 +46,9 @@
     <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
 </p>
 
-### :clipboard: Arquivos do repositório:
+<span id="organizacao">
+
+### :clipboard: Organização do repositório:
 <p> :file_folder: <strong>doc</strong> - pasta que contém o wireframe, tanto para desktop, quanto para mobile;</p> 
 <p> :file_folder: <strong>scr</strong> - pasta que contém duas outras, <em>templates</em> e <em>static</em>;</p>
 <p> | - :open_file_folder: <strong>templates</strong> - pasta que contém os códigos de estruturação (.html);</p>
@@ -27,7 +56,8 @@
 <p> | - - :open_file_folder: <strong>css</strong> - pasta que contém os códigos de estilização (.css);</p>
 <p> | - - :open_file_folder: <strong>img</strong> - pasta que contém a logo da FATEC e o favicon, além de outra pasta, <em>footer</em>;</p>
 <p> | - - - :open_file_folder: <strong>footer</strong> - pasta que contém todas as imagens utilizadas no rodapé das páginas.</p>
-
+ 
+<span id="user-stories">
 
 ### :pushpin: User Stories:
 Quem | Quer | A fim de
@@ -40,8 +70,31 @@ Secretário acadêmico | Classificar as informações por assunto | Enviá-las p
 Coordenador | Organizar as informações por disciplinas | Divulgá-las aos respectivos professores
 Professor | Notificar os alunos sobre datas importantes | Informar sobre entregas de atividades e realização de exames
 Aluno | Receber informações sobre estágios e palestras | Participar dos processos seletivos e eventos
+ 
+<span id="requisitos">
+ 
+### :page_with_curl: Requisitos:
+Código | Requisitos funcionais 
+-------|----------------------
+RF. #1 | Envio de informações para divulgação via sistema (Administrador)
+RF. #2 | Possibilidade de anexar documentos (e.g.: PDFs, Docs etc.)
+RF. #3 | Visualização de informações de divulgação via sistema de modo seletivo (filtro por data, interessados, curso etc.)
+RF. #4 | Acesso às informações do sistema através de perfis de usuário/papéis (adm, usuário comum, coordenador de curso etc.)
+ 
+Código | Requisitos Não-Funcionais
+-------|---------------------------
+RNF. #1 | Desenvolver o back-end com a linguagem Python 3+ e o microframework Flask
+RNF. #2 | Utilizar o sistema gerenciador de banco de dados MariaDB/MySQL/PostGresSQL
+RNF. #3 | Utilizar HTML-5 para arquitetura da informação da aplicação
+RNF. #4 | Utilizar CSS-3 para especificação do layout e demais características de renderização da interface com o usuário
+RNF. #5 | Utilizar o GitHub para controle de versão dos artefatos de projeto
+RNF. #6 | Interface com navegação intuitiva (e.g.: acesso à informação com poucos "cliques")
+RNF. #7 | Sistema responsivo
+RNF. #8 | Utilizar JavaScript no front-end (obs: pode fazer uso de framework)
+ 
+<span id="backlog-produto">
 
-### :chart_with_upwards_trend: Backlog do Produto:
+### :bar_chart: Backlog do Produto:
 Nome da tarefa | Prioridade | Stauts
 ---------------|------------|--------
 Wireframe da interface de login do status | Alta | Completa
@@ -61,7 +114,9 @@ Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
 Melhorias contínuas | Alta | Não iniciada
 
-### :chart_with_downwards_trend: Backlog das sprints:
+<span id="backlog-sprints"> 
+ 
+### :chart_with_upwards_trend: Backlog das sprints:
 
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
