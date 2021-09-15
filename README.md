@@ -4,6 +4,9 @@
 #### Development Team: Maria Clara Alves de Faria, Mariana Ayumi Tamay, Matheus Henrique Lemes Sakuragui & Rikio Anzai
 ##### Curso: Desenvolvimento de Software Multiplataforma - 1º Semestre
 
+### Sobre o projeto:
+<p>Esse projeto está sendo desenvolvido de acordo com os requisitos acordados com o cliente, o qual pediu um portal de informações, tanto para docentes, quanto para discentes, a fim de exibir avisos que seguem um determinado filtro. Os comunicados são visualizados de maneira hierárquica e, devido ao recurso de filtro, a busca por esses será mais sucinta, resolvendo o problema raíz: o grande volume de mensagens recebidas e, consequentemente, perdidas devido à grande procura durante a pandemia do novo Covid-19.
+
  ### :bookmark_tabs: Status do projeto: em andamento... :hourglass_flowing_sand:
 
  ### :computer: Recursos utilizados até o momento:
