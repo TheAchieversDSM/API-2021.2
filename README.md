@@ -1,5 +1,6 @@
 <h1 align="center">A.P.I - The Achievers</h1>
  <p align="center">
+     <a href="#equipe">Equipe</a> • 
      <a href="#sobre">Sobre</a> • 
      <a href="#status">Status</a> • 
      <a href="#tecnologias">Tecnologias</a> • 
@@ -10,6 +11,7 @@
      <a href="#backlog-sprints">Backlog das Sprints</a>
 </p>
 
+<span id="equipe">
 
 ### :busts_in_silhouette: Equipe:
 Função | Nome 
