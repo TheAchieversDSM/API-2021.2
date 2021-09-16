@@ -58,6 +58,7 @@ Dev Team | Rikio Anzai
 
 ### :clipboard: Organização do repositório:
 <p> :file_folder: <strong>doc</strong> - pasta que contém o wireframe, tanto para desktop, quanto para mobile;</p> 
+<p> | - :open_file_folder: <strong>prototipo</strong> - pasta que contém demonstração do protótipo em arquivos .gif;</p>
 <p> :file_folder: <strong>scr</strong> - pasta que contém duas outras, <em>templates</em> e <em>static</em>;</p>
 <p> | - :open_file_folder: <strong>templates</strong> - pasta que contém os códigos de estruturação (.html);</p>
 <p> | - :open_file_folder: <strong>static</strong> - pasta que contém outras duas, <em>css</em> e <em>img</em>;</p>
