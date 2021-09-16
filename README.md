@@ -64,7 +64,7 @@ Dev Team | Rikio Anzai
 
 ### :pushpin: User Stories:
 Quem | Quer | A fim de
------|------|----------
+-----|------|---------|
 Cliente | Priorizar a divulgação de informações da FATEC-SJC | Não ocorrer a perda de informações importantes
 Administrador | Privilégios de acesso | Administrar e controlar as permissões de acesso de todos os usuários do sistema
 Diretor | Reunir informações por evento | Repassá-las a todos os servidores da unidade
@@ -73,6 +73,12 @@ Secretário acadêmico | Classificar as informações por assunto | Enviá-las p
 Coordenador | Organizar as informações por disciplinas | Divulgá-las aos respectivos professores
 Professor | Notificar os alunos sobre datas importantes | Informar sobre entregas de atividades e realização de exames
 Aluno | Receber informações sobre estágios e palestras | Participar dos processos seletivos e eventos
+ 
+
+### :memo: Protótipo:
+ 
+* Página de login e, caso faça parte da instituição e ainda não o tem, faça seu cadastro.
+![](/doc/prototipo/login.gif)
  
 <span id="requisitos">
  
