@@ -6,6 +6,7 @@
      <a href="#tecnologias">Tecnologias</a> • 
      <a href="#organizacao">Organização</a> • 
      <a href="#user-stories">User Stories</a> • 
+     <a href="#prototipo">Protótipo</a>  • 
      <a href="#requisitos">Requisitos</a> • 
      <a href="#backlog-produto">Backlog do Produto</a> • 
      <a href="#backlog-sprints">Backlog das Sprints</a>
@@ -74,11 +75,25 @@ Coordenador | Organizar as informações por disciplinas | Divulgá-las aos resp
 Professor | Notificar os alunos sobre datas importantes | Informar sobre entregas de atividades e realização de exames
 Aluno | Receber informações sobre estágios e palestras | Participar dos processos seletivos e eventos
  
-
+<span id="prototipo">
+ 
 ### :memo: Protótipo:
  
-* Página de login e, caso faça parte da instituição e ainda não o tem, faça seu cadastro.
-![](/doc/prototipo/login.gif)
+Página de login e, caso ainda não o tenha e seja da FATEC, faça seu cadastro.
+![](https://media.giphy.com/media/BYBICx6YukGaAZqqRO/giphy.gif?cid=790b7611ca4440f776c0400150e287a10cf07c7f1f4d387c&rid=giphy.gif&ct=g)
+ 
+Página de cadastro com as informações necessárias para aqueles que ainda não são cadastrados no sistema.
+![](https://media.giphy.com/media/2x23DaSJyoq0s2WAYs/giphy.gif?cid=790b7611291bb65e552d7b1ffc1159b695db9c22093acc21&rid=giphy.gif&ct=g)
+ 
+Página de feed para usuários sem privilégios, onde pode-se fazer uso de filtros para achar informações mais pertinentes.
+![](https://media.giphy.com/media/f0q2ZWO3Bw9KIoaZK3/giphy.gif?cid=790b7611bcb5bdbf9291705864eadd8e56234db63dc3ae73&rid=giphy.gif&ct=g)
+ 
+Página de feed para usuários com função de administrador, onde pode-se fazer uso de filtros para achar informações mais pertinentes.
+![](https://media.giphy.com/media/uRrSE6b9nCiwwX7iXJ/giphy.gif?cid=790b76110765ee0b19f368aabdfba3dfa0f6a8ce909fb467&rid=giphy.gif&ct=g)
+ 
+Página para envio de informações, onde são selecionados filtros e desenvolvida a mensagem, bem como o anexo de arquivos.</li>
+![](https://media.giphy.com/media/EmS6O8Zoj4J8nvOmRg/giphy.gif?cid=790b76116e7a36c813ba3718131ac0745df329028f5902b5&rid=giphy.gif&ct=g)
+
  
 <span id="requisitos">
  
