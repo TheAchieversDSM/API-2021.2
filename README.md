@@ -1,3 +1,5 @@
+<br id="inicio">
+
 <h1 align="center">A.P.I - The Achievers</h1>
  <p align="center">
      <a href="#equipe">Equipe</a> • 
@@ -38,6 +40,8 @@ Dev Team | Rikio Anzai
 
  ### :bookmark_tabs: Status do projeto: em andamento... :hourglass_flowing_sand:
   
+↑ [Voltar ao início](#inicio) 
+  
  <span id="tecnologias">
 
  ### :computer: Tecnologias utilizadas até o momento:
@@ -61,6 +65,8 @@ Dev Team | Rikio Anzai
 <p> | - - :open_file_folder: <strong>img</strong> - pasta que contém a logo da FATEC e o favicon, além de outra pasta, <em>footer</em>;</p>
 <p> | - - - :open_file_folder: <strong>footer</strong> - pasta que contém todas as imagens utilizadas no rodapé das páginas.</p>
  
+↑ [Voltar ao início](#inicio) 
+ 
 <span id="user-stories">
 
 ### :pushpin: User Stories:
@@ -74,6 +80,8 @@ Secretário acadêmico | Classificar as informações por assunto | Enviá-las p
 Coordenador | Organizar as informações por disciplinas | Divulgá-las aos respectivos professores
 Professor | Notificar os alunos sobre datas importantes | Informar sobre entregas de atividades e realização de exames
 Aluno | Receber informações sobre estágios e palestras | Participar dos processos seletivos e eventos
+ 
+↑ [Voltar ao início](#inicio) 
  
 <span id="prototipo">
  
@@ -93,7 +101,8 @@ Página de feed para usuários com função de administrador, onde pode-se fazer
  
 Página para envio de informações, onde são selecionados filtros e desenvolvida a mensagem, bem como o anexo de arquivos.</li>
 ![](https://media.giphy.com/media/EmS6O8Zoj4J8nvOmRg/giphy.gif?cid=790b76116e7a36c813ba3718131ac0745df329028f5902b5&rid=giphy.gif&ct=g)
-
+ 
+↑ [Voltar ao início](#inicio) 
  
 <span id="requisitos">
  
@@ -116,6 +125,8 @@ RNF. #6 | Interface com navegação intuitiva (e.g.: acesso à informação com 
 RNF. #7 | Sistema responsivo
 RNF. #8 | Utilizar JavaScript no front-end (obs: pode fazer uso de framework)
  
+↑ [Voltar ao início](#inicio) 
+ 
 <span id="backlog-produto">
 
 ### :bar_chart: Backlog do Produto:
@@ -137,6 +148,8 @@ Testes unitários do sistema | Alta | Não iniciada
 Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
 Melhorias contínuas | Alta | Não iniciada
+ 
+↑ [Voltar ao início](#inicio) 
 
 <span id="backlog-sprints"> 
  
@@ -152,3 +165,5 @@ Sprint | Nome da tarefa | Prioridade | Status
 #1 | Interface de login do sistema | Alta | Completa
 #1 | Interface de cadastro de usuário | Alta | Completa
 #1 | Interface de divulgação de informações prioritárias | Alta | Completa
+ 
+↑ [Voltar ao início](#inicio) 
