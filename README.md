@@ -131,7 +131,7 @@ RNF. #8 | Utilizar JavaScript no front-end (obs: pode fazer uso de framework)
 <span id="backlog-produto">
 
 ### :bar_chart: Backlog do Produto:
-Nome da tarefa | Prioridade | Stauts
+Nome da tarefa | Prioridade | Status
 ---------------|------------|--------
 Wireframe da interface de login do status | Alta | Completa
 Wireframe da interface de cadastro de usuário | Alta | Completa
