@@ -11,7 +11,7 @@
      <a href="#prototipo">Protótipo</a>  • 
      <a href="#requisitos">Requisitos</a> • 
      <a href="#backlog-produto">Backlog do Produto</a> • 
-     <a href="#backlog-sprints">Backlog das Sprints</a>
+     <a href="#backlog-sprints">Backlog das Sprints</a> • 
      <a href="#burndown">Burndown</a>
 </p>
 
