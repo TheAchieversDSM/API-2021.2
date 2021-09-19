@@ -12,6 +12,7 @@
      <a href="#requisitos">Requisitos</a> • 
      <a href="#backlog-produto">Backlog do Produto</a> • 
      <a href="#backlog-sprints">Backlog das Sprints</a>
+     <a href="#burndown">Burndown</a>
 </p>
 
 <span id="equipe">
@@ -59,6 +60,7 @@ Dev Team | Rikio Anzai
 ### :clipboard: Organização do repositório:
 <p> :file_folder: <strong>doc</strong> - pasta que contém o wireframe, tanto para desktop, quanto para mobile;</p> 
 <p> | - :open_file_folder: <strong>prototipo</strong> - pasta que contém demonstração do protótipo em arquivos .gif;</p>
+<p> | - :open_file_folder: <strong>burndown</strong> - pasta que contém arquivos de demonstração do esforço distribuído pela equipe.</p>
 <p> :file_folder: <strong>scr</strong> - pasta que contém duas outras, <em>templates</em> e <em>static</em>;</p>
 <p> | - :open_file_folder: <strong>templates</strong> - pasta que contém os códigos de estruturação (.html);</p>
 <p> | - :open_file_folder: <strong>static</strong> - pasta que contém outras duas, <em>css</em> e <em>img</em>;</p>
@@ -166,5 +168,15 @@ Sprint | Nome da tarefa | Prioridade | Status
 #1 | Interface de login do sistema | Alta | Completa
 #1 | Interface de cadastro de usuário | Alta | Completa
 #1 | Interface de divulgação de informações prioritárias | Alta | Completa
+ 
+↑ [Voltar ao início](#inicio) 
+ 
+<span id="burndown">
+ 
+### :chart_with_downwards_trend:	Burndown:
+
+#### Primeira Sprint;
+ 
+<p><img src="./doc/burndown/burndown.png"></img></p>
  
 ↑ [Voltar ao início](#inicio) 
