@@ -10,80 +10,96 @@ header {
 }
 
 main {
-    width: 500px;
+    position: relative;
+    margin: auto;
+    min-width: 300px;
+    max-width: 1000px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding: 10px;
+    text-align: center;
 }
 
-.login {
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    margin-left: 40%;
+form {
+    align-items: center;
+    margin: auto;
+}
+
+.login {    
+    max-width: 450px;
+    min-width: 250px;
+    height: 470px;
     top: 250px;    
-    background-color: rgba(66, 85, 95, 0.8) ;
+    background-color: #3A4952;
     border-radius: 10px;
-    color: #ffff;
+    color: white;
 }
 
-.login input[type = "text"],.login input[type = "password"] {
+.campos {
+    padding-top: 10px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+input {
     border: 0;
+    border-radius: 10px;
+    margin-bottom: 10px;
     background: #c4c4c4;
-    display: block;
-    border-radius: 10px;
     font-size:  25px;
-    padding: 6px 20px 6px 6px;
-    position: absolute;
-    left: 10%;
+    height: 40px;
+    width: 330px;
 }
 
-.botao{
-    display: block;
-    position:  absolute;
-    border: 0;
+button {
+    border: none;
     border-radius: 10px;
     background-color: #ab101a;
     color: #ffff;
     font-size: 25px;
-    width: 40%;
-    height: 13%;
-    bottom: 30%;
-    left: 30%;
-
+    width: 150px;
+    height: 50px;
+    margin-top: 20px;
 }
-.botao a{text-decoration: none; color: #ffff;}
 
-.botao:hover {
+button a {
+    text-decoration: none; 
+    color: #ffff;
+}
+
+button:hover {
     background-color: #C4C4C4;
     border: #C4C4C4;
     border-radius: 10px;
     color: black;
 }
-.botao a:hover{color: black;}
 
-.p1 {
+button a:hover {
+    color: black;
+}
+
+p {
     color: #ffff;
+    margin-left: 60px;
+    margin-top: 30px;
     text-align: left;
-    font-size: 25px;
-    position: relative;
-    left: 10%;
-    top: 5%;
+    font-size: 25px;    
 }
 
-.p2 {
-    position: absolute;
-    bottom: 10%;
-    left: 10%;
+.cad {
     font-size: 18px;
+    padding-top: 20px;
 }
 
-.p2 a {
+.cad a {
     color: #ab101a;
     text-shadow: black;
     text-decoration: none;
 }
 
-.p2 a:hover {
+.cad a:hover {
     background-color: #ab101a;
-    color: #c4c4c4;
+    color: white;
     padding: 5px;
     border-radius: 10px;
 }

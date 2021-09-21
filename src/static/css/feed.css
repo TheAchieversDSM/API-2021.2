@@ -20,10 +20,10 @@ header button {
   background-color: #AB101A;
   border: #AB101A;
   border-radius: 10px;
-  width: 150px;
-  height: 70px;
+  margin-right: 5%;
+  width: 130px;
+  height: 60px;
   margin-top: 100px;
-  margin-right: 10%;
 }
 
 header button a {
@@ -35,8 +35,9 @@ header button a {
 header button:hover {
   background-color: #C4C4C4;
   border: #C4C4C4;
-  width: 150px;
-  height: 70px;
+  width: 130px;
+  height: 60px;
+  border: 10px;
 }
 
 header button a:hover {

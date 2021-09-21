@@ -1,7 +1,7 @@
 body{
     background-color: #1b1c21;
     font-family: sans-serif;
-    height: 1000px;
+    height: 1300px;
 }
 
 header {
@@ -11,63 +11,81 @@ header {
 }
 
 main {
-    width: 500px;
-    margin-top: 20px;
+    position: relative;
+    margin: auto;
+    min-width: 300px;
+    max-width: 1000px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding: 10px;
+    text-align: center;
 }
 
-.cadastro input[type = "text"],.cadastro input[type = "date"],.cadastro input[type = "password"] {
-    border: 0;
-    background: #c4c4c4;
-    display: block;
+form {
+    align-items: center;
+    margin: auto;
+}
+
+.campos {
+    padding-top: 10px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.cadastro {
+    max-width: 450px;
+    min-width: 250px;
+    height: 880px;
+    top: 250px;    
+    background-color: rgba(66, 85, 95, 0.8) ;
     border-radius: 10px;
+    color: #ffff;   
+}  
+
+input {
+    border: 0;
+    border-radius: 10px;
+    background: #c4c4c4;
     font-size:  25px;
-    padding: 6px 115px 6px 6px;
-    position: absolute;
-    left: 10%;
-    width: 320px;
+    height: 40px;
+    width: 330px;
 }
 
-.botao {
-    display: block;
-    position:  absolute;
-    border: 0;
+:placeholder-shown {
+    font-size: 20px;
+}
+
+p {
+    color: #ffff;
+    margin-left: 60px;
+    margin-top: 30px;
+    text-align: left;
+    font-size: 25px;    
+}
+
+button {
+    border: none;
     border-radius: 10px;
     background-color: #ab101a;
     color: #ffff;
     font-size: 25px;
     width: 150px;
     height: 50px;
-    bottom: 10px;
-    left: 35%;
-    
-}
-.botao a{ text-decoration: none; color: #ffff;}
-
-.botao:hover {
-    background-color: #c4c4c4;
-    border-color: #c4c4c4;
-    color: black; 
-}
-.botao a:hover{color: black;}
-
-p {
-    color: #ffff;
-    text-align: left;
-    font-size: 25px;
-    position: relative;
-    left: 10%;
-    top: 2%;
+    margin-top: 30px;
 }
 
-.cadastro {
-    position:absolute;
-    width: 550px;
-    height:  700px;
-    left: 35%;
-    top: 250px;    
-    background-color: rgba(66, 85, 95, 0.8) ;
-    border-radius: 15px;
-    color: #ffff;    
-}  
+button a { 
+    text-decoration: none; 
+    color: white;
+}
 
+button:hover {
+    background-color: #C4C4C4;
+    border: #C4C4C4;
+    border-radius: 10px;
+    color: black;
+}
 
+button a:hover {
+    color: black;
+}
