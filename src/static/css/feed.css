@@ -64,7 +64,8 @@ main {
 .divInterna {
   background-color: white;
   border-radius: 10px;
-  padding: 20px;
+  height: 600px;
+  padding: 16px;
 }
 
 .filter {
@@ -154,7 +155,7 @@ main {
 }
 
 .user-info p {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .corpo-info {
@@ -190,4 +191,80 @@ footer {
 footer p {
   text-align: center;
   padding: 10px;
+}
+
+.switch {
+  position: absolute;
+  display: inline-block;
+  top: 145px;
+  left: 1200px;
+  width: 60px;
+  height: 34px;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #AB101A;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #AB101A;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.sino{
+  position:absolute;
+  width:30px;
+  height: 35px;
+  top: 145px;
+  left: 1150px;
+}
+
+#divContent{
+  overflow:auto; 
+}
+
+div.contents {
+  position: absolute;
+  width: 900px;
+  height: 545px;
+  overflow: auto;
+  top: 110px;
 }
