@@ -20,12 +20,14 @@
                 <div class="campos">
                     <p>Nome completo</p>
                     <input type="text" name="nome">
+                    <input type="text" name="nome" required>
                     <p>E-mail</p>
-                    <input type="text" name="e-mail" placeholder="exemplo@fatec.sp.gov">
+                    <input type="text" name="e-mail" placeholder="exemplo@fatec.sp.gov" pattern="^[a-zA-Z0-9]+@fatec.sp.gov"  oninvalid="setCustomValidity('Insira o e-mail instituicional.')" required id='email'>
                     <p>Senha</p>
-                    <input type="password" name="senha"><br>
+                    <input type="password" name="senha" required><br>
                 </div>
                 <button><a href="login.html">Cadastrar</a></button><br>
+                <input type="submit" class="botao">
             </form>
         </main>                                                                                       
     </body>

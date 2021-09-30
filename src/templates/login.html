@@ -15,17 +15,18 @@
     <main>
         <form class="login">
             <div class="campos">
-                <p>Usuário</p>
-                <input type="text" name="nome"><br>
+                <p>E-mail</p>
+                <input type="text" name="e-mail" placeholder="exemplo@fatec.sp.gov" pattern="^[a-zA-Z0-9]+@fatec.sp.gov"  oninvalid="setCustomValidity('Insira o e-mail instituicional.')" required><br>
                 
                 <p>Senha</p>
-                <input type="password" name="senha"><br>
+                <input type="password" name="senha" required><br>
                 
-                <button><a href="feed.html">Login</a></button><br>
+                <!--<button><a href="feed">Login</a></button><br>-->
+                <input type="submit" class="botao">
             </div>
         
-           <p class="cad">Ainda não é cadastrado? Clique <a href="cadastro.html">aqui!</a></p>
+           <p class="cad">Ainda não é cadastrado? Clique <a href="cadastro">aqui!</a></p>
         </form>
-    </main>                                           
+    </main>                                       
 </body>
 </html>
