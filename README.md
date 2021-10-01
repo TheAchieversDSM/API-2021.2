@@ -169,14 +169,19 @@ Wireframe da interface de login do status | Alta | Completa
 Wireframe da interface de cadastro de usuário | Alta | Completa
 Wireframe da interface de divulgação de informações prioritárias | Alta | Completa
 Repositório do projeto | Alta | Completa
-Documentação do sistema | Alta | Em andamento
+Documentação do sistema | Alta | Completa
 Interface de login do sistema | Alta | Completa
 Interface de cadastro de usuário | Alta | Completa
 Interface de divulgação de informações prioritárias | Alta | Completa
 Outras interfaces conforme solicitação do cliente | Alta | Em andamento
+Tornar o protótipo navegável | Alta | Completa
+Ajustes na interface | Alta | Em andamento
+Ajustes com JavaScript | Média | Em andamento
 Modelos conceitual e lógico do banco de dados | Alta | Não iniciada
 Modelo físico do banco de dados | Alta | Não iniciada
 Conexão do banco de dados | Alta | Não iniciada
+Tornar o protótipo funcional | Alta | Não iniciada
+Aplicação do sistema em um servidor de aplicação | Alta | Não iniciada
 Testes unitários do sistema | Alta | Não iniciada
 Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
@@ -194,11 +199,22 @@ Sprint | Nome da tarefa | Prioridade | Status
 #1 | Wireframe da interface de cadastro de usuário | Alta | Completa
 #1 | Wireframe da interface de divulgação de informações prioritárias | Alta | Completa
 #1 | Repositório do projeto | Alta | Completa
-#1 | Documentação do sistema | Alta | Em andamento
+#1 | Documentação do sistema | Alta | Completa
 #1 | Interface de login do sistema | Alta | Completa
 #1 | Interface de cadastro de usuário | Alta | Completa
 #1 | Interface de divulgação de informações prioritárias | Alta | Completa
  
+Sprint | Nome da tarefa | Prioridade | Status
+-------|----------------|------------|-------
+#2 | Tornar o protótipo navegável | Alta | Completa
+#2 | Ajustes na interface | Alta | Em andamento
+#2 | Ajustes com JavaScript | Média | Em andamento
+#2 | Modelo conceitual e lógico do banco de dados | Alta | Em andamento
+#2 | Modelo físico do banco de dados | Alta | Não iniciada
+#2 | Conexão do banco de dados | Alta | Não iniciada
+#2 | Tornar o protótipo funcional | Alta | Não iniciada
+#2 | Aplicação do sistema em um servidor de aplicação | Alta | Não iniciada
+
 ↑ [Voltar ao início](#inicio) 
  
 <span id="burndown">
