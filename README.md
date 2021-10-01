@@ -5,6 +5,7 @@
      <a href="#equipe">Equipe</a> • 
      <a href="#sobre">Sobre</a> • 
      <a href="#status">Status</a> • 
+     <a href="#execucao">Execução</a> • 
      <a href="#tecnologias">Tecnologias</a> • 
      <a href="#organizacao">Organização</a> • 
      <a href="#user-stories">User Stories</a> • 
@@ -43,7 +44,33 @@ Dev Team | Rikio Anzai
   
 ↑ [Voltar ao início](#inicio) 
   
- <span id="tecnologias">
+<span id="execucao">
+
+### :hammer: Executando a aplicação:
+#### Primeiramente, certifique-se se tem o Python, caso não tenha, acesse <a href="https://www.python.org/downloads/">aqui</a> 
+```python 
+ # Clone este repositório;
+ 
+ # Redirecione-se à pasta referente ao repositório clonado;
+ 
+ # Abra o prompt de comando e confirme se este está com o endereço da pasta correto;
+   
+ cd API-2021-2
+ 
+ # Instale os requisitos para rodar a aplicação;
+   
+ pip install -r requirements.txt
+ 
+ # Execute a aplicação;
+   
+ appy.py
+ 
+ # Acesse o link no qual a aplicação está hospedada;
+   
+ http://127.0.0.1:5000/
+```
+ 
+<span id="tecnologias">
 
  ### :computer: Tecnologias utilizadas até o momento:
 <p>
@@ -53,6 +80,9 @@ Dev Team | Rikio Anzai
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"/>
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
     <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+    <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/>
+    <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"/>
 </p>
 
 <span id="organizacao">
