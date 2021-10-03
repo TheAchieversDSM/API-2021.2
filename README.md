@@ -5,6 +5,7 @@
      <a href="#equipe">Equipe</a> • 
      <a href="#sobre">Sobre</a> • 
      <a href="#status">Status</a> • 
+     <a href="#execucao">Execução</a> • 
      <a href="#tecnologias">Tecnologias</a> • 
      <a href="#organizacao">Organização</a> • 
      <a href="#user-stories">User Stories</a> • 
@@ -43,7 +44,33 @@ Dev Team | Rikio Anzai
   
 ↑ [Voltar ao início](#inicio) 
   
- <span id="tecnologias">
+<span id="execucao">
+
+### :hammer: Executando a aplicação:
+#### Primeiramente, certifique-se se tem o Python, caso não tenha, acesse <a href="https://www.python.org/downloads/">aqui</a> 
+```python 
+ # Clone este repositório;
+ 
+ # Redirecione-se à pasta referente ao repositório clonado;
+ 
+ # Abra o prompt de comando e confirme se este está com o endereço da pasta correto;
+   
+ cd API-2021-2
+ 
+ # Instale os requisitos para rodar a aplicação;
+   
+ pip install -r requirements.txt
+ 
+ # Execute a aplicação;
+   
+ appy.py
+ 
+ # Acesse o link no qual a aplicação está hospedada;
+   
+ http://127.0.0.1:5000/
+```
+ 
+<span id="tecnologias">
 
  ### :computer: Tecnologias utilizadas até o momento:
 <p>
@@ -53,6 +80,9 @@ Dev Team | Rikio Anzai
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"/>
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
     <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+    <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/>
+    <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"/>
 </p>
 
 <span id="organizacao">
@@ -139,14 +169,19 @@ Wireframe da interface de login do status | Alta | Completa
 Wireframe da interface de cadastro de usuário | Alta | Completa
 Wireframe da interface de divulgação de informações prioritárias | Alta | Completa
 Repositório do projeto | Alta | Completa
-Documentação do sistema | Alta | Em andamento
+Documentação do sistema | Alta | Completa
 Interface de login do sistema | Alta | Completa
 Interface de cadastro de usuário | Alta | Completa
 Interface de divulgação de informações prioritárias | Alta | Completa
 Outras interfaces conforme solicitação do cliente | Alta | Em andamento
+Tornar o protótipo navegável | Alta | Completa
+Ajustes na interface | Alta | Em andamento
+Ajustes com JavaScript | Média | Em andamento
 Modelos conceitual e lógico do banco de dados | Alta | Não iniciada
 Modelo físico do banco de dados | Alta | Não iniciada
 Conexão do banco de dados | Alta | Não iniciada
+Tornar o protótipo funcional | Alta | Não iniciada
+Aplicação do sistema em um servidor de aplicação | Alta | Não iniciada
 Testes unitários do sistema | Alta | Não iniciada
 Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
@@ -164,11 +199,22 @@ Sprint | Nome da tarefa | Prioridade | Status
 #1 | Wireframe da interface de cadastro de usuário | Alta | Completa
 #1 | Wireframe da interface de divulgação de informações prioritárias | Alta | Completa
 #1 | Repositório do projeto | Alta | Completa
-#1 | Documentação do sistema | Alta | Em andamento
+#1 | Documentação do sistema | Alta | Completa
 #1 | Interface de login do sistema | Alta | Completa
 #1 | Interface de cadastro de usuário | Alta | Completa
 #1 | Interface de divulgação de informações prioritárias | Alta | Completa
  
+Sprint | Nome da tarefa | Prioridade | Status
+-------|----------------|------------|-------
+#2 | Tornar o protótipo navegável | Alta | Completa
+#2 | Ajustes na interface | Alta | Em andamento
+#2 | Ajustes com JavaScript | Média | Em andamento
+#2 | Modelo conceitual e lógico do banco de dados | Alta | Em andamento
+#2 | Modelo físico do banco de dados | Alta | Não iniciada
+#2 | Conexão do banco de dados | Alta | Não iniciada
+#2 | Tornar o protótipo funcional | Alta | Não iniciada
+#2 | Aplicação do sistema em um servidor de aplicação | Alta | Não iniciada
+
 ↑ [Voltar ao início](#inicio) 
  
 <span id="burndown">
