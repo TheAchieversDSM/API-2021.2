@@ -59,6 +59,9 @@ main {
   background-color: #3A4952;
   border-radius: 10px;
   padding: 30px;
+  max-width: 100%;
+  min-width: 50%;
+  margin:auto;
 }
 
 .divInterna {
@@ -66,12 +69,16 @@ main {
   border-radius: 10px;
   height: 600px;
   padding: 16px;
+  margin: auto;
+  max-width: 100%;
+  min-width: 30%;
 }
 
 .filter {
   display: flex;
   max-width: 100%;
   min-width: 25%;
+  flex-wrap: wrap;
   background-color: #C4C4C4;
   border-radius: 10px;
   justify-content: space-around;
@@ -85,11 +92,6 @@ main {
   font-size: 14pt;
 }
 
-.drop {
-  justify-content: space-between;
-  display: inline-block;
-  margin-left: -80px;
-}
 
 .drop button {
   background-color: #C4C4C4;
@@ -97,10 +99,6 @@ main {
   font-size: 20px;
   border: none;
   cursor: pointer;
-}
-
-.drop {
-  position: absolute;
 }
 
 .content {
@@ -156,19 +154,25 @@ main {
 
 .user-info p {
   margin-bottom: 10px;
+  max-width: 100%;
+  min-width: 60%;
 }
 
 .corpo-info {
   margin-top: 10px;
   text-align: justify;
   line-height: 1.5em;
+  max-width: 100%;
+  min-width: 20%;
 }
 
 footer {
   position: absolute;
   background-color: #D3D9D9;
-  width: 100%;
   height: 280px;
+  max-width: 100%;
+  min-width: 100%;
+  margin:auto;
 }
 
 .logo-gov {
@@ -191,6 +195,7 @@ footer {
 footer p {
   text-align: center;
   padding: 10px;
+  margin: auto;
 }
 
 .switch {
@@ -264,7 +269,61 @@ input:checked + .slider:before {
 div.contents {
   position: absolute;
   width: 900px;
-  height: 545px;
+  height: 530px;
   overflow: auto;
-  top: 110px;
+  top: 130px;
+  margin: auto;
+}
+
+.adm{
+  width: 170px;
+}
+
+@media screen and (max-width: 420px) {
+  .corpo-info{
+    font-size: 18px;
+  }
+  .user-info{
+    width: 90px;
+  }
+  .info{
+    position: center;
+    width: 210px;
+  }
+  .adm{
+    position: absolute;
+    top: 900px;
+    left: 100px;
+  }
+  footer{
+    top: 1150px;
+  }
+  div.contents{
+    top: 140px;
+    height: 520px;
+    width: 250px;
+  }
+  .env{
+    position: absolute;
+    top: 900px;
+    left: 120px;
+  }
+  .sino{
+    top: 1080px;
+    left: 140px;
+  }
+  .switch{
+    left: 180px;
+    top: 1080px;
+  }
+}
+
+@media screen and (max-width: 330px){
+  .info{
+    width: 180px;
+    left: 10px;
+  }
+  footer{
+    top: 1170px;
+  }
 }

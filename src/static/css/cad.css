@@ -63,7 +63,7 @@ p {
     font-size: 25px;    
 }
 
-button {
+.botao {
     border: none;
     border-radius: 10px;
     background-color: #ab101a;
@@ -74,18 +74,24 @@ button {
     margin-top: 30px;
 }
 
-button a { 
+.botao a { 
     text-decoration: none; 
     color: white;
 }
 
-button:hover {
+.botao:hover {
     background-color: #C4C4C4;
     border: #C4C4C4;
     border-radius: 10px;
     color: black;
 }
 
-button a:hover {
+.botao a:hover {
     color: black;
+}
+
+@media screen and (max-width: 415px) {
+    .resp{
+        width: 300px;
+    }
 }

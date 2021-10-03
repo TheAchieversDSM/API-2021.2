@@ -103,3 +103,9 @@ p {
     padding: 5px;
     border-radius: 10px;
 }
+
+@media screen and (max-width: 415px){
+    input{
+        width: 270px;
+    }
+}

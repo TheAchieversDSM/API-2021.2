@@ -187,3 +187,46 @@ footer p {
     text-align: center;
     padding: 10px;
 }
+
+@media screen and (max-width: 415px){
+    .divInterna{
+        height: 680px;
+    }
+    textarea{
+        width: 240px;
+    }
+    .enviar{
+        position: absolute;
+        left: -120px;
+        top: 670px;
+    }
+    footer{
+        top: 1200px;
+    }
+    .voltar{
+        position: absolute;
+        top: 980px;
+        left: 135px;
+    }
+}
+@media screen and (max-width: 330px){
+    .divInterna{
+        height: 680px;
+    }
+    textarea{
+        width: 200px;
+    }
+    .enviar{
+        position: absolute;
+        left: -150px;
+        top: 670px;
+    }
+    footer{
+        top: 1200px;
+    }
+    .voltar{
+        position: absolute;
+        top: 980px;
+        left: 135px;
+    }
+}
