@@ -5,8 +5,8 @@
      <a href="#equipe">Equipe</a> • 
      <a href="#sobre">Sobre</a> • 
      <a href="#status">Status</a> • 
-     <a href="#execucao">Execução</a> • 
      <a href="#tecnologias">Tecnologias</a> • 
+     <a href="#execucao">Execução</a> • 
      <a href="#organizacao">Organização</a> • 
      <a href="#user-stories">User Stories</a> • 
      <a href="#prototipo">Protótipo</a>  • 
@@ -42,6 +42,23 @@ Dev Team | Rikio Anzai
 
  ### :bookmark_tabs: Status do projeto: em andamento... :hourglass_flowing_sand:
   
+ <span id="tecnologias">
+
+### :computer: Tecnologias utilizadas até o momento:
+<p>
+    <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"></img>
+    <img src="https://img.shields.io/badge/Microsoft_Teams-6264A7?style=for-the-badge&logo=microsoft-teams&logoColor=white"></img>
+    <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"></img>
+    <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"/>
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+    <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/>
+    <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"/>
+</p>
+  
 ↑ [Voltar ao início](#inicio) 
   
 <span id="execucao">
@@ -70,21 +87,6 @@ Dev Team | Rikio Anzai
  http://127.0.0.1:5000/
 ```
  
-<span id="tecnologias">
-
- ### :computer: Tecnologias utilizadas até o momento:
-<p>
-    <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"></img>
-    <img src="https://img.shields.io/badge/Microsoft_Teams-6264A7?style=for-the-badge&logo=microsoft-teams&logoColor=white"></img>
-    <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"></img>
-    <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"/>
-    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-    <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/>
-    <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"/>
-</p>
-
 <span id="organizacao">
 
 ### :clipboard: Organização do repositório:
@@ -174,6 +176,7 @@ Interface de login do sistema | Alta | Completa
 Interface de cadastro de usuário | Alta | Completa
 Interface de divulgação de informações prioritárias | Alta | Completa
 Outras interfaces conforme solicitação do cliente | Alta | Em andamento
+Ajustes na responsividade do sistema | Alta | Em andamento
 Tornar o protótipo navegável | Alta | Completa
 Ajustes na interface | Alta | Em andamento
 Ajustes com JavaScript | Média | Em andamento
@@ -206,14 +209,15 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
+#3 | Ajustes na responsividade do sistema | Em andamento
 #2 | Tornar o protótipo navegável | Alta | Completa
 #2 | Ajustes na interface | Alta | Em andamento
 #2 | Ajustes com JavaScript | Média | Em andamento
 #2 | Modelo conceitual e lógico do banco de dados | Alta | Em andamento
-#2 | Modelo físico do banco de dados | Alta | Não iniciada
+#2 | Modelo físico do banco de dados | Alta | Em andamento
 #2 | Conexão do banco de dados | Alta | Não iniciada
 #2 | Tornar o protótipo funcional | Alta | Não iniciada
-#2 | Aplicação do sistema em um servidor de aplicação | Alta | Não iniciada
+#2 | Aplicação do sistema em um servidor de aplicação | Alta | Em andamento
 
 ↑ [Voltar ao início](#inicio) 
  
