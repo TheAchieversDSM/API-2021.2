@@ -12,8 +12,10 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    margin-left: 10%;
-    margin-top: 20px;
+    align-items: center;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
 }
 
 header button {
@@ -22,8 +24,7 @@ header button {
     border-radius: 10px;
     width: 100px;
     height: 50px;
-    margin-top: 100px;
-    margin-right: 5%;
+    margin-top: 50px;
 }
 
 header button a {
@@ -42,6 +43,10 @@ header button:hover {
 
 header button a:hover {
     color: black;
+}
+
+header img {
+    margin-top: 50px;
 }
 
 main {
@@ -100,6 +105,7 @@ textarea {
     margin-top: 30px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12pt;
+    text-indent: 10px;
 }
 
 .info-buttons {

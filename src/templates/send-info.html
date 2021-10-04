@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <img src="../static/img/logo.png" alt="Logo">
+        <img src="../static/img/logo-150.png" alt="Logo">
         <button class="voltar">
             <a href="/feed-adm">Voltar</a>
         </button>
@@ -23,10 +23,10 @@
             <div class="divInterna">
                 <section class="filter">
                     <div class="date">
-                        <input type="date" name="data" id="data"></input>
+                        <input type="date" id="data" value=""></input>
                     </div>
 
-                    <select name="curso" id="curso">
+                    <select name="curso" id="multiple-checkboxes">
                         <option value="select" disabled selected>Curso</option>
                         <option value="ads">Análise e Desenvolvimento de Sistemas</option>
                         <option value="bd">Banco de Dados</option>
@@ -38,7 +38,7 @@
                         <option value="proj aero">Projetos de Estruturas Aeronáuticas</option>
                     </select>
 
-                    <select name="assunto" id="assunto">
+                    <select name="assunto" id="multiple-checkboxes">
                         <option value="assunto" disabled selected>Assunto</option>
                         <option value="">Covid-19</option>
                         <option value="">Estágio</option>
@@ -49,7 +49,7 @@
                         <option value="">Urgente</option>
                     </select>
 
-                    <select name="destinatario" id="destinatario">
+                    <select name="destinatario" id="multiple-checkboxes">
                         <option value="destinatario" disabled selected>Destinatário</option>
                         <option value="diretor">Diretor</option>
                         <option value="sec adm">Secretaria Administrativa</option>
@@ -61,9 +61,7 @@
                 </section>
 
 
-                <textarea rows="20" cols="100">
-                        Escreva sua mensagem...
-                    </textarea>
+                <textarea rows="20" cols="100" placeholder="Escreva sua mensagem..."></textarea>
 
                 <div class="info-buttons">
                     <input type="file">
