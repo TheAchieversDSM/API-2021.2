@@ -5,11 +5,19 @@ body{
 }
 
 header {
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
-    margin-left: 10%;
-    margin-top: 20px;
+    align-items: center;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
 }
 
+header img {
+    margin-top: 50px;
+}
+  
 main {
     position: relative;
     margin: auto;

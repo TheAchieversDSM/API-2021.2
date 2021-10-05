@@ -4,57 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feed</title>
     <link rel='stylesheet' type="text/css" href='../static/css/feed.css'>
     <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> 
+    <title>Feed</title>
 </head>
 <body>
     <header>
+<<<<<<< HEAD
         <img src="../static/img/logo.png" alt="Logo" class="logo">
         <button class="adm">
             <a href="/feed-adm">Visualize como Adiministrador</a>
         </button>
+=======
+        <img src="../static/img/logo-150.png" alt="Logo">
+        <button class="adm">
+            <a href="/feed-adm">Visualize como Adiministrador</a>
+        </button>
+        
+>>>>>>> 1ef19000606dccc5b1da59c5e7b1178e62f8d029
     </header>
     <main>
         <div class="divExterna">
           <div class="divInterna">
             <section class="filter">
               <div class="date">
-                <input type="date" name="data" id="data"></input>
+                <input type="text" name="daterange" id="data" value="04/10/2021 - 05/10/2021"></input>
               </div>
     
-              <section>
-                <div class="drop">
-                  <button>↓ Curso</button>
-                  <div class="content">
-                    <a href="#">ADM</a>
-                    <a href="#">Banco de Dados</a>
-                    <a href="#">DSM</a>
-                    <a href="#">Gestão de Produção Industrial</a>
-                    <a href="#">Logística</a>
-                    <a href="#">Manufatura Avançada</a>
-                    <a href="#">Projetos de Estruturas Aeronauticas</a>
-                  </div>
-                </div>
-              </section>
-    
-              <section>
-                <div class="drop">
-                  <button>↓ Assuntos</button>
-                  <div class="content">
-                    <a href="#">Covid-19</a>
-                    <a href="#">Provas</a>
-                    <a href="#">Recados</a>
-                    <a href="#">Estágio</a>
-                    <a href="#">Evento</a>
-                    <a href="#">Notas & similares</a>
-                    <a href="#">Recados</a>
-                    <a href="#">Reunião</a>
-                    <a href="#">Urgente</a>
-                  </div>
-                </div>
-              </section>
-            </section>
+              
+              <select name="curso" id="multiple-checkboxes">
+                <option value="select" disabled selected>Curso</option>
+                <option value="ads">Análise e Desenvolvimento de Sistemas</option>
+                <option value="bd">Banco de Dados</option>
+                <option value="dsm">Desenvolvimento de Software Multiplataforma</option>
+                <option value="prod indust">Gestão da Produção Industrial</option>
+                <option value="log">Logística</option>
+                <option value="manufatura">Manufatura Avançada</option>
+                <option value="manutenção">Manutenção de Aeronaves</option>
+                <option value="proj aero">Projetos de Estruturas Aeronáuticas</option>
+            </select>
+
+            <select name="assunto" id="multiple-checkboxes">
+                <option value="assunto" disabled selected>Assunto</option>
+                <option value="">Covid-19</option>
+                <option value="">Estágio</option>
+                <option value="">Evento</option>
+                <option value="">Notas & similares</option>
+                <option value="">Recados</option>
+                <option value="">Reunião</option>
+                <option value="">Urgente</option>
+            </select>
+
+            <select name="destinatario" id="multiple-checkboxes">
+                <option value="destinatario" disabled selected>Destinatário</option>
+                <option value="diretor">Diretor</option>
+                <option value="sec adm">Secretaria Administrativa</option>
+                <option value="sec acad">Secretaria Acadêmica</option>
+                <option value="coordenador">Coordenador</option>
+                <option value="professor">Professor</option>
+                <option value="alunos">Alunos</option>
+            </select>
+        </section>
 
             <div id="divContent" class='contents' >
               <section class="info">
@@ -154,7 +168,15 @@
       </footer>
     
     </body>
-    
+    <script>
+      $(function() {
+        $('input[name="daterange"]').daterangepicker({
+          opens: 'left'
+        }, function(start, end, label) {
+          console.log("A new date selection was made: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
+        });
+      });
+    </script>
     </html>
 
 </body>
