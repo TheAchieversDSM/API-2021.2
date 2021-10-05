@@ -55,6 +55,11 @@ main {
     text-align: center;
 }
 
+.logo{
+    position: relative;
+    left: 90px;
+}
+
 .divExterna {
     background-color: #3A4952;
     border-radius: 10px;
@@ -188,6 +193,24 @@ footer p {
     padding: 10px;
 }
 
+.btn5 {
+    position:relative;
+    left: 485px;
+    top: -680px;
+    background-color: #ab101a;
+    border: none;
+    color: white;
+    height: 80px;
+    width: 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50px;
+    z-index: 1;
+  }
+  
+  .button5 {border-radius: 50%;}
+
 @media screen and (max-width: 415px){
     .divInterna{
         height: 680px;
@@ -207,6 +230,10 @@ footer p {
         position: absolute;
         top: 980px;
         left: 135px;
+    }
+    .logo{
+        position: relative;
+        left: 5px;
     }
 }
 @media screen and (max-width: 330px){
