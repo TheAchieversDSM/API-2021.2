@@ -209,14 +209,14 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
-#3 | Ajustes na responsividade do sistema | Em andamento
+#2 | Ajustes na responsividade do sistema | Em andamento
 #2 | Tornar o protótipo navegável | Alta | Completa
 #2 | Ajustes na interface | Alta | Em andamento
 #2 | Ajustes com JavaScript | Média | Em andamento
-#2 | Modelo conceitual e lógico do banco de dados | Alta | Em andamento
-#2 | Modelo físico do banco de dados | Alta | Em andamento
-#2 | Conexão do banco de dados | Alta | Não iniciada
-#2 | Tornar o protótipo funcional | Alta | Não iniciada
+#2 | Modelo conceitual e lógico do banco de dados | Alta | Completa
+#2 | Modelo físico do banco de dados | Alta | Completa
+#2 | Conexão do banco de dados | Alta | Completa
+#2 | Tornar o protótipo funcional | Alta | Em andamento
 #2 | Aplicação do sistema em um servidor de aplicação | Alta | Em andamento
 
 ↑ [Voltar ao início](#inicio) 
