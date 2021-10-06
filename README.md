@@ -96,6 +96,8 @@ Dev Team | Rikio Anzai
 <p> :file_folder: <strong>scr</strong> - pasta que contém duas outras, <em>templates</em> e <em>static</em>;</p>
 <p> | - :open_file_folder: <strong>templates</strong> - pasta que contém os códigos de estruturação (.html);</p>
 <p> | - :open_file_folder: <strong>static</strong> - pasta que contém outras duas, <em>css</em> e <em>img</em>;</p>
+<p> | - - :open_file_folder: <strong>js</strong> - pasta que contém os códigos referentes à javascript (.js);</p>
+<p> | - - :open_file_folder: <strong>bd</strong> - pasta que contém tudo referente à parte de banco de dados;</p>
 <p> | - - :open_file_folder: <strong>css</strong> - pasta que contém os códigos de estilização (.css);</p>
 <p> | - - :open_file_folder: <strong>img</strong> - pasta que contém a logo da FATEC e o favicon, além de outra pasta, <em>footer</em>;</p>
 <p> | - - - :open_file_folder: <strong>footer</strong> - pasta que contém todas as imagens utilizadas no rodapé das páginas.</p>
