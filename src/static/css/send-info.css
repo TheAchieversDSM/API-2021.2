@@ -18,33 +18,6 @@ header {
     margin: auto;
 }
 
-header button {
-    background-color: #AB101A;
-    border: #AB101A;
-    border-radius: 10px;
-    width: 100px;
-    height: 50px;
-    margin-top: 50px;
-}
-
-header button a {
-    text-decoration: none;
-    color: white;
-    font-size: 16pt;
-}
-
-header button:hover {
-    background-color: #C4C4C4;
-    border: #C4C4C4;
-    width: 100px;
-    height: 50px;
-    border: 10px;
-}
-
-header button a:hover {
-    color: black;
-}
-
 header img {
     margin-top: 50px;
 }
@@ -60,11 +33,14 @@ main {
     text-align: center;
 }
 
+<<<<<<< HEAD
 .logo{
     position: relative;
     width: 250px;
 }
 
+=======
+>>>>>>> 165b2f605e8e1bf1a54a453629c9dd5b50dc1ac9
 .divExterna {
     background-color: #3A4952;
     border-radius: 10px;

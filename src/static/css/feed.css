@@ -222,7 +222,12 @@ div.contents {
     height: 490px;
     width: 250px;
   }
- 
+
+  .env{
+    position: absolute;
+    top: 900px;
+    left: 120px;
+  }
 }
 
 @media screen and (max-width: 330px){

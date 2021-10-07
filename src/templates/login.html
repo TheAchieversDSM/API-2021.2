@@ -14,20 +14,17 @@
         <img class="logo" src="../static/img/logo-150.png">
     </header>
     <main>
-        <form class="login">
+        <form class="login" method="POST" onsubmit="return validarLog()">
             <div class="campos">
                 <p>E-mail</p>
-                <input type="text" name="e-mail" placeholder="exemplo@fatec.sp.gov" pattern="^[a-zA-Z0-9]+@fatec.sp.gov"  oninvalid="setCustomValidity('Insira o e-mail instituicional.')" required><br>
-                
+                <input type="text" name="e-mail" id ="email" placeholder="exemplo@fatec.sp.gov.br" ><br>
                 <p>Senha</p>
-                <input type="password" name="senha" required><br>
-                
-                <!--<button><a href="feed">Login</a></button><br>-->
+                <input type="password" name="senha" id="senha"><br>
                 <input type="submit" class="botao">
             </div>
-        
-           <p class="cad">Ainda não é cadastrado? Clique <a href="cadastro">aqui!</a></p>
+           <p class="cad">Ainda não é cadastrado? Clique <a href="/cadastro">aqui!</a></p>
         </form>
     </main>                                       
+    <script src="../static/js/script.js"></script>   
 </body>
 </html>

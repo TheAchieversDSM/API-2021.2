@@ -96,6 +96,8 @@ Dev Team | Rikio Anzai
 <p> :file_folder: <strong>scr</strong> - pasta que contém duas outras, <em>templates</em> e <em>static</em>;</p>
 <p> | - :open_file_folder: <strong>templates</strong> - pasta que contém os códigos de estruturação (.html);</p>
 <p> | - :open_file_folder: <strong>static</strong> - pasta que contém outras duas, <em>css</em> e <em>img</em>;</p>
+<p> | - - :open_file_folder: <strong>js</strong> - pasta que contém os códigos referentes à javascript (.js);</p>
+<p> | - - :open_file_folder: <strong>bd</strong> - pasta que contém tudo referente à parte de banco de dados;</p>
 <p> | - - :open_file_folder: <strong>css</strong> - pasta que contém os códigos de estilização (.css);</p>
 <p> | - - :open_file_folder: <strong>img</strong> - pasta que contém a logo da FATEC e o favicon, além de outra pasta, <em>footer</em>;</p>
 <p> | - - - :open_file_folder: <strong>footer</strong> - pasta que contém todas as imagens utilizadas no rodapé das páginas.</p>
@@ -209,14 +211,14 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
-#3 | Ajustes na responsividade do sistema | Em andamento
+#2 | Ajustes na responsividade do sistema | Em andamento
 #2 | Tornar o protótipo navegável | Alta | Completa
 #2 | Ajustes na interface | Alta | Em andamento
 #2 | Ajustes com JavaScript | Média | Em andamento
-#2 | Modelo conceitual e lógico do banco de dados | Alta | Em andamento
-#2 | Modelo físico do banco de dados | Alta | Em andamento
-#2 | Conexão do banco de dados | Alta | Não iniciada
-#2 | Tornar o protótipo funcional | Alta | Não iniciada
+#2 | Modelo conceitual e lógico do banco de dados | Alta | Completa
+#2 | Modelo físico do banco de dados | Alta | Completa
+#2 | Conexão do banco de dados | Alta | Completa
+#2 | Tornar o protótipo funcional | Alta | Em andamento
 #2 | Aplicação do sistema em um servidor de aplicação | Alta | Em andamento
 
 ↑ [Voltar ao início](#inicio) 
