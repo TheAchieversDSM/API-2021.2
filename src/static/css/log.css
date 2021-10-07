@@ -113,6 +113,10 @@ p {
     border-radius: 10px;
 }
 
+.logo{
+    width: 250px;
+}
+
 @media screen and (max-width: 415px){
     input{
         width: 270px;

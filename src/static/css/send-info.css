@@ -62,7 +62,7 @@ main {
 
 .logo{
     position: relative;
-    left: 90px;
+    width: 250px;
 }
 
 .divExterna {
@@ -201,8 +201,8 @@ footer p {
 
 .btn5 {
     position:relative;
-    left: 485px;
-    top: -680px;
+    left: 0px;
+    top: -60px;
     background-color: #ab101a;
     border: none;
     color: white;
@@ -212,7 +212,6 @@ footer p {
     text-decoration: none;
     display: inline-block;
     font-size: 50px;
-    z-index: 1;
   }
   
   .button5 {border-radius: 50%;}
@@ -240,6 +239,10 @@ footer p {
     .logo{
         position: relative;
         left: 5px;
+    }
+    .btn5{
+        position: relative;
+        top: -55px;
     }
 }
 @media screen and (max-width: 330px){

@@ -12,48 +12,18 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-<<<<<<< HEAD
-  margin-left: 10%;
-  margin-top: 20px;
-  width: 130px;
-=======
   align-items: center;
   min-width: 300px;
   max-width: 1000px;
   margin: auto;
->>>>>>> 1ef19000606dccc5b1da59c5e7b1178e62f8d029
-}
-
-header button {
-  background-color: #AB101A;
-  border: #AB101A;
-  border-radius: 10px;
-  margin-top: 50px;
-  width: 130px;
-  height: 60px;
-}
-
-header button a {
-  text-decoration: none;
-  color: white;
-  font-size: 16pt;
-}
-
-header button:hover {
-  background-color: #C4C4C4;
-  border: #C4C4C4;
-  width: 130px;
-  height: 60px;
-  border: 10px;
-}
-
-header button a:hover {
-  color: black;
-  width: 130px;
 }
 
 header img {
   margin-top: 50px;
+}
+
+.logo{
+  width: 250px;
 }
 
 main {
@@ -65,11 +35,6 @@ main {
   margin-top: 50px;
   padding: 10px;
   text-align: center;
-}
-
-.logo{
-  position: relative;
-  left: 100px;
 }
 
 .divExterna {
@@ -187,11 +152,6 @@ footer p {
   margin: auto;
 }
 
-<<<<<<< HEAD
-=======
-/* Rounded sliders */
-
->>>>>>> 1ef19000606dccc5b1da59c5e7b1178e62f8d029
 #divContent{
   overflow:auto;
 }
@@ -207,21 +167,12 @@ div.contents {
 }
 
 .adm{
-<<<<<<< HEAD
   width: 170px;
   position: absolute;
   left: 1090px;
 }
 
-.env{
-  position: absolute;
-  left: 1120px;
-}
-
 .btn5 {
-  position:relative;
-  left: 475px;
-  top: -70px;
   background-color: #ab101a;
   border: none;
   color: white;
@@ -233,13 +184,16 @@ div.contents {
   font-size: 50px;
   z-index: 1;
   margin: auto;
-=======
-  width: 130px;
-  height: 60px;
->>>>>>> 1ef19000606dccc5b1da59c5e7b1178e62f8d029
 }
 
 .button5 {border-radius: 50%;}
+
+.enviar{
+  position: relative;
+  left: -5px;
+  top: -50px;
+  margin: auto;
+}
 
 @media screen and (max-width: 420px) {
   .logo{
@@ -265,27 +219,10 @@ div.contents {
   }
   div.contents{
     top: 15px;
-    height: 520px;
+    height: 490px;
     width: 250px;
   }
-  .env{
-    position: absolute;
-    top: 900px;
-    left: 120px;
-  }
-<<<<<<< HEAD
-  .sino{
-    margin: auto;
-    top: 1080px;
-    left: 140px;
-  }
-  .switch{
-    left: 180px;
-    top: 1080px;
-  }
-=======
  
->>>>>>> 1ef19000606dccc5b1da59c5e7b1178e62f8d029
 }
 
 @media screen and (max-width: 330px){

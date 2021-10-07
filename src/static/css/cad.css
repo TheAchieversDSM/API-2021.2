@@ -98,6 +98,10 @@ p {
     color: black;
 }
 
+.logo{
+    width: 250px;
+}
+
 @media screen and (max-width: 415px) {
     .resp{
         width: 300px;
