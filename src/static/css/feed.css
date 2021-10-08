@@ -37,24 +37,29 @@ main {
   background-color: #3A4952;
   border-radius: 10px;
   padding: 30px;
-  width: 100%;
+  max-width: 95%;
+  min-width: 30%;
+  max-height: fit-content;
+  min-height: 600px;
   margin:auto;
+  height: fit-content;
 }
 
 .divInterna {
   background-color: white;
   border-radius: 10px;
-  height: 600px;
+  max-height: fit-content;
+  min-height: 600px;
   padding: 16px;
   margin: auto;
-  max-width: 100%;
+  max-width: 95%;
   min-width: 30%;
 }
 
 .filter {
   display: flex;
   max-width: 100%;
-  min-width: 25%;
+  min-width: 30%;
   flex-wrap: wrap;
   background-color: #C4C4C4;
   border-radius: 10px;
@@ -81,7 +86,9 @@ select {
   border-radius: 10px;
   margin-top: 20px;
   padding: 20px;
-  width: 890px;
+  max-width: 95%;
+  min-width: 30%;
+  height: fit-content;
 }
 
 .top-info {
@@ -110,7 +117,7 @@ select {
   margin-top: 10px;
   text-align: justify;
   line-height: 1.5em;
-  max-width: 100%;
+  max-width: 90%;
   min-width: 20%;
 }
 
@@ -153,7 +160,8 @@ footer p {
 div.contents {
   position:relative;
   width: 100%;
-  height: 530px;
+  max-height: 500px;
+  min-height: fit-content;
   overflow: auto;
   top: 10px;
   margin: auto;
@@ -198,9 +206,11 @@ div.contents {
   }
   .user-info{
     width: 90px;
+    margin: auto;
   }
   .info{
     width: 80%;
+    margin: auto;
   }
   .adm{
     position: absolute;
@@ -228,6 +238,7 @@ div.contents {
 @media screen and (max-width: 330px){
   .info{
     width: 180px;
+    margin: auto;
   }
   footer{
     top: 1170px;
