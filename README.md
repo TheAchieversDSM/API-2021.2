@@ -19,15 +19,15 @@
 <span id="equipe">
 
 ### :busts_in_silhouette: Equipe:
-Função | Nome 
--------|------
-Scrum Master | Evora de Castro
-Product Owner | Fernando Satoru Eto
-Dev Team | Gizeli Martins Fonseca
-Dev Team | Maria Clara Alves de Faria
-Dev Team | Mariana Ayumi Tamay
-Dev Team | Matheus Henrique Lemes Sakuragui
-Dev Team | Rikio Anzai
+Função | Nome | GitHub
+-------|------|--------
+Scrum Master | Evora de Castro | <a href="https://github.com/MinEvora">GitHub</a>
+Product Owner | Fernando Satoru Eto | <a href="https://github.com/fernandoeto">GitHub</a>
+Dev Team | Gizeli Martins Fonseca | <a href="https://github.com/gizelifonseca">GitHub</a>
+Dev Team | Maria Clara Alves de Faria | <a href="https://github.com/mclaralvs">GitHub</a>
+Dev Team | Mariana Ayumi Tamay | <a href="https://github.com/Mariayumi">GitHub</a>
+Dev Team | Matheus Henrique Lemes Sakuragui | <a href="https://github.com/MatheusSakuragui">GitHub</a>
+Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
 
 > Instituição: Fatec São José dos Campos - Prof. Jessen Vidal
 > 
@@ -211,9 +211,9 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
-#2 | Ajustes na responsividade do sistema | Em andamento
+#2 | Ajustes na responsividade do sistema | Completa
 #2 | Tornar o protótipo navegável | Alta | Completa
-#2 | Ajustes na interface | Alta | Em andamento
+#2 | Ajustes na interface | Alta | Completa
 #2 | Ajustes com JavaScript | Média | Em andamento
 #2 | Modelo conceitual e lógico do banco de dados | Alta | Completa
 #2 | Modelo físico do banco de dados | Alta | Completa
