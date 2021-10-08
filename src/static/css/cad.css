@@ -41,8 +41,7 @@ form {
 }
 
 .cadastro {
-    max-width: 450px;
-    min-width: 250px;
+    width: 450px;
     height: 500px;
     top: 250px;    
     background-color: rgba(66, 85, 95, 0.8) ;
@@ -103,7 +102,10 @@ p {
 }
 
 @media screen and (max-width: 415px) {
-    .resp{
-        width: 300px;
+    input{
+        width: 80%;
+    }
+    .cadastro{
+        width: 100%;
     }
 }

@@ -41,8 +41,7 @@ main {
   background-color: #3A4952;
   border-radius: 10px;
   padding: 30px;
-  max-width: 100%;
-  min-width: 50%;
+  width: 100%;
   margin:auto;
 }
 
@@ -86,8 +85,7 @@ select {
   border-radius: 10px;
   margin-top: 20px;
   padding: 20px;
-  max-width: 865px;
-  min-width: 70%;
+  width: 890px;
 }
 
 .top-info {
@@ -158,8 +156,7 @@ footer p {
 
 div.contents {
   position:relative;
-  max-width: 100%;
-  min-width: 60%;
+  width: 100%;
   height: 530px;
   overflow: auto;
   top: 10px;
@@ -207,7 +204,7 @@ div.contents {
     width: 90px;
   }
   .info{
-    width: 210px;
+    width: 80%;
   }
   .adm{
     position: absolute;
@@ -218,9 +215,8 @@ div.contents {
     top: 1150px;
   }
   div.contents{
-    top: 15px;
     height: 490px;
-    width: 250px;
+    width: 105%;
   }
 
   .env{
@@ -228,14 +224,19 @@ div.contents {
     top: 900px;
     left: 120px;
   }
+  .divExterna{
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 330px){
   .info{
     width: 180px;
-    left: 10px;
   }
   footer{
     top: 1170px;
+  }
+  .divExterna{
+    width: 80%;
   }
 }
