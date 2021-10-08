@@ -33,11 +33,6 @@ main {
     text-align: center;
 }
 
-.logo{
-    position: relative;
-    width: 250px;
-}
-
 .divExterna {
     background-color: #3A4952;
     border-radius: 10px;

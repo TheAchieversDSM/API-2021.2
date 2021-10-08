@@ -56,3 +56,4 @@ function validarLog(){
     return true
   }
 }
+

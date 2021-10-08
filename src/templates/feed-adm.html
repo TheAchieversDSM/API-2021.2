@@ -29,7 +29,7 @@
             <input type="text" name="daterange" id="data" value="04/10/2021 - 05/10/2021"></input>
           </div>
 
-          <select name="curso" id="multiple-checkboxes">
+          <select name="curso" id="multiple-checkboxes" multiple>
             <option value="select" disabled selected>Curso</option>
             <option value="ads">Análise e Desenvolvimento de Sistemas</option>
             <option value="bd">Banco de Dados</option>
@@ -41,7 +41,7 @@
             <option value="proj aero">Projetos de Estruturas Aeronáuticas</option>
         </select>
 
-        <select name="assunto" id="multiple-checkboxes">
+        <select name="assunto" id="multiple-checkboxes" multiple>
             <option value="assunto" disabled selected>Assunto</option>
             <option value="">Covid-19</option>
             <option value="">Estágio</option>
@@ -52,7 +52,7 @@
             <option value="">Urgente</option>
         </select>
 
-        <select name="destinatario" id="multiple-checkboxes">
+        <select name="destinatario" id="multiple-checkboxes" multiple>
             <option value="destinatario" disabled selected>Destinatário</option>
             <option value="diretor">Diretor</option>
             <option value="sec adm">Secretaria Administrativa</option>
@@ -168,7 +168,10 @@
   </footer>
 
   <script>
-    $(function() {
+    $(function dataFiltro() {
+      {
+        const d = new Date(day, month, year);
+      }
       $('input[name="daterange"]').daterangepicker({
         opens: 'left'
       }, function(start, end, label) {
