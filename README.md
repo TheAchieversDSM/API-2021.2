@@ -80,7 +80,7 @@ Dev Team | Rikio Anzai
  
  # Execute a aplicação;
    
- appy.py
+ app.py
  
  # Acesse o link no qual a aplicação está hospedada;
    
