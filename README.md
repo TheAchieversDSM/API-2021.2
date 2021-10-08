@@ -232,3 +232,14 @@ Sprint | Nome da tarefa | Prioridade | Status
 <p><img src="./doc/burndown/burndown.png"></img></p>
  
 ↑ [Voltar ao início](#inicio) 
+ 
+### :triangular_flag_on_post: Entregas
+ 
+Sprint | Data Início | Data Entrega | Links |
+-------|-------------|--------------|-------|
+#1 | 30.08.2021  |  19.09.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v1.0) |
+#2 | 20.09.2021  |  10.10.2021  | :construction: |
+#3 | 18.10.2021  |  07.11.2021  | :construction: |
+#4 | 08.11.2021  |  28.11.2021  | :construction: |
+ 
+↑ [Voltar ao início](#inicio) 
