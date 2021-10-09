@@ -12,9 +12,11 @@ mysql = MySQL(app)
 
 @app.route('/',methods=['GET','POST'])
 def login():
+    # Solicitando informações do usuário no formulário.
     if request.method == 'POST':
         email = request.form['e-mail']
         senha = request.form['senha']
+    # Checando se usuário está cadastrado
         cursor = mysql.connection.cursor()
         cursor.execute('select * from usuario WHERE email = %s and senha = %s', (email,senha))
         conta = cursor.fetchone()
@@ -24,14 +26,16 @@ def login():
 
 @app.route('/cadastro/',methods=['GET','POST'])
 def cadastro():
+    # Solicitando informações do usuário no formulário.
     if request.method == 'POST':
         nome = request.form['nome']
         email = request.form['e-mail']
         senha = request.form['senha']
-
+    # Inserindo informações na tabela Usuário.
         cursor = mysql.connection.cursor()
         cursor.execute("insert into usuario(email,senha,nome) values (%s, %s,%s)", (email,senha,nome))
         mysql.connection.commit()
+    # Checando se as informações foram salvas.
         cursor.execute('select * from usuario WHERE email = %s and senha = %s ', (email,senha))
         status = cursor.fetchone()
         if status:
@@ -62,6 +66,7 @@ def feed_adm():
 
 @app.route('/envio-informacao/', methods=['GET','POST'])
 def envio_informacao():
+    # Solicitando informações da mensagem no formulário.
     if request.method == 'POST':
         titulo = request.form['titulo']
         data_inclusao = request.form['data']
@@ -69,14 +74,15 @@ def envio_informacao():
         curso = request.form['curso']
         destinatario = request.form['destinatario']
         mensagem = request.form['mensagem']
-
+    # Inserindo informações na tabela feed.
         cursor = mysql.connection.cursor()
         cursor.execute("insert into feed(data_inclusao, assunto, destinatario, curso_id, titulo, mensagem) values (%s, %s, %s, %s, %s, %s)", (data_inclusao,assunto,destinatario,curso,titulo,mensagem))
         mysql.connection.commit()
+    # Checando se as informações foram salvas.
         cursor.execute('select * from feed WHERE data_inclusao = %s and assunto = %s and curso_id = %s and titulo = %s and mensagem = %s and destinatario = %s', (data_inclusao,assunto,curso,titulo,mensagem,destinatario))
         status = cursor.fetchone()
         if status:
-            return redirect(url_for('feed-adm'))
+            return redirect(url_for('feed_adm'))
     return render_template('send-info.html')
 
 if __name__ == '__main__':
