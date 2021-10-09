@@ -11,11 +11,11 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema api_fatec
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `api_fatec` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `api_fatec`;
 USE `api_fatec` ;
 
 -- -----------------------------------------------------
--- Table `api_fatec`.`usuario`
+-- Tabela com informações do usuário
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `api_fatec`.`usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT,
@@ -32,40 +32,35 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `api_fatec`.`curso` (
   `id_curso` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NOT NULL,
+  `nome_curso` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id_curso`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `api_fatec`.`feed`
+-- Tabela com informações da mensagem
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `api_fatec`.`feed` (
   `id_feed` INT NOT NULL AUTO_INCREMENT,
-  `assunto` VARCHAR(100) NOT NULL,
+  `assunto` VARCHAR(50) NOT NULL,
+  `titulo` VARCHAR(80) NOT NULL,
+  `destinatario` VARCHAR(100) NOT NULL,  
   `mensagem` TEXT NOT NULL,
   `anexo` LONGBLOB NULL,
-  `data_inclusao` DATETIME NOT NULL DEFAULT current_timestamp(),
+  `data_inclusao` DATE NOT NULL,
   `curso_id` INT NOT NULL,
-  `autor_noticia_id` INT NOT NULL,
   PRIMARY KEY (`id_feed`),
-  INDEX `fk_curso_idx` (`curso_id` ASC) VISIBLE,
-  INDEX `fk_autor_noticia_idx` (`autor_noticia_id` ASC) VISIBLE,
+  INDEX `fk_curso_idx` (`curso_id` ) VISIBLE,
   CONSTRAINT `fk_curso`
     FOREIGN KEY (`curso_id`)
     REFERENCES `api_fatec`.`curso` (`id_curso`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_autor_noticia`
-    FOREIGN KEY (`autor_noticia_id`)
-    REFERENCES `api_fatec`.`usuario` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `api_fatec`.`perfil`
+-- Tabelas para futura estrutura de Hierarquias
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `api_fatec`.`perfil` (
   `id_perfil` INT NOT NULL AUTO_INCREMENT,
@@ -78,7 +73,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `api_fatec`.`usuario_perfil`
+-- Tabelas para futura estrutura de Hierarquias
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `api_fatec`.`usuario_perfil` (
   `usuario_id` INT NOT NULL,
@@ -99,7 +94,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `api_fatec`.`destinatario_feed`
+-- Tabela para destinatarios
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `api_fatec`.`destinatario_feed` (
   `id_destinatario_feed` INT NOT NULL AUTO_INCREMENT,
@@ -120,7 +115,20 @@ CREATE TABLE IF NOT EXISTS `api_fatec`.`destinatario_feed` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- INSERINDO CURSOS ATUAIS --
 
+insert into curso values(null, 'Análise e Desenvolvimento de Sistemas');
+insert into curso values(null, 'Banco de Dados');
+insert into curso values(null, 'Desenvolvimento de Software Multiplataforma');
+insert into curso values(null, 'Gestão da Produção Industrial');
+insert into curso values(null, 'Logística');
+insert into curso values(null, 'Manufatura Avançada');
+insert into curso values(null, 'Manutenção de Aeronaves');
+insert into curso values(null, 'Projetos de Estruturas Aeronáuticas');
+
+select * from curso;
+select * from feed;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
