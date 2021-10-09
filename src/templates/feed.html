@@ -27,113 +27,58 @@
               
               <select name="curso" id="multiple-checkboxes" multiple>
                 <option value="select" disabled selected>Curso</option>
-                <option value="ads">Análise e Desenvolvimento de Sistemas</option>
-                <option value="bd">Banco de Dados</option>
-                <option value="dsm">Desenvolvimento de Software Multiplataforma</option>
-                <option value="prod indust">Gestão da Produção Industrial</option>
-                <option value="log">Logística</option>
-                <option value="manufatura">Manufatura Avançada</option>
-                <option value="manutenção">Manutenção de Aeronaves</option>
-                <option value="proj aero">Projetos de Estruturas Aeronáuticas</option>
+                <option value="1">Análise e Desenvolvimento de Sistemas</option>
+                <option value="2">Banco de Dados</option>
+                <option value="3">Desenvolvimento de Software Multiplataforma</option>
+                <option value="4">Gestão da Produção Industrial</option>
+                <option value="5">Logística</option>
+                <option value="6">Manufatura Avançada</option>
+                <option value="7">Manutenção de Aeronaves</option>
+                <option value="8">Projetos de Estruturas Aeronáuticas</option>
             </select>
-
+    
             <select name="assunto" id="multiple-checkboxes" multiple>
                 <option value="assunto" disabled selected>Assunto</option>
-                <option value="">Covid-19</option>
-                <option value="">Estágio</option>
-                <option value="">Evento</option>
-                <option value="">Notas & similares</option>
-                <option value="">Recados</option>
-                <option value="">Reunião</option>
-                <option value="">Urgente</option>
+                <option value="Covid-19">Covid-19</option>
+                <option value="Estágio">Estágio</option>
+                <option value="Evento">Evento</option>
+                <option value="Notas & similares">Notas & similares</option>
+                <option value="Recados">Recados</option>
+                <option value="Reunião">Reunião</option>
+                <option value="Urgente">Urgente</option>
             </select>
-
+    
             <select name="destinatario" id="multiple-checkboxes" multiple>
                 <option value="destinatario" disabled selected>Destinatário</option>
-                <option value="diretor">Diretor</option>
-                <option value="sec adm">Secretaria Administrativa</option>
-                <option value="sec acad">Secretaria Acadêmica</option>
-                <option value="coordenador">Coordenador</option>
-                <option value="professor">Professor</option>
-                <option value="alunos">Alunos</option>
+                <option value="Diretor">Diretor</option>
+                <option value="Secretaria Administrativa">Secretaria Administrativa</option>
+                <option value="Secretaria Acadêmica">Secretaria Acadêmica</option>
+                <option value="Coordenadores">Coordenadores</option>
+                <option value="Professores">Professores</option>
+                <option value="Alunos">Alunos</option>
             </select>
         </section>
+     <!--bloco python para display de info:
+             info 0 = TITULO  ;info 1 = DESTINATARIO ;info 2 = DATA;info 3 =  ASSUNTO ;info 4 = CURSO ;info 5 = MENSAGEM -->
+    
+             <div id="divContent" class='contents' >     
+                {% for info in infoDetails %}
+                <section class="info">
+                  <div class="user-info">
+                    <h3>{{info[0]}}</h3>
+                    <p>Para {{info[1]}}</p>
+                    <p>{{info[2]}}<p>
+                  </div>
+                  <div class="corpo-info">
+                    <p>{{info[5]}}</p>
+                   </div>
+                </section>
+                {% endfor %}  
+              </div>
+      <!--fim bloco em python para display-->
 
-            <div id="divContent" class='contents' >
-              <section class="info">
-                <div class="top-info">
-                  <div class="pic">
-                  </div>
-                  <div class="user-info">
-                    <p>Diretoria postou para Professores</p>
-                    <p>09/09/2021</p>
-                  </div>
-                </div>
-                <div class="corpo-info">
-                  <p>
-                    Bom dia,
-                    hoje às 19h teremos reunião entre discentes para acordar assuntos sobre a volta às aulas presenciais.
-                  </p>
-                </div>
-              </section>
-    
-              <section class="info">
-                <div class="top-info">
-                  <div class="pic">
-                  </div>
-                  <div class="user-info">
-                    <p>Secretaria Acadêmica postou para Alunos</p>
-                    <p>09/09/2021</p>
-                  </div>
-                </div>
-                <div class="corpo-info">
-                  <p>
-                    Boa tarde,
-                    para agendar ida aos laboratórios da instituição, favor entrar em contato pelo e-mail da secretaria com
-                    antecedência.
-                  </p>
-                </div>
-              </section>
-              
-              <section class="info">
-                <div class="top-info">
-                  <div class="pic">
-                  </div>
-                  <div class="user-info">
-                    <p>Diretoria postou para Professores</p>
-                    <p>09/09/2021</p>
-                  </div>
-                </div>
-                <div class="corpo-info">
-                  <p>
-                    Bom dia,
-                    hoje às 19h teremos reunião entre discentes para acordar assuntos sobre a volta às aulas presenciais.
-                  </p>
-                </div>
-              </section>
-    
-              <section class="info">
-                <div class="top-info">
-                  <div class="pic">
-                  </div>
-                  <div class="user-info">
-                    <p>Secretaria Acadêmica postou para Alunos</p>
-                    <p>09/09/2021</p>
-                  </div>
-                </div>
-                <div class="corpo-info">
-                  <p>
-                    Boa tarde,
-                    para agendar ida aos laboratórios da instituição, favor entrar em contato pelo e-mail da secretaria com
-                    antecedência.
-                  </p>
-                </div>
-              </section>
-            </div>  
-          </div>
-        </div>
       </main>
-  
+
       <footer>
         <div class="logo-gov">
           <img src="../static/img/footer/footer.png" alt="Logo Gov">
