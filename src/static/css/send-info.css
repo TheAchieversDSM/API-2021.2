@@ -70,6 +70,14 @@ select {
     width: 130px;
 }
 
+.titulo{
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    text-indent: 10px;
+}
+
 textarea {
     max-width: 100%;
     min-width: 100%;
@@ -87,27 +95,18 @@ textarea {
     justify-content: space-between;
 }
 
-button {
+input[type=submit] {
     border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16pt;
     width: 100px;
     height: 50px;
     margin-top: 15px;
-}
-
-button a {
-    text-decoration: none;
-}
-
-.enviar {
+    color: white;
     background-color: #AB101A;
     border: #AB101A;
 }
 
-.enviar a {
-    color: white;
-}
 
 .enviar:hover {
     background-color: #C4C4C4;
@@ -115,10 +114,20 @@ button a {
     border-radius: 10px;
 }
 
-.enviar a:hover {
+.enviar:hover {
     color: black;
 }
 
+::-webkit-file-upload-button {
+    font-size: 12pt;
+    margin-top: 15px;
+    background-color: #C4C4C4;
+    color: black;
+    border: #C4C4C4;
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+}
 ::-webkit-file-upload-button {
     font-size: 12pt;
     margin-top: 15px;
