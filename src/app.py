@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '(Insira sua senha...)'
+app.config['MYSQL_PASSWORD'] = '20210618'
 app.config['MYSQL_DB'] = 'api_fatec'
 
 mysql = MySQL(app)
@@ -40,14 +40,43 @@ def cadastro():
 
 @app.route('/feed/')
 def feed():
-    return render_template('feed.html')
+    cur = mysql.connection.cursor()
+
+    # Puxando informações do banco de dados.
+    info = cur.execute("SELECT titulo, destinatario, data_inclusao, assunto, curso_id, mensagem FROM feed")
+
+    if info > 0:
+        infoDetails = cur.fetchall()
+        return render_template("feed.html", infoDetails=infoDetails)
 
 @app.route('/feed-adm/')
 def feed_adm():
-    return render_template('feed-adm.html')
+    cur = mysql.connection.cursor()
+    
+    # Puxando informações do banco de dados.
+    info = cur.execute("SELECT titulo, destinatario, data_inclusao, assunto, curso_id, mensagem FROM feed")
 
-@app.route('/envio-informacao/')
+    if info > 0:
+        infoDetails = cur.fetchall()
+        return render_template("feed-adm.html", infoDetails=infoDetails)
+
+@app.route('/envio-informacao/', methods=['GET','POST'])
 def envio_informacao():
+    if request.method == 'POST':
+        titulo = request.form['titulo']
+        data_inclusao = request.form['data']
+        assunto = request.form['assunto']
+        curso = request.form['curso']
+        destinatario = request.form['destinatario']
+        mensagem = request.form['mensagem']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute("insert into feed(data_inclusao, assunto, destinatario, curso_id, titulo, mensagem) values (%s, %s, %s, %s, %s, %s)", (data_inclusao,assunto,destinatario,curso,titulo,mensagem))
+        mysql.connection.commit()
+        cursor.execute('select * from feed WHERE data_inclusao = %s and assunto = %s and curso_id = %s and titulo = %s and mensagem = %s and destinatario = %s', (data_inclusao,assunto,curso,titulo,mensagem,destinatario))
+        status = cursor.fetchone()
+        if status:
+            return redirect(url_for('feed-adm'))
     return render_template('send-info.html')
 
 if __name__ == '__main__':
