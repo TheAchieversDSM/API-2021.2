@@ -1,5 +1,6 @@
-from flask import Flask, render_template,request,url_for,flash
+from flask import Flask, render_template,request,redirect,url_for,flash,session
 from flask_mysqldb import MySQL
+import MySQLdb.cursors
 from werkzeug.utils import redirect
 
 app = Flask(__name__)
@@ -12,6 +13,7 @@ app.config['MYSQL_PASSWORD'] = '20210618'
 app.config['MYSQL_DB'] = 'api_fatec'
 
 mysql = MySQL(app)
+
 
 
 @app.route('/',methods=['GET','POST'])
@@ -27,7 +29,8 @@ def login():
         user = cursor.fetchone()
 
         if user:
-           return redirect(url_for('feed'))
+            return redirect(url_for('feed_adm'))
+
         else:
             flash("Senha/Email inválido ou usuário não registrado")
 
@@ -63,6 +66,9 @@ def feed():
     if info > 0:
         infoDetails = cur.fetchall()
         return render_template("feed.html", infoDetails=infoDetails)
+    else:
+        return render_template("feed.html")
+
 
 @app.route('/feed-adm/')
 def feed_adm():
@@ -74,6 +80,8 @@ def feed_adm():
     if info > 0:
         infoDetails = cur.fetchall()
         return render_template("feed-adm.html", infoDetails=infoDetails)
+    else:
+        return render_template("feed-adm.html")
 
 @app.route('/envio-informacao/', methods=['GET','POST'])
 def envio_informacao():

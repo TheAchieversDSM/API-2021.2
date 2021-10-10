@@ -11,6 +11,9 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <title>Feed</title>
 </head>
 
@@ -29,7 +32,7 @@
             <input type="text" name="daterange" id="data" value="04/10/2021 - 05/10/2021"></input>
           </div>
 
-          <select name="curso" id="multiple-checkboxes" multiple>
+          <select class="js-example-basic-single" name="curso" id="multiple-checkboxes" multiple>
             <option value="select" disabled selected>Curso</option>
             <option value="1">Análise e Desenvolvimento de Sistemas</option>
             <option value="2">Banco de Dados</option>

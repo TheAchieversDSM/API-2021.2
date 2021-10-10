@@ -6,6 +6,10 @@
 
 $('input[name="dates"]').daterangepicker();
 
+$(document).ready(function() {
+  $('.js-example-basic-single').select2();
+});
+
 function validar(){
   var nome = document.getElementById("nome").value;
   var senha = document.getElementById("senha").value;
