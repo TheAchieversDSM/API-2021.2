@@ -69,8 +69,19 @@
           {% for info in infoDetails %}
           <section class="info">
             <div class="user-info">
-              <h3>{{info[0]}}</h3>
-              <p>Para {{info[1]}}</p>
+              <div class="titulo">
+                <h3>{{info[0]}}</h3>
+              </div>
+              <div>
+                <table>
+                  <tr>
+                    <td>Para</td>
+                    <td></td>
+                    <td></td>
+                    <td class="destino"> <em>{{info[1]}}</em></td>
+                  </tr>
+                </table>
+              </div>
               <p>{{info[2]}}
               <p>
             </div>

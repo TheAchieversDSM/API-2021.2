@@ -88,17 +88,7 @@ select {
   max-width: 95%;
   min-width: 30%;
   height: fit-content;
-}
-
-.top-info {
-  display: flex;
-}
-
-.pic {
-  background-color: black;
-  margin-bottom: 10px;
-  width: 40px;
-  height: 40px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .user-info {
@@ -106,7 +96,17 @@ select {
   text-align: left;
 }
 
+.titulo {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.destino {
+  color: #ab101a;
+}
+
 .user-info p {
+  line-height: 30px;
   margin-bottom: 10px;
   max-width: 100%;
   min-width: 60%;
@@ -118,6 +118,7 @@ select {
   line-height: 1.5em;
   max-width: 90%;
   min-width: 20%;
+  text-indent: 15px;
 }
 
 footer {
