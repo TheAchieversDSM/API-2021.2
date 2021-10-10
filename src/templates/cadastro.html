@@ -14,6 +14,15 @@
             <img class="logo" src="../static/img/logo-150.png">
         </header>
         <main>
+
+            {% with alerta = get_flashed_messages() %}
+            {% if alerta %}
+                <div class="info_erro">
+                     {{ alerta[0] }}.Para ir até a página de login, clique  <a href="{{ url_for('login') }}">aqui!</a>.
+                </div>
+            {% endif %}
+            {% endwith %}
+
             <form class="cadastro" method="POST" onsubmit="return validar()">
                 <div class="campos">
                     <p>Nome completo</p>

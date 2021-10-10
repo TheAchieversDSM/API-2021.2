@@ -14,6 +14,16 @@
         <img class="logo" src="../static/img/logo-150.png">
     </header>
     <main>
+        {% block content %}
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="alerta">
+                            <p>{{msg}}.<br>Para ir até a página de cadastro, clique  <a href="{{ url_for('login') }}">aqui!</a>.</p> 
+                        </div>
+                    {% endfor%}
+                {% endif %}
+            {% endwith %}
         <form class="login" method="POST" onsubmit="return validarLog()">
             <div class="campos">
                 <p>E-mail</p>
@@ -24,6 +34,7 @@
             </div>
            <p class="cad">Ainda não é cadastrado? Clique <a href="/cadastro">aqui!</a></p>
         </form>
+        {% endblock %}
     </main>                                       
     <script src="../static/js/script.js"></script>   
 </body>
