@@ -29,6 +29,37 @@ main {
     text-align: center;
 }
 
+.info_erro {
+    margin: auto;
+    width: 450px;
+    height: fit-content;
+    z-index: 5;
+    background-color: #ab101a;
+    border-radius: 10px;
+}
+
+.info_erro p {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.info_erro a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+.info_erro a:hover {
+    background-color: #C4C4C4;
+    border: #C4C4C4;
+    border-radius: 10px;
+    color: black;
+    padding: 2px;
+}
+
+.info_erro a:hover {
+    color: black;
+}
+
 form {
     align-items: center;
     margin: auto;
