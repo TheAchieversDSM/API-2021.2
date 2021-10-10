@@ -64,6 +64,11 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
 <span id="execucao">
 
 ### :hammer: Executando a aplicação:
+ 
+#### Você pode acessar por esse link: <a href="https://api-theachievers-2021.herokuapp.com/">aqui!</a>
+ 
+#### Ou então,
+ 
 #### Primeiramente, certifique-se se tem o Python, caso não tenha, acesse <a href="https://www.python.org/downloads/">aqui</a> 
 ```python 
  # Clone este repositório;
@@ -178,15 +183,18 @@ Interface de login do sistema | Alta | Completa
 Interface de cadastro de usuário | Alta | Completa
 Interface de divulgação de informações prioritárias | Alta | Completa
 Outras interfaces conforme solicitação do cliente | Alta | Em andamento
-Ajustes na responsividade do sistema | Alta | Em andamento
+Ajustes na responsividade do sistema | Alta | Completa
 Tornar o protótipo navegável | Alta | Completa
-Ajustes na interface | Alta | Em andamento
-Ajustes com JavaScript | Média | Em andamento
-Modelos conceitual e lógico do banco de dados | Alta | Não iniciada
-Modelo físico do banco de dados | Alta | Não iniciada
-Conexão do banco de dados | Alta | Não iniciada
-Tornar o protótipo funcional | Alta | Não iniciada
-Aplicação do sistema em um servidor de aplicação | Alta | Não iniciada
+Ajustes na interface | Alta | Completa
+Ajustes com JavaScript | Média | Completa
+Modelos conceitual e lógico do banco de dados | Alta | Completa
+Modelo físico do banco de dados | Alta | Completa
+Conexão do banco de dados | Alta | Completa
+Tornar o protótipo funcional | Alta | Completa
+Aplicação do sistema em um servidor de aplicação | Alta | Em andamento
+Introdução das hierarquias | Alta | Não iniciada
+Introdução da autenticação do usuário | Alta | Não iniciada
+Ajustes dos filtros | Alta | Não iniciada
 Testes unitários do sistema | Alta | Não iniciada
 Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
@@ -211,14 +219,14 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
-#2 | Ajustes na responsividade do sistema | Completa
+#2 | Ajustes na responsividade do sistema | Alta | Completa
 #2 | Tornar o protótipo navegável | Alta | Completa
 #2 | Ajustes na interface | Alta | Completa
-#2 | Ajustes com JavaScript | Média | Em andamento
+#2 | Ajustes com JavaScript | Média | Completa
 #2 | Modelo conceitual e lógico do banco de dados | Alta | Completa
 #2 | Modelo físico do banco de dados | Alta | Completa
 #2 | Conexão do banco de dados | Alta | Completa
-#2 | Tornar o protótipo funcional | Alta | Em andamento
+#2 | Tornar o protótipo funcional | Alta | Completa
 #2 | Aplicação do sistema em um servidor de aplicação | Alta | Em andamento
 
 ↑ [Voltar ao início](#inicio) 
