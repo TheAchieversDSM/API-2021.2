@@ -42,9 +42,9 @@
             <option value="6">Manufatura Avançada</option>
             <option value="7">Manutenção de Aeronaves</option>
             <option value="8">Projetos de Estruturas Aeronáuticas</option>
-        </select>
+          </select>
 
-        <select name="assunto" id="multiple-checkboxes" multiple>
+          <select name="assunto" id="multiple-checkboxes" multiple>
             <option value="assunto" disabled selected>Assunto</option>
             <option value="Covid-19">Covid-19</option>
             <option value="Estágio">Estágio</option>
@@ -53,9 +53,9 @@
             <option value="Recados">Recados</option>
             <option value="Reunião">Reunião</option>
             <option value="Urgente">Urgente</option>
-        </select>
+          </select>
 
-        <select name="destinatario" id="multiple-checkboxes" multiple>
+          <select name="destinatario" id="multiple-checkboxes" multiple>
             <option value="destinatario" disabled selected>Destinatário</option>
             <option value="Diretor">Diretor</option>
             <option value="Secretaria Administrativa">Secretaria Administrativa</option>
@@ -63,33 +63,46 @@
             <option value="Coordenadores">Coordenadores</option>
             <option value="Professores">Professores</option>
             <option value="Alunos">Alunos</option>
-        </select>
-    </section>
- <!--bloco python para display de info:
+          </select>
+        </section>
+        <!--bloco python para display de info:
          info 0 = TITULO  ;info 1 = DESTINATARIO ;info 2 = DATA;info 3 =  ASSUNTO ;info 4 = CURSO ;info 5 = MENSAGEM -->
 
-         <div id="divContent" class='contents' >     
-            {% for info in infoDetails %}
-            <section class="info">
-              <div class="user-info">
+        <div id="divContent" class='contents'>
+          {% for info in infoDetails %}
+          <section class="info">
+            <div class="user-info">
+              <div class="titulo">
                 <h3>{{info[0]}}</h3>
-                <p>Para {{info[1]}}</p>
-                <p>{{info[2]}}<p>
               </div>
-              <div class="corpo-info">
-                <p>{{info[5]}}</p>
-               </div>
-            </section>
-            {% endfor %}  
-          </div>
-  <!--fim bloco em python para display-->
- 
-    <section class="enviar">
-      <a href="/envio-informacao">
-        <button class="btn5 button5">🖋</button>
-      </a>
-    </section>
-    
+              <div>
+                <table>
+                  <tr>
+                    <td>Para</td>
+                    <td></td>
+                    <td></td>
+                    <td class="destino"> <em>{{info[1]}}</em></td>
+                  </tr>
+                </table>
+              </div>
+              <p>{{info[2]}}
+              <p>
+            </div>
+            <div class="corpo-info">
+              <p>{{info[5]}}</p>
+            </div>
+          </section>
+          {% endfor %}
+        </div>
+      </div>
+      <!--fim bloco em python para display-->
+
+      <section class="enviar">
+        <a href="/envio-informacao">
+          <button class="btn5 button5">🖋</button>
+        </a>
+      </section>
+
   </main>
 
   <footer>
@@ -121,11 +134,11 @@
       }
       $('input[name="daterange"]').daterangepicker({
         opens: 'left'
-      }, function(start, end, label) {
+      }, function (start, end, label) {
         console.log("A new date selection was made: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
       });
     });
-    </script>
+  </script>
 
 </body>
 
