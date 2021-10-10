@@ -227,9 +227,13 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 ### :chart_with_downwards_trend:	Burndown:
 
-#### Primeira Sprint;
+#### Sprint #1;
  
-<p><img src="./doc/burndown/burndown.png"></img></p>
+<p><img src="./doc/burndown/burndown-1.png"></img></p>
+ 
+### Sprint #2;
+<p><img src="./doc/burndown/burndown-2.png"></img></p>
+
  
 ↑ [Voltar ao início](#inicio) 
  
