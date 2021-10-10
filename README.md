@@ -13,7 +13,8 @@
      <a href="#requisitos">Requisitos</a> • 
      <a href="#backlog-produto">Backlog do Produto</a> • 
      <a href="#backlog-sprints">Backlog das Sprints</a> • 
-     <a href="#burndown">Burndown</a>
+     <a href="#burndown">Burndown</a> • 
+     <a href="#entregas">Entregas</a>
 </p>
 
 <span id="equipe">
@@ -244,6 +245,8 @@ Sprint | Nome da tarefa | Prioridade | Status
 
  
 ↑ [Voltar ao início](#inicio) 
+ 
+<span id="entregas">
  
 ### :triangular_flag_on_post: Entregas
  
