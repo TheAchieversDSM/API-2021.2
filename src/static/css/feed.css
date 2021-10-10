@@ -119,6 +119,8 @@ select {
   max-width: 90%;
   min-width: 20%;
   text-indent: 15px;
+  word-wrap: break-word;
+  word-break: keep-all;
 }
 
 footer {
