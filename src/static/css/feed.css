@@ -39,10 +39,9 @@ main {
   padding: 30px;
   max-width: 95%;
   min-width: 30%;
-  max-height: fit-content;
-  min-height: 600px;
+  max-height: 630px;
+  min-height: fit-content;
   margin:auto;
-  height: fit-content;
 }
 
 .divInterna {
