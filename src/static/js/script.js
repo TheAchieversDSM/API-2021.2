@@ -10,7 +10,7 @@ function validar(){
   var nome = document.getElementById("nome").value;
   var senha = document.getElementById("senha").value;
   var email = document.getElementById("email").value;
-  var regex_nome = /^[A-Za-zÀ-ú][A-Za-zÀ-ú]+,?\s[A-Za-zÀ-ú][A-Za-zÀ-ú]{2,19}$/;
+  var regex_nome = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
   var regex_email = /^(.+@fatec.sp.gov.br)$/;
   if(nome == ""){
     alert('Preencha o campo "Nome".')

@@ -126,6 +126,7 @@ insert into curso values(null, 'Manufatura Avançada');
 insert into curso values(null, 'Manutenção de Aeronaves');
 insert into curso values(null, 'Projetos de Estruturas Aeronáuticas');
 
+select * from usuario;
 select * from curso;
 select * from feed;
 SET SQL_MODE=@OLD_SQL_MODE;

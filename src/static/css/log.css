@@ -33,7 +33,18 @@ form {
     align-items: center;
     margin: auto;
 }
-
+.alerta {
+    width: 80%;
+    height: 10%;
+    z-index: 5;
+    background-color: #ab101a;
+    border-radius: 20px;
+    margin-left: 10%;
+}
+.alerta a {
+    text-decoration: none;
+    color: #ffff;
+}
 .login {    
     max-width: 450px;
     min-width: 250px;
