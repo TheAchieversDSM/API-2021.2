@@ -32,7 +32,7 @@
             <input type="text" name="daterange" id="data" value="04/10/2021 - 05/10/2021"></input>
           </div>
 
-          <select class="js-example-basic-single" name="curso" id="multiple-checkboxes" multiple>
+          <select name="curso" id="multiple-checkboxes" multiple>
             <option value="select" disabled selected>Curso</option>
             <option value="1">Análise e Desenvolvimento de Sistemas</option>
             <option value="2">Banco de Dados</option>
@@ -85,11 +85,10 @@
                   </tr>
                 </table>
               </div>
-              <p>{{info[2]}}
-              <p>
+              <p>{{info[2]}}</p>
             </div>
             <div class="corpo-info">
-              <p>{{info[5]}}</p>
+              <p> {{info[5]}}</p>
             </div>
           </section>
           {% endfor %}
@@ -138,6 +137,7 @@
         console.log("A new date selection was made: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
       });
     });
+  
   </script>
 
 </body>
