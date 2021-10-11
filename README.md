@@ -192,7 +192,7 @@ Modelos conceitual e lógico do banco de dados | Alta | Completa
 Modelo físico do banco de dados | Alta | Completa
 Conexão do banco de dados | Alta | Completa
 Tornar o protótipo funcional | Alta | Completa
-Aplicação do sistema em um servidor de aplicação | Alta | Em andamento
+Aplicação do sistema em um servidor de aplicação | Alta | Completa
 Introdução das hierarquias | Alta | Não iniciada
 Introdução da autenticação do usuário | Alta | Não iniciada
 Ajustes dos filtros | Alta | Não iniciada
@@ -228,7 +228,7 @@ Sprint | Nome da tarefa | Prioridade | Status
 #2 | Modelo físico do banco de dados | Alta | Completa
 #2 | Conexão do banco de dados | Alta | Completa
 #2 | Tornar o protótipo funcional | Alta | Completa
-#2 | Aplicação do sistema em um servidor de aplicação | Alta | Em andamento
+#2 | Aplicação do sistema em um servidor de aplicação | Alta | Completa
 
 ↑ [Voltar ao início](#inicio) 
  
@@ -253,7 +253,7 @@ Sprint | Nome da tarefa | Prioridade | Status
 Sprint | Data Início | Data Entrega | Links |
 -------|-------------|--------------|-------|
 #1 | 30.08.2021  |  19.09.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v1.0) |
-#2 | 20.09.2021  |  10.10.2021  | :construction: |
+#2 | 20.09.2021  |  10.10.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v2.0) |
 #3 | 18.10.2021  |  07.11.2021  | :construction: |
 #4 | 08.11.2021  |  28.11.2021  | :construction: |
  
