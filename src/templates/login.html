@@ -15,7 +15,7 @@
     </header>
     <main>
         {% block content %}
-            {% with messages = get_flashed_messages() %}
+            {% with messages = get_flashed_messages(category_filter=["erro"]) %}
                 {% if messages %}
                     {% for msg in messages %}
                         <div class="alerta">
@@ -24,6 +24,17 @@
                     {% endfor%}
                 {% endif %}
             {% endwith %}
+
+            {% with messages = get_flashed_messages(category_filter=["info"]) %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="alerta">
+                            <p>{{msg}}!</p> 
+                         </div>
+                    {% endfor%}
+                {% endif %}
+            {% endwith %}
+            
         <form class="login" method="POST" onsubmit="return validarLog()">
             <div class="campos">
                 <p>E-mail</p>

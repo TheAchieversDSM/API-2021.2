@@ -39,7 +39,7 @@ main {
   padding: 30px;
   max-width: 95%;
   min-width: 30%;
-  max-height: 630px;
+  height: 630px;
   min-height: fit-content;
   margin:auto;
 }
@@ -101,8 +101,9 @@ select {
   margin-bottom: 5px;
 }
 
-.destino {
+em {
   color: #ab101a;
+
 }
 
 .user-info p {
@@ -203,16 +204,29 @@ div.contents {
     position: relative;
     left: 5px;
   }
+  
+  select{
+    margin-bottom: 5%;
+  }
+
+  .titulo{
+    width: 80%;
+  }
+
   .corpo-info{
     font-size: 18px;
+  
   }
+
   .user-info{
-    width: 90px;
+    width: 95%;
     margin: auto;
+    word-break: keep-all;
   }
   .info{
     width: 80%;
     margin: auto;
+    margin-bottom: 15%;
   }
   .adm{
     position: absolute;
@@ -223,8 +237,8 @@ div.contents {
     top: 1150px;
   }
   div.contents{
-    height: 490px;
-    width: 105%;
+    height: 400px;
+    width: 100%;
   }
 
   .env{
@@ -232,15 +246,20 @@ div.contents {
     top: 900px;
     left: 120px;
   }
+  
   .divExterna{
     width: 80%;
+    height: 800px;
   }
 }
 
 @media screen and (max-width: 330px){
   .info{
-    width: 180px;
+    width: 80%;
     margin: auto;
+  }
+  .titulo{
+    width: 80%;
   }
   footer{
     top: 1170px;

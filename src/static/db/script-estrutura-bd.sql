@@ -43,8 +43,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `api_fatec`.`feed` (
   `id_feed` INT NOT NULL AUTO_INCREMENT,
   `assunto` VARCHAR(50) NOT NULL,
+  `remetente` VARCHAR(50) NOT NULL,
   `titulo` VARCHAR(80) NOT NULL,
-  `destinatario` VARCHAR(100) NOT NULL,  
+  `destinatario`  VARCHAR(100) NOT NULL,  
   `mensagem` TEXT NOT NULL,
   `anexo` LONGBLOB NULL,
   `data_inclusao` DATE NOT NULL,

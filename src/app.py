@@ -5,7 +5,7 @@ from werkzeug.utils import redirect
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'quarentaedoiséaresposta'    
+app.config['SECRET_KEY'] = 'TheAchieversDSM'    
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -32,7 +32,7 @@ def login():
             return redirect(url_for('feed_adm'))
 
         else:
-            flash("Senha/Email inválido ou usuário não registrado")
+            flash("Senha/Email inválido ou usuário não registrado","erro")
 
     return render_template('login.html')
 
@@ -53,6 +53,7 @@ def cadastro():
         cursor.execute('select * from usuario WHERE email = %s and senha = %s ', (email,senha))
         status = cursor.fetchone()
         if status:
+            flash("Cadastrado com sucesso","info")
             return redirect(url_for('login'))
     return render_template('cadastro.html')
 
@@ -75,7 +76,7 @@ def feed_adm():
     cur = mysql.connection.cursor()
     
     # Puxando informações do banco de dados.
-    info = cur.execute("SELECT titulo, destinatario, data_inclusao, assunto, curso_id, mensagem FROM feed")
+    info = cur.execute("SELECT titulo, remetente, destinatario, data_inclusao, assunto, curso_id, mensagem FROM feed")
 
     if info > 0:
         infoDetails = cur.fetchall()
@@ -92,21 +93,24 @@ def envio_informacao():
         data_inclusao = request.form['data']
         assunto = request.form['assunto']
         curso = request.form['curso']
-        destinatario = request.form['destinatario']
+        remetente = request.form['remetente']
+        des = request.form.getlist('destinatario')
         mensagem = request.form['mensagem']
-
+        destinatario= ",".join(str(x) for x in des)
+        print(destinatario)
     # Inserindo informações na tabela feed.
         cursor = mysql.connection.cursor()
-        cursor.execute("insert into feed(data_inclusao, assunto, destinatario, curso_id, titulo, mensagem) values (%s, %s, %s, %s, %s, %s)", (data_inclusao,assunto,destinatario,curso,titulo,mensagem))
+        cursor.execute("insert into feed(data_inclusao, assunto, destinatario, curso_id, remetente, titulo, mensagem) values (%s, %s, %s, %s, %s, %s, %s)", (data_inclusao,assunto,destinatario,curso, remetente,titulo,mensagem))
         mysql.connection.commit()
 
     # Checando se as informações foram salvas.
-        cursor.execute('select * from feed WHERE data_inclusao = %s and assunto = %s and curso_id = %s and titulo = %s and mensagem = %s and destinatario = %s', (data_inclusao,assunto,curso,titulo,mensagem,destinatario))
+        cursor.execute('select * from feed WHERE data_inclusao = %s and assunto = %s and curso_id = %s and remetente = %s and titulo = %s and mensagem = %s and destinatario = %s', (data_inclusao,assunto,curso, remetente,titulo,mensagem,destinatario))
         status = cursor.fetchone()
 
         if status:
             return redirect(url_for('feed_adm'))
     return render_template('send-info.html')
+
 
 if __name__ == '__main__':
     app.run()

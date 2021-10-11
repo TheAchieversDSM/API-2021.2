@@ -66,7 +66,7 @@
           </select>
         </section>
         <!--bloco python para display de info:
-         info 0 = TITULO  ;info 1 = DESTINATARIO ;info 2 = DATA;info 3 =  ASSUNTO ;info 4 = CURSO ;info 5 = MENSAGEM -->
+         info 0 = TITULO  ;info 1 = REMETENTE ;info 2 = DESTINATARIO;info 3 = DATA;info 4 = ASSUNTO ;info 5 = CURSO; info 6 = MENSAGEM -->
 
         <div id="divContent" class='contents'>
           {% for info in infoDetails %}
@@ -76,19 +76,12 @@
                 <h3>{{info[0]}}</h3>
               </div>
               <div>
-                <table>
-                  <tr>
-                    <td>Para</td>
-                    <td></td>
-                    <td></td>
-                    <td class="destino"> <em>{{info[1]}}</em></td>
-                  </tr>
-                </table>
+                  <p><em>{{info[1]}}</em> Enviou para <em>{{info[2]}}</em></p> 
               </div>
-              <p>{{info[2]}}</p>
+              <p>{{info[3]}}</p>
             </div>
             <div class="corpo-info">
-              <p> {{info[5]}}</p>
+              <p> {{info[6]}}</p>
             </div>
           </section>
           {% endfor %}

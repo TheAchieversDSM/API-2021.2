@@ -69,7 +69,13 @@ select {
     font-size: 14pt;
     width: 130px;
 }
-
+.remetente{
+    margin-top: 15px;
+    width: 100%;
+    height: 20px;
+    font-size: 15px;
+    text-indent: 10px;
+}
 .titulo{
     margin-top: 15px;
     width: 100%;
@@ -79,8 +85,7 @@ select {
 }
 
 textarea {
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
     height: 400px;
     line-height: 1.7;
     margin-top: 30px;
@@ -196,20 +201,26 @@ footer p {
 
 @media screen and (max-width: 420px){
     .divInterna{
-        height: 680px;
+        height: 820px;
     }
     .enviar{
         position: absolute;
-        left: -120px;
-        top: 670px;
+        left: -130px;
+        top: 800px;
     }
     .logo{
         position: relative;
         left: 5px;
     }
+    textarea{
+        height: 200px;
+    }
     .btn5{
         position: relative;
         top: -55px;
+    }
+    .divExterna{
+        height: 900px;
     }
 }
 @media screen and (max-width: 330px){

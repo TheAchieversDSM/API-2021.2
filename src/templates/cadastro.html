@@ -16,14 +16,15 @@
         <img class="logo" src="../static/img/logo-150.png">
     </header>
     <main>
-
-        {% with alerta = get_flashed_messages() %}
-        {% if alerta %}
-        <div class="info_erro">
-            <p>{{ alerta[0] }}.</p>
-            <p>Para ir até a página de login, clique <a href="{{ url_for('login') }}">aqui!</a></p>
-        </div>
-        {% endif %}
+        {% block content %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <div class="alerta">
+                        <p>{{msg}}.<br>Para ir até a página de cadastro, clique  <a href="{{ url_for('login') }}">aqui!</a></p> 
+                    </div>
+                {% endfor%}
+            {% endif %}
         {% endwith %}
 
         <form class="cadastro" method="POST" onsubmit="return validar()">
@@ -37,6 +38,7 @@
                 <input type="submit" class="botao">
             </div>
         </form>
+        {% endblock %}
     </main>
     <script src="../static/js/script.js"></script>
 </body>
