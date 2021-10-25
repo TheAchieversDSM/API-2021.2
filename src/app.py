@@ -67,7 +67,7 @@ def feed():
         cur = mysql.connection.cursor()
 
         # Puxando informações do banco de dados.
-        info = cur.execute("SELECT titulo, destinatario, data_inclusao, assunto, curso_id, mensagem FROM feed")
+        info = cur.execute("SELECT titulo, destinatario, DATE_FORMAT(data_inclusao, '%d/%m/%Y'), assunto, curso_id, mensagem FROM feed")
 
         if info > 0:
             infoDetails = cur.fetchall()
@@ -84,7 +84,7 @@ def feed_adm():
         cur = mysql.connection.cursor()
     
         # Puxando informações do banco de dados.
-        info = cur.execute("SELECT titulo, remetente, destinatario, data_inclusao, assunto, curso_id, mensagem FROM feed")
+        info = cur.execute("SELECT titulo, remetente, destinatario, DATE_FORMAT(data_inclusao, '%d/%m/%Y' ), assunto, curso_id, mensagem FROM feed")
 
         if info > 0:
             infoDetails = cur.fetchall()
