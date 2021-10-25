@@ -196,6 +196,9 @@ Aplicação do sistema em um servidor de aplicação | Alta | Completa
 Introdução das hierarquias | Alta | Não iniciada
 Introdução da autenticação do usuário | Alta | Não iniciada
 Ajustes dos filtros | Alta | Não iniciada
+Controle de hierarquia (CRUD) | Alta | Não iniciada
+Estilizar páginas | Média | Não iniciada
+Ajustes no banco de dados | Alta | Não iniciada
 Testes unitários do sistema | Alta | Não iniciada
 Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
@@ -229,7 +232,16 @@ Sprint | Nome da tarefa | Prioridade | Status
 #2 | Conexão do banco de dados | Alta | Completa
 #2 | Tornar o protótipo funcional | Alta | Completa
 #2 | Aplicação do sistema em um servidor de aplicação | Alta | Completa
-
+ 
+Sprint | Nome da tarefa | Prioridade | Status
+-------|----------------|------------|-------
+#3 | Introdução das hierarquias | Alta | Não iniciada
+#3 | Introdução da autenticação do usuário | Alta | Não iniciada
+#3 | Ajustes dos filtros | Alta | Não iniciada
+#3 | Controle de hierarquia (CRUD) | Alta | Não iniciada
+#3 | Estilizar páginas | Médio | Não iniciada
+#3 | Ajustes no banco de dados | Alta | Não iniciada
+ 
 ↑ [Voltar ao início](#inicio) 
  
 <span id="burndown">
