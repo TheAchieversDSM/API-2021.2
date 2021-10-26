@@ -12,7 +12,6 @@ header {
     max-width: 1000px;
     margin: auto;
 }
-  
 
 main {
     position: relative;
@@ -28,6 +27,37 @@ main {
 header img {
     margin-top: 50px;
 }
+
+.alerta {
+    margin: auto;
+    width: 450px;
+    height: fit-content;
+    z-index: 5;
+    background-color: #ab101a;
+    border-radius: 10px;
+}
+
+.alerta p {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.alerta a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+.alerta a:hover {
+    background-color: #C4C4C4;
+    border: #C4C4C4;
+    border-radius: 10px;
+    color: black;
+    padding: 2px;
+}
+
+.alerta a:hover {
+    color: black;
+}
   
 form {
     align-items: center;
@@ -35,8 +65,7 @@ form {
 }
 
 .login {    
-    max-width: 450px;
-    min-width: 250px;
+    width: 450px;
     height: 470px;
     top: 250px;    
     background-color: #3A4952;
@@ -115,6 +144,6 @@ p {
 
 @media screen and (max-width: 415px){
     input{
-        width: 270px;
+        width: 80%;
     }
 }

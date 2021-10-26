@@ -13,21 +13,22 @@
      <a href="#requisitos">Requisitos</a> • 
      <a href="#backlog-produto">Backlog do Produto</a> • 
      <a href="#backlog-sprints">Backlog das Sprints</a> • 
-     <a href="#burndown">Burndown</a>
+     <a href="#burndown">Burndown</a> • 
+     <a href="#entregas">Entregas</a>
 </p>
 
 <span id="equipe">
 
 ### :busts_in_silhouette: Equipe:
-Função | Nome 
--------|------
-Scrum Master | Evora de Castro
-Product Owner | Fernando Satoru Eto
-Dev Team | Gizeli Martins Fonseca
-Dev Team | Maria Clara Alves de Faria
-Dev Team | Mariana Ayumi Tamay
-Dev Team | Matheus Henrique Lemes Sakuragui
-Dev Team | Rikio Anzai
+Função | Nome | GitHub
+-------|------|--------
+Scrum Master | Evora de Castro | <a href="https://github.com/MinEvora">GitHub</a>
+Product Owner | Fernando Satoru Eto | <a href="https://github.com/fernandoeto">GitHub</a>
+Dev Team | Gizeli Martins Fonseca | <a href="https://github.com/gizelifonseca">GitHub</a>
+Dev Team | Maria Clara Alves de Faria | <a href="https://github.com/mclaralvs">GitHub</a>
+Dev Team | Mariana Ayumi Tamay | <a href="https://github.com/Mariayumi">GitHub</a>
+Dev Team | Matheus Henrique Lemes Sakuragui | <a href="https://github.com/MatheusSakuragui">GitHub</a>
+Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
 
 > Instituição: Fatec São José dos Campos - Prof. Jessen Vidal
 > 
@@ -64,6 +65,11 @@ Dev Team | Rikio Anzai
 <span id="execucao">
 
 ### :hammer: Executando a aplicação:
+ 
+#### Você pode acessar por esse link: <a href="https://api-theachievers-2021.herokuapp.com/">aqui!</a>
+ 
+#### Ou então,
+ 
 #### Primeiramente, certifique-se se tem o Python, caso não tenha, acesse <a href="https://www.python.org/downloads/">aqui</a> 
 ```python 
  # Clone este repositório;
@@ -80,7 +86,7 @@ Dev Team | Rikio Anzai
  
  # Execute a aplicação;
    
- appy.py
+ app.py
  
  # Acesse o link no qual a aplicação está hospedada;
    
@@ -96,6 +102,8 @@ Dev Team | Rikio Anzai
 <p> :file_folder: <strong>scr</strong> - pasta que contém duas outras, <em>templates</em> e <em>static</em>;</p>
 <p> | - :open_file_folder: <strong>templates</strong> - pasta que contém os códigos de estruturação (.html);</p>
 <p> | - :open_file_folder: <strong>static</strong> - pasta que contém outras duas, <em>css</em> e <em>img</em>;</p>
+<p> | - - :open_file_folder: <strong>js</strong> - pasta que contém os códigos referentes à javascript (.js);</p>
+<p> | - - :open_file_folder: <strong>bd</strong> - pasta que contém tudo referente à parte de banco de dados;</p>
 <p> | - - :open_file_folder: <strong>css</strong> - pasta que contém os códigos de estilização (.css);</p>
 <p> | - - :open_file_folder: <strong>img</strong> - pasta que contém a logo da FATEC e o favicon, além de outra pasta, <em>footer</em>;</p>
 <p> | - - - :open_file_folder: <strong>footer</strong> - pasta que contém todas as imagens utilizadas no rodapé das páginas.</p>
@@ -176,15 +184,21 @@ Interface de login do sistema | Alta | Completa
 Interface de cadastro de usuário | Alta | Completa
 Interface de divulgação de informações prioritárias | Alta | Completa
 Outras interfaces conforme solicitação do cliente | Alta | Em andamento
-Ajustes na responsividade do sistema | Alta | Em andamento
+Ajustes na responsividade do sistema | Alta | Completa
 Tornar o protótipo navegável | Alta | Completa
-Ajustes na interface | Alta | Em andamento
-Ajustes com JavaScript | Média | Em andamento
-Modelos conceitual e lógico do banco de dados | Alta | Não iniciada
-Modelo físico do banco de dados | Alta | Não iniciada
-Conexão do banco de dados | Alta | Não iniciada
-Tornar o protótipo funcional | Alta | Não iniciada
-Aplicação do sistema em um servidor de aplicação | Alta | Não iniciada
+Ajustes na interface | Alta | Completa
+Ajustes com JavaScript | Média | Completa
+Modelos conceitual e lógico do banco de dados | Alta | Completa
+Modelo físico do banco de dados | Alta | Completa
+Conexão do banco de dados | Alta | Completa
+Tornar o protótipo funcional | Alta | Completa
+Aplicação do sistema em um servidor de aplicação | Alta | Completa
+Introdução das hierarquias | Alta | Não iniciada
+Introdução da autenticação do usuário | Alta | Não iniciada
+Ajustes dos filtros | Alta | Não iniciada
+Controle de hierarquia (CRUD) | Alta | Não iniciada
+Estilizar páginas | Média | Não iniciada
+Ajustes no banco de dados | Alta | Não iniciada
 Testes unitários do sistema | Alta | Não iniciada
 Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
@@ -209,24 +223,50 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
-#3 | Ajustes na responsividade do sistema | Em andamento
+#2 | Ajustes na responsividade do sistema | Alta | Completa
 #2 | Tornar o protótipo navegável | Alta | Completa
-#2 | Ajustes na interface | Alta | Em andamento
-#2 | Ajustes com JavaScript | Média | Em andamento
-#2 | Modelo conceitual e lógico do banco de dados | Alta | Em andamento
-#2 | Modelo físico do banco de dados | Alta | Em andamento
-#2 | Conexão do banco de dados | Alta | Não iniciada
-#2 | Tornar o protótipo funcional | Alta | Não iniciada
-#2 | Aplicação do sistema em um servidor de aplicação | Alta | Em andamento
-
+#2 | Ajustes na interface | Alta | Completa
+#2 | Ajustes com JavaScript | Média | Completa
+#2 | Modelo conceitual e lógico do banco de dados | Alta | Completa
+#2 | Modelo físico do banco de dados | Alta | Completa
+#2 | Conexão do banco de dados | Alta | Completa
+#2 | Tornar o protótipo funcional | Alta | Completa
+#2 | Aplicação do sistema em um servidor de aplicação | Alta | Completa
+ 
+Sprint | Nome da tarefa | Prioridade | Status
+-------|----------------|------------|-------
+#3 | Introdução das hierarquias | Alta | Não iniciada
+#3 | Introdução da autenticação do usuário | Alta | Não iniciada
+#3 | Ajustes dos filtros | Alta | Não iniciada
+#3 | Controle de hierarquia (CRUD) | Alta | Não iniciada
+#3 | Estilizar páginas | Médio | Não iniciada
+#3 | Ajustes no banco de dados | Alta | Não iniciada
+ 
 ↑ [Voltar ao início](#inicio) 
  
 <span id="burndown">
  
 ### :chart_with_downwards_trend:	Burndown:
 
-#### Primeira Sprint;
+#### Sprint #1;
  
-<p><img src="./doc/burndown/burndown.png"></img></p>
+<p><img src="./doc/burndown/burndown-1.png"></img></p>
+ 
+### Sprint #2;
+<p><img src="./doc/burndown/burndown-2.png"></img></p>
+
+ 
+↑ [Voltar ao início](#inicio) 
+ 
+<span id="entregas">
+ 
+### :triangular_flag_on_post: Entregas
+ 
+Sprint | Data Início | Data Entrega | Links |
+-------|-------------|--------------|-------|
+#1 | 30.08.2021  |  19.09.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v1.0) |
+#2 | 20.09.2021  |  10.10.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v2.0) |
+#3 | 18.10.2021  |  07.11.2021  | :construction: |
+#4 | 08.11.2021  |  28.11.2021  | :construction: |
  
 ↑ [Voltar ao início](#inicio) 
