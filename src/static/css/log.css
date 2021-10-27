@@ -64,6 +64,15 @@ form {
     margin: auto;
 }
 
+.confirmacao {
+    width: 450px;
+    height: 300px;
+    top: 250px;    
+    background-color: #3A4952;
+    border-radius: 10px;
+    color: white;
+}
+
 .login {    
     width: 450px;
     height: 470px;
