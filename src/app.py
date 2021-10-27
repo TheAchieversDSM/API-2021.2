@@ -10,7 +10,7 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = '20210618'
 app.config['MYSQL_DB'] = 'api_fatec'
 
 mysql = MySQL(app)
@@ -49,6 +49,7 @@ def login():
                 flash("Senha/Email inválido ou usuário não registrado","erro")
         else:
             flash('Confirme seu e-mail antes.')
+            return redirect(url_for('confirmacao', email=user[1]))
 
     return render_template('login.html')
 
