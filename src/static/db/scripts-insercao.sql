@@ -15,7 +15,7 @@ insert into curso values(null, 'Logística');
 insert into curso values(null, 'Banco de Dados');
 
 select u.nome "Nome do Usuário", u.email "E-Mail do Usuário", p.nome "Nome do Perfil"
-	from usuario u inner join usuario_perfil up inner join perfil p 
+	from usuario inner join usuario_perfil up inner join perfil p 
      on up.usuario_id=u.id_usuario and up.perfil_id = p.id_perfil;
 
 select * from curso;
