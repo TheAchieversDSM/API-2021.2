@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `api_fatec`.`usuario` (
   `email` VARCHAR(80) NOT NULL,
   `senha` VARCHAR(255) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
+  `confirmacao` tinyint NOT NULL default 0, 
   PRIMARY KEY (`id_usuario`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB;

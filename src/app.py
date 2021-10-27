@@ -1,7 +1,8 @@
-from flask import Flask, render_template,request,redirect,url_for,flash,session
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_mysqldb import MySQL
-import MySQLdb.cursors
-from werkzeug.utils import redirect
+from random import randint
+from flask_mail import *
+from MySQLdb.cursors import Cursor
 
 app = Flask(__name__)
 
@@ -14,7 +15,16 @@ app.config['MYSQL_DB'] = 'api_fatec'
 
 mysql = MySQL(app)
 
+app.config["MAIL_SERVER"]='smtp.gmail.com'
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USERNAME"] = 'the.achieversAPI@gmail.com'
+app.config['MAIL_PASSWORD'] = 'theachieversFATEC'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 
+mail = Mail(app)
+
+code = str(randint(000000, 999999))
 
 @app.route('/',methods=['GET','POST'])
 def login():
@@ -28,14 +38,17 @@ def login():
         cursor.execute('select * from usuario WHERE email = %s and senha = %s', (email,senha))
         user = cursor.fetchone()
 
-        if user:
-            session['loggedin'] = True
-            session['id'] = user[0]
-            session['username'] = user[3]
-            return redirect(url_for('feed_adm'))
+        if user[4] == 1:
+            if user:
+                session['loggedin'] = True
+                session['id'] = user[0]
+                session['username'] = user[3]
+                return redirect(url_for('feed_adm'))
 
+            else:
+                flash("Senha/Email inválido ou usuário não registrado","erro")
         else:
-            flash("Senha/Email inválido ou usuário não registrado","erro")
+            flash('Confirme seu e-mail antes.')
 
     return render_template('login.html')
 
@@ -55,10 +68,25 @@ def cadastro():
     # Checando se as informações foram salvas.
         cursor.execute('select * from usuario WHERE email = %s and senha = %s ', (email,senha))
         status = cursor.fetchone()
-        if status:
-            flash("Cadastrado com sucesso","info")
-            return redirect(url_for('login'))
+
+        if status[4] == 0:
+            msg = Message('Confirme seu e-mail', sender = 'the.achieversAPI@gmail.com', recipients = [email])
+            msg.body = '<h1>Confirme seu e-mail!</h1><br>Segue o código para verificação do seu cadastro para posterior acesso ao site de informações da FATEC:<br> {} <br> E-mail automático, favor não responder.'.format(code)
+            mail.send(msg)    
+            return redirect(url_for('confirmacao', email = email))
     return render_template('cadastro.html')
+
+@app.route('/confirme-seu-email/', methods=['GET', 'POST'])
+def confirmacao():
+    if request.method == 'POST':
+        codigo = request.form['cod']
+        email = request.args.get('email')
+        if codigo == code:
+            cursor = mysql.connection.cursor()
+            cursor.execute("UPDATE usuario SET confirmacao='1' WHERE email = %s", (email,))
+            mysql.connection.commit()
+            return redirect(url_for('login'))
+    return render_template('confirmacao.html')
 
 @app.route('/feed/')
 def feed():
