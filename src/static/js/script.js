@@ -57,3 +57,13 @@ function validarLog(){
   }
 }
 
+function mostrar(){
+  responder = document.getElementById("responder")
+  if(responder.className == "escondido"){
+    document.getElementById("responder").className = "mostrar"
+  }
+  else{
+    document.getElementById("responder").className = "escondido"
+  }
+}
+

@@ -1,0 +1,89 @@
+body{
+    background-color: #1b1c21;
+    font-family: sans-serif;
+    height: 1300px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+header img {
+    margin-top: 50px;
+}
+  
+main {
+    position: relative;
+    margin: auto;
+    min-width: 300px;
+    max-width: 1000px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding: 10px;
+    text-align: center;
+}
+
+.edicao {
+    width: 450px;
+    height: 500px;
+    top: 250px;    
+    background-color: rgba(66, 85, 95, 0.8) ;
+    border-radius: 10px;
+    color: #ffff;   
+}  
+
+.campos {
+    padding-top: 10px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+p {
+    color: #ffff;
+    margin-left: 60px;
+    margin-top: 30px;
+    text-align: left;
+    font-size: 25px;    
+}
+
+input {
+    border: 0;
+    border-radius: 10px;
+    background: #c4c4c4;
+    font-size:  25px;
+    height: 40px;
+    width: 330px;
+}
+
+.botao {
+    border: none;
+    border-radius: 10px;
+    background-color: #ab101a;
+    color: #ffff;
+    font-size: 25px;
+    width: 280px;
+    height: 50px;
+    margin-top: 30px;
+}
+
+.botao a { 
+    text-decoration: none; 
+    color: white;
+}
+
+.botao:hover {
+    background-color: #C4C4C4;
+    border: #C4C4C4;
+    border-radius: 10px;
+    color: black;
+}
+
+.botao a:hover {
+    color: black;
+}
