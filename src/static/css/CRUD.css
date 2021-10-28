@@ -30,6 +30,7 @@ main {
 }
 
 .edicao {
+    margin: auto;
     width: 450px;
     height: 500px;
     top: 250px;    
