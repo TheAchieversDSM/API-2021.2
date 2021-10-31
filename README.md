@@ -236,11 +236,11 @@ Sprint | Nome da tarefa | Prioridade | Status
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
 #3 | Introdução das hierarquias | Alta | Não iniciada
-#3 | Introdução da autenticação do usuário | Alta | Não iniciada
+#3 | Introdução da autenticação do usuário | Alta | Completa
 #3 | Ajustes dos filtros | Alta | Não iniciada
-#3 | Controle de hierarquia (CRUD) | Alta | Não iniciada
-#3 | Estilizar páginas | Médio | Não iniciada
-#3 | Ajustes no banco de dados | Alta | Não iniciada
+#3 | Controle de hierarquia (CRUD) | Alta | Iniciada
+#3 | Estilizar páginas | Médio | Iniciada
+#3 | Ajustes no banco de dados | Alta | Iniciada
  
 ↑ [Voltar ao início](#inicio) 
  
