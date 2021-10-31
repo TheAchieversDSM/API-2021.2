@@ -10,8 +10,8 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '20210618'
-app.config['MYSQL_DB'] = 'api_fatec'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
 
