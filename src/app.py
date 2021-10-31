@@ -73,9 +73,10 @@ def cadastro():
         if status[4] == 0:
             msg = Message('Confirme seu e-mail', sender = 'the.achieversAPI@gmail.com', recipients = [email])
 
-            msg.html = "<h1 align='center' background-color='#C4C4C4'>Confirme seu e-mail!</h1> <p align='center' background-colo='#C4C4C4'>Segue o código para verificação do seu cadastro para posterior acesso ao site de informações da FATEC:</p> <p align='center' background-colo='#ab101a'>{}</p> <p align='center' background-colo='#C4C4C4'>E-mail automático, favor não responder.</p>".format(code)
+            msg.html = "<h1 align='center' style='background-color:#ab101a'>Confirme seu e-mail!</h1> <p align='center' style='background-color:#C4C4C4'>Segue o código para verificação do seu cadastro para posterior acesso ao site de informações da FATEC:</p> <p align='center' style='background-color:#ab101a'>{}</p> <p align='center' style='background-color:#C4C4C4'>E-mail automático, favor não responder.</p>".format(code)
             mail.send(msg)    
             return redirect(url_for('confirmacao', email = email))
+
     return render_template('cadastro.html', code = code)
 
 @app.route('/confirme-seu-email/', methods=['GET', 'POST'])
@@ -132,7 +133,6 @@ def envio_informacao():
         # Solicitando informações da mensagem no formulário.
         if request.method == 'POST': 
             remetente = session['username']
-
             titulo = request.form['titulo']
             data_inclusao = request.form['data']
             assunto = request.form['assunto']
@@ -156,6 +156,7 @@ def envio_informacao():
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
+        
 
 if __name__ == '__main__':
     app.run()

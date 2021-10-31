@@ -37,15 +37,10 @@ CREATE TABLE IF NOT EXISTS `api_fatec`.`feed` (
   `mensagem` TEXT NOT NULL,
   `anexo` LONGBLOB NULL,
   `data_inclusao` DATETIME NOT NULL DEFAULT current_timestamp(),
-  `remetente_id` INT NOT NULL,
+  `remetente` VARCHAR (100) NOT NULL,
+  `destinatario` VARCHAR(100) NOT NULL,
   `titulo` VARCHAR(80) NOT NULL,
-  PRIMARY KEY (`id_feed`),
-  INDEX `fk_feed_1_idx` (`remetente_id` ASC) VISIBLE,
-  CONSTRAINT `fk_feed_1`
-    FOREIGN KEY (`remetente_id`)
-    REFERENCES `api_fatec`.`usuario` (`id_usuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id_feed`))
 ENGINE = InnoDB;
 
 
@@ -195,6 +190,7 @@ CREATE TABLE IF NOT EXISTS `api_fatec`.`perfil_permissao_envio` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+select * from usuario;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
