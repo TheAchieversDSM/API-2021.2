@@ -56,16 +56,26 @@
             <option value="Urgente">Urgente</option>
           </select>
 
+          <select name="semestre" id="semestre" multiple>
+            <option value="select" disabled selected>Semestre</option>
+            <option value="1">1° Sem</option>
+            <option value="2">2° Sem</option>
+            <option value="3">3° Sem</option>
+            <option value="4">4° Sem</option>
+            <option value="5">5° Sem</option>
+            <option value="6">6° Sem</option>
+        </select>
+
           <select name="destinatario" id="multiple-checkboxes" multiple>
             <option value="destinatario" disabled selected>Destinatário</option>
-            <option value="Diretor">Diretor</option>
-            <option value="Secretaria Administrativa">Secretaria Administrativa</option>
-            <option value="Secretaria Acadêmica">Secretaria Acadêmica</option>
-            <option value="Coordenadores">Coordenadores</option>
-            <option value="Professores">Professores</option>
-            <option value="Alunos">Alunos</option>
+            <option value="1">Diretor</option>
+            <option value="2">Secretaria</option>
+            <option value="3">Coordenadores</option>
+            <option value="4">Professores</option>
+            <option value="5">Alunos</option>
           </select>
         </section>
+
         <!--bloco python para display de info:
          info 0 = TITULO  ;info 1 = REMETENTE ;info 2 = DESTINATARIO;info 3 = DATA;info 4 = ASSUNTO ;info 5 = CURSO; info 6 = MENSAGEM -->
 
@@ -133,7 +143,6 @@
         console.log("A new date selection was made: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
       });
     });
-  
   </script>
 
 </body>

@@ -8,6 +8,7 @@ create table if not exists `fatec_api`.`usuario` (
     `user_email` varchar (80) not null,
     `user_nome` varchar (255) not null,
     `user_senha` varchar (20) not null,
+    `confirmacao` tinyint default 0,
     primary key (user_id)
 );
 
@@ -34,6 +35,8 @@ create table if not exists `fatec_api`.`turma_user` (
 		foreign key (`user_id`)
         references `usuario`(`user_id`)
 );
+
+select * from turma_user;
 
 /* TABELA DA ESPECIALIZACAO ALUNO */ 
 
@@ -154,9 +157,13 @@ create table if not exists `fatec_api`.`historico` (
 
 create table if not exists `fatec_api`.`feed` (
 	`post_id` int not null auto_increment,
+    `post_titulo` varchar (150) not null,
     `post_assunto` varchar (150) not null,
     `post_data` date not null,
-    `tur_id` varchar (4) not null,
+    `post_anexo` longblob null,
+    `post_mensagem` text not null,
+    `tur_semestre` int not null,
+    `cur_id` int not null,
     `car_id` int not null,
 	primary key (post_id, car_id),
 	constraint `fk_car_id_3`

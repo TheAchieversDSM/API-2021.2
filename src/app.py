@@ -26,7 +26,6 @@ mail = Mail(app)
 
 code = str(randint(000000, 999999))
 
-
 @app.route('/', methods=['GET', 'POST'])
 def login():
     # Solicitando informações do usuário no formulário.
@@ -54,7 +53,6 @@ def login():
             return redirect(url_for('confirmacao', email=user[1]))
 
     return render_template('login.html')
-
 
 @app.route('/cadastro/', methods=['GET', 'POST'])
 def cadastro():
@@ -91,7 +89,7 @@ def cadastro():
             msg = Message('Confirme seu e-mail',
                           sender='the.achieversAPI@gmail.com', recipients=[email])
 
-            msg.html = "<h1 align='center' style='background-color:#ab101a'>Confirme seu e-mail!</h1> <p align='center' style='background-color:#C4C4C4'>Segue o código para verificação do seu cadastro para posterior acesso ao site de informações da FATEC:</p> <p align='center' style='background-color:#ab101a'>{}</p> <p align='center' style='background-color:#C4C4C4'>E-mail automático, favor não responder.</p>".format(
+            msg.html = "<h1 align='center' style='background-color:#ab101a'>Confirme seu e-mail!</h1> <p align='center' style='background-color:#c4c4c4'>Segue o código para verificação do seu cadastro para posterior acesso ao site de informações da FATEC:</p> <h2 align='center' style='background-color:#ab101a'>{}</h2> <p align='center' style='background-color:#c4c4c4'>E-mail automático, favor não responder.</p>".format(
                 code)
             mail.send(msg)
             return redirect(url_for('confirmacao', email=email))
@@ -112,7 +110,6 @@ def confirmacao():
             return redirect(url_for('login'))
     return render_template('confirmacao.html')
 
-
 @app.route('/feed/')
 def feed():
     if 'loggedin' in session:
@@ -121,7 +118,7 @@ def feed():
 
         # Puxando informações do banco de dados.
         info = cur.execute(
-            "SELECT titulo, destinatario, DATE_FORMAT(data_inclusao, '%d/%m/%Y'), assunto, curso_id, mensagem FROM feed")
+            "SELECT post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, tur_semestre, cur_id, car_id FROM feed")
 
         if info > 0:
             infoDetails = cur.fetchall()
@@ -132,7 +129,6 @@ def feed():
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
 
-
 @app.route('/feed-adm/')
 def feed_adm():
     if 'loggedin' in session:
@@ -140,7 +136,7 @@ def feed_adm():
 
         # Puxando informações do banco de dados.
         info = cur.execute(
-            "SELECT titulo, remetente, destinatario, DATE_FORMAT(data_inclusao, '%d/%m/%Y' ), assunto, curso_id, mensagem FROM feed")
+            "SELECT post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, tur_semestre, cur_id, car_id FROM feed")
 
         if info > 0:
             infoDetails = cur.fetchall()
@@ -150,7 +146,6 @@ def feed_adm():
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
-
 
 @app.route('/envio-informacao/', methods=['GET', 'POST'])
 def envio_informacao():
@@ -163,17 +158,18 @@ def envio_informacao():
             data_inclusao = request.form['data']
             assunto = request.form['assunto']
             curso = request.form['curso']
+            semestre = request.form['semestre']
             des = request.form.getlist('destinatario')
             mensagem = request.form['mensagem']
             destinatario = ",".join(str(x) for x in des)
 
         # Inserindo informações na tabela feed.
             cursor = mysql.connection.cursor()
-            cursor.execute("insert into feed(data_inclusao, assunto, destinatario, curso_id, remetente, titulo, mensagem) values (%s, %s, %s, %s, %s, %s, %s)", (data_inclusao, assunto, destinatario, curso, remetente, titulo, mensagem))
+            cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, cur_id, tur_semestre, des) values (%s, %s, %s, %s, %s, %s, %s)", (data_inclusao, assunto, titulo, mensagem, curso, semestre, remetente))
             mysql.connection.commit()
 
         # Checando se as informações foram salvas.
-            cursor.execute('select * from feed WHERE data_inclusao = %s and assunto = %s and curso_id = %s and remetente = %s and titulo = %s and mensagem = %s and destinatario = %s',   (data_inclusao, assunto, curso, remetente, titulo, mensagem, destinatario))
+            cursor.execute('select * from feed WHERE data_inclusao = %s and assunto = %s and curso_id = %s and remetente = %s and titulo = %s and mensagem = %s and destinatario = %s', (data_inclusao, assunto, curso, remetente, titulo, mensagem, destinatario))
             status = cursor.fetchone()
 
             if status:
@@ -182,7 +178,6 @@ def envio_informacao():
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
-
 
 if __name__ == '__main__':
     app.run()
