@@ -7,8 +7,11 @@ create table if not exists `fatec_api`.`usuario` (
 	`user_id` int not null auto_increment,
     `user_email` varchar (80) not null,
     `user_nome` varchar (255) not null,
+    `user_senha` varchar (20) not null,
     primary key (user_id)
 );
+
+select * from usuario;
 
 /* TABELA DO ATRIBUTO MULTIVALORADO CARGO*/
 

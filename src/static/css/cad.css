@@ -73,20 +73,41 @@ form {
 
 .cadastro {
     width: 450px;
-    height: 500px;
+    height: 620px;
     top: 250px;    
     background-color: rgba(66, 85, 95, 0.8) ;
     border-radius: 10px;
     color: #ffff;   
 }  
 
+.turma {
+    display: flex;
+    margin: auto;
+    border: 0;
+    height: 40px;
+    width: 330px;
+}
+
+#semestre {
+    font-size: 20px;
+}
+
+#curso {
+    width: 225px;
+    font-size: 20px;
+}
+
 input {
     border: 0;
     border-radius: 10px;
     background: #c4c4c4;
-    font-size:  25px;
+    font-size:  20px;
     height: 40px;
     width: 330px;
+}
+
+.resp {
+    text-indent: 15px;
 }
 
 :placeholder-shown {

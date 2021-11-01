@@ -6,16 +6,16 @@ from MySQLdb.cursors import Cursor
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'TheAchieversDSM'    
+app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
 
-app.config["MAIL_SERVER"]='smtp.gmail.com'
+app.config["MAIL_SERVER"] = 'smtp.gmail.com'
 app.config["MAIL_PORT"] = 465
 app.config["MAIL_USERNAME"] = 'the.achieversAPI@gmail.com'
 app.config['MAIL_PASSWORD'] = 'theachieversFATEC'
@@ -26,7 +26,8 @@ mail = Mail(app)
 
 code = str(randint(000000, 999999))
 
-@app.route('/',methods=['GET','POST'])
+
+@app.route('/', methods=['GET', 'POST'])
 def login():
     # Solicitando informações do usuário no formulário.
     if request.method == 'POST':
@@ -35,49 +36,68 @@ def login():
 
     # Checando se usuário está cadastrado
         cursor = mysql.connection.cursor()
-        cursor.execute('select * from usuario WHERE email = %s and senha = %s', (email,senha))
+        cursor.execute(
+            'select * from usuario WHERE user_email = %s and user_senha = %s', (email, senha))
         user = cursor.fetchone()
 
         if user[4] == 1:
             if user:
                 session['loggedin'] = True
                 session['id'] = user[0]
-                session['username'] = user[3]
+                session['username'] = user[2]
                 return redirect(url_for('feed_adm'))
 
             else:
-                flash("Senha/Email inválido ou usuário não registrado","erro")
+                flash("Senha/Email inválido ou usuário não registrado", "erro")
         else:
             flash('Confirme seu e-mail antes.')
             return redirect(url_for('confirmacao', email=user[1]))
 
     return render_template('login.html')
 
-@app.route('/cadastro/',methods=['GET','POST'])
+
+@app.route('/cadastro/', methods=['GET', 'POST'])
 def cadastro():
     # Solicitando informações do usuário no formulário.
     if request.method == 'POST':
+        curso = request.form['curso']
+        semestre = request.form['semestre']
         nome = request.form['nome']
         email = request.form['e-mail']
         senha = request.form['senha']
 
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            "SELECT tur_id from turma WHERE tur_semestre = %s and cur_id = %s", (semestre, curso))
+        turma = cursor.fetchone()
+
     # Inserindo informações na tabela Usuário.
         cursor = mysql.connection.cursor()
-        cursor.execute("insert into usuario(email,senha,nome) values (%s, %s,%s)", (email,senha,nome))
+        cursor.execute(
+            "insert into usuario(user_email, user_nome, user_senha) values (%s, %s,%s)", (email, nome, senha))
         mysql.connection.commit()
-        
+
     # Checando se as informações foram salvas.
-        cursor.execute('select * from usuario WHERE email = %s and senha = %s ', (email,senha))
-        status = cursor.fetchone()
+        cursor.execute(
+            'select * from usuario WHERE user_email = %s and user_senha = %s ', (email, senha))
+        usuario = cursor.fetchone()
 
-        if status[4] == 0:
-            msg = Message('Confirme seu e-mail', sender = 'the.achieversAPI@gmail.com', recipients = [email])
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            'insert into turma_user (tur_id, user_id) values(%s, %s) ', (turma, usuario[0]))
+        mysql.connection.commit()
 
-            msg.html = "<h1 align='center' style='background-color:#ab101a'>Confirme seu e-mail!</h1> <p align='center' style='background-color:#C4C4C4'>Segue o código para verificação do seu cadastro para posterior acesso ao site de informações da FATEC:</p> <p align='center' style='background-color:#ab101a'>{}</p> <p align='center' style='background-color:#C4C4C4'>E-mail automático, favor não responder.</p>".format(code)
-            mail.send(msg)    
-            return redirect(url_for('confirmacao', email = email))
+        if usuario[4] == 0:
+            msg = Message('Confirme seu e-mail',
+                          sender='the.achieversAPI@gmail.com', recipients=[email])
 
-    return render_template('cadastro.html', code = code)
+            msg.html = "<h1 align='center' style='background-color:#ab101a'>Confirme seu e-mail!</h1> <p align='center' style='background-color:#C4C4C4'>Segue o código para verificação do seu cadastro para posterior acesso ao site de informações da FATEC:</p> <p align='center' style='background-color:#ab101a'>{}</p> <p align='center' style='background-color:#C4C4C4'>E-mail automático, favor não responder.</p>".format(
+                code)
+            mail.send(msg)
+            return redirect(url_for('confirmacao', email=email))
+
+    return render_template('cadastro.html', code=code)
+
 
 @app.route('/confirme-seu-email/', methods=['GET', 'POST'])
 def confirmacao():
@@ -86,10 +106,12 @@ def confirmacao():
         email = request.args.get('email')
         if codigo == code:
             cursor = mysql.connection.cursor()
-            cursor.execute("UPDATE usuario SET confirmacao='1' WHERE email = %s", (email,))
+            cursor.execute(
+                "UPDATE usuario SET confirmacao='1' WHERE user_email = %s", (email,))
             mysql.connection.commit()
             return redirect(url_for('login'))
     return render_template('confirmacao.html')
+
 
 @app.route('/feed/')
 def feed():
@@ -98,7 +120,8 @@ def feed():
         cur = mysql.connection.cursor()
 
         # Puxando informações do banco de dados.
-        info = cur.execute("SELECT titulo, destinatario, DATE_FORMAT(data_inclusao, '%d/%m/%Y'), assunto, curso_id, mensagem FROM feed")
+        info = cur.execute(
+            "SELECT titulo, destinatario, DATE_FORMAT(data_inclusao, '%d/%m/%Y'), assunto, curso_id, mensagem FROM feed")
 
         if info > 0:
             infoDetails = cur.fetchall()
@@ -109,13 +132,15 @@ def feed():
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
 
+
 @app.route('/feed-adm/')
 def feed_adm():
     if 'loggedin' in session:
         cur = mysql.connection.cursor()
-    
+
         # Puxando informações do banco de dados.
-        info = cur.execute("SELECT titulo, remetente, destinatario, DATE_FORMAT(data_inclusao, '%d/%m/%Y' ), assunto, curso_id, mensagem FROM feed")
+        info = cur.execute(
+            "SELECT titulo, remetente, destinatario, DATE_FORMAT(data_inclusao, '%d/%m/%Y' ), assunto, curso_id, mensagem FROM feed")
 
         if info > 0:
             infoDetails = cur.fetchall()
@@ -126,12 +151,13 @@ def feed_adm():
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
 
-@app.route('/envio-informacao/', methods=['GET','POST'])
+
+@app.route('/envio-informacao/', methods=['GET', 'POST'])
 def envio_informacao():
     if 'loggedin' in session:
 
         # Solicitando informações da mensagem no formulário.
-        if request.method == 'POST': 
+        if request.method == 'POST':
             remetente = session['username']
             titulo = request.form['titulo']
             data_inclusao = request.form['data']
@@ -139,24 +165,24 @@ def envio_informacao():
             curso = request.form['curso']
             des = request.form.getlist('destinatario')
             mensagem = request.form['mensagem']
-            destinatario= ",".join(str(x) for x in des)
+            destinatario = ",".join(str(x) for x in des)
 
         # Inserindo informações na tabela feed.
             cursor = mysql.connection.cursor()
-            cursor.execute("insert into feed(data_inclusao, assunto, destinatario, curso_id, remetente, titulo, mensagem) values (%s, %s, %s, %s, %s, %s, %s)", (data_inclusao,assunto,destinatario,curso, remetente,titulo,mensagem))
+            cursor.execute("insert into feed(data_inclusao, assunto, destinatario, curso_id, remetente, titulo, mensagem) values (%s, %s, %s, %s, %s, %s, %s)", (data_inclusao, assunto, destinatario, curso, remetente, titulo, mensagem))
             mysql.connection.commit()
 
         # Checando se as informações foram salvas.
-            cursor.execute('select * from feed WHERE data_inclusao = %s and assunto = %s and curso_id = %s and remetente = %s and titulo = %s and mensagem = %s and destinatario = %s', (data_inclusao,assunto,curso, remetente,titulo,mensagem,destinatario))
+            cursor.execute('select * from feed WHERE data_inclusao = %s and assunto = %s and curso_id = %s and remetente = %s and titulo = %s and mensagem = %s and destinatario = %s',   (data_inclusao, assunto, curso, remetente, titulo, mensagem, destinatario))
             status = cursor.fetchone()
-        
+
             if status:
                 return redirect(url_for('feed_adm'))
         return render_template('send-info.html')
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
-        
+
 
 if __name__ == '__main__':
     app.run()
