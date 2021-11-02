@@ -15,6 +15,11 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="https://kit.fontawesome.com/b01f879dd9.js" crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+  <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
   <title>Feed</title>
 </head>
 
@@ -32,8 +37,7 @@
           <div class="date">
             <input type="text" name="daterange" id="data" value="04/10/2021 - 05/10/2021"></input>
           </div>
-
-          <select name="curso" id="multiple-checkboxes" multiple>
+          <select name="curso" id="multiple-checkboxes" multiple data-placeholder="Filtrar por curso..." multiple class="chosen-select" >
             <option value="select" disabled selected>Curso</option>
             <option value="1">Análise e Desenvolvimento de Sistemas</option>
             <option value="2">Banco de Dados</option>
@@ -45,7 +49,7 @@
             <option value="8">Projetos de Estruturas Aeronáuticas</option>
           </select>
 
-          <select name="assunto" id="multiple-checkboxes" multiple>
+          <select name="assunto" id="multiple-checkboxes" multiple data-placeholder="Filtrar por assunto..." multiple class="chosen-select">
             <option value="assunto" disabled selected>Assunto</option>
             <option value="Covid-19">Covid-19</option>
             <option value="Estágio">Estágio</option>
@@ -56,7 +60,7 @@
             <option value="Urgente">Urgente</option>
           </select>
 
-          <select name="semestre" id="semestre" multiple>
+          <select name="semestre" id="semestre" multiple data-placeholder="Filtrar por semestre..." multiple class="chosen-select">
             <option value="select" disabled selected>Semestre</option>
             <option value="1">1° Sem</option>
             <option value="2">2° Sem</option>
@@ -66,7 +70,7 @@
             <option value="6">6° Sem</option>
         </select>
 
-          <select name="destinatario" id="multiple-checkboxes" multiple>
+          <select name="destinatario" id="multiple-checkboxes" multiple data-placeholder="Filtrar por destinatário." multiple class="chosen-select">
             <option value="destinatario" disabled selected>Destinatário</option>
             <option value="1">Diretor</option>
             <option value="2">Secretaria</option>
@@ -76,6 +80,11 @@
           </select>
         </section>
 
+        <script>
+          $(".chosen-select").chosen({
+          no_results_text: "Oops, nenhum registro encontrado!"
+        })
+          </script>
         <!--bloco python para display de info:
          info 0 = TITULO  ;info 1 = REMETENTE ;info 2 = DESTINATARIO;info 3 = DATA;info 4 = ASSUNTO ;info 5 = CURSO; info 6 = MENSAGEM -->
 

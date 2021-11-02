@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="../static/css/send-info.css">
     <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/b01f879dd9.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
 </head>
 
 <body>
@@ -25,7 +30,7 @@
                             <input type="date" name="data" id="data" value=""></input>
                         </div>
 
-                        <select name="curso" id="multiple-checkboxes" multiple>
+                        <select name="curso" id="multiple-checkboxes" multiple data-placeholder="Filtrar por curso..." multiple class="chosen-select">
                             <option value="select" disabled selected>Curso</option>
                             <option value="1">Análise e Desenvolvimento de Sistemas</option>
                             <option value="2">Banco de Dados</option>
@@ -37,7 +42,7 @@
                             <option value="8">Projetos de Estruturas Aeronáuticas</option>
                         </select>
 
-                        <select name="assunto" id="multiple-checkboxes" multiple>
+                        <select name="assunto" id="multiple-checkboxes" multiple data-placeholder="Filtrar por assunto..." multiple class="chosen-select">
                             <option value="assunto" disabled selected>Assunto</option>
                             <option value="Covid-19">Covid-19</option>
                             <option value="Estágio">Estágio</option>
@@ -48,7 +53,7 @@
                             <option value="Urgente">Urgente</option>
                         </select>
 
-                        <select name="semestre" id="semestre" multiple>
+                        <select name="semestre" id="semestre" multiple data-placeholder="Filtrar por semestre..." multiple class="chosen-select">
                             <option value="select" disabled selected>Semestre</option>
                             <option value="1">1° Sem</option>
                             <option value="2">2° Sem</option>
@@ -58,7 +63,7 @@
                             <option value="6">6° Sem</option>
                         </select>
 
-                        <select name="destinatario" id="multiple-checkboxes" multiple>
+                        <select name="destinatario" id="multiple-checkboxes" multiple data-placeholder="Filtrar por destinatário..." multiple class="chosen-select">
                             <option value="destinatario" disabled selected>Destinatário</option>
                             <option value="1">Diretor</option>
                             <option value="2">Secretaria</option>
@@ -92,6 +97,12 @@
               </button>
             </a>
         </section>  
+
+        <script>
+            $(".chosen-select").chosen({
+            no_results_text: "Oops, nenhum registro encontrado!"
+          })
+        </script>
 
     </main>
 

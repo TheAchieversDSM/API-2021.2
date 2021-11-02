@@ -11,6 +11,11 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> 
     <title>Feed</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+  <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+  
 </head>
 <body>
     <header>
@@ -25,7 +30,7 @@
               </div>
     
               
-              <select name="curso" id="multiple-checkboxes" multiple>
+              <select name="curso" id="multiple-checkboxes" multiple data-placeholder="Filtrar por curso..." multiple class="chosen-select" >
                 <option value="select" disabled selected>Curso</option>
                 <option value="1">Análise e Desenvolvimento de Sistemas</option>
                 <option value="2">Banco de Dados</option>
@@ -35,9 +40,9 @@
                 <option value="6">Manufatura Avançada</option>
                 <option value="7">Manutenção de Aeronaves</option>
                 <option value="8">Projetos de Estruturas Aeronáuticas</option>
-            </select>
+              </select>
     
-            <select name="assunto" id="multiple-checkboxes" multiple>
+              <select name="assunto" id="multiple-checkboxes" multiple data-placeholder="Filtrar por assunto..." multiple class="chosen-select">
                 <option value="assunto" disabled selected>Assunto</option>
                 <option value="Covid-19">Covid-19</option>
                 <option value="Estágio">Estágio</option>
@@ -46,26 +51,33 @@
                 <option value="Recados">Recados</option>
                 <option value="Reunião">Reunião</option>
                 <option value="Urgente">Urgente</option>
-            </select>
-
-            <select name="semestre" id="semestre" multiple>
-              <option value="select" disabled selected>Semestre</option>
-              <option value="1">1° Sem</option>
-              <option value="2">2° Sem</option>
-              <option value="3">3° Sem</option>
-              <option value="4">4° Sem</option>
-              <option value="5">5° Sem</option>
-              <option value="6">6° Sem</option>
-          </select>
+              </select>
     
-          <select name="destinatario" id="multiple-checkboxes" multiple>
-              <option value="destinatario" disabled selected>Destinatário</option>
-              <option value="1">Diretor</option>
-              <option value="2">Secretaria</option>
-              <option value="3">Coordenadores</option>
-              <option value="4">Professores</option>
-              <option value="5">Alunos</option>
-          </select>
+              <select name="semestre" id="semestre" multiple data-placeholder="Filtrar por semestre..." multiple class="chosen-select">
+                <option value="select" disabled selected>Semestre</option>
+                <option value="1">1° Sem</option>
+                <option value="2">2° Sem</option>
+                <option value="3">3° Sem</option>
+                <option value="4">4° Sem</option>
+                <option value="5">5° Sem</option>
+                <option value="6">6° Sem</option>
+            </select>
+    
+              <select name="destinatario" id="multiple-checkboxes" multiple data-placeholder="Filtrar por destinatário." multiple class="chosen-select">
+                <option value="destinatario" disabled selected>Destinatário</option>
+                <option value="1">Diretor</option>
+                <option value="2">Secretaria</option>
+                <option value="3">Coordenadores</option>
+                <option value="4">Professores</option>
+                <option value="5">Alunos</option>
+              </select>
+            </section>
+    
+            <script>
+              $(".chosen-select").chosen({
+              no_results_text: "Oops, nenhum registro encontrado!"
+            })
+              </script>
         </section>
      <!--bloco python para display de info:
              info 0 = TITULO  ;info 1 = DESTINATARIO ;info 2 = DATA;info 3 =  ASSUNTO ;info 4 = CURSO ;info 5 = MENSAGEM -->
