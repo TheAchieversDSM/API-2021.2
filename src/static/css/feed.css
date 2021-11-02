@@ -22,6 +22,14 @@ header img {
   margin-top: 50px;
 }
 
+.fas.fa-user-circle {
+  color: #ab101a;
+  justify-content: start;
+  margin-left: 25px;
+  z-index: 1;
+  float: inline-start;
+}
+
 main {
   position: relative;
   margin: auto;
@@ -39,7 +47,7 @@ main {
   padding: 30px;
   max-width: 95%;
   min-width: 30%;
-  height: 630px;
+  height: 680px;
   min-height: fit-content;
   margin:auto;
 }
@@ -65,19 +73,45 @@ main {
   justify-content: space-around;
   padding-top: 5px;
   padding-bottom: 5px;
+  line-height: 50px;
+}
+
+.date-name p {
+  font-size: 22px;
+  color: black;
+  text-decoration: none;
+  margin-top: 18px;
+}
+
+.date-name {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .date input {
-  background-color: #C4C4C4;
-  border: #C4C4C4;
-  font-size: 14pt;
+  background-color: #faf9f9;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  height: 40px;
+  width: 190px;
+  text-indent: 5px;
+  margin-top: 10px;
+}
+
+.ms {
+  justify-content: end;
+}
+
+.bot-select {
+  margin-top: 10px;
 }
 
 select {  
   background-color: #C4C4C4;
   border: #C4C4C4;
   font-size: 14pt;
-  width: 130px;
 }
 
 .info {
@@ -85,7 +119,7 @@ select {
   border-radius: 10px;
   margin-top: 20px;
   padding: 20px;
-  max-width: 95%;
+  max-width: 100%;
   min-width: 30%;
   height: fit-content;
   font-family: Arial, Helvetica, sans-serif;
@@ -190,7 +224,9 @@ div.contents {
   margin: auto;
 }
 
-.button5 {border-radius: 50%;}
+.button5 {
+  border-radius: 50%;
+}
 
 .enviar{
   position: relative;

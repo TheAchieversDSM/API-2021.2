@@ -10,13 +10,16 @@
     <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/b01f879dd9.js" crossorigin="anonymous"></script>
 
+    <!--links para estilização dos filtros-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
-    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+   
 </head>
 
-<body>
+<body style="background-color: #1B1C21;">
     <header>
         <img src="../static/img/logo-150.png" alt="Logo" class="logo">
     </header>
@@ -26,51 +29,50 @@
             <div class="divInterna">
                 <form method="POST">
                     <section class="filter">
-                        <div class="date">
-                            <input type="date" name="data" id="data" value=""></input>
+
+                        <div class="top-select">
+                            <select class="selectpicker" multiple title="Curso">
+                                <option value="1">Análise e Desenvolvimento de Sistemas</option>
+                                <option value="2">Banco de Dados</option>
+                                <option value="3">Desenvolvimento de Software Multiplataforma</option>
+                                <option value="4">Gestão da Produção Industrial</option>
+                                <option value="5">Logística</option>
+                                <option value="6">Manufatura Avançada</option>
+                                <option value="7">Manutenção de Aeronaves</option>
+                                <option value="8">Projetos de Estruturas Aeronáuticas</option>
+                            </select>
+                            
+                            <select class="selectpicker" multiple title="Assunto">
+                                <option value="Covid-19">Covid-19</option>
+                                <option value="Estágio">Estágio</option>
+                                <option value="Evento">Evento</option>
+                                <option value="Notas & similares">Notas & similares</option>
+                                <option value="Recados">Recados</option>
+                                <option value="Reunião">Reunião</option>
+                                <option value="Urgente">Urgente</option>
+                            </select>
                         </div>
 
-                        <select name="curso" id="multiple-checkboxes" multiple data-placeholder="Filtrar por curso..." multiple class="chosen-select">
-                            <option value="select" disabled selected>Curso</option>
-                            <option value="1">Análise e Desenvolvimento de Sistemas</option>
-                            <option value="2">Banco de Dados</option>
-                            <option value="3">Desenvolvimento de Software Multiplataforma</option>
-                            <option value="4">Gestão da Produção Industrial</option>
-                            <option value="5">Logística</option>
-                            <option value="6">Manufatura Avançada</option>
-                            <option value="7">Manutenção de Aeronaves</option>
-                            <option value="8">Projetos de Estruturas Aeronáuticas</option>
-                        </select>
+                        
+                        <div class="bot-select">
+                            <select class="selectpicker" multiple title="Semestre">
+                                <option value="1">1° Sem</option>
+                                <option value="2">2° Sem</option>
+                                <option value="3">3° Sem</option>
+                                <option value="4">4° Sem</option>
+                                <option value="5">5° Sem</option>
+                                <option value="6">6° Sem</option>
+                            </select>
+                            
+                            <select class="selectpicker" multiple title="Destinatário">
+                                <option value="1">Diretor</option>
+                                <option value="2">Secretaria</option>
+                                <option value="3">Coordenadores</option>
+                                <option value="4">Professores</option>
+                                <option value="5">Alunos</option>
+                            </select>
+                        </div>
 
-                        <select name="assunto" id="multiple-checkboxes" multiple data-placeholder="Filtrar por assunto..." multiple class="chosen-select">
-                            <option value="assunto" disabled selected>Assunto</option>
-                            <option value="Covid-19">Covid-19</option>
-                            <option value="Estágio">Estágio</option>
-                            <option value="Evento">Evento</option>
-                            <option value="Notas & similares">Notas & similares</option>
-                            <option value="Recados">Recados</option>
-                            <option value="Reunião">Reunião</option>
-                            <option value="Urgente">Urgente</option>
-                        </select>
-
-                        <select name="semestre" id="semestre" multiple data-placeholder="Filtrar por semestre..." multiple class="chosen-select">
-                            <option value="select" disabled selected>Semestre</option>
-                            <option value="1">1° Sem</option>
-                            <option value="2">2° Sem</option>
-                            <option value="3">3° Sem</option>
-                            <option value="4">4° Sem</option>
-                            <option value="5">5° Sem</option>
-                            <option value="6">6° Sem</option>
-                        </select>
-
-                        <select name="destinatario" id="multiple-checkboxes" multiple data-placeholder="Filtrar por destinatário..." multiple class="chosen-select">
-                            <option value="destinatario" disabled selected>Destinatário</option>
-                            <option value="1">Diretor</option>
-                            <option value="2">Secretaria</option>
-                            <option value="3">Coordenadores</option>
-                            <option value="4">Professores</option>
-                            <option value="5">Alunos</option>
-                        </select>
                     </section>
                     
                     <div >

@@ -3,11 +3,6 @@
     padding: 0;
 }
 
-header,
-body {
-    background-color: #1B1C21;
-}
-
 header {
     display: flex;
     justify-content: space-between;
@@ -46,15 +41,14 @@ main {
 }
 
 .filter {
-    display: flex;
     max-width: 100%;
     min-width: 25%;
     flex-wrap: wrap;
     background-color: #C4C4C4;
     border-radius: 10px;
-    justify-content: space-around;
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 25px;
+    line-height: 50px;
 }
 
 .date input {
@@ -67,7 +61,6 @@ select {
     background-color: #C4C4C4;
     border: #C4C4C4;
     font-size: 14pt;
-    width: 130px;
 }
 
 .titulo {
@@ -76,6 +69,7 @@ select {
     height: 50px;
     font-size: 20px;
     text-indent: 10px;
+    margin-bottom: 15px;
 }
 
 textarea {

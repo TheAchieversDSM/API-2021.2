@@ -1,37 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' type="text/css" href='../static/css/feed.css'>
-    <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> 
-    <title>Feed</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
-  <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
-  
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' type="text/css" href='../static/css/feed.css'>
+  <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <title>Feed</title>
+
+  <!--links para estilização dos filtros-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+  <script src="https://kit.fontawesome.com/e392475ffb.js" crossorigin="anonymous"></script>
+
 </head>
-<body>
-    <header>
-        <img src="../static/img/logo-150.png" alt="Logo" class="logo">
-    </header>
-    <main>
-        <div class="divExterna">
-          <div class="divInterna">
-            <section class="filter">
-              <div class="date">
-                <input type="text" name="daterange" id="data" value="04/10/2021 - 05/10/2021"></input>
-              </div>
-    
-              
-              <select name="curso" id="multiple-checkboxes" multiple data-placeholder="Filtrar por curso..." multiple class="chosen-select" >
-                <option value="select" disabled selected>Curso</option>
+
+<body style="background-color: #1B1C21;">
+  <header>
+    <img src="../static/img/logo-150.png" alt="Logo" class="logo">
+  </header>
+
+  <a href="/logout"><i class="fas fa-user-circle fa-3x"></i></a>
+
+  <main>   
+
+    <div class="divExterna">
+      <div class="divInterna">
+        <section class="filter">
+
+          <div class="date-name">
+            <p class="fas fa-filter"> Selecione os filtros:</p>
+
+            <div class="date">
+              <input type="text" name="daterange" id="data" value="04/10/2021 - 05/10/2021"></input>
+            </div>
+          </div>
+
+          <div class="ms">
+            <div class="top-select">
+              <select class="selectpicker" multiple title="Curso">
                 <option value="1">Análise e Desenvolvimento de Sistemas</option>
                 <option value="2">Banco de Dados</option>
                 <option value="3">Desenvolvimento de Software Multiplataforma</option>
@@ -41,9 +58,8 @@
                 <option value="7">Manutenção de Aeronaves</option>
                 <option value="8">Projetos de Estruturas Aeronáuticas</option>
               </select>
-    
-              <select name="assunto" id="multiple-checkboxes" multiple data-placeholder="Filtrar por assunto..." multiple class="chosen-select">
-                <option value="assunto" disabled selected>Assunto</option>
+
+              <select class="selectpicker" multiple title="Assunto">
                 <option value="Covid-19">Covid-19</option>
                 <option value="Estágio">Estágio</option>
                 <option value="Evento">Evento</option>
@@ -52,87 +68,87 @@
                 <option value="Reunião">Reunião</option>
                 <option value="Urgente">Urgente</option>
               </select>
-    
-              <select name="semestre" id="semestre" multiple data-placeholder="Filtrar por semestre..." multiple class="chosen-select">
-                <option value="select" disabled selected>Semestre</option>
+            </div>
+
+
+            <div class="bot-select">
+              <select class="selectpicker" multiple title="Semestre">
                 <option value="1">1° Sem</option>
                 <option value="2">2° Sem</option>
                 <option value="3">3° Sem</option>
                 <option value="4">4° Sem</option>
                 <option value="5">5° Sem</option>
                 <option value="6">6° Sem</option>
-            </select>
-    
-              <select name="destinatario" id="multiple-checkboxes" multiple data-placeholder="Filtrar por destinatário." multiple class="chosen-select">
-                <option value="destinatario" disabled selected>Destinatário</option>
+              </select>
+
+              <select class="selectpicker" multiple title="Destinatário">
                 <option value="1">Diretor</option>
                 <option value="2">Secretaria</option>
                 <option value="3">Coordenadores</option>
                 <option value="4">Professores</option>
                 <option value="5">Alunos</option>
               </select>
-            </section>
-    
-            <script>
-              $(".chosen-select").chosen({
-              no_results_text: "Oops, nenhum registro encontrado!"
-            })
-              </script>
+            </div>
+          </div>
+
         </section>
-     <!--bloco python para display de info:
+        <!--bloco python para display de info:
              info 0 = TITULO  ;info 1 = DESTINATARIO ;info 2 = DATA;info 3 =  ASSUNTO ;info 4 = CURSO ;info 5 = MENSAGEM -->
-    
-             <div id="divContent" class='contents' >     
-                {% for info in infoDetails %}
-                <section class="info">
-                  <div class="user-info">
-                    <h3>{{info[0]}}</h3>
-                    <p>Para {{info[1]}}</p>
-                    <p>{{info[2]}}<p>
-                  </div>
-                  <div class="corpo-info">
-                    <p>{{info[5]}}</p>
-                   </div>
-                </section>
-                {% endfor %}  
-              </div>
-      <!--fim bloco em python para display-->
 
-      </main>
+        <div id="divContent" class='contents'>
+          {% for info in infoDetails %}
+          <section class="info">
+            <div class="user-info">
+              <h3>{{info[0]}}</h3>
+              <p>Para {{info[1]}}</p>
+              <p>{{info[2]}}
+              <p>
+            </div>
+            <div class="corpo-info">
+              <p>{{info[5]}}</p>
+            </div>
+          </section>
+          {% endfor %}
+        </div>
+        <!--fim bloco em python para display-->
 
-      <footer>
-        <div class="logo-gov">
-          <img src="../static/img/footer/footer.png" alt="Logo Gov">
-        </div>
-    
-        <div class="social">
-          <a href="https://www.linkedin.com/school/fatecjessenvidal/" target="_blank" rel="external"><img
-              src="../static/img/footer/linkedin-35.png" alt="LinkedIn"></a>
-    
-          <a href="https://www.facebook.com/fatecjessenvidal" target="_blank" rel="external"><img
-              src="../static/img/footer/fb-35.png" alt="facebook"></a>
-    
-          <a href="https://www.instagram.com/fatecsaojosedoscampos/" target="_blank" rel="external"><img
-              src="../static/img/footer/ig-35.png" alt="Instagram"></a>
-    
-          <a href="https://www.youtube.com/channel/UCRTd_ST0vPqXi4w_ZdfXtiw" target="_blank" rel="external"><img
-              src="../static/img/footer/yt-35.png" alt="Youtube"></a>
-        </div>
-        <p>Faculdade de Tecnologia de São José dos Campos</p>
-        <p>Todos os Direitos Reservados</p>
-      </footer>
-    
-    </body>
-    <script>
-      $(function() {
-        $('input[name="daterange"]').daterangepicker({
-          opens: 'left'
-        }, function(start, end, label) {
-          console.log("A new date selection was made: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
-        });
-      });
-    </script>
-    </html>
+  </main>
+
+  <footer>
+    <div class="logo-gov">
+      <img src="../static/img/footer/footer.png" alt="Logo Gov">
+    </div>
+
+    <div class="social">
+      <a href="https://www.linkedin.com/school/fatecjessenvidal/" target="_blank" rel="external"><img
+          src="../static/img/footer/linkedin-35.png" alt="LinkedIn"></a>
+
+      <a href="https://www.facebook.com/fatecjessenvidal" target="_blank" rel="external"><img
+          src="../static/img/footer/fb-35.png" alt="facebook"></a>
+
+      <a href="https://www.instagram.com/fatecsaojosedoscampos/" target="_blank" rel="external"><img
+          src="../static/img/footer/ig-35.png" alt="Instagram"></a>
+
+      <a href="https://www.youtube.com/channel/UCRTd_ST0vPqXi4w_ZdfXtiw" target="_blank" rel="external"><img
+          src="../static/img/footer/yt-35.png" alt="Youtube"></a>
+    </div>
+    <p>Faculdade de Tecnologia de São José dos Campos</p>
+    <p>Todos os Direitos Reservados</p>
+  </footer>
 
 </body>
+<script>
+  $(function () {
+    $('input[name="daterange"]').daterangepicker({
+      opens: 'left'
+    }, function (start, end, label) {
+      console.log("A new date selection was made: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
+    });
+  });
+</script>
+
+</html>
+
+</body>
+
 </html>
