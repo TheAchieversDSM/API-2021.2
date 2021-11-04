@@ -1,11 +1,14 @@
 *{
   margin: 0;
   padding: 0;
+  color: black;
 }
 
 header,
 body {
   background-color: #1B1C21;
+  font-family: Arial;
+  font-weight: normal;
 }
 
 header {
@@ -37,9 +40,9 @@ main {
   background-color: #3A4952;
   border-radius: 10px;
   padding: 30px;
-  max-width: 95%;
+  max-width: 100%;
   min-width: 30%;
-  height: 630px;
+  height: 680px;
   min-height: fit-content;
   margin:auto;
 }
@@ -56,28 +59,50 @@ main {
 }
 
 .filter {
-  display: flex;
   max-width: 100%;
   min-width: 30%;
   flex-wrap: wrap;
   background-color: #C4C4C4;
+  justify-content: space-between;
   border-radius: 10px;
-  justify-content: space-around;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  line-height: 50px;
 }
 
-.date input {
-  background-color: #C4C4C4;
-  border: #C4C4C4;
-  font-size: 14pt;
+.bootstrap-select .btn {
+  background-color: #faf9f9;
+}
+
+.bootstrap-select .dropdown-menu {
+  background-color: #ebebeb;
+}
+
+textarea:focus, input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+} 
+
+.container input {
+  display: flex;
+  justify-content: start;
+  background-color: #faf9f9;
+  border: none;
+  font-size: 16px;
+  height: 38px;
+  width: 170px;
+  border-radius: 5px;
+  text-indent: 5px;
+  margin-top: 8px;
+  margin-right: 5px ;
 }
 
 select {  
   background-color: #C4C4C4;
   border: #C4C4C4;
   font-size: 14pt;
-  width: 130px;
+  display: flex;
 }
 
 .info {
@@ -85,7 +110,7 @@ select {
   border-radius: 10px;
   margin-top: 20px;
   padding: 20px;
-  max-width: 95%;
+  max-width: 100%;
   min-width: 30%;
   height: fit-content;
   font-family: Arial, Helvetica, sans-serif;
@@ -190,7 +215,9 @@ div.contents {
   margin: auto;
 }
 
-.button5 {border-radius: 50%;}
+.button5 {
+  border-radius: 50%;
+}
 
 .enviar{
   position: relative;
@@ -199,6 +226,187 @@ div.contents {
   margin: auto;
 }
 
+nav{
+  width: 0px;
+  height: 70px;
+  position: relative;
+  left: 100px;
+  top: 20px;
+  background: #c4c4c4;
+  overflow: hidden;
+  transition: 0.3s ease-in-out;
+}
+
+input{
+  display:none;
+}
+
+.nav-menu{
+  width: 700px;
+  float: left;
+}
+
+.nav-menu ul li{
+  float: left;
+  list-style: none;
+}
+
+.nav-menu ul li a{
+  text-decoration: none;
+  color: black;
+}
+
+.nav-menu ul li a:hover{
+  color: #ab101a;
+  border-bottom: 2px solid #ab101a;
+}
+
+label, label:before, label:after{
+  width: 30px;
+  height: 25px;
+  position: absolute;
+}
+
+label{
+  top: 40px;
+  left: 100px;
+  background: #ab101a;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+label:before, label:after{
+  content:'';
+  height: 5px;
+  top: 5px;
+  width: 30px;
+  background: black;
+  left: 0px;
+}
+
+label:after{
+  top: 15px;
+}
+
+input:checked ~ label{
+  background: transparent;
+}
+
+input:checked ~ label:before, input:checked ~ label:after{
+  background: #ab101a;
+  transform: rotate(-45deg);
+}
+
+input:checked ~ label:after{
+  transform: rotate(45deg);
+  top: 23px;
+}
+
+input:checked ~ nav{
+  width: 1000px;
+  border-radius: 10px;
+}
+
+label {
+  position: relative;
+  top: 150px;
+  left: -100px;
+}
+
+/*
+.topnav {
+  overflow: hidden;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  color: black;
+  padding: 20px;
+  justify-content: space-between;
+  text-decoration: none;
+  font-size: 17px;
+  float: right;
+}
+
+.myLinks{
+  background-color: #c4c4c4;
+  padding: 20px;
+}
+
+.icon{
+  background-color: #ab101a;
+}
+
+.topnav a.icon {
+  float: right;
+}
+
+.topnav a:hover {
+  background-color: #ff3d4a;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+#checkbox-menu{
+  position: absolute;
+  opacity: 0;
+}
+
+label{
+  cursor: pointer;
+  position: relative;
+  display: block;
+  height: 15px;
+  width: 30px;
+  border-radius: 10px;
+}
+
+label span{
+  position: absolute;
+  display: block;
+  height: 5px;
+  width: 100%;
+  border-radius: 30px;
+  background: white;
+  transition: 0.25s ease-in-out;
+}
+
+label span:nth-child(1){
+  top: 0;
+}
+
+label span:nth-child(2){
+  top: 8px;
+}
+
+label span:nth-child(3){
+  top: 16px;
+}
+
+#checkbox-menu:checked + label span:nth-child(1){
+  transform: rotate(-45deg);
+  top: 8px;
+}
+
+#checkbox-menu:checked + label span:nth-child(2){
+  opacity: 0;
+}
+
+#checkbox-menu:checked + label span:nth-child(3){
+  transform: rotate(45deg);
+  top:8px;
+}
+*/
 @media screen and (max-width: 420px) {
   .logo{
     position: relative;

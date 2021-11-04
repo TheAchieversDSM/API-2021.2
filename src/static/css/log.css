@@ -58,6 +58,12 @@ header img {
 .alerta a:hover {
     color: black;
 }
+
+textarea:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
   
 form {
     align-items: center;
@@ -79,7 +85,7 @@ form {
 
 .login {    
     width: 450px;
-    height: 470px;
+    height: 540px;
     top: 250px;    
     background-color: #3A4952;
     border-radius: 10px;
@@ -102,7 +108,7 @@ input {
     border-radius: 10px;
     margin-bottom: 10px;
     background: #c4c4c4;
-    font-size:  25px;
+    font-size: 20px;
     height: 40px;
     width: 330px;
 }

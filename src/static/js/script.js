@@ -1,10 +1,14 @@
-/*$(document).ready(function() {
-    $('#multiple-checkboxes').multiselect({
-      includeSelectAllOption: true,
-    });
-}); */ 
-
-$('input[name="dates"]').daterangepicker();
+$('input[name="daterange"]').daterangepicker(
+  {
+      locale: {
+        format: 'YYYY-MM-DD'
+      },
+      startDate: '2013-01-01',
+      endDate: '2013-12-31'
+  }, 
+  function(start, end, label) {
+      alert("A new date range was chosen: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
 
 function validar(){
   var nome = document.getElementById("nome").value;
@@ -67,3 +71,11 @@ function mostrar(){
   }
 }
 
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
