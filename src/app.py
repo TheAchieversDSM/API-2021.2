@@ -131,28 +131,38 @@ def feed():
 
         if info > 0:
             infoDetails = cur.fetchall()
-            return render_template("feed.html", infoDetails=infoDetails)
+            return render_template("feed.html", infoDetails=infoDetails, cursos = listarCursos(), cargos = listarCargos())
         else:
-            return render_template("feed.html")
+            return render_template("feed.html", cursos = listarCursos(), cargos = listarCargos())
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
 
+def listarCursos():
+    cur = mysql.connection.cursor()
+    cur.execute("select cur_id, cur_nome from curso")
+    return cur.fetchall()
+
+def listarCargos():
+    cur = mysql.connection.cursor()
+    cur.execute("select car_id, car_nome from cargo")
+    return cur.fetchall()
 
 @app.route('/feed-adm/')
 def feed_adm():
     if 'loggedin' in session:
         cur = mysql.connection.cursor()
-
+      
+        
         # Puxando informações do banco de dados.
         info = cur.execute(
             "SELECT post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, tur_semestre, cur_id, car_id FROM feed ORDER BY post_data")
 
         if info > 0:
             infoDetails = cur.fetchall()
-            return render_template("feed-adm.html", infoDetails=infoDetails)
+            return render_template("feed-adm.html", infoDetails=infoDetails, cursos = listarCursos(), cargos = listarCargos())
         else:
-            return render_template("feed-adm.html")
+            return render_template("feed-adm.html", cursos = listarCursos(), cargos = listarCargos())
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
@@ -187,7 +197,7 @@ def envio_informacao():
 
             if status:
                 return redirect(url_for('feed_adm'))
-        return render_template('send-info.html')
+        return render_template('send-info.html', cursos = listarCursos(), cargos = listarCargos())
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))

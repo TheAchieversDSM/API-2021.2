@@ -32,14 +32,9 @@
 
                         <div class="top-select">
                             <select class="selectpicker" multiple title="Curso">
-                                <option value="1">Análise e Desenvolvimento de Sistemas</option>
-                                <option value="2">Banco de Dados</option>
-                                <option value="3">Desenvolvimento de Software Multiplataforma</option>
-                                <option value="4">Gestão da Produção Industrial</option>
-                                <option value="5">Logística</option>
-                                <option value="6">Manufatura Avançada</option>
-                                <option value="7">Manutenção de Aeronaves</option>
-                                <option value="8">Projetos de Estruturas Aeronáuticas</option>
+                                {% for curso in cursos %}
+                                <option value="{{curso[0]}}">{{curso[1]}}</option>
+                                {% endfor %}
                             </select>
                             
                             <select class="selectpicker" multiple title="Assunto">
@@ -65,11 +60,9 @@
                             </select>
                             
                             <select class="selectpicker" multiple title="Destinatário">
-                                <option value="1">Diretor</option>
-                                <option value="2">Secretaria</option>
-                                <option value="3">Coordenadores</option>
-                                <option value="4">Professores</option>
-                                <option value="5">Alunos</option>
+                                {% for cargo in cargos %}
+                                <option value="{{cargo[0]}}">{{cargo[1]}}</option>
+                                {% endfor %}
                             </select>
                         </div>
 
