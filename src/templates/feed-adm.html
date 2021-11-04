@@ -7,14 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' type="text/css" href='../static/css/feed.css'>
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script src="https://kit.fontawesome.com/b01f879dd9.js" crossorigin="anonymous"></script>
+  <script src="../static/js/script.js"></script>
 
   <!--links para estilização dos filtros-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
@@ -31,31 +24,35 @@
 
   <header>
     <img src="../static/img/logo-150.png" alt="Logo" class="logo">
-  </header>
 
-  <a href="/logout"><i class="fas fa-user-circle fa-3x"></i></a>
+    <div class="topnav">
+      <div class="myLinks" id="myLinks">
+        <a href="#news">Sair</a>
+        <a href="#contact">Escrever publicação</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <div class="container">
+          <input type="checkbox" id="checkbox-menu">
+
+          <label for="checkbox-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+
+        </div>
+      </a>
+    </div>
+  </header>
 
   <main>
     <div class="divExterna">
       <div class="divInterna">
         <section class="filter">
-          <div class="date-name">
-            <p class="fas fa-filter"> Selecione os filtros:</p>
-            
-            <div class="date">
-              <input type="text" name="daterange" id="data" value="04/10/2021 - 05/10/2021"></input>
-            </div>
-          </div>
 
-          <div class="ms">
-            <div class="top-select">
-              <select class="selectpicker" multiple title="Curso">
-                {% for curso in cursos %}
-                <option value="{{curso[0]}}">{{curso[1]}}</option>
-                {% endfor %}
-              </select>
+          <div class="top-filter">
 
-              <select class="selectpicker" multiple title="Assunto">
+              <select class="selectpicker" data-width=170px multiple title="Assunto">
                 <option value="Covid-19">Covid-19</option>
                 <option value="Estágio">Estágio</option>
                 <option value="Evento">Evento</option>
@@ -64,11 +61,14 @@
                 <option value="Reunião">Reunião</option>
                 <option value="Urgente">Urgente</option>
               </select>
-            </div>
 
+              <select class="selectpicker" data-width=170px multiple title="Destinatário">
+                {% for cargo in cargos %}
+                <option value="{{cargo[0]}}">{{cargo[1]}}</option>
+                {% endfor %}
+              </select>
 
-            <div class="bot-select">
-              <select class="selectpicker" multiple title="Semestre">
+              <select class="selectpicker" data-width=170px multiple title="Semestre">
                 <option value="1">1° Sem</option>
                 <option value="2">2° Sem</option>
                 <option value="3">3° Sem</option>
@@ -76,14 +76,22 @@
                 <option value="5">5° Sem</option>
                 <option value="6">6° Sem</option>
               </select>
-
-              <select class="selectpicker" multiple title="Destinatário">
-                {% for cargo in cargos %}
-                <option value="{{cargo[0]}}">{{cargo[1]}}</option>
+              <select class="selectpicker" data-width=170px multiple title="Curso">
+                {% for curso in cursos %}
+                <option value="{{curso[0]}}">{{curso[1]}}</option>
                 {% endfor %}
               </select>
               
 
+            </div>
+            
+          <div class="container">
+            <div id="inicial">
+              <input type="date" name="" max="" id="fromDate">
+            </div>
+
+            <div id="final">
+              <input type="date" name="" min="" id="toDate">
             </div>
           </div>
         </section>
@@ -112,14 +120,6 @@
       </div>
       <!--fim bloco em python para display-->
 
-      <section class="enviar">
-        <a href="/envio-informacao">
-          <button class="btn5 button5">
-            <i class="fas fa-pencil-alt"></i>
-          </button>
-        </a>
-      </section>
-
   </main>
 
   <footer>
@@ -144,16 +144,23 @@
     <p>Todos os Direitos Reservados</p>
   </footer>
 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
-    $(function dataFiltro() {
-      {
-        const d = new Date(day, month, year);
-      }
-      $('input[name="daterange"]').daterangepicker({
-        opens: 'left'
-      }, function (start, end, label) {
-        console.log("A new date selection was made: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
-      });
+    var fromDate;
+    $('#fromDate').on('change', function () {
+      fromDate = $(this).val();
+      $('#toDate').prop('max', function () {
+        return fromDate;
+      })
+    });
+
+    var toDate;
+    $('#toDate').on('change', function () {
+      toDate = $(this).val();
+      $('#fromDate').prop('min', function () {
+        return toDate;
+      })
     });
   </script>
 

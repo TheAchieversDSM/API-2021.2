@@ -9,7 +9,8 @@ create table if not exists `fatec_api`.`usuario` (
     `user_nome` varchar (255) not null,
     `user_senha` varchar (20) not null,
     `confirmacao` tinyint default 0,
-    primary key (user_id)
+    primary key (user_id),
+    unique index `user_email_unique` (`user_email` asc) visible
 );
 
 select * from usuario;
@@ -24,6 +25,8 @@ create table if not exists `fatec_api`.`cargo_user` (
 		foreign key (`user_id`)
         references `usuario`(`user_id`)
 );
+
+select * from cargo_user;
 
 /* TABELA DO ATRIBUTO MULTIVALORADO TURMA */
 
@@ -162,6 +165,7 @@ create table if not exists `fatec_api`.`feed` (
     `post_data` date not null,
     `post_anexo` longblob null,
     `post_mensagem` text not null,
+    `post_remetente` varchar (80) not null,
     `tur_semestre` int not null,
     `cur_id` int not null,
     `car_id` int not null,
@@ -170,6 +174,8 @@ create table if not exists `fatec_api`.`feed` (
 		foreign key (`car_id`)
         references `cargo`(`car_id`)
 );
+
+select * from feed;
 
 /* TABELA DA RELACAO ENTRE USUARIO E FEED */
 

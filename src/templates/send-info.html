@@ -12,14 +12,15 @@
 
     <!--links para estilização dos filtros-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-   
 </head>
 
-<body style="background-color: #1B1C21;">
+<body style="background-color: #1b1c21">
+
     <header>
         <img src="../static/img/logo-150.png" alt="Logo" class="logo">
     </header>
@@ -30,56 +31,55 @@
                 <form method="POST">
                     <section class="filter">
 
-                        <div class="top-select">
-                            <select class="selectpicker" multiple title="Curso">
-                                {% for curso in cursos %}
-                                <option value="{{curso[0]}}">{{curso[1]}}</option>
-                                {% endfor %}
-                            </select>
-                            
-                            <select class="selectpicker" multiple title="Assunto">
-                                <option value="Covid-19">Covid-19</option>
-                                <option value="Estágio">Estágio</option>
-                                <option value="Evento">Evento</option>
-                                <option value="Notas & similares">Notas & similares</option>
-                                <option value="Recados">Recados</option>
-                                <option value="Reunião">Reunião</option>
-                                <option value="Urgente">Urgente</option>
-                            </select>
-                        </div>
+                        <select class="selectpicker" name="assunto" data-width="200px" multiple data-actions-box="true"
+                            title="Assunto">
+                            <option value="Covid-19">Covid-19</option>
+                            <option value="Estágio">Estágio</option>
+                            <option value="Evento">Evento</option>
+                            <option value="Notas & similares">Notas & similares</option>
+                            <option value="Recados">Recados</option>
+                            <option value="Reunião">Reunião</option>
+                            <option value="Urgente">Urgente</option>
+                        </select>
 
-                        
-                        <div class="bot-select">
-                            <select class="selectpicker" multiple title="Semestre">
-                                <option value="1">1° Sem</option>
-                                <option value="2">2° Sem</option>
-                                <option value="3">3° Sem</option>
-                                <option value="4">4° Sem</option>
-                                <option value="5">5° Sem</option>
-                                <option value="6">6° Sem</option>
-                            </select>
-                            
-                            <select class="selectpicker" multiple title="Destinatário">
-                                {% for cargo in cargos %}
+                        <select class="selectpicker" name="destinatario" data-width="200px" multiple
+                            data-actions-box="true" title="Destinatário">
+                            {% for cargo in cargos %}
                                 <option value="{{cargo[0]}}">{{cargo[1]}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+                            {% endfor %}
+                        </select>
+
+                        <select class="selectpicker" name="semestre" data-width="200px" multiple data-actions-box="true"
+                            title="Semestre">
+                            <option value="1">1° Sem</option>
+                            <option value="2">2° Sem</option>
+                            <option value="3">3° Sem</option>
+                            <option value="4">4° Sem</option>
+                            <option value="5">5° Sem</option>
+                            <option value="6">6° Sem</option>
+                        </select>
+ 
+                        <select class="selectpicker" name="curso" data-width="200px" multiple data-actions-box="true" title="Curso">
+                            {% for curso in cursos %}
+                                <option value="{{curso[0]}}">{{curso[1]}}</option>
+                            {% endfor %}
+                        </select>
 
                     </section>
-                    
-                    <div >
+
+                    <div>
                         <input class="titulo" type="text" name="titulo" id="titulo" placeholder="Escreva seu título...">
                     </div>
 
                     <div>
-                        <textarea name="mensagem" id="mensagem" rows="20" cols="100" placeholder="Escreva sua mensagem..."></textarea>
+                        <textarea name="mensagem" id="mensagem" rows="20" cols="100"
+                            placeholder="Escreva sua mensagem..."></textarea>
                     </div>
 
                     <div class="info-buttons">
                         <input type="file" name="arquivo">
                         </input>
-                        <input type="submit" class="enviar" style="margin-left: 260px;">  
+                        <input type="submit" class="enviar" style="margin-left: 260px;">
                     </div>
                 </form>
             </div>
@@ -87,17 +87,11 @@
 
         <section>
             <a href="/feed-adm">
-              <button class="btn5 button5">
-                <i class="fas fa-sign-out-alt"></i>
-              </button>
+                <button class="btn5 button5">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
             </a>
-        </section>  
-
-        <script>
-            $(".chosen-select").chosen({
-            no_results_text: "Oops, nenhum registro encontrado!"
-          })
-        </script>
+        </section>
 
     </main>
 

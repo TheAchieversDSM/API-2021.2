@@ -29,10 +29,16 @@ main {
     text-align: center;
 }
 
+textarea:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
+
 .edicao {
     margin: auto;
     width: 450px;
-    height: 500px;
+    height: 510px;
     top: 250px;    
     background-color: rgba(66, 85, 95, 0.8) ;
     border-radius: 10px;
@@ -40,9 +46,15 @@ main {
 }  
 
 .campos {
-    padding-top: 10px;
+    padding-top: 30px;
     margin-top: 25px;
     text-align: center;
+}
+
+.bootstrap-select .btn {
+    background-color: #C4C4C4;
+    border: none;
+    font-size: 18px;
 }
 
 p {
@@ -53,11 +65,16 @@ p {
     font-size: 25px;    
 }
 
+.resp {
+    font-size: 20px;
+    text-indent: 15px;
+}
+
 input {
     border: 0;
     border-radius: 10px;
     background: #c4c4c4;
-    font-size:  25px;
+    font-size: 55px;
     height: 40px;
     width: 330px;
 }
