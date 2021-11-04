@@ -2,21 +2,23 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-  <link rel='stylesheet' type="text/css" href='../static/css/editarusuario.css'>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+    <link rel='stylesheet' type="text/css" href='../static/css/editarusuario.css'>
 
-  <!--links para o multiselect-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <!--links para o multiselect-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-  <title>Editar Usuário</title>
+    <title>Editar Usuário</title>
 </head>
+
 <body style="background-color: #1b1c21;">
 
     <header>
@@ -24,23 +26,23 @@
     </header>
 
     <main>
-        <form class="edicao">
+        <form method="POST" class="edicao">
             <div class="campos">
                 <p>Nome Completo</p>
                 <input class="resp" type="text" name="nome" id="nome">
                 <p>E-mail</p>
                 <input class="resp" type="text" name="e-mail" id="email">
                 <p>Cargo</p>
-                <select class="selectpicker" data-width='330px' multiple id="cargo" title="Cargo">
+                <select class="selectpicker" name="cargo" data-width='330px' multiple id="cargo" title="Cargo">
                     <option value="1">Diretor</option>
                     <option value="2">Secretaria</option>
                     <option value="3">Coordenadores</option>
                     <option value="4">Professores</option>
                 </select>
-                
+
                 <p>Turma(s)</p>
                 <div class="turma">
-                    <select class="selectpicker" data-width='330px' multiple title="Turma">
+                    <select name="turma" class="selectpicker" data-width='330px' multiple title="Turma">
 
                         <optgroup label="Análise e Desenvolvimento de Sistemas">
                             <option value="ADS1">1° Sem</option>
@@ -113,13 +115,14 @@
                             <option value="PEA5">5° Sem</option>
                             <option value="PEA6">6° Sem</option>
                         </optgroup>
-                    
+
                         <br>
 
                     </select>
-                <button type="alter" class="botao">Confirmar alterações</button>
-            </div>
+                    <button type="alter" class="botao">Confirmar alterações</button>
+                </div>
         </form>
     </main>
 </body>
+
 </html>

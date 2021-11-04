@@ -1,6 +1,7 @@
 use fatec_api;
 
 insert into usuario (user_id, user_nome, user_email, user_senha, confirmacao) values (1, 'Maria Clara', 'm@fatec.sp.gov.br', '1', 1);
+insert into exerce (car_id, user_id) values (5, 1);
 
 /* INSERINDO NOMES DOS CURSOS */
 

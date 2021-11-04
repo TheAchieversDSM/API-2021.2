@@ -226,6 +226,94 @@ div.contents {
   margin: auto;
 }
 
+nav{
+  width: 0px;
+  height: 70px;
+  position: relative;
+  left: 100px;
+  top: 20px;
+  background: #c4c4c4;
+  overflow: hidden;
+  transition: 0.3s ease-in-out;
+}
+
+input{
+  display:none;
+}
+
+.nav-menu{
+  width: 700px;
+  float: left;
+}
+
+.nav-menu ul li{
+  float: left;
+  list-style: none;
+}
+
+.nav-menu ul li a{
+  text-decoration: none;
+  color: black;
+}
+
+.nav-menu ul li a:hover{
+  color: #ab101a;
+  border-bottom: 2px solid #ab101a;
+}
+
+label, label:before, label:after{
+  width: 30px;
+  height: 25px;
+  position: absolute;
+}
+
+label{
+  top: 40px;
+  left: 100px;
+  background: #ab101a;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+label:before, label:after{
+  content:'';
+  height: 5px;
+  top: 5px;
+  width: 30px;
+  background: black;
+  left: 0px;
+}
+
+label:after{
+  top: 15px;
+}
+
+input:checked ~ label{
+  background: transparent;
+}
+
+input:checked ~ label:before, input:checked ~ label:after{
+  background: #ab101a;
+  transform: rotate(-45deg);
+}
+
+input:checked ~ label:after{
+  transform: rotate(45deg);
+  top: 23px;
+}
+
+input:checked ~ nav{
+  width: 1000px;
+  border-radius: 10px;
+}
+
+label {
+  position: relative;
+  top: 150px;
+  left: -100px;
+}
+
+/*
 .topnav {
   overflow: hidden;
   position: relative;
@@ -318,7 +406,7 @@ label span:nth-child(3){
   transform: rotate(45deg);
   top:8px;
 }
-
+*/
 @media screen and (max-width: 420px) {
   .logo{
     position: relative;

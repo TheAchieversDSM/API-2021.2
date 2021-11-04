@@ -98,13 +98,13 @@ def cadastro():
     # Inserindo o ID do usuário e sua respectiva turma na tabela turma_user
         cursor = mysql.connection.cursor()
         cursor.execute(
-            'INSERT into turma_user (tur_id, user_id) values(%s, %s) ', (turma, usuario[0]))
+            'INSERT into participa (tur_id, user_id) values(%s, %s) ', (turma, usuario[0]))
         mysql.connection.commit()
 
     # Inserindo o ID do usuário e o cargo padrão na tabela cargo_user
         cursor = mysql.connection.cursor()
         cursor.execute(
-            'INSERT into cargo_user (car_id, user_id) values("5", %s) ', (usuario[0],))
+            'INSERT into exerce (car_id, user_id) values("5", %s) ', (usuario[0],))
         mysql.connection.commit()
 
     # Enviando email de confirmação para o email inserido pelo o usuário
@@ -148,6 +148,7 @@ def confirmacao():
 
 ###### Rota para a página do feed ######
 
+
 @app.route('/feed/')
 def feed():
     # Checando se o usuário está logado.
@@ -161,18 +162,20 @@ def feed():
     # Enviando Informações para o template.
         if info > 0:
             infoDetails = cur.fetchall()
-            return render_template("feed.html", infoDetails=infoDetails, cursos = listarCursos(), cargos = listarCargos())
+            return render_template("feed.html", infoDetails=infoDetails, cursos=listarCursos(), cargos=listarCargos())
         else:
-            return render_template("feed.html", cursos = listarCursos(), cargos = listarCargos())
+            return render_template("feed.html", cursos=listarCursos(), cargos=listarCargos())
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
 
+
 def listarCursos():
     cur = mysql.connection.cursor()
     cur.execute("select cur_id, cur_nome from curso")
     return cur.fetchall()
+
 
 def listarCargos():
     cur = mysql.connection.cursor()
@@ -181,6 +184,7 @@ def listarCargos():
 
 ###### Rota para a página do feed do adm ######
 
+
 @app.route('/feed-adm/')
 def feed_adm():
     # Checando se o usuário está logado.
@@ -188,6 +192,16 @@ def feed_adm():
 
         # Puxando o ID do usuário a partir de sua Sessão do Login.
         user_id = session['id']
+        # Verificando o cargo do usuário
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * from exerce where user_id = %s', (user_id,))
+        cargo_user = cursor.fetchone()
+
+        # Verificando se o Cargo do usuário pode ou não enviar informações.
+        if cargo_user[0] == 5:
+            perm = 0
+        else:
+            perm = 1
 
     # Puxando informações do banco de dados.
         cur = mysql.connection.cursor()
@@ -196,21 +210,9 @@ def feed_adm():
         if info > 0:
             infoDetails = cur.fetchall()
 
-         # Verificando o cargo do usuário
-            cursor = mysql.connection.cursor()
-            cursor.execute(
-                'SELECT car_id from cargo_user where user_id = %s', (user_id,))
-            cargo_user = cursor.fetchone()
-
-        # Verificando se o Cargo do usuário pode ou não enviar informações.
-            if cargo_user == 1 or cargo_user == 2 or cargo_user == 3 or cargo_user == 4:
-                cargo_user = True
-            else:
-                cargo_user = False
-
-            return render_template("feed-adm.html", infoDetails=infoDetails, cargo_user=cargo_user, cursos = listarCursos(), cargos = listarCargos())
+            return render_template("feed-adm.html", infoDetails=infoDetails, perm=perm, cursos=listarCursos(), cargos=listarCargos())
         else:
-            return render_template("feed-adm.html", cursos = listarCursos(), cargos = listarCargos())
+            return render_template("feed-adm.html", cursos=listarCursos(), perm=perm, cargos=listarCargos())
 
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
@@ -251,7 +253,7 @@ def envio_informacao():
         # Redirecionando o Usuário para a página de Feed caso as informações foram salvas.
             if status:
                 return redirect(url_for('feed_adm'))
-        return render_template('send-info.html', cursos = listarCursos(), cargos = listarCargos())
+        return render_template('send-info.html', cursos=listarCursos(), cargos=listarCargos())
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
         flash('Faça o login antes de continuar.')
@@ -321,12 +323,12 @@ def edit():
         # Solicitando informações do usuário a ser alterado e suas mudanças (Cargo e Curso).
         if request.method == "POST":
             email = request.form["e-mail"]
-            cargo = request.form["Cargo"]
-            turma = request.form["Turma"]
+            cargo = request.form["cargo"]
+            turma = request.form.getlist("turma")
 
         # Selecionando o ID do usuário inserido.
             cursor = mysql.connection.cursor()
-            cursor.execute('SELECT user_id from usuario WHERE email = %s',
+            cursor.execute('SELECT user_id from usuario WHERE user_email = %s',
                            (email,))
             user = cursor.fetchone()
 
@@ -334,14 +336,13 @@ def edit():
             if user:
                 cursor = mysql.connection.cursor()
                 cursor.execute(
-                    'UPDATE cargo_user SET car_id = %s WHERE user_id = %s', (cargo, user))
-
-                mysql.connection.commit()
-                cursor = mysql.connection.cursor()
-                cursor.execute(
-                    'UPDATE turma_user SET tur_id = %s WHERE user_id = %s', (turma, user))
-
-                mysql.connection.commit()
+                    'UPDATE exerce SET car_id = %s WHERE user_id = %s', (cargo, user))
+                for x in turma:
+                    mysql.connection.commit()
+                    cursor = mysql.connection.cursor()
+                    cursor.execute(
+                        'INSERT INTO participa (tur_id,user_id) values (%s, %s)', (x, user))
+                    mysql.connection.commit()
 
                 return redirect(url_for('feed_adm'))
 
