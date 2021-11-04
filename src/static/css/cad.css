@@ -1,7 +1,6 @@
 body{
     background-color: #1b1c21;
     font-family: sans-serif;
-    height: 1300px;
 }
 
 header {
@@ -60,20 +59,26 @@ main {
     color: black;
 }
 
+textarea:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
+
 form {
     align-items: center;
     margin: auto;
 }
 
 .campos {
-    padding-top: 10px;
+    padding-top: 30px;
     margin-top: 25px;
     text-align: center;
 }
 
 .cadastro {
     width: 450px;
-    height: 620px;
+    height: 500px;
     top: 250px;    
     background-color: rgba(66, 85, 95, 0.8) ;
     border-radius: 10px;
@@ -86,6 +91,16 @@ form {
     border: 0;
     height: 40px;
     width: 330px;
+}
+
+.turma {
+    justify-content: space-between;
+}
+
+.bootstrap-select .btn {
+    background-color: #C4C4C4;
+    border: none;
+    font-size: 18px;
 }
 
 #semestre {
@@ -108,6 +123,7 @@ input {
 
 .resp {
     text-indent: 15px;
+    font-size: 20px;
 }
 
 :placeholder-shown {

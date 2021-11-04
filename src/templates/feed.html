@@ -30,66 +30,57 @@
     <img src="../static/img/logo-150.png" alt="Logo" class="logo">
   </header>
 
-  <a href="/logout"><i class="fas fa-user-circle fa-3x"></i></a>
+  <a href="/logout"><i class="fas fa-door-open fa-3x"></i></a>
 
-  <main>   
+  <main>
 
     <div class="divExterna">
       <div class="divInterna">
         <section class="filter">
 
-          <div class="date-name">
-            <p class="fas fa-filter"> Selecione os filtros:</p>
-
+          <div class="top-filter">
             <div class="date">
               <input type="text" name="daterange" id="data" value="04/10/2021 - 05/10/2021"></input>
             </div>
+
+            <select class="selectpicker" data-width=170px multiple title="Assunto">
+              <option value="Covid-19">Covid-19</option>
+              <option value="Estágio">Estágio</option>
+              <option value="Evento">Evento</option>
+              <option value="Notas & similares">Notas & similares</option>
+              <option value="Recados">Recados</option>
+              <option value="Reunião">Reunião</option>
+              <option value="Urgente">Urgente</option>
+            </select>
+
+            <select class="selectpicker" data-width=170px multiple title="Destinatário">
+              <option value="1">Diretor</option>
+              <option value="2">Secretaria</option>
+              <option value="3">Coordenadores</option>
+              <option value="4">Professores</option>
+              <option value="5">Alunos</option>
+            </select>
+
+            <select class="selectpicker" data-width=170px multiple title="Semestre">
+              <option value="1">1° Sem</option>
+              <option value="2">2° Sem</option>
+              <option value="3">3° Sem</option>
+              <option value="4">4° Sem</option>
+              <option value="5">5° Sem</option>
+              <option value="6">6° Sem</option>
+            </select>
+            <select class="selectpicker" data-width=170px multiple title="Curso">
+              <option value="1">Análise e Desenvolvimento de Sistemas</option>
+              <option value="2">Banco de Dados</option>
+              <option value="3">Desenvolvimento de Software Multiplataforma</option>
+              <option value="4">Gestão da Produção Industrial</option>
+              <option value="5">Logística</option>
+              <option value="6">Manufatura Avançada</option>
+              <option value="7">Manutenção de Aeronaves</option>
+              <option value="8">Projetos de Estruturas Aeronáuticas</option>
+            </select>
           </div>
 
-          <div class="ms">
-            <div class="top-select">
-              <select class="selectpicker" multiple title="Curso">
-                <option value="1">Análise e Desenvolvimento de Sistemas</option>
-                <option value="2">Banco de Dados</option>
-                <option value="3">Desenvolvimento de Software Multiplataforma</option>
-                <option value="4">Gestão da Produção Industrial</option>
-                <option value="5">Logística</option>
-                <option value="6">Manufatura Avançada</option>
-                <option value="7">Manutenção de Aeronaves</option>
-                <option value="8">Projetos de Estruturas Aeronáuticas</option>
-              </select>
-
-              <select class="selectpicker" multiple title="Assunto">
-                <option value="Covid-19">Covid-19</option>
-                <option value="Estágio">Estágio</option>
-                <option value="Evento">Evento</option>
-                <option value="Notas & similares">Notas & similares</option>
-                <option value="Recados">Recados</option>
-                <option value="Reunião">Reunião</option>
-                <option value="Urgente">Urgente</option>
-              </select>
-            </div>
-
-
-            <div class="bot-select">
-              <select class="selectpicker" multiple title="Semestre">
-                <option value="1">1° Sem</option>
-                <option value="2">2° Sem</option>
-                <option value="3">3° Sem</option>
-                <option value="4">4° Sem</option>
-                <option value="5">5° Sem</option>
-                <option value="6">6° Sem</option>
-              </select>
-
-              <select class="selectpicker" multiple title="Destinatário">
-                <option value="1">Diretor</option>
-                <option value="2">Secretaria</option>
-                <option value="3">Coordenadores</option>
-                <option value="4">Professores</option>
-                <option value="5">Alunos</option>
-              </select>
-            </div>
-          </div>
 
         </section>
         <!--bloco python para display de info:

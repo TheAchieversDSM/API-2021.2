@@ -1,11 +1,14 @@
 *{
   margin: 0;
   padding: 0;
+  color: black;
 }
 
 header,
 body {
   background-color: #1B1C21;
+  font-family: Arial;
+  font-weight: normal;
 }
 
 header {
@@ -20,14 +23,6 @@ header {
 
 header img {
   margin-top: 50px;
-}
-
-.fas.fa-user-circle {
-  color: #ab101a;
-  justify-content: start;
-  margin-left: 25px;
-  z-index: 1;
-  float: inline-start;
 }
 
 main {
@@ -45,7 +40,7 @@ main {
   background-color: #3A4952;
   border-radius: 10px;
   padding: 30px;
-  max-width: 95%;
+  max-width: 100%;
   min-width: 30%;
   height: 680px;
   min-height: fit-content;
@@ -64,54 +59,50 @@ main {
 }
 
 .filter {
-  display: flex;
   max-width: 100%;
   min-width: 30%;
   flex-wrap: wrap;
   background-color: #C4C4C4;
+  justify-content: space-between;
   border-radius: 10px;
-  justify-content: space-around;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   line-height: 50px;
 }
 
-.date-name p {
-  font-size: 22px;
-  color: black;
-  text-decoration: none;
-  margin-top: 18px;
+.bootstrap-select .btn {
+  background-color: #faf9f9;
 }
 
-.date-name {
+.bootstrap-select .dropdown-menu {
+  background-color: #ebebeb;
+}
+
+textarea:focus, input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+} 
+
+.container input {
   display: flex;
-  flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.date input {
+  justify-content: start;
   background-color: #faf9f9;
   border: none;
-  border-radius: 10px;
   font-size: 16px;
-  height: 40px;
-  width: 190px;
+  height: 38px;
+  width: 170px;
+  border-radius: 5px;
   text-indent: 5px;
-  margin-top: 10px;
-}
-
-.ms {
-  justify-content: end;
-}
-
-.bot-select {
-  margin-top: 10px;
+  margin-top: 8px;
+  margin-right: 5px ;
 }
 
 select {  
   background-color: #C4C4C4;
   border: #C4C4C4;
   font-size: 14pt;
+  display: flex;
 }
 
 .info {
@@ -233,6 +224,99 @@ div.contents {
   left: -5px;
   top: -50px;
   margin: auto;
+}
+
+.topnav {
+  overflow: hidden;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  color: black;
+  padding: 20px;
+  justify-content: space-between;
+  text-decoration: none;
+  font-size: 17px;
+  float: right;
+}
+
+.myLinks{
+  background-color: #c4c4c4;
+  padding: 20px;
+}
+
+.icon{
+  background-color: #ab101a;
+}
+
+.topnav a.icon {
+  float: right;
+}
+
+.topnav a:hover {
+  background-color: #ff3d4a;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+#checkbox-menu{
+  position: absolute;
+  opacity: 0;
+}
+
+label{
+  cursor: pointer;
+  position: relative;
+  display: block;
+  height: 15px;
+  width: 30px;
+  border-radius: 10px;
+}
+
+label span{
+  position: absolute;
+  display: block;
+  height: 5px;
+  width: 100%;
+  border-radius: 30px;
+  background: white;
+  transition: 0.25s ease-in-out;
+}
+
+label span:nth-child(1){
+  top: 0;
+}
+
+label span:nth-child(2){
+  top: 8px;
+}
+
+label span:nth-child(3){
+  top: 16px;
+}
+
+#checkbox-menu:checked + label span:nth-child(1){
+  transform: rotate(-45deg);
+  top: 8px;
+}
+
+#checkbox-menu:checked + label span:nth-child(2){
+  opacity: 0;
+}
+
+#checkbox-menu:checked + label span:nth-child(3){
+  transform: rotate(45deg);
+  top:8px;
 }
 
 @media screen and (max-width: 420px) {

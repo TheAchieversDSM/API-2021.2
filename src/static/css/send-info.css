@@ -1,6 +1,8 @@
 *{
     margin: 0;
     padding: 0;
+    color: black;
+    
 }
 
 header {
@@ -46,21 +48,21 @@ main {
     flex-wrap: wrap;
     background-color: #C4C4C4;
     border-radius: 10px;
-    padding-top: 5px;
-    padding-bottom: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     line-height: 50px;
 }
 
-.date input {
-    background-color: #C4C4C4;
-    border: #C4C4C4;
-    font-size: 14pt;
+::placeholder {
+    color: rgb(70, 68, 68);
 }
 
-select {  
-    background-color: #C4C4C4;
-    border: #C4C4C4;
-    font-size: 14pt;
+.bootstrap-select .btn {
+    background-color: #faf9f9;
+}
+
+.bootstrap-select .dropdown-menu {
+    background-color: #ebebeb;
 }
 
 .titulo {
@@ -72,13 +74,19 @@ select {
     margin-bottom: 15px;
 }
 
+select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+
 textarea {
     width: 100%;
     height: 400px;
     line-height: 1.7;
     margin-top: 30px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12pt;
+    font-size: 50px;
     text-indent: 10px;
     display: block;
 }
@@ -99,7 +107,6 @@ input[type=submit] {
     background-color: #AB101A;
     border: #AB101A;
 }
-
 
 .enviar:hover {
     background-color: #C4C4C4;
@@ -145,7 +152,6 @@ footer {
     background-color: #D3D9D9;
     width: 100%;
     height: 280px;
-    
 }
 
 .logo-gov {
@@ -185,7 +191,9 @@ footer p {
     font-size: 50px;
   }
   
-  .button5 {border-radius: 50%;}
+  .button5 {
+      border-radius: 50%;
+    }
 
 @media screen and (max-width: 420px){
     .divInterna{

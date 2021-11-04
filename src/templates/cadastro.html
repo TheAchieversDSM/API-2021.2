@@ -7,10 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/cad.css">
     <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+
+    <!--links para estilização dos filtros-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
     <title>Cadastro</title>
 </head>
 
-<body>
+<body style="background-color: #1b1c21;">
     <header>
         <img class="logo" src="../static/img/logo-150.png">
     </header>
@@ -20,12 +29,14 @@
             <div class="campos">
                 <p>Nome completo</p>
                 <input class="resp" type="text" name="nome" id="nome">
+
                 <p>E-mail</p>
                 <input class="resp" type="text" name="e-mail" id="email" placeholder="exemplo@fatec.sp.gov.br">
+
                 <p>Turma</p>
                 <div class="turma">
-                    <select name="semestre" id="semestre">
-                        <option value="select" disabled selected>Semestre</option>
+
+                    <select class="selectpicker" data-width="120px" multiple data-actions-box="true" title="Semestre">
                         <option value="1">1° Sem</option>
                         <option value="2">2° Sem</option>
                         <option value="3">3° Sem</option>
@@ -33,9 +44,8 @@
                         <option value="5">5° Sem</option>
                         <option value="6">6° Sem</option>
                     </select>
-                    
-                    <select name="curso" id="curso">
-                        <option value="select" disabled selected>Curso</option>
+
+                    <select class="selectpicker" data-width="200px" multiple data-actions-box="true" title="Curso">
                         <option value="1">Análise e Desenvolvimento de Sistemas</option>
                         <option value="2">Banco de Dados</option>
                         <option value="3">Desenvolvimento de Software Multiplataforma</option>
@@ -46,8 +56,10 @@
                         <option value="8">Projetos de Estruturas Aeronáuticas</option>
                     </select>
                 </div>
+
                 <p>Senha</p>
                 <input class="resp" type="password" name="senha" id="senha"><br>
+
                 <input type="submit" class="botao">
             </div>
         </form>
