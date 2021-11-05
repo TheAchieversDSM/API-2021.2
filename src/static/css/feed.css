@@ -201,37 +201,12 @@ div.contents {
   left: 1090px;
 }
 
-.btn5 {
-  background-color: #ab101a;
-  border: none;
-  color: white;
-  padding: 15px;
-  width: 90px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 50px;
-  z-index: 1;
-  margin: auto;
-}
-
-.button5 {
-  border-radius: 50%;
-}
-
-.enviar{
-  position: relative;
-  left: -5px;
-  top: -50px;
-  margin: auto;
-}
-
 nav{
   width: 0px;
-  height: 70px;
+  height: 50px;
   position: relative;
   left: 100px;
-  top: 20px;
+  top: 40px;
   background: #c4c4c4;
   overflow: hidden;
   transition: 0.3s ease-in-out;
@@ -251,6 +226,12 @@ input{
   list-style: none;
 }
 
+.nav-menu li{
+  box-sizing: border-box;
+  margin: 1.5% 3%;
+  font-size: 20px;
+}
+
 .nav-menu ul li a{
   text-decoration: none;
   color: black;
@@ -258,7 +239,6 @@ input{
 
 .nav-menu ul li a:hover{
   color: #ab101a;
-  border-bottom: 2px solid #ab101a;
 }
 
 label, label:before, label:after{
@@ -303,7 +283,7 @@ input:checked ~ label:after{
 }
 
 input:checked ~ nav{
-  width: 1000px;
+  width: 800px;
   border-radius: 10px;
 }
 
@@ -313,100 +293,6 @@ label {
   left: -100px;
 }
 
-/*
-.topnav {
-  overflow: hidden;
-  position: relative;
-}
-
-.topnav #myLinks {
-  display: none;
-}
-
-.topnav a {
-  color: black;
-  padding: 20px;
-  justify-content: space-between;
-  text-decoration: none;
-  font-size: 17px;
-  float: right;
-}
-
-.myLinks{
-  background-color: #c4c4c4;
-  padding: 20px;
-}
-
-.icon{
-  background-color: #ab101a;
-}
-
-.topnav a.icon {
-  float: right;
-}
-
-.topnav a:hover {
-  background-color: #ff3d4a;
-}
-
-.container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px;
-}
-
-#checkbox-menu{
-  position: absolute;
-  opacity: 0;
-}
-
-label{
-  cursor: pointer;
-  position: relative;
-  display: block;
-  height: 15px;
-  width: 30px;
-  border-radius: 10px;
-}
-
-label span{
-  position: absolute;
-  display: block;
-  height: 5px;
-  width: 100%;
-  border-radius: 30px;
-  background: white;
-  transition: 0.25s ease-in-out;
-}
-
-label span:nth-child(1){
-  top: 0;
-}
-
-label span:nth-child(2){
-  top: 8px;
-}
-
-label span:nth-child(3){
-  top: 16px;
-}
-
-#checkbox-menu:checked + label span:nth-child(1){
-  transform: rotate(-45deg);
-  top: 8px;
-}
-
-#checkbox-menu:checked + label span:nth-child(2){
-  opacity: 0;
-}
-
-#checkbox-menu:checked + label span:nth-child(3){
-  transform: rotate(45deg);
-  top:8px;
-}
-*/
 @media screen and (max-width: 420px) {
   .logo{
     position: relative;
