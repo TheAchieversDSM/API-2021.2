@@ -72,17 +72,10 @@ def login():
 def cadastro():
     # Solicitando informações do usuário no formulário.
     if request.method == 'POST':
-        curso = request.form['curso']
-        semestre = request.form['semestre']
+        turma = request.form['turma']
         nome = request.form['nome']
         email = request.form['e-mail']
         senha = request.form['senha']
-
-    # Checando a turma selecionada pelo usuário
-        cursor = mysql.connection.cursor()
-        cursor.execute(
-            "SELECT tur_id from turma WHERE tur_semestre = %s and cur_id = %s", (semestre, curso))
-        turma = cursor.fetchone()
 
     # Inserindo informações na tabela Usuário.
         cursor = mysql.connection.cursor()
