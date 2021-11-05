@@ -62,12 +62,16 @@ function validarLog(){
 }
 
 function mostrar(){
-  responder = document.getElementById("responder")
-  if(responder.className == "escondido"){
-    document.getElementById("responder").className = "mostrar"
+  ver = document.getElementById("ver")
+  if(ver.className == "escondido"){
+    document.getElementById("ver").className = "mostrar"
+    document.getElementById("olho").className = 'fas fa-eye';
   }
   else{
-    document.getElementById("responder").className = "escondido"
+    document.getElementById("ver").className = "escondido"
+    document.getElementById("olho").className = 'fas fa-eye-slash';
+    
+
   }
 }
 

@@ -22,7 +22,9 @@
 <body style="background-color: #1b1c21">
 
     <header>
+        
         <img src="../static/img/logo-150.png" alt="Logo" class="logo">
+        
     </header>
 
     <main>
@@ -30,7 +32,7 @@
             <div class="divInterna">
                 <form method="POST">
                     <section class="filter">
-
+                    
                         <select class="selectpicker" name="assunto" data-width="200px" multiple data-actions-box="true"
                             title="Assunto">
                             <option value="Covid-19">Covid-19</option>
@@ -42,27 +44,89 @@
                             <option value="Urgente">Urgente</option>
                         </select>
 
-                        <select class="selectpicker" name="destinatario" data-width="200px" multiple
-                            data-actions-box="true" title="Destinatário">
-                            {% for cargo in cargos %}
-                                <option value="{{cargo[0]}}">{{cargo[1]}}</option>
-                            {% endfor %}
-                        </select>
+                        <select class="selectpicker" name="destinatario" data-width=170px multiple title="Destinatário">
+                            <option value="Diretor">Diretor</option>
+                            <option value="Secretaria">Secretaria</option>
+                            <option value="Coordenadores">Coordenadores</option>
+                            <option value="Professores">Professores</option>
+                            <option value="Alunos">Alunos</option>
+              
+                          </select>
+                          
+                          <select name="turma" class="selectpicker" data-width='330px' multiple title="Turma">
 
-                        <select class="selectpicker" name="semestre" data-width="200px" multiple data-actions-box="true"
-                            title="Semestre">
-                            <option value="1">1° Sem</option>
-                            <option value="2">2° Sem</option>
-                            <option value="3">3° Sem</option>
-                            <option value="4">4° Sem</option>
-                            <option value="5">5° Sem</option>
-                            <option value="6">6° Sem</option>
-                        </select>
- 
-                        <select class="selectpicker" name="curso" data-width="200px" multiple data-actions-box="true" title="Curso">
-                            {% for curso in cursos %}
-                                <option value="{{curso[0]}}">{{curso[1]}}</option>
-                            {% endfor %}
+                            <optgroup label="Análise e Desenvolvimento de Sistemas">
+                                <option value="ADS1">1° Sem</option>
+                                <option value="ADS2">2° Sem</option>
+                                <option value="ADS3">3° Sem</option>
+                                <option value="ADS4">4° Sem</option>
+                                <option value="ADS5">5° Sem</option>
+                                <option value="ADS6">6° Sem</option>
+                            </optgroup>
+    
+                            <optgroup label="Banco de Dados">
+                                <option value="BDD1">1° Sem</option>
+                                <option value="BDD2">2° Sem</option>
+                                <option value="BDD3">3° Sem</option>
+                                <option value="BDD4">4° Sem</option>
+                                <option value="BDD5">5° Sem</option>
+                                <option value="BDD6">6° Sem</option>
+                            </optgroup>
+    
+                            <optgroup label="Desenvolvimento de Software Multiplataforma">
+                                <option value="DSM1">1° Sem</option>
+                                <option value="DSM2">2° Sem</option>
+                                <option value="DSM3">3° Sem</option>
+                                <option value="DSM4">4° Sem</option>
+                                <option value="DSM5">5° Sem</option>
+                                <option value="DSM6">6° Sem</option>
+                            </optgroup>
+    
+                            <optgroup label="Gestão da Produção Industrial">
+                                <option value="GPI1">1° Sem</option>
+                                <option value="GPI2">2° Sem</option>
+                                <option value="GPI3">3° Sem</option>
+                                <option value="GPI4">4° Sem</option>
+                                <option value="GPI5">5° Sem</option>
+                                <option value="GPI6">6° Sem</option>
+                            </optgroup>
+    
+                            <optgroup label="Logística">
+                                <option value="LOG1">1° Sem</option>
+                                <option value="LOG2">2° Sem</option>
+                                <option value="LOG3">3° Sem</option>
+                                <option value="LOG4">4° Sem</option>
+                                <option value="LOG5">5° Sem</option>
+                                <option value="LOG6">6° Sem</option>
+                            </optgroup>
+    
+                            <optgroup label="Manufatura Avançada">
+                                <option value="MAV1">1° Sem</option>
+                                <option value="MAV2">2° Sem</option>
+                                <option value="MAV3">3° Sem</option>
+                                <option value="MAV4">4° Sem</option>
+                                <option value="MAV5">5° Sem</option>
+                                <option value="MAV6">6° Sem</option>
+                            </optgroup>
+    
+                            <optgroup label="Manutenção de Aeronaves">
+                                <option value="MAE1">1° Sem</option>
+                                <option value="MAE2">2° Sem</option>
+                                <option value="MAE3">3° Sem</option>
+                                <option value="MAE4">4° Sem</option>
+                                <option value="MAE5">5° Sem</option>
+                                <option value="MAE6">6° Sem</option>
+                            </optgroup>
+    
+                            <optgroup label="Projetos de Estruturas Aeronáuticas">
+                                <option value="PEA1">1° Sem</option>
+                                <option value="PEA2">2° Sem</option>
+                                <option value="PEA3">3° Sem</option>
+                                <option value="PEA4">4° Sem</option>
+                                <option value="PEA5">5° Sem</option>
+                                <option value="PEA6">6° Sem</option>
+                            </optgroup>
+    
                         </select>
 
                     </section>
@@ -86,7 +150,7 @@
         </div>
 
         <section>
-            <a href="/feed-adm">
+            <a href="/feed">
                 <button class="btn5 button5">
                     <i class="fas fa-sign-out-alt"></i>
                 </button>

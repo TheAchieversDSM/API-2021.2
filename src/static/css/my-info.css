@@ -1,15 +1,8 @@
-*{
+* {
  margin: 0;
  padding: 0;
  color: black;
  font-family: Arial;
-}
-
-header,
-body {
- background-color: #1B1C21;
- font-family: Arial;
- font-weight: normal;
 }
 
 header {
@@ -41,22 +34,13 @@ main {
  background-color: #3A4952;
  border-radius: 10px;
  padding: 30px;
- max-width: 100%;
- min-width: 30%;
- height: 680px;
- min-height: fit-content;
- margin: auto;
+ margin-top: 50px;
 }
 
 .divInterna {
  background-color: white;
  border-radius: 10px;
- max-height: fit-content;
- min-height: 650px;
- padding: 16px;
- margin: auto;
- max-width: 95%;
- min-width: 30%;
+ padding: 20px;
 }
 
 h1 {
@@ -65,7 +49,7 @@ h1 {
  border-radius: 10px;
  padding-top: 15px;
  padding-bottom: 15px;
- font-size: 40px;
+ font-size: 35px;
 }
 
 .info {
@@ -84,15 +68,52 @@ h1 {
 .info h2 {
  font-size: 30px;
  padding-top: 15px;
- padding-bottom: 15px; 
+ padding-bottom: 15px;
  color: #ab101a;
 }
 
 .info h3 {
  font-size: 22px;
- padding-bottom: 15px; 
+ padding-bottom: 15px;
  text-align: left;
  margin-left: 40px;
+}
+
+.fas.fa-eye-slash,.fas.fa-eye{
+ cursor: pointer;
+ -webkit-transition: 0.5s;
+}
+
+.fas.fa-eye-slash:hover,.fas.fa-eye:hover {
+ -webkit-transition: 0.5s;
+ color: #ab101a;
+}
+
+.escondido {
+ display: none;
+ -webkit-transition: 0.5s;
+}
+
+.mostrar {
+ display: block;
+}
+
+#divContent{
+ overflow:auto;
+}
+
+div.contents {
+ position:relative;
+ width: 100%;
+ height: 430px;
+ overflow: auto;
+ top: 10px;
+ margin: auto;
+}
+
+.senha-nome {
+ display: flex;
+ flex-direction: row;
 }
 
 footer {
@@ -101,7 +122,7 @@ footer {
  height: 280px;
  max-width: 100%;
  min-width: 100%;
- margin:auto;
+ margin: auto;
 }
 
 .logo-gov {
@@ -109,7 +130,7 @@ footer {
  text-align: center;
 }
 
-.social  {
+.social {
  display: flex;
  padding: 10px;
  justify-content: center;

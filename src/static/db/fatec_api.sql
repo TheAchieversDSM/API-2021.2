@@ -85,20 +85,16 @@ create table if not exists `fatec_api`.`feed` (
 	`post_id` int not null auto_increment,
     `post_titulo` varchar (150) not null,
     `post_assunto` varchar (150) not null,
-    `post_data` date not null,
+    `post_data` datetime not null,
     `post_anexo` longblob null,
     `post_mensagem` text not null,
     `post_remetente` varchar (80) not null,
-    `tur_semestre` int not null,
-    `cur_id` int not null,
-    `car_id` int not null,
-	primary key (post_id, car_id),
-	constraint `fk_car_id_3`
-		foreign key (`car_id`)
-        references `cargo`(`car_id`),
-	constraint `fk_cur_id_3`
-		foreign key (`cur_id`)
-        references `curso`(`cur_id`)
+	`tur_id` varchar (4) not null,
+    `car_nome` varchar (20) not null,
+	primary key (post_id),
+	constraint `fk_tur_id_3`
+		foreign key (`tur_id`)
+        references `turma`(`tur_id`)
 );
 
 select * from feed;
@@ -115,4 +111,18 @@ create table if not exists `fatec_api`.`interage` (
 	constraint `fk_post_id`
 		foreign key (`post_id`)
         references `feed`(`post_id`)
-)
+);
+
+/* TABELA 
+
+create table if not exists `fatec_api`.`recebe` (
+	`post_id` int not null,
+    `tur_id` int not null,
+    primary key (post_id),
+    constraint `fk_cur_id_4`
+		foreign key (`cur_id`)
+        references `curso`(`cur_id`),
+	constraint `fk_tur_id`
+		foreign key (`tur_id`)
+        references `turma`(`tur_id`)
+)*/

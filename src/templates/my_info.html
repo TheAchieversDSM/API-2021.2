@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' type="text/css" href='../static/css/my-info.css'>
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+  <script src="../static/js/script.js"></script>
 
   <title>Minha Área</title>
 
@@ -16,24 +17,35 @@
 
 <body style="background-color: #1B1C21;">
   <header>
+    
     <img src="../static/img/logo-150.png" alt="Logo" class="logo">
+
   </header>
 
   <main>
     <div class="divExterna">
       <div class="divInterna">
 
-        <!--bloco python para display de info:
-         usuario 0 = ID  ; usuario 1 = email ; usuario 2 = nome ; usuario 3 = senha;
-      -->
+        <!-- bloco python para display de info:
+
+         usuario 0 = ID  ; usuario 1 = email ; usuario 2 = nome ; usuario 3 = senha;-->
 
         <h1><i class="fas fa-user-cog"></i> Informações do Usuário</h1>
-
-        <div class="info">
-          <h2>Informações pessoais</h2>
-          <h3>Nome: {{usuario[2]}} </h3>
-          <h3>Email: {{usuario[1]}}</h3>
-          <h3>Senha: {{usuario[3]}}</h3>
+        
+        <div id="divContent" class="contents">
+  
+          <div class="info">
+            <h2>Informações pessoais</h2>
+            <h3>Nome: {{usuario[2]}} </h3>
+            <h3>Email: {{usuario[1]}}</h3>
+            <h3>Senha:<p id="ver" class="escondido">{{usuario[3]}}</p> <i id="olho" onclick="mostrar()" class="fas fa-eye-slash"></i></h3>
+          </div>
+  
+          <div class="info">
+            <h2>Informações acadêmicas</h2>
+            <h3>Cargo: {{cargo[1]}}</h3>
+            <h3>Turma: {{turma[1]}}° semestre de {{curso[1]}}</h3>
+          </div>
         </div>
 
       </div>

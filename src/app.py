@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from datetime import date
+from datetime import datetime
 from flask_mysqldb import MySQL
 from random import randint
 from flask_mail import *
@@ -31,8 +31,8 @@ mail = Mail(app)
 ###### Geração de código para confirmar Email ######
 code = str(randint(000000, 999999))
 
-
 ###### Rota para a página de Login ######
+
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -55,7 +55,7 @@ def login():
                 session['loggedin'] = True
                 session['id'] = user[0]
                 session['username'] = user[2]
-                return redirect(url_for('feed_adm'))
+                return redirect(url_for('feed'))
 
             else:
                 flash("Senha/Email inválido ou usuário não registrado", "erro")
@@ -152,17 +152,53 @@ def myinfo():
         cursor.execute("SELECT * FROM usuario WHERE user_id = %s", (user_id,))
         usuario = cursor.fetchone()
 
-        return render_template('my_info.html', usuario=usuario)
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            "SELECT tur_id FROM participa WHERE user_id = %s", (user_id,))
+        turma_id = cursor.fetchone()
+
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM turma where tur_id = %s", (turma_id,))
+        turma = cursor.fetchone()
+
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM curso where cur_id = %s", (turma[2],))
+        curso = cursor.fetchone()
+
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            "SELECT car_id FROM exerce WHERE user_id = %s", (user_id,))
+        cargo_id = cursor.fetchone()
+
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM cargo where car_id = %s", (cargo_id,))
+        cargo = cursor.fetchone()
+
+        return render_template('my_info.html', usuario=usuario, turma=turma, curso=curso, cargo=cargo)
 
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
 
-###### Rota para a página do feed do adm ######
+# função para puxar filtros do banco de dados
 
 
-@app.route('/feed-adm/')
-def feed_adm():
+def listarCursos():
+    cur = mysql.connection.cursor()
+    cur.execute("select cur_id, cur_nome from curso")
+    return cur.fetchall()
+
+
+def listarCargos():
+    cur = mysql.connection.cursor()
+    cur.execute("select car_id, car_nome from cargo")
+    return cur.fetchall
+
+###### Rota para a página do feed ######
+
+
+@app.route('/feed/')
+def feed():
     # Checando se o usuário está logado.
     if 'loggedin' in session:
 
@@ -182,13 +218,14 @@ def feed_adm():
     # Puxando informações do banco de dados.
         cur = mysql.connection.cursor()
         info = cur.execute(
-            "SELECT post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, tur_semestre, cur_id, car_id FROM feed ORDER BY post_data DESC")
+            "SELECT post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem,tur_id, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
         if info > 0:
             infoDetails = cur.fetchall()
 
-            return render_template("feed-adm.html", infoDetails=infoDetails, perm=perm, cursos=listarCursos(), cargos=listarCargos())
+            return render_template("feed.html", infoDetails=infoDetails, perm=perm)
         else:
-            return render_template("feed-adm.html", cursos=listarCursos(), perm=perm, cargos=listarCargos())
+            return render_template("feed.html", cursos=listarCursos(), perm=perm, cargos=listarCargos())
+            # cursos=listarCursos(), perm=perm, cargos=listarCargos())
 
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
@@ -205,30 +242,31 @@ def envio_informacao():
 
         # Solicitando informações da mensagem no formulário.
         if request.method == 'POST':
+            id_usuario = session['id']
             remetente = session['username']
             titulo = request.form['titulo']
-            data_inclusao = date.today()
+            data_inclusao = datetime.now()
             assunto = request.form['assunto']
-            curso = request.form['curso']
-            semestre = request.form['semestre']
+            turma = request.form['turma']
             des = request.form.getlist('destinatario')
             mensagem = request.form['mensagem']
             destinatario = ",".join(str(x) for x in des)
 
         # Inserindo informações na tabela feed.
             cursor = mysql.connection.cursor()
-            cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, cur_id, tur_semestre, post_remetente,car_id) values (%s, %s, %s, %s, %s, %s, %s,%s)",
-                           (data_inclusao, assunto, titulo, mensagem, curso, semestre, remetente, destinatario))
+            cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, tur_id, post_remetente,car_nome) values (%s, %s, %s, %s, %s, %s, %s)",
+                           (data_inclusao, assunto, titulo, mensagem, turma, remetente, destinatario))
             mysql.connection.commit()
 
         # Checando se as informações foram salvas.
-            cursor.execute('select * from feed WHERE post_data = %s and post_assunto = %s and cur_id = %s and post_remetente = %s and post_titulo = %s and post_mensagem = %s and car_id= %s',
-                           (data_inclusao, assunto, curso, remetente, titulo, mensagem, destinatario))
+            cursor.execute('select * from feed WHERE post_data = %s and post_assunto = %s and tur_id = %s and post_remetente = %s and post_titulo = %s and post_mensagem = %s and car_nome= %s',
+                           (data_inclusao, assunto, turma, remetente, titulo, mensagem, destinatario))
             status = cursor.fetchone()
+
 
         # Redirecionando o Usuário para a página de Feed caso as informações foram salvas.
             if status:
-                return redirect(url_for('feed_adm'))
+                return redirect(url_for('feed'))
         return render_template('send-info.html', cursos=listarCursos(), cargos=listarCargos())
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
@@ -238,7 +276,7 @@ def envio_informacao():
 ###### Rota para a página de recuperação de senha ######
 
 
-@app.route('/recuperar-senha/', methods=['GET', 'POST'])
+@ app.route('/recuperar-senha/', methods=['GET', 'POST'])
 def recsenha():
     if request.method == 'POST':
         # Solicitando o email do usuario do formulario.
@@ -257,6 +295,7 @@ def recsenha():
         if usuario:
             msg = Message('Alteração de senha',
                           sender='the.achieversAPI@gmail.com', recipients=[email])
+
             msg.html = "<h1 align='center' style='background-color:#ab101a'>Alterar Senha!</h1> <p align='center' style='background-color:#c4c4c4'>Segue o código para verificação do seu cadastro para posterior alteração de senha:</p> <h2 align='center' style='background-color:#ab101a'>{}</h2> <p align='center' style='background-color:#c4c4c4'>E-mail automático, favor não responder.</p>".format(
                 code)
             mail.send(msg)
@@ -271,7 +310,7 @@ def recsenha():
 ###### Rota para a página de alteração de senha ######
 
 
-@app.route('/alterar-senha/', methods=['GET', 'POST'])
+@ app.route('/alterar-senha/', methods=['GET', 'POST'])
 def novasenha():
     if request.method == 'POST':
         # Solicitando email (argumentos da url) e senha (formulário)
@@ -291,7 +330,7 @@ def novasenha():
 ###### Rota para a página de edição de usuário ######
 
 
-@app.route("/editar-usuario/", methods=['GET', "POST"])
+@ app.route("/editar-usuario/", methods=['GET', "POST"])
 def edit():
     # Checando se o usuário está logado.
     if 'loggedin' in session:
@@ -304,8 +343,8 @@ def edit():
 
         # Selecionando o ID do usuário inserido.
             cursor = mysql.connection.cursor()
-            cursor.execute('SELECT user_id from usuario WHERE user_email = %s',
-                           (email,))
+            cursor.execute(
+                'SELECT user_id from usuario WHERE user_email = %s', (email,))
             user = cursor.fetchone()
 
         # Alterando os cursos e o cargo do usuário se solicitado.
@@ -320,7 +359,7 @@ def edit():
                         'INSERT INTO participa (tur_id,user_id) values (%s, %s)', (x, user))
                     mysql.connection.commit()
 
-                return redirect(url_for('feed_adm'))
+                return redirect(url_for('feed'))
 
         # Caso de usuário não encontrado é emitido uma mensagem
             else:
@@ -335,7 +374,7 @@ def edit():
 ###### Rota para a página de alteração de senha ######
 
 
-@app.route('/logout')
+@ app.route('/logout')
 def logout():
     # Deslogando o usuário da Sessão.
     session.pop('loggedin', None)
