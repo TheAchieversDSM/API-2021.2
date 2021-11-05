@@ -1,0 +1,128 @@
+*{
+ margin: 0;
+ padding: 0;
+ color: black;
+ font-family: Arial;
+}
+
+header,
+body {
+ background-color: #1B1C21;
+ font-family: Arial;
+ font-weight: normal;
+}
+
+header {
+ display: flex;
+ justify-content: space-between;
+ padding: 10px;
+ align-items: center;
+ min-width: 300px;
+ max-width: 1000px;
+ margin: auto;
+}
+
+header img {
+ margin-top: 50px;
+}
+
+main {
+ position: relative;
+ margin: auto;
+ min-width: 300px;
+ max-width: 1000px;
+ margin-bottom: 50px;
+ margin-top: 50px;
+ padding: 10px;
+ text-align: center;
+}
+
+.divExterna {
+ background-color: #3A4952;
+ border-radius: 10px;
+ padding: 30px;
+ max-width: 100%;
+ min-width: 30%;
+ height: 680px;
+ min-height: fit-content;
+ margin: auto;
+}
+
+.divInterna {
+ background-color: white;
+ border-radius: 10px;
+ max-height: fit-content;
+ min-height: 650px;
+ padding: 16px;
+ margin: auto;
+ max-width: 95%;
+ min-width: 30%;
+}
+
+h1 {
+ width: 100%;
+ background-color: #C4C4C4;
+ border-radius: 10px;
+ padding-top: 15px;
+ padding-bottom: 15px;
+ font-size: 40px;
+}
+
+.info {
+ background-color: #C4C4C4;
+ border-radius: 10px;
+ margin-top: 20px;
+ justify-content: start;
+ line-height: 30px;
+}
+
+.info h2,
+.info h3 {
+ font-weight: normal;
+}
+
+.info h2 {
+ font-size: 30px;
+ padding-top: 15px;
+ padding-bottom: 15px; 
+ color: #ab101a;
+}
+
+.info h3 {
+ font-size: 22px;
+ padding-bottom: 15px; 
+ text-align: left;
+ margin-left: 40px;
+}
+
+footer {
+ position: absolute;
+ background-color: #D3D9D9;
+ height: 280px;
+ max-width: 100%;
+ min-width: 100%;
+ margin:auto;
+}
+
+.logo-gov {
+ padding: 20px;
+ text-align: center;
+}
+
+.social  {
+ display: flex;
+ padding: 10px;
+ justify-content: center;
+ text-align: center;
+}
+
+.social a {
+ padding: 5px 15px;
+ text-align: center;
+}
+
+footer p {
+ text-align: center;
+ padding: 10px;
+ margin: auto;
+}

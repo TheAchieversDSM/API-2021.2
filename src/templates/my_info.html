@@ -1,25 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel='stylesheet' type="text/css" href='../static/css/feed.css'>
+  <link rel='stylesheet' type="text/css" href='../static/css/my-info.css'>
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  <title>Feed</title>
 
-  <!--links para estilização dos filtros-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+  <title>Minha Área</title>
 
   <script src="https://kit.fontawesome.com/e392475ffb.js" crossorigin="anonymous"></script>
 
@@ -31,8 +20,24 @@
   </header>
 
   <main>
+    <div class="divExterna">
+      <div class="divInterna">
 
+        <!--bloco python para display de info:
+         usuario 0 = ID  ; usuario 1 = email ; usuario 2 = nome ; usuario 3 = senha;
+      -->
 
+        <h1><i class="fas fa-user-cog"></i> Informações do Usuário</h1>
+
+        <div class="info">
+          <h2>Informações pessoais</h2>
+          <h3>Nome: {{usuario[2]}} </h3>
+          <h3>Email: {{usuario[1]}}</h3>
+          <h3>Senha: {{usuario[3]}}</h3>
+        </div>
+
+      </div>
+    </div>
 
   </main>
 
@@ -61,6 +66,3 @@
 </body>
 
 </html>
-
-</body>
-

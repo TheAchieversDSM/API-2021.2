@@ -142,38 +142,21 @@ def confirmacao():
 ###### Rota para a página do feed ######
 
 
-@app.route('/feed/')
-def feed():
+@app.route('/area-usuario/')
+def myinfo():
     # Checando se o usuário está logado.
     if 'loggedin' in session:
+        user_id = session['id']
 
-        # Puxando informações do banco de dados.
-        cur = mysql.connection.cursor()
-        info = cur.execute(
-            "SELECT post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, tur_semestre, cur_id, car_id FROM feed ORDER BY post_data")
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM usuario WHERE user_id = %s", (user_id,))
+        usuario = cursor.fetchone()
 
-    # Enviando Informações para o template.
-        if info > 0:
-            infoDetails = cur.fetchall()
-            return render_template("feed.html", infoDetails=infoDetails, cursos=listarCursos(), cargos=listarCargos())
-        else:
-            return render_template("feed.html", cursos=listarCursos(), cargos=listarCargos())
-    # Redirecionando o Usuário para a página de login caso ele não esteja logado.
+        return render_template('my_info.html', usuario=usuario)
+
     else:
         flash('Faça o login antes de continuar.')
         return redirect(url_for('login'))
-
-
-def listarCursos():
-    cur = mysql.connection.cursor()
-    cur.execute("select cur_id, cur_nome from curso")
-    return cur.fetchall()
-
-
-def listarCargos():
-    cur = mysql.connection.cursor()
-    cur.execute("select car_id, car_nome from cargo")
-    return cur.fetchall()
 
 ###### Rota para a página do feed do adm ######
 
