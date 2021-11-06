@@ -48,7 +48,7 @@ def login():
         user = cursor.fetchone()
 
         # Checando se o usuário já confirmou seu email
-        if user[4] == 1:
+        if user != None and user[4] == 1:
 
             # Logando o Usuário
             if user:
@@ -210,7 +210,7 @@ def feed():
         cargo_user = cursor.fetchone()
 
         # Verificando se o Cargo do usuário pode ou não enviar informações.
-        if cargo_user[0] == 5:
+        if cargo_user != None and cargo_user[0] == 5:
             perm = 0
         else:
             perm = 1
