@@ -42,7 +42,7 @@ main {
   padding: 30px;
   max-width: 100%;
   min-width: 30%;
-  height: 680px;
+  max-height: 830px;
   min-height: fit-content;
   margin:auto;
 }
@@ -90,23 +90,74 @@ textarea:focus, input:focus, select:focus {
   border: none;
   font-size: 16px;
   height: 38px;
-  width: 170px;
+  width: 140px;
   border-radius: 5px;
   text-indent: 5px;
   margin-top: 8px;
-  margin-right: 5px ;
+  margin-right: 20px;
+  margin-left: 15px;
 }
 
 .container {
   display: flex;
-  justify-content: center;
+}
+
+#inicial,
+#final {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#inicial p {
+  font-size: 20px;
+  margin-left: 25px;
+}
+
+#final p {
+  font-size: 20px;
 }
 
 select {  
   background-color: #C4C4C4;
   border: #C4C4C4;
   font-size: 14pt;
-  display: flex;
+}
+
+.escondido{
+  display: none;
+  transition: 0.5s;
+}
+
+.mostrar {
+  position: relative;
+  display: inline;
+  border: 0;
+  color: #000000;
+  font-size: 18px;
+  text-decoration: none;
+  transition: 0.5s;
+  padding-left: 50px;
+  right: 250px; 
+  top: 23px;
+}
+
+.mostrar:hover{
+  transition: 0.5s;
+  color: #ab101a;
+  text-decoration: none;
+} 
+
+.fas.fa-ellipsis-v{
+  position: relative;
+  cursor: pointer;
+  -webkit-transition: 0.5s  ease-in-out;
+  padding-bottom: 30px;
+}
+
+.fas.fa-ellipsis-v:hover{
+  -webkit-transition: 0.5s;
+  cursor: pointer;
+  color: #ab101a;
 }
 
 .info {
@@ -215,7 +266,7 @@ input{
 }
 
 .nav-menu{
-  width: 700px;
+  width: 750px;
   float: left;
 }
 

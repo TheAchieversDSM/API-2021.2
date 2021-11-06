@@ -46,7 +46,7 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
  <span id="tecnologias">
 
 ### :computer: Tecnologias utilizadas até o momento:
-<p>
+<p align="center">
     <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"></img>
     <img src="https://img.shields.io/badge/Microsoft_Teams-6264A7?style=for-the-badge&logo=microsoft-teams&logoColor=white"></img>
     <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
@@ -193,12 +193,12 @@ Modelo físico do banco de dados | Alta | Completa
 Conexão do banco de dados | Alta | Completa
 Tornar o protótipo funcional | Alta | Completa
 Aplicação do sistema em um servidor de aplicação | Alta | Completa
-Introdução das hierarquias | Alta | Não iniciada
-Introdução da autenticação do usuário | Alta | Não iniciada
-Ajustes dos filtros | Alta | Não iniciada
-Controle de hierarquia (CRUD) | Alta | Não iniciada
-Estilizar páginas | Média | Não iniciada
-Ajustes no banco de dados | Alta | Não iniciada
+Introdução das hierarquias | Alta | Completa
+Introdução da autenticação do usuário | Alta | Completa
+Ajustes dos filtros | Alta | Em andamento
+Controle de hierarquia (CRUD) | Alta | Em andamento
+Estilizar páginas | Média | Completa
+Ajustes no banco de dados | Alta | Completa
 Testes unitários do sistema | Alta | Não iniciada
 Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
@@ -235,12 +235,12 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
-#3 | Introdução das hierarquias | Alta | Não iniciada
+#3 | Introdução das hierarquias | Alta | Completa
 #3 | Introdução da autenticação do usuário | Alta | Completa
-#3 | Ajustes dos filtros | Alta | Não iniciada
-#3 | Controle de hierarquia (CRUD) | Alta | Iniciada
-#3 | Estilizar páginas | Médio | Iniciada
-#3 | Ajustes no banco de dados | Alta | Iniciada
+#3 | Ajustes dos filtros | Alta | Em andamento
+#3 | Controle de hierarquia (CRUD) | Alta | Em andamento
+#3 | Estilizar páginas | Médio | Completa
+#3 | Ajustes no banco de dados | Alta | Completa
  
 ↑ [Voltar ao início](#inicio) 
  
@@ -254,6 +254,9 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 ### Sprint #2;
 <p><img src="./doc/burndown/burndown-2.png"></img></p>
+ 
+ ### Sprint #3;
+ <p></p>
 
  
 ↑ [Voltar ao início](#inicio) 

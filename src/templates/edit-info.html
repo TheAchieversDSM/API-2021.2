@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Envio de Informações</title>
+ <link rel="stylesheet" href="../static/css/send-info.css">
+ <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+ <script src="https://kit.fontawesome.com/b01f879dd9.js" crossorigin="anonymous"></script>
+
+ <!--links para estilização dos filtros-->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+ <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+</head>
+
+<body style="background-color: #1b1c21">
+
+ <header>
+
+  <img src="../static/img/logo-150.png" alt="Logo" class="logo">
+
+ </header>
+
+ <main>
+  <div class="divExterna">
+   <div class="divInterna">
+    <form method="POST">
+     <section class="filter">
+
+      <select class="selectpicker" name="assunto" data-width="255px" multiple data-actions-box="true" title="Assunto">
+       <option value="Covid-19">Covid-19</option>
+       <option value="Estágio">Estágio</option>
+       <option value="Evento">Evento</option>
+       <option value="Notas & similares">Notas & similares</option>
+       <option value="Recados">Recados</option>
+       <option value="Reunião">Reunião</option>
+       <option value="Urgente">Urgente</option>
+      </select>
+
+      <select class="selectpicker" name="destinatario" data-width=255px multiple data-actions-box="true"
+       title="Destinatário">
+       <option value="Diretor">Diretor</option>
+       <option value="Secretaria">Secretaria</option>
+       <option value="Coordenadores">Coordenadores</option>
+       <option value="Professores">Professores</option>
+       <option value="Alunos">Alunos</option>
+
+      </select>
+
+      <select name="turma" class="selectpicker" data-width='255px' data-actions-box="true" multiple title="Turma">
+
+       <optgroup label="Análise e Desenvolvimento de Sistemas">
+        <option value="ADS1">1° Sem</option>
+        <option value="ADS2">2° Sem</option>
+        <option value="ADS3">3° Sem</option>
+        <option value="ADS4">4° Sem</option>
+        <option value="ADS5">5° Sem</option>
+        <option value="ADS6">6° Sem</option>
+       </optgroup>
+
+       <optgroup label="Banco de Dados">
+        <option value="BDD1">1° Sem</option>
+        <option value="BDD2">2° Sem</option>
+        <option value="BDD3">3° Sem</option>
+        <option value="BDD4">4° Sem</option>
+        <option value="BDD5">5° Sem</option>
+        <option value="BDD6">6° Sem</option>
+       </optgroup>
+
+       <optgroup label="Desenvolvimento de Software Multiplataforma">
+        <option value="DSM1">1° Sem</option>
+        <option value="DSM2">2° Sem</option>
+        <option value="DSM3">3° Sem</option>
+        <option value="DSM4">4° Sem</option>
+        <option value="DSM5">5° Sem</option>
+        <option value="DSM6">6° Sem</option>
+       </optgroup>
+
+       <optgroup label="Gestão da Produção Industrial">
+        <option value="GPI1">1° Sem</option>
+        <option value="GPI2">2° Sem</option>
+        <option value="GPI3">3° Sem</option>
+        <option value="GPI4">4° Sem</option>
+        <option value="GPI5">5° Sem</option>
+        <option value="GPI6">6° Sem</option>
+       </optgroup>
+
+       <optgroup label="Logística">
+        <option value="LOG1">1° Sem</option>
+        <option value="LOG2">2° Sem</option>
+        <option value="LOG3">3° Sem</option>
+        <option value="LOG4">4° Sem</option>
+        <option value="LOG5">5° Sem</option>
+        <option value="LOG6">6° Sem</option>
+       </optgroup>
+
+       <optgroup label="Manufatura Avançada">
+        <option value="MAV1">1° Sem</option>
+        <option value="MAV2">2° Sem</option>
+        <option value="MAV3">3° Sem</option>
+        <option value="MAV4">4° Sem</option>
+        <option value="MAV5">5° Sem</option>
+        <option value="MAV6">6° Sem</option>
+       </optgroup>
+
+       <optgroup label="Manutenção de Aeronaves">
+        <option value="MAE1">1° Sem</option>
+        <option value="MAE2">2° Sem</option>
+        <option value="MAE3">3° Sem</option>
+        <option value="MAE4">4° Sem</option>
+        <option value="MAE5">5° Sem</option>
+        <option value="MAE6">6° Sem</option>
+       </optgroup>
+
+       <optgroup label="Projetos de Estruturas Aeronáuticas">
+        <option value="PEA1">1° Sem</option>
+        <option value="PEA2">2° Sem</option>
+        <option value="PEA3">3° Sem</option>
+        <option value="PEA4">4° Sem</option>
+        <option value="PEA5">5° Sem</option>
+        <option value="PEA6">6° Sem</option>
+       </optgroup>
+
+      </select>
+
+     </section>
+
+     <div>
+      <input class="titulo" type="text" name="titulo" id="titulo" placeholder="Escreva seu título...">
+     </div>
+
+     <div>
+      <textarea name="mensagem" id="mensagem" rows="20" cols="100" placeholder="Escreva sua mensagem..."></textarea>
+     </div>
+
+     <div class="info-buttons">
+      <input type="file" name="arquivo">
+      </input>
+      <input type="submit" class="enviar" style="margin-left: 260px;">
+     </div>
+    </form>
+   </div>
+  </div>
+
+  <section>
+   <a href="/feed">
+    <button class="btn5 button5">
+     <i class="fas fa-sign-out-alt"></i>
+    </button>
+   </a>
+  </section>
+
+ </main>
+
+ <footer>
+  <div class="logo-gov">
+   <img src="../static/img/footer/footer.png" alt="Logo Gov">
+  </div>
+
+  <div class="social">
+   <a href="https://www.linkedin.com/school/fatecjessenvidal/" target="_blank" rel="external"><img
+     src="../static/img/footer/linkedin-35.png" alt="LinkedIn"></a>
+
+   <a href="https://www.facebook.com/fatecjessenvidal" target="_blank" rel="external"><img
+     src="../static/img/footer/fb-35.png" alt="facebook"></a>
+
+   <a href="https://www.instagram.com/fatecsaojosedoscampos/" target="_blank" rel="external"><img
+     src="../static/img/footer/ig-35.png" alt="Instagram"></a>
+
+   <a href="https://www.youtube.com/channel/UCRTd_ST0vPqXi4w_ZdfXtiw" target="_blank" rel="external"><img
+     src="../static/img/footer/yt-35.png" alt="Youtube"></a>
+  </div>
+  <p>Faculdade de Tecnologia de São José dos Campos</p>
+  <p>Todos os Direitos Reservados</p>
+ </footer>
+
+</body>
+
+</html>
