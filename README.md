@@ -256,7 +256,7 @@ Sprint | Nome da tarefa | Prioridade | Status
 <p><img src="./doc/burndown/burndown-2.png"></img></p>
  
  ### Sprint #3;
- <p></p>
+ <p><img src="./doc/burndown/burndown-3.png"</p>
 
  
 ↑ [Voltar ao início](#inicio) 
