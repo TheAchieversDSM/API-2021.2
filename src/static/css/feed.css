@@ -109,6 +109,23 @@ select {
   display: flex;
 }
 
+.escondido{
+  display: none;
+}
+
+.mostrar{
+  display: inline;
+}
+.fas.fa-ellipsis-v{
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+}
+
+.fas.fa-ellipsis-v:hover{
+  -webkit-transition: 0.5s;
+  cursor: pointer;
+  color: #ab101a;
+}
 .info {
   background-color: #C4C4C4;
   border-radius: 10px;
@@ -129,6 +146,12 @@ select {
   font-size: 18px;
   margin-bottom: 5px;
 
+}
+.data{
+  position: relative;
+  text-align: right;
+  bottom: 45px;
+ 
 }
 
 em {

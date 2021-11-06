@@ -104,7 +104,6 @@ select * from feed;
 create table if not exists `fatec_api`.`interage` (
 	`user_id` int not null,
     `post_id` int not null,
-    primary key (user_id),
     constraint `fk_user_id_5`
 		foreign key (`user_id`)
         references `usuario`(`user_id`),
@@ -112,7 +111,7 @@ create table if not exists `fatec_api`.`interage` (
 		foreign key (`post_id`)
         references `feed`(`post_id`)
 );
-
+select * from interage;
 /* TABELA 
 
 create table if not exists `fatec_api`.`recebe` (
