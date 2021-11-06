@@ -89,13 +89,11 @@ def cadastro():
         usuario = cursor.fetchone()
 
     # Inserindo o ID do usuário e sua respectiva turma na tabela turma_user
-        cursor = mysql.connection.cursor()
         cursor.execute(
             'INSERT into participa (tur_id, user_id) values(%s, %s) ', (turma, usuario[0]))
         mysql.connection.commit()
 
     # Inserindo o ID do usuário e o cargo padrão na tabela cargo_user
-        cursor = mysql.connection.cursor()
         cursor.execute(
             'INSERT into exerce (car_id, user_id) values("5", %s) ', (usuario[0],))
         mysql.connection.commit()
@@ -214,15 +212,20 @@ def feed():
             perm = 0
         else:
             perm = 1
+        
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from interage where user_id = %s", (user_id,))
+        autoria = cursor.fetchall()
 
     # Puxando informações do banco de dados.
-        cur = mysql.connection.cursor()
-        info = cur.execute(
-            "SELECT post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem,tur_id, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
+        cursor = mysql.connection.cursor()
+        info = cursor.execute(
+            "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem,tur_id, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
         if info > 0:
-            infoDetails = cur.fetchall()
+            infoDetails = cursor.fetchall()
 
-            return render_template("feed.html", infoDetails=infoDetails, perm=perm)
+
+            return render_template("feed.html", infoDetails=infoDetails, perm=perm, autoria=autoria)
         else:
             return render_template("feed.html", cursos=listarCursos(), perm=perm, cargos=listarCargos())
             # cursos=listarCursos(), perm=perm, cargos=listarCargos())
@@ -259,13 +262,18 @@ def envio_informacao():
             mysql.connection.commit()
 
         # Checando se as informações foram salvas.
-            cursor.execute('select * from feed WHERE post_data = %s and post_assunto = %s and tur_id = %s and post_remetente = %s and post_titulo = %s and post_mensagem = %s and car_nome= %s',
-                           (data_inclusao, assunto, turma, remetente, titulo, mensagem, destinatario))
-            status = cursor.fetchone()
-
+            cursor = mysql.connection.cursor()
+            cursor.execute("select * from feed where post_assunto = %s and post_titulo = %s and post_mensagem = %s and tur_id = %s and post_remetente = %s and car_nome = %s", (assunto, titulo, mensagem, turma, remetente, destinatario))
+            info = cursor.fetchone()
+            
+        # Inserindo ID do post e ID do usuario na tabela "interage"
+            post_id = info[0]
+            cursor = mysql.connection.cursor()
+            cursor.execute("INSERT INTO interage (user_id,post_id) values (%s,%s)",(id_usuario,post_id))
+            mysql.connection.commit()
 
         # Redirecionando o Usuário para a página de Feed caso as informações foram salvas.
-            if status:
+            if info:
                 return redirect(url_for('feed'))
         return render_template('send-info.html', cursos=listarCursos(), cargos=listarCargos())
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.

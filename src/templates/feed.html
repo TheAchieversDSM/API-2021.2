@@ -165,17 +165,26 @@
         <div id="divContent" class='contents'>
           {% for info in infoDetails %}
           <section class="info">
+            {% for aut in autoria %}
+              {% if aut[1] == info[0] %}
+              <button id="ver" class="escondido">Editar</button>
+              <button id="ver" class="escondido">Excluir</button>
+
+              {% endif %}
+            {% endfor %}
             <div class="user-info">
+              <i onclick="mostrar()" class="fas fa-ellipsis-v"></i>
               <div class="titulo">
-                <h3>{{info[0]}}</h3>
+                <h3>{{info[1]}}</h3>
               </div>
+              <p class="data">{{info[2]}}</p>
               <div>
                 <p><em>{{info[7]}}</em> enviou para <em>{{info[6]}}</em></p>
               </div>
-              <p>{{info[1]}}</p>
+
             </div>
             <div class="corpo-info">
-              <p> {{info[3]}}</p>
+              <p> {{info[4]}}</p>
             </div>
           </section>
           {% endfor %}
