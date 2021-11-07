@@ -274,10 +274,10 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 <p><img src="./doc/burndown/burndown-1.png"></img></p>
  
-### Sprint #2;
+#### Sprint #2;
 <p><img src="./doc/burndown/burndown-2.png"></img></p>
  
-### Sprint #3;
+#### Sprint #3;
 <p><img src="./doc/burndown/burndown-3.png"</p>
 
  
