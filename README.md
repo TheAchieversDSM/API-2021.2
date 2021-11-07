@@ -87,7 +87,7 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
  
  # Você terá que alterar as informações do Banco de Dados MySQL;
  
- ## Caso não possua o MySQL clique <a href="https://dev.mysql.com/downloads/windows/installer/8.0.html%22%3E"</a>aqui!
+ ## Caso não possua o MySQL clique nesse link! https://dev.mysql.com/downloads/windows/installer/8.0.html%22%3E
  
  # Abra o app.py, insira essas informações e substitua com as suas credenciais:
  
@@ -217,7 +217,7 @@ Tornar o protótipo funcional | Alta | Completa
 Aplicação do sistema em um servidor de aplicação | Alta | Completa
 Introdução das hierarquias | Alta | Completa
 Introdução da autenticação do usuário | Alta | Completa
-Ajustes dos filtros | Alta | Em andamento
+Ajustes dos filtros | Alta | Completa
 Controle de hierarquia (CRUD) | Alta | Completa
 Estilizar páginas | Média | Completa
 Ajustes no banco de dados | Alta | Completa
