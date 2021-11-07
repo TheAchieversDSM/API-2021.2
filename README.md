@@ -49,6 +49,7 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
 <p align="center">
     <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"></img>
     <img src="https://img.shields.io/badge/Microsoft_Teams-6264A7?style=for-the-badge&logo=microsoft-teams&logoColor=white"></img>
+    <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"/>
     <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
     <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"></img>
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"/>
@@ -84,6 +85,27 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
    
  pip install -r requirements.txt
  
+ # Você terá que alterar as informações do Banco de Dados MySQL;
+ 
+ ## Caso não possua o MySQL clique <a href="https://dev.mysql.com/downloads/windows/installer/8.0.html%22%3E"</a>aqui!
+ 
+ # Abra o app.py, insira essas informações e substitua com as suas credenciais:
+ 
+ app.config['MYSQL_HOST'] = 'localhost'
+ app.config['MYSQL_USER'] = 'root'
+ app.config['MYSQL_PASSWORD'] = '*sua senha*'
+ app.config['MYSQL_DB'] = 'fatec_api'
+
+ # E insira as suas credenciais.
+
+ # Abra o MySQL Workbench e se conecte com seu BD;
+ 
+ # Após isso abra o script localizado em  "src/static/db" e o execute os seguintes arquivos:
+ 
+ ## Primeiramente, o 'fatec_api.sql'
+ 
+ ## Após isso, execute o 'script_api.sql'
+ 
  # Execute a aplicação;
    
  app.py
@@ -103,7 +125,7 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
 <p> | - :open_file_folder: <strong>templates</strong> - pasta que contém os códigos de estruturação (.html);</p>
 <p> | - :open_file_folder: <strong>static</strong> - pasta que contém outras duas, <em>css</em> e <em>img</em>;</p>
 <p> | - - :open_file_folder: <strong>js</strong> - pasta que contém os códigos referentes à javascript (.js);</p>
-<p> | - - :open_file_folder: <strong>bd</strong> - pasta que contém tudo referente à parte de banco de dados;</p>
+<p> | - - :open_file_folder: <strong>db</strong> - pasta que contém tudo referente à parte de banco de dados;</p>
 <p> | - - :open_file_folder: <strong>css</strong> - pasta que contém os códigos de estilização (.css);</p>
 <p> | - - :open_file_folder: <strong>img</strong> - pasta que contém a logo da FATEC e o favicon, além de outra pasta, <em>footer</em>;</p>
 <p> | - - - :open_file_folder: <strong>footer</strong> - pasta que contém todas as imagens utilizadas no rodapé das páginas.</p>
@@ -237,7 +259,7 @@ Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
 #3 | Introdução das hierarquias | Alta | Completa
 #3 | Introdução da autenticação do usuário | Alta | Completa
-#3 | Ajustes dos filtros | Alta | Em andamento
+#3 | Ajustes dos filtros | Alta | Completa
 #3 | Controle de hierarquia (CRUD) | Alta | Em andamento
 #3 | Estilizar páginas | Médio | Completa
 #3 | Ajustes no banco de dados | Alta | Completa
@@ -255,8 +277,8 @@ Sprint | Nome da tarefa | Prioridade | Status
 ### Sprint #2;
 <p><img src="./doc/burndown/burndown-2.png"></img></p>
  
- ### Sprint #3;
- <p><img src="./doc/burndown/burndown-3.png"</p>
+### Sprint #3;
+<p><img src="./doc/burndown/burndown-3.png"</p>
 
  
 ↑ [Voltar ao início](#inicio) 
