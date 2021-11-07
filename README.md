@@ -218,7 +218,7 @@ Aplicação do sistema em um servidor de aplicação | Alta | Completa
 Introdução das hierarquias | Alta | Completa
 Introdução da autenticação do usuário | Alta | Completa
 Ajustes dos filtros | Alta | Em andamento
-Controle de hierarquia (CRUD) | Alta | Em andamento
+Controle de hierarquia (CRUD) | Alta | Completa
 Estilizar páginas | Média | Completa
 Ajustes no banco de dados | Alta | Completa
 Testes unitários do sistema | Alta | Não iniciada
@@ -260,7 +260,7 @@ Sprint | Nome da tarefa | Prioridade | Status
 #3 | Introdução das hierarquias | Alta | Completa
 #3 | Introdução da autenticação do usuário | Alta | Completa
 #3 | Ajustes dos filtros | Alta | Completa
-#3 | Controle de hierarquia (CRUD) | Alta | Em andamento
+#3 | Controle de hierarquia (CRUD) | Alta | Completa
 #3 | Estilizar páginas | Médio | Completa
 #3 | Ajustes no banco de dados | Alta | Completa
  
@@ -291,7 +291,7 @@ Sprint | Data Início | Data Entrega | Links |
 -------|-------------|--------------|-------|
 #1 | 30.08.2021  |  19.09.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v1.0) |
 #2 | 20.09.2021  |  10.10.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v2.0) |
-#3 | 18.10.2021  |  07.11.2021  | :construction: |
+#3 | 18.10.2021  |  07.11.2021  | [:checkered_flag:]() |
 #4 | 08.11.2021  |  28.11.2021  | :construction: |
  
 ↑ [Voltar ao início](#inicio) 
