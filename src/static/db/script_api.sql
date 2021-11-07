@@ -98,4 +98,9 @@ insert into turma (tur_id, tur_semestre, cur_id) values ('PEA4', 4, 8);
 insert into turma (tur_id, tur_semestre, cur_id) values ('PEA5', 5, 8);
 insert into turma (tur_id, tur_semestre, cur_id) values ('PEA6', 6, 8);
 
-select * from turma
+select * from turma;
+
+/* INSERINDO INFORMAÇÕES DO ADMINISTRADOR */
+
+insert into usuario (user_id, user_email, user_nome, user_senha, confirmacao) values (1, 'adm@fatec.sp.gov.br', 'Administrador', 'fatec', 1);
+insert into exerce (car_id, user_id) values (1, 1);

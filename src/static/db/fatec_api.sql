@@ -23,6 +23,8 @@ create table if not exists `fatec_api`.`curso` (
     primary key (cur_id)
 );
 
+select * from curso;
+
 /* TABELA DA TURMA */
 
 create table if not exists `fatec_api`.`turma` (
@@ -34,6 +36,8 @@ create table if not exists `fatec_api`.`turma` (
 		foreign key (`cur_id`)
         references `curso`(`cur_id`)
 );
+
+select * from turma;
 
 /* TABELA DA RELACAO ENTRE USUARIO E TURMA */
 
@@ -89,19 +93,15 @@ create table if not exists `fatec_api`.`feed` (
     `post_anexo` longblob null,
     `post_mensagem` text not null,
     `post_remetente` varchar (80) not null,
-	`tur_id` varchar (4) not null,
-    `car_nome` varchar (20) not null,
-	primary key (post_id),
-	constraint `fk_tur_id_3`
-		foreign key (`tur_id`)
-        references `turma`(`tur_id`)
+    `car_nome` varchar (200) not null,
+	primary key (post_id)
 );
 
 select * from feed;
 
 /* TABELA DA RELACAO ENTRE USUARIO E FEED */
 
-create table if not exists `fatec_api`.`interage` (
+create table if not exists `fatec_api`.`publica` (
 	`user_id` int not null,
     `post_id` int not null,
     constraint `fk_user_id_5`
@@ -109,18 +109,16 @@ create table if not exists `fatec_api`.`interage` (
         references `usuario`(`user_id`)
 );
 
-select * from interage;
+select * from publica;
 
-/* TABELA 
+/* TABELA */
 
 create table if not exists `fatec_api`.`recebe` (
 	`post_id` int not null,
-    `tur_id` int not null,
-    primary key (post_id),
-    constraint `fk_cur_id_4`
-		foreign key (`cur_id`)
-        references `curso`(`cur_id`),
-	constraint `fk_tur_id`
-		foreign key (`tur_id`)
-        references `turma`(`tur_id`)
-)*/
+    `tur_id` varchar (4) not null,
+    constraint `fk_post_id`
+		foreign key (`post_id`)
+        references `feed`(`post_id`)
+);
+
+select * from recebe

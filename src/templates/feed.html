@@ -35,8 +35,12 @@
         <ul>
           <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
           <li><a href="/area-usuario"><i class="fas fa-user"></i> Minha área</a></li>
+          {% if perm == 1 or perm == 2 %}
           <li><a href="/envio-informacao"><i class="fas fa-pen"></i> Escrever publicação</a></li>
+          {% endif %}
+          {% if perm == 2 %}
           <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i> Editar usuário</a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>
@@ -48,7 +52,8 @@
         <section class="filter">
           <form method="post" id="form_filtros">
             <div id="top">
-              <select id="select_assunto" name="select_assunto" class="selectpicker" data-width=255px multiple title="Assunto">
+              <select id="select_assunto" name="select_assunto" class="selectpicker" data-width=255px multiple
+                title="Assunto">
                 <option value="Covid-19">Covid-19</option>
                 <option value="Estágio">Estágio</option>
                 <option value="Evento">Evento</option>
@@ -59,10 +64,12 @@
               </select>
               <select class="selectpicker" data-width=255px multiple title="Destinatário">
                 {% for cargo in cargos %}
-                  <option value="{{cargo[0]}}">{{cargo[1]}}</option>
+                <option value="{{cargo[0]}}">{{cargo[1]}}</option>
                 {% endfor %}
               </select>
-              <select name="turma" class="selectpicker" data-width='255px' multiple title="Turma">
+
+              <select id="select_turma" name="select_turma" class="selectpicker" data-width='255px' multiple
+                title="Turma">
                 <optgroup label="Análise e Desenvolvimento de Sistemas">
                   <option value="ADS1">1° Sem</option>
                   <option value="ADS2">2° Sem</option>
@@ -144,7 +151,8 @@
 
             <input type="hidden" name="hidden_assunto" id="hidden_assunto" />
 
-          </form> 
+
+          </form>
         </section>
 
         <!--bloco python para display de info:
@@ -158,8 +166,8 @@
           <section class="info">
             {% for aut in autoria %}
             {% if aut[1] == info[0] %}
-            <a id="ver"  href="/editar-post/{{info[0]}}" class="escondido"><i class="fas fa-edit"></i> Editar</a>
-            <a id="ver1" href="/excluir-post/{{info[0]}}" class="escondido"><i class="fas fa-trash-alt"></i> Excluir</a>
+            <a href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i> Editar</a>
+            <a href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i> Excluir</a>
 
             {% endif %}
             {% endfor %}
@@ -168,12 +176,12 @@
               <div class="titulo">
                 <h3>{{info[1]}}</h3>
               </div>
-              
+
               <div>
                 <p><em>{{info[6]}}</em> enviou para <em>{{info[5]}}</em></p>
                 <p class="data">{{info[2]}}</p>
               </div>
-              
+
             </div>
             <div class="corpo-info">
               <p> {{info[4]}}</p>
@@ -227,28 +235,27 @@
         return toDate;
       })
     });
-    
-    $(document).ready(function(){
-     
-     $('#select_assunto').change(function(){
-      $('#hidden_assunto').val($('#select_assunto').val());
-      $('#form_filtros').submit();
-     });
-     
-     $('#form_filtros').on('submit', function(event){
-      event.preventDefault();
-       var form_data = $(this).serialize();
-       $.ajax({
-        url:"/filtrar_feed_ajax",
-        method:"POST",
-        data:form_data,
-        success:function(data)
-        {
-          $('#divContent').html(data);
-        }
-       })
-      
-     });
+
+    $(document).ready(function () {
+
+      $('#select_assunto').change(function () {
+        $('#hidden_assunto').val($('#select_assunto').val());
+        $('#form_filtros').submit();
+      });
+
+      $('#form_filtros').on('submit', function (event) {
+        event.preventDefault();
+        var form_data = $(this).serialize();
+        $.ajax({
+          url: "/filtrar_feed_ajax",
+          method: "POST",
+          data: form_data,
+          success: function (data) {
+            $('#divContent').html(data);
+          }
+        })
+
+      });
     });
 
   </script>

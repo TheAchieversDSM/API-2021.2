@@ -1,25 +1,25 @@
 {% for info in infoDetails %}
 <section class="info">
-{% for aut in autoria %}
-{% if aut[1] == info[0] %}
-<a id="ver"  href="/editar-post/{{info[0]}}" class="escondido"><i class="fas fa-edit"></i> Editar</a>
-<a id="ver1" href="/excluir-post/{{info[0]}}" class="escondido"><i class="fas fa-trash-alt"></i> Excluir</a>
+    {% for aut in autoria %}
+    {% if aut[1] == info[0] %}
+    <a  href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i> Editar</a>
+    <a  href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i> Excluir</a>
 
-{% endif %}
-{% endfor %}
-<div class="user-info">
-    <i onclick="mostrar()" class="fas fa-ellipsis-v"></i>
-    <div class="titulo">
-    <h3>{{info[1]}}</h3>
-    </div>
-    <p class="data">{{info[2]}}</p>
-    <div>
-    <p><em>{{info[7]}}</em> enviou para <em>{{info[6]}}</em></p>
-    </div>
+    {% endif %}
+    {% endfor %}
+    <div class="user-info">
+        <i onclick="mostrar()" class="fas fa-ellipsis-v"></i>
+        <div class="titulo">
+            <h3>{{info[1]}}</h3>
+        </div>
+        <p class="data">{{info[2]}}</p>
+        <div>
+            <p><em>{{info[6]}}</em> enviou para <em>{{info[5]}}</em></p>
+        </div>
 
-</div>
-<div class="corpo-info">
-    <p> {{info[4]}}</p>
-</div>
+    </div>
+    <div class="corpo-info">
+        <p> {{info[4]}}</p>
+    </div>
 </section>
 {% endfor %}

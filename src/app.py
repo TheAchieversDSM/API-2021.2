@@ -152,17 +152,25 @@ def myinfo():
 
         cursor = mysql.connection.cursor()
         cursor.execute(
-            "SELECT tur_id FROM participa WHERE user_id = %s", (user_id,))
-        turma_id = cursor.fetchone()
+            "SELECT * FROM participa WHERE user_id = %s", (user_id,))
+        turma_id = cursor.fetchall()
 
-        cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM turma where tur_id = %s", (turma_id,))
-        turma = cursor.fetchone()
+        id_curso = []
+        for tur in turma_id:
+            cursor = mysql.connection.cursor()
+            cursor.execute(
+                "SELECT cur_id FROM turma where tur_id = %s", (tur[0],))
+            cur_id = cursor.fetchall()
+            id_curso.append(cur_id[0])
 
-        cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM curso where cur_id = %s", (turma[2],))
-        curso = cursor.fetchone()
 
+        cursos = []
+        for cur in id_curso:
+            cursor = mysql.connection.cursor()
+            cursor.execute(
+                "SELECT cur_nome FROM curso where cur_id = %s", (cur[0],))
+            curso = cursor.fetchall()
+            cursos.append(curso[0])
         cursor = mysql.connection.cursor()
         cursor.execute(
             "SELECT car_id FROM exerce WHERE user_id = %s", (user_id,))
@@ -172,7 +180,7 @@ def myinfo():
         cursor.execute("SELECT * FROM cargo where car_id = %s", (cargo_id,))
         cargo = cursor.fetchone()
 
-        return render_template('my_info.html', usuario=usuario, turma=turma, curso=curso, cargo=cargo)
+        return render_template('my_info.html', usuario=usuario, cursos=cursos, cargo=cargo)
 
     else:
         flash('Faça o login antes de continuar.')
@@ -210,6 +218,8 @@ def feed():
         # Verificando se o Cargo do usuário pode ou não enviar informações.
         if cargo_user != None and cargo_user[0] == 5:
             perm = 0
+        elif cargo_user[0] == 1 or cargo_user[0] == 3:
+            perm = 2
         else:
             perm = 1
 
@@ -227,7 +237,6 @@ def feed():
             return render_template("feed.html", infoDetails=infoDetails, perm=perm, autoria=autoria, cursos=listarCursos(), cargos=listarCargos())
         else:
             return render_template("feed.html", cursos=listarCursos(), perm=perm, cargos=listarCargos())
-            # cursos=listarCursos(), perm=perm, cargos=listarCargos())
 
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
@@ -242,9 +251,24 @@ def envio_informacao():
     # Checando se o usuário está logado.
     if 'loggedin' in session:
 
+        # Puxando o ID do usuário a partir de sua Sessão do Login.
+        id_usuario = session['id']
+        # Verificando o cargo do usuário
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            'SELECT * from exerce where user_id = %s', (id_usuario,))
+        cargo_user = cursor.fetchone()
+
+        # Verificando se o Cargo do usuário pode ou não enviar informações.
+        if cargo_user[0] == 5:
+            perm = 0
+        elif cargo_user[0] == 1 or cargo_user[0] == 3:
+            perm = 2
+        else:
+            perm = 1
+
         # Solicitando informações da mensagem no formulário.
         if request.method == 'POST':
-            id_usuario = session['id']
             remetente = session['username']
             titulo = request.form['titulo']
             data_inclusao = datetime.now()
@@ -260,18 +284,17 @@ def envio_informacao():
                            (data_inclusao, assunto, titulo, mensagem, remetente, destinatario))
             mysql.connection.commit()
 
-
-
         # Checando se as informações foram salvas.
             cursor = mysql.connection.cursor()
             cursor.execute("select * from feed where post_assunto = %s and post_titulo = %s and post_mensagem = %s and post_remetente = %s and car_nome = %s",
                            (assunto, titulo, mensagem, remetente, destinatario))
             info = cursor.fetchone()
-            
+
             for tur in turma:
                 post_id = info[0]
                 cursor = mysql.connection.cursor()
-                cursor.execute("insert into recebe (post_id,tur_id) values(%s, %s)",(post_id,tur))
+                cursor.execute(
+                    "insert into recebe (post_id,tur_id) values(%s, %s)", (post_id, tur))
                 mysql.connection.commit()
 
         # Inserindo ID do post e ID do usuario na tabela "publica"
@@ -284,7 +307,7 @@ def envio_informacao():
         # Redirecionando o Usuário para a página de Feed caso as informações foram salvas.
             if info:
                 return redirect(url_for('feed'))
-        return render_template('send-info.html', cursos=listarCursos(), cargos=listarCargos())
+        return render_template('send-info.html', perm=perm, cursos=listarCursos(), cargos=listarCargos())
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
         flash('Faça o login antes de continuar.')
@@ -351,6 +374,21 @@ def novasenha():
 def edit():
     # Checando se o usuário está logado.
     if 'loggedin' in session:
+        # Puxando o ID do usuário a partir de sua Sessão do Login.
+        id_usuario = session['id']
+        # Verificando o cargo do usuário
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            'SELECT * from exerce where user_id = %s', (id_usuario,))
+        cargo_user = cursor.fetchone()
+
+        # Verificando se o Cargo do usuário pode ou não enviar informações.
+        if cargo_user[0] == 5:
+            perm = 0
+        elif cargo_user[0] == 1 or cargo_user[0] == 3:
+            perm = 2
+        else:
+            perm = 1
 
         # Solicitando informações do usuário a ser alterado e suas mudanças (Cargo e Curso).
         if request.method == "POST":
@@ -381,7 +419,7 @@ def edit():
         # Caso de usuário não encontrado é emitido uma mensagem
             else:
                 flash('Usuário não encontrado!')
-        return render_template("editar_usuario.html")
+        return render_template("editar_usuario.html", perm=perm)
 
     # Redirecionando o Usuário para a página de login caso ele não esteja logado
     else:
@@ -405,11 +443,15 @@ def excluir(id):
     id_post = id
 
     cursor = mysql.connection.cursor()
-    cursor.execute("DELETE  FROM feed WHERE post_id = %s", (id_post,))
+    cursor.execute("DELETE  FROM publica WHERE post_id = %s", (id_post,))
     mysql.connection.commit()
 
     cursor = mysql.connection.cursor()
-    cursor.execute("DELETE  FROM publica WHERE post_id = %s", (id_post,))
+    cursor.execute("DELETE  FROM recebe WHERE post_id = %s", (id_post,))
+    mysql.connection.commit()
+
+    cursor = mysql.connection.cursor()
+    cursor.execute("DELETE  FROM feed WHERE post_id = %s", (id_post,))
     mysql.connection.commit()
 
     return redirect(url_for('feed'))
@@ -417,6 +459,21 @@ def excluir(id):
 
 @app.route('/editar-post/<id>', methods=['GET', 'POST'])
 def editar_post(id):
+    # Puxando o ID do usuário a partir de sua Sessão do Login.
+    id_usuario = session['id']
+    # Verificando o cargo do usuário
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * from exerce where user_id = %s', (id_usuario,))
+    cargo_user = cursor.fetchone()
+
+    # Verificando se o Cargo do usuário pode ou não enviar informações.
+    if cargo_user[0] == 5:
+        perm = 0
+    elif cargo_user[0] == 1 or cargo_user[0] == 3:
+        perm = 2
+    else:
+        perm = 1
+
     id_post = id
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT * FROM feed WHERE post_id = %s", (id_post,))
@@ -432,18 +489,21 @@ def editar_post(id):
         destinatario = ",".join(str(x) for x in des)
 
         cursor = mysql.connection.cursor()
-        cursor.execute("UPDATE feed SET post_titulo = %s, post_assunto = %s, post_mensagem = %s, tur_id = %s, car_nome = %s WHERE post_id = %s",
-                       (titulo, assunto, mensagem, turma, destinatario, id_post))
-        mysql.connection.commit()
+        cursor.execute("UPDATE feed SET post_titulo = %s, post_assunto = %s, post_mensagem = %s,  car_nome = %s WHERE post_id = %s",
+                       (titulo, assunto, mensagem, destinatario, id_post))
+
+                    
         return redirect(url_for('feed'))
 
-    return render_template("send-info.html", info=info)
+    return render_template("send-info.html", perm=perm, info=info)
+
 
 def existemFiltrosSelecionados():
     return request.form['hidden_assunto'] != ""
 
+
 def getAssuntosSelecionados():
-        
+
     split = request.form['hidden_assunto'].split(',')
 
     assuntosSelecionados = ""
@@ -453,28 +513,36 @@ def getAssuntosSelecionados():
             assuntosSelecionados = "'" + assunto + "'"
         else:
             assuntosSelecionados = assuntosSelecionados + ", '" + assunto + "' "
-    
+
     return assuntosSelecionados
 
-@app.route("/filtrar_feed_ajax", methods=["POST","GET"])
+
+@app.route("/filtrar_feed_ajax", methods=["POST", "GET"])
 def filtrar_feed_ajax():
+    user_id = session['id']
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
+    autoria = cursor.fetchall()
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
-        
+
+        sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
+
         assuntosSelecionados = getAssuntosSelecionados()
 
-        sql = "SELECT post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem,tur_id, car_nome, post_remetente, post_anexo FROM feed "
-        
         if(existemFiltrosSelecionados()):
-            sql = sql + " WHERE post_assunto IN (" + assuntosSelecionados + ") ORDER BY post_data DESC"
+
+            sql = sql + " WHERE post_assunto IN (" + assuntosSelecionados + \
+                ") ORDER BY post_data DESC"
+
         else:
             sql = sql + " ORDER BY post_data DESC"
 
         info = cursor.execute(sql)
-        
         infoDetails = cursor.fetchall()
-    
-    return render_template('conteudo-div-feed.html', infoDetails = infoDetails)
+
+    return render_template('conteudo-div-feed.html', infoDetails=infoDetails, autoria=autoria)
+
 
 if __name__ == '__main__':
     app.run()
