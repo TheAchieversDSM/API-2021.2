@@ -214,13 +214,13 @@ def feed():
             perm = 1
 
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * from interage where user_id = %s", (user_id,))
+        cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
         autoria = cursor.fetchall()
 
     # Puxando informações do banco de dados.
         cursor = mysql.connection.cursor()
         info = cursor.execute(
-            "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem,tur_id, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
+            "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
         if info > 0:
             infoDetails = cursor.fetchall()
 
@@ -249,28 +249,36 @@ def envio_informacao():
             titulo = request.form['titulo']
             data_inclusao = datetime.now()
             assunto = request.form['assunto']
-            turma = request.form['turma']
+            turma = request.form.getlist('turma')
             des = request.form.getlist('destinatario')
             mensagem = request.form['mensagem']
             destinatario = ",".join(str(x) for x in des)
 
         # Inserindo informações na tabela feed.
             cursor = mysql.connection.cursor()
-            cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, tur_id, post_remetente,car_nome) values (%s, %s, %s, %s, %s, %s, %s)",
-                           (data_inclusao, assunto, titulo, mensagem, turma, remetente, destinatario))
+            cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome) values (%s, %s, %s, %s, %s, %s)",
+                           (data_inclusao, assunto, titulo, mensagem, remetente, destinatario))
             mysql.connection.commit()
+
+
 
         # Checando se as informações foram salvas.
             cursor = mysql.connection.cursor()
-            cursor.execute("select * from feed where post_assunto = %s and post_titulo = %s and post_mensagem = %s and tur_id = %s and post_remetente = %s and car_nome = %s",
-                           (assunto, titulo, mensagem, turma, remetente, destinatario))
+            cursor.execute("select * from feed where post_assunto = %s and post_titulo = %s and post_mensagem = %s and post_remetente = %s and car_nome = %s",
+                           (assunto, titulo, mensagem, remetente, destinatario))
             info = cursor.fetchone()
+            
+            for tur in turma:
+                post_id = info[0]
+                cursor = mysql.connection.cursor()
+                cursor.execute("insert into recebe (post_id,tur_id) values(%s, %s)",(post_id,tur))
+                mysql.connection.commit()
 
-        # Inserindo ID do post e ID do usuario na tabela "interage"
-            post_id = info[0]
+        # Inserindo ID do post e ID do usuario na tabela "publica"
+
             cursor = mysql.connection.cursor()
             cursor.execute(
-                "INSERT INTO interage (user_id,post_id) values (%s,%s)", (id_usuario, post_id))
+                "INSERT INTO publica (user_id,post_id) values (%s,%s)", (id_usuario, post_id))
             mysql.connection.commit()
 
         # Redirecionando o Usuário para a página de Feed caso as informações foram salvas.
@@ -401,7 +409,7 @@ def excluir(id):
     mysql.connection.commit()
 
     cursor = mysql.connection.cursor()
-    cursor.execute("DELETE  FROM interage WHERE post_id = %s", (id_post,))
+    cursor.execute("DELETE  FROM publica WHERE post_id = %s", (id_post,))
     mysql.connection.commit()
 
     return redirect(url_for('feed'))
