@@ -46,104 +46,105 @@
     <div class="divExterna">
       <div class="divInterna">
         <section class="filter">
-
-          <div id="top">
-            <select class="selectpicker" data-width=255px multiple title="Assunto">
-              <option value="Covid-19">Covid-19</option>
-              <option value="Estágio">Estágio</option>
-              <option value="Evento">Evento</option>
-              <option value="Notas & similares">Notas & similares</option>
-              <option value="Recados">Recados</option>
-              <option value="Reunião">Reunião</option>
-              <option value="Urgente">Urgente</option>
-            </select>
-            <select class="selectpicker" data-width=255px multiple title="Destinatário">
-              <option value="1">Diretor</option>
-              <option value="2">Secretaria</option>
-              <option value="3">Coordenadores</option>
-              <option value="4">Professores</option>
-              <option value="5">Alunos</option>
-            </select>
-            <select name="turma" class="selectpicker" data-width='255px' multiple title="Turma">
-              <optgroup label="Análise e Desenvolvimento de Sistemas">
-                <option value="ADS1">1° Sem</option>
-                <option value="ADS2">2° Sem</option>
-                <option value="ADS3">3° Sem</option>
-                <option value="ADS4">4° Sem</option>
-                <option value="ADS5">5° Sem</option>
-                <option value="ADS6">6° Sem</option>
-              </optgroup>
-              <optgroup label="Banco de Dados">
-                <option value="BDD1">1° Sem</option>
-                <option value="BDD2">2° Sem</option>
-                <option value="BDD3">3° Sem</option>
-                <option value="BDD4">4° Sem</option>
-                <option value="BDD5">5° Sem</option>
-                <option value="BDD6">6° Sem</option>
-              </optgroup>
-              <optgroup label="Desenvolvimento de Software Multiplataforma">
-                <option value="DSM1">1° Sem</option>
-                <option value="DSM2">2° Sem</option>
-                <option value="DSM3">3° Sem</option>
-                <option value="DSM4">4° Sem</option>
-                <option value="DSM5">5° Sem</option>
-                <option value="DSM6">6° Sem</option>
-              </optgroup>
-              <optgroup label="Gestão da Produção Industrial">
-                <option value="GPI1">1° Sem</option>
-                <option value="GPI2">2° Sem</option>
-                <option value="GPI3">3° Sem</option>
-                <option value="GPI4">4° Sem</option>
-                <option value="GPI5">5° Sem</option>
-                <option value="GPI6">6° Sem</option>
-              </optgroup>
-              <optgroup label="Logística">
-                <option value="LOG1">1° Sem</option>
-                <option value="LOG2">2° Sem</option>
-                <option value="LOG3">3° Sem</option>
-                <option value="LOG4">4° Sem</option>
-                <option value="LOG5">5° Sem</option>
-                <option value="LOG6">6° Sem</option>
-              </optgroup>
-              <optgroup label="Manufatura Avançada">
-                <option value="MAV1">1° Sem</option>
-                <option value="MAV2">2° Sem</option>
-                <option value="MAV3">3° Sem</option>
-                <option value="MAV4">4° Sem</option>
-                <option value="MAV5">5° Sem</option>
-                <option value="MAV6">6° Sem</option>
-              </optgroup>
-              <optgroup label="Manutenção de Aeronaves">
-                <option value="MAE1">1° Sem</option>
-                <option value="MAE2">2° Sem</option>
-                <option value="MAE3">3° Sem</option>
-                <option value="MAE4">4° Sem</option>
-                <option value="MAE5">5° Sem</option>
-                <option value="MAE6">6° Sem</option>
-              </optgroup>
-              <optgroup label="Projetos de Estruturas Aeronáuticas">
-                <option value="PEA1">1° Sem</option>
-                <option value="PEA2">2° Sem</option>
-                <option value="PEA3">3° Sem</option>
-                <option value="PEA4">4° Sem</option>
-                <option value="PEA5">5° Sem</option>
-                <option value="PEA6">6° Sem</option>
-              </optgroup>
-            </select>
-          </div>
-
-          <div class="container">
-            <div id="inicial">
-              <p>Entre: </p>
-              <input type="date" name="" max="" id="fromDate">
+          <form method="post" id="form_filtros">
+            <div id="top">
+              <select id="select_assunto" name="select_assunto" class="selectpicker" data-width=255px multiple title="Assunto">
+                <option value="Covid-19">Covid-19</option>
+                <option value="Estágio">Estágio</option>
+                <option value="Evento">Evento</option>
+                <option value="Notas & similares">Notas & similares</option>
+                <option value="Recados">Recados</option>
+                <option value="Reunião">Reunião</option>
+                <option value="Urgente">Urgente</option>
+              </select>
+              <select class="selectpicker" data-width=255px multiple title="Destinatário">
+                {% for cargo in cargos %}
+                  <option value="{{cargo[0]}}">{{cargo[1]}}</option>
+                {% endfor %}
+              </select>
+              <select name="turma" class="selectpicker" data-width='255px' multiple title="Turma">
+                <optgroup label="Análise e Desenvolvimento de Sistemas">
+                  <option value="ADS1">1° Sem</option>
+                  <option value="ADS2">2° Sem</option>
+                  <option value="ADS3">3° Sem</option>
+                  <option value="ADS4">4° Sem</option>
+                  <option value="ADS5">5° Sem</option>
+                  <option value="ADS6">6° Sem</option>
+                </optgroup>
+                <optgroup label="Banco de Dados">
+                  <option value="BDD1">1° Sem</option>
+                  <option value="BDD2">2° Sem</option>
+                  <option value="BDD3">3° Sem</option>
+                  <option value="BDD4">4° Sem</option>
+                  <option value="BDD5">5° Sem</option>
+                  <option value="BDD6">6° Sem</option>
+                </optgroup>
+                <optgroup label="Desenvolvimento de Software Multiplataforma">
+                  <option value="DSM1">1° Sem</option>
+                  <option value="DSM2">2° Sem</option>
+                  <option value="DSM3">3° Sem</option>
+                  <option value="DSM4">4° Sem</option>
+                  <option value="DSM5">5° Sem</option>
+                  <option value="DSM6">6° Sem</option>
+                </optgroup>
+                <optgroup label="Gestão da Produção Industrial">
+                  <option value="GPI1">1° Sem</option>
+                  <option value="GPI2">2° Sem</option>
+                  <option value="GPI3">3° Sem</option>
+                  <option value="GPI4">4° Sem</option>
+                  <option value="GPI5">5° Sem</option>
+                  <option value="GPI6">6° Sem</option>
+                </optgroup>
+                <optgroup label="Logística">
+                  <option value="LOG1">1° Sem</option>
+                  <option value="LOG2">2° Sem</option>
+                  <option value="LOG3">3° Sem</option>
+                  <option value="LOG4">4° Sem</option>
+                  <option value="LOG5">5° Sem</option>
+                  <option value="LOG6">6° Sem</option>
+                </optgroup>
+                <optgroup label="Manufatura Avançada">
+                  <option value="MAV1">1° Sem</option>
+                  <option value="MAV2">2° Sem</option>
+                  <option value="MAV3">3° Sem</option>
+                  <option value="MAV4">4° Sem</option>
+                  <option value="MAV5">5° Sem</option>
+                  <option value="MAV6">6° Sem</option>
+                </optgroup>
+                <optgroup label="Manutenção de Aeronaves">
+                  <option value="MAE1">1° Sem</option>
+                  <option value="MAE2">2° Sem</option>
+                  <option value="MAE3">3° Sem</option>
+                  <option value="MAE4">4° Sem</option>
+                  <option value="MAE5">5° Sem</option>
+                  <option value="MAE6">6° Sem</option>
+                </optgroup>
+                <optgroup label="Projetos de Estruturas Aeronáuticas">
+                  <option value="PEA1">1° Sem</option>
+                  <option value="PEA2">2° Sem</option>
+                  <option value="PEA3">3° Sem</option>
+                  <option value="PEA4">4° Sem</option>
+                  <option value="PEA5">5° Sem</option>
+                  <option value="PEA6">6° Sem</option>
+                </optgroup>
+              </select>
             </div>
 
-            <div id="final">
-              <p>Até: </p>
-              <input type="date" name="" min="" id="toDate">
-            </div>
-          </div>
+            <div class="container">
+              <div id="inicial">
+                <p>Entre: </p>
+                <input type="date" name="" max="" id="fromDate">
+              </div>
 
+              <div id="final">
+                <p>Até: </p>
+                <input type="date" name="" min="" id="toDate">
+              </div>
+            </div>
+
+            <input type="hidden" name="hidden_assunto" id="hidden_assunto" />
+
+          </form> 
         </section>
 
         <!--bloco python para display de info:
@@ -224,6 +225,29 @@
       $('#fromDate').prop('min', function () {
         return toDate;
       })
+    });
+    
+    $(document).ready(function(){
+     
+     $('#select_assunto').change(function(){
+      $('#hidden_assunto').val($('#select_assunto').val());
+      $('#form_filtros').submit();
+     });
+     
+     $('#form_filtros').on('submit', function(event){
+      event.preventDefault();
+       var form_data = $(this).serialize();
+       $.ajax({
+        url:"/filtrar_feed_ajax",
+        method:"POST",
+        data:form_data,
+        success:function(data)
+        {
+          $('#divContent').html(data);
+        }
+       })
+      
+     });
     });
 
   </script>

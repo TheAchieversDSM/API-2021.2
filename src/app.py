@@ -190,7 +190,7 @@ def listarCursos():
 def listarCargos():
     cur = mysql.connection.cursor()
     cur.execute("select car_id, car_nome from cargo")
-    return cur.fetchall
+    return cur.fetchall()
 
 ###### Rota para a página do feed ######
 
@@ -224,7 +224,7 @@ def feed():
         if info > 0:
             infoDetails = cursor.fetchall()
 
-            return render_template("feed.html", infoDetails=infoDetails, perm=perm, autoria=autoria)
+            return render_template("feed.html", infoDetails=infoDetails, perm=perm, autoria=autoria, cursos=listarCursos(), cargos=listarCargos())
         else:
             return render_template("feed.html", cursos=listarCursos(), perm=perm, cargos=listarCargos())
             # cursos=listarCursos(), perm=perm, cargos=listarCargos())
@@ -431,6 +431,42 @@ def editar_post(id):
 
     return render_template("send-info.html", info=info)
 
+def existemFiltrosSelecionados():
+    return request.form['hidden_assunto'] != ""
+
+def getAssuntosSelecionados():
+        
+    split = request.form['hidden_assunto'].split(',')
+
+    assuntosSelecionados = ""
+
+    for assunto in split:
+        if(assuntosSelecionados == ""):
+            assuntosSelecionados = "'" + assunto + "'"
+        else:
+            assuntosSelecionados = assuntosSelecionados + ", '" + assunto + "' "
+    
+    return assuntosSelecionados
+
+@app.route("/filtrar_feed_ajax", methods=["POST","GET"])
+def filtrar_feed_ajax():
+    if request.method == 'POST':
+        cursor = mysql.connection.cursor()
+        
+        assuntosSelecionados = getAssuntosSelecionados()
+
+        sql = "SELECT post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem,tur_id, car_nome, post_remetente, post_anexo FROM feed "
+        
+        if(existemFiltrosSelecionados()):
+            sql = sql + " WHERE post_assunto IN (" + assuntosSelecionados + ") ORDER BY post_data DESC"
+        else:
+            sql = sql + " ORDER BY post_data DESC"
+
+        info = cursor.execute(sql)
+        
+        infoDetails = cursor.fetchall()
+    
+    return render_template('conteudo-div-feed.html', infoDetails = infoDetails)
 
 if __name__ == '__main__':
     app.run()
