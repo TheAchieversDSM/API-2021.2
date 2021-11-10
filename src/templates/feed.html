@@ -62,11 +62,16 @@
                 <option value="Reunião">Reunião</option>
                 <option value="Urgente">Urgente</option>
               </select>
-              <select class="selectpicker" data-width=255px multiple title="Destinatário">
+
+              <input type="hidden" name="hidden_assunto" id="hidden_assunto" />
+
+              <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=255px multiple title="Destinatário">
                 {% for cargo in cargos %}
                 <option value="{{cargo[0]}}">{{cargo[1]}}</option>
                 {% endfor %}
               </select>
+
+              <input type="hidden" name="hidden_destinatario" id="hidden_destinatario" />
 
               <select id="select_turma" name="select_turma" class="selectpicker" data-width='255px' multiple
                 title="Turma">
@@ -136,7 +141,9 @@
                 </optgroup>
               </select>
             </div>
-
+            
+            <input type="hidden" name="hidden_turma" id="hidden_turma" />
+            
             <div class="container">
               <div id="inicial">
                 <p>Entre: </p>
@@ -149,7 +156,7 @@
               </div>
             </div>
 
-            <input type="hidden" name="hidden_assunto" id="hidden_assunto" />
+            
 
 
           </form>
@@ -240,6 +247,16 @@
 
       $('#select_assunto').change(function () {
         $('#hidden_assunto').val($('#select_assunto').val());
+        $('#form_filtros').submit();
+      });
+
+      $('#select_turma').change(function () {
+        $('#hidden_turma').val($('#select_turma').val());
+        $('#form_filtros').submit();
+      });
+
+      $('#select_destinatario').change(function () {
+        $('#hidden_destinatario').val($('#select_destinatario').val());
         $('#form_filtros').submit();
       });
 

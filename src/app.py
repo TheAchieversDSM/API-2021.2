@@ -218,7 +218,7 @@ def feed():
         # Verificando se o Cargo do usuário pode ou não enviar informações.
         if cargo_user != None and cargo_user[0] == 5:
             perm = 0
-        elif cargo_user[0] == 1 or cargo_user[0] == 3:
+        elif cargo_user != None and (cargo_user[0] == 1 or cargo_user[0] == 3):
             perm = 2
         else:
             perm = 1
@@ -260,10 +260,13 @@ def envio_informacao():
         cargo_user = cursor.fetchone()
 
         # Verificando se o Cargo do usuário pode ou não enviar informações.
-        if cargo_user[0] == 5:
-            perm = 0
-        elif cargo_user[0] == 1 or cargo_user[0] == 3:
-            perm = 2
+        if cargo_user != None:
+            if cargo_user[0] == 5:
+                perm = 0
+            elif cargo_user[0] == 1 or cargo_user[0] == 3:
+                perm = 2
+            else:
+                perm = 1
         else:
             perm = 1
 
@@ -499,22 +502,30 @@ def editar_post(id):
 
 
 def existemFiltrosSelecionados():
+    return assuntoFoiSelecionado() or turmaFoiSelecionada() or destinatarioFoiSelecionado()
+
+def assuntoFoiSelecionado():
     return request.form['hidden_assunto'] != ""
 
+def turmaFoiSelecionada():
+    return request.form['hidden_turma'] != ""
 
-def getAssuntosSelecionados():
+def destinatarioFoiSelecionado():
+    return request.form['hidden_destinatario'] != ""
 
-    split = request.form['hidden_assunto'].split(',')
+def getValoresSelecionadosParaSQL(valorCampoHidden):
 
-    assuntosSelecionados = ""
+    split = valorCampoHidden.split(',')
 
-    for assunto in split:
-        if(assuntosSelecionados == ""):
-            assuntosSelecionados = "'" + assunto + "'"
+    valoresSelecionados = ""
+
+    for valor in split:
+        if(valoresSelecionados == ""):
+            valoresSelecionados = "'" + valor + "'"
         else:
-            assuntosSelecionados = assuntosSelecionados + ", '" + assunto + "' "
+            valoresSelecionados = valoresSelecionados + ", '" + valor + "' "
 
-    return assuntosSelecionados
+    return valoresSelecionados
 
 
 @app.route("/filtrar_feed_ajax", methods=["POST", "GET"])
@@ -525,15 +536,38 @@ def filtrar_feed_ajax():
     autoria = cursor.fetchall()
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
+        
+
+        
 
         sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
 
-        assuntosSelecionados = getAssuntosSelecionados()
+        assuntosSelecionados = getValoresSelecionadosParaSQL(request.form['hidden_assunto'])
+        turmasSelecionadas = getValoresSelecionadosParaSQL(request.form['hidden_turma'])
+        destinatariosSelecionados = getValoresSelecionadosParaSQL(request.form['hidden_destinatario'])
 
+        
         if(existemFiltrosSelecionados()):
+            sql = sql + " WHERE "
+            if(assuntoFoiSelecionado()):
+                sql = sql + " post_assunto IN (" + assuntosSelecionados + ") "
 
-            sql = sql + " WHERE post_assunto IN (" + assuntosSelecionados + \
-                ") ORDER BY post_data DESC"
+            if(turmaFoiSelecionada()):
+
+                if(assuntoFoiSelecionado()):
+                    sql = sql + " AND "
+
+                sql = sql + " post_id IN (SELECT r.post_id FROM recebe r WHERE r.tur_id IN (" + turmasSelecionadas + ") )"
+
+            if(destinatarioFoiSelecionado()):
+
+                print("Cargos selecionados: " + destinatariosSelecionados)
+
+                if(assuntoFoiSelecionado() or turmaFoiSelecionada()):
+                    sql = sql + " AND "
+                sql = sql + " 1 = 1 " ### TODO criar SQL para filtrar com base nos destinatarios selecionados
+
+            sql = sql + " ORDER BY post_data DESC"
 
         else:
             sql = sql + " ORDER BY post_data DESC"
