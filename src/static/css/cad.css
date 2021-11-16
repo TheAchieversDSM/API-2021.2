@@ -85,7 +85,7 @@ form {
     color: #ffff;   
 }  
 
-.turma {
+.curso {
     display: flex;
     margin: auto;
     border: 0;
@@ -93,7 +93,7 @@ form {
     width: 330px;
 }
 
-.turma {
+.curso {
     justify-content: space-between;
 }
 

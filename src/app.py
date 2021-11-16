@@ -72,7 +72,7 @@ def login():
 def cadastro():
     # Solicitando informações do usuário no formulário.
     if request.method == 'POST':
-        turma = request.form['turma']
+        curso = request.form['curso']
         nome = request.form['nome']
         email = request.form['e-mail']
         senha = request.form['senha']
@@ -88,9 +88,9 @@ def cadastro():
             'SELECT * from usuario WHERE user_email = %s and user_senha = %s ', (email, senha))
         usuario = cursor.fetchone()
 
-    # Inserindo o ID do usuário e sua respectiva turma na tabela turma_user
+    # Inserindo o ID do usuário e seu respectivo curso na tabela tur_user
         cursor.execute(
-            'INSERT into participa (tur_id, user_id) values(%s, %s) ', (turma, usuario[0]))
+            'INSERT into participa (cur_id, user_id) values(%s, %s) ', (curso, usuario[0]))
         mysql.connection.commit()
 
     # Inserindo o ID do usuário e o cargo padrão na tabela cargo_user
@@ -153,16 +153,7 @@ def myinfo():
         cursor = mysql.connection.cursor()
         cursor.execute(
             "SELECT * FROM participa WHERE user_id = %s", (user_id,))
-        turma_id = cursor.fetchall()
-
-        id_curso = []
-        for tur in turma_id:
-            cursor = mysql.connection.cursor()
-            cursor.execute(
-                "SELECT cur_id FROM turma where tur_id = %s", (tur[0],))
-            cur_id = cursor.fetchall()
-            id_curso.append(cur_id[0])
-
+        id_curso = cursor.fetchall()
 
         cursos = []
         for cur in id_curso:
@@ -276,7 +267,7 @@ def envio_informacao():
             titulo = request.form['titulo']
             data_inclusao = datetime.now()
             assunto = request.form['assunto']
-            turma = request.form.getlist('turma')
+            curso = request.form.getlist('curso')
             des = request.form.getlist('destinatario')
             mensagem = request.form['mensagem']
             destinatario = ",".join(str(x) for x in des)
@@ -293,11 +284,11 @@ def envio_informacao():
                            (assunto, titulo, mensagem, remetente, destinatario))
             info = cursor.fetchone()
 
-            for tur in turma:
+            for cur in curso:
                 post_id = info[0]
                 cursor = mysql.connection.cursor()
                 cursor.execute(
-                    "insert into recebe (post_id,tur_id) values(%s, %s)", (post_id, tur))
+                    "insert into recebe (post_id,cur_id) values(%s, %s)", (post_id, cur))
                 mysql.connection.commit()
 
         # Inserindo ID do post e ID do usuario na tabela "publica"
@@ -397,7 +388,7 @@ def edit():
         if request.method == "POST":
             email = request.form["e-mail"]
             cargo = request.form["cargo"]
-            turma = request.form.getlist("turma")
+            curso = request.form.getlist("curso")
 
         # Selecionando o ID do usuário inserido.
             cursor = mysql.connection.cursor()
@@ -410,11 +401,11 @@ def edit():
                 cursor = mysql.connection.cursor()
                 cursor.execute(
                     'UPDATE exerce SET car_id = %s WHERE user_id = %s', (cargo, user))
-                for x in turma:
+                for x in curso:
                     mysql.connection.commit()
                     cursor = mysql.connection.cursor()
                     cursor.execute(
-                        'INSERT INTO participa (tur_id,user_id) values (%s, %s)', (x, user))
+                        'INSERT INTO participa (cur_id,user_id) values (%s, %s)', (x, user))
                     mysql.connection.commit()
 
                 return redirect(url_for('feed'))
@@ -486,7 +477,7 @@ def editar_post(id):
         remetente = session['username']
         titulo = request.form['titulo']
         assunto = request.form['assunto']
-        turma = request.form['turma']
+        curso = request.form['curso']
         des = request.form.getlist('destinatario')
         mensagem = request.form['mensagem']
         destinatario = ",".join(str(x) for x in des)
@@ -495,23 +486,26 @@ def editar_post(id):
         cursor.execute("UPDATE feed SET post_titulo = %s, post_assunto = %s, post_mensagem = %s,  car_nome = %s WHERE post_id = %s",
                        (titulo, assunto, mensagem, destinatario, id_post))
 
-                    
         return redirect(url_for('feed'))
 
     return render_template("send-info.html", perm=perm, info=info)
 
 
 def existemFiltrosSelecionados():
-    return assuntoFoiSelecionado() or turmaFoiSelecionada() or destinatarioFoiSelecionado()
+    return assuntoFoiSelecionado() or cursoFoiSelecionada() or destinatarioFoiSelecionado()
+
 
 def assuntoFoiSelecionado():
     return request.form['hidden_assunto'] != ""
 
-def turmaFoiSelecionada():
-    return request.form['hidden_turma'] != ""
+
+def cursoFoiSelecionada():
+    return request.form['hidden_curso'] != ""
+
 
 def destinatarioFoiSelecionado():
     return request.form['hidden_destinatario'] != ""
+
 
 def getValoresSelecionadosParaSQL(valorCampoHidden):
 
@@ -536,36 +530,38 @@ def filtrar_feed_ajax():
     autoria = cursor.fetchall()
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
-        
-
-        
 
         sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
 
-        assuntosSelecionados = getValoresSelecionadosParaSQL(request.form['hidden_assunto'])
-        turmasSelecionadas = getValoresSelecionadosParaSQL(request.form['hidden_turma'])
-        destinatariosSelecionados = getValoresSelecionadosParaSQL(request.form['hidden_destinatario'])
+        assuntosSelecionados = getValoresSelecionadosParaSQL(
+            request.form['hidden_assunto'])
+        cursoSelecionadas = getValoresSelecionadosParaSQL(
+            request.form['hidden_curso'])
+        destinatariosSelecionados = getValoresSelecionadosParaSQL(
+            request.form['hidden_destinatario'])
 
-        
         if(existemFiltrosSelecionados()):
             sql = sql + " WHERE "
             if(assuntoFoiSelecionado()):
                 sql = sql + " post_assunto IN (" + assuntosSelecionados + ") "
 
-            if(turmaFoiSelecionada()):
+            if(cursoFoiSelecionada()):
 
                 if(assuntoFoiSelecionado()):
                     sql = sql + " AND "
 
-                sql = sql + " post_id IN (SELECT r.post_id FROM recebe r WHERE r.tur_id IN (" + turmasSelecionadas + ") )"
+                sql = sql + \
+                    " post_id IN (SELECT r.post_id FROM recebe r WHERE r.cur_id IN (" + \
+                    cursoSelecionadas + ") )"
 
             if(destinatarioFoiSelecionado()):
 
                 print("Cargos selecionados: " + destinatariosSelecionados)
 
-                if(assuntoFoiSelecionado() or turmaFoiSelecionada()):
+                if(assuntoFoiSelecionado() or cursoFoiSelecionada()):
                     sql = sql + " AND "
-                sql = sql + " 1 = 1 " ### TODO criar SQL para filtrar com base nos destinatarios selecionados
+                # TODO criar SQL para filtrar com base nos destinatarios selecionados
+                sql = sql + " 1 = 1 "
 
             sql = sql + " ORDER BY post_data DESC"
 

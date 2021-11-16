@@ -66,13 +66,9 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
 <span id="execucao">
 
 ### :hammer: Executando a aplicação:
-### IMPORTANTE
-#### Conta com privilégios de administrador da aplicação:
-### Email: adm@fatec.sp.gov.br
-### Senha: fatec
+
 #### Você pode acessar por esse link: <a href="https://api-theachievers-2021.herokuapp.com/">aqui!</a>
  
-
 #### Ou então,
  
 #### Primeiramente, certifique-se se tem o Python, caso não tenha, acesse <a href="https://www.python.org/downloads/">aqui</a> 
@@ -117,6 +113,11 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
  # Acesse o link no qual a aplicação está hospedada;
    
  http://127.0.0.1:5000/
+ 
+# Para acessar como administrador use:
+ 
+## E-mail: adm@fatec.sp.gov.br
+## Senha: fatec
 ```
  
 <span id="organizacao">
@@ -225,6 +226,10 @@ Ajustes dos filtros | Alta | Completa
 Controle de hierarquia (CRUD) | Alta | Completa
 Estilizar páginas | Média | Completa
 Ajustes no banco de dados | Alta | Completa
+Introdução da funcionalidade total dos filtros | Alta | Em andamento
+Introdução da função "arquivar" | Média | Não iniciada
+Introdução da função "anexar" | Alta | Não iniciada
+Automatização das hierarquias | Alta | Não iniciada
 Testes unitários do sistema | Alta | Não iniciada
 Testes de integração | Alta | Não iniciada
 Testes de aceitação | Alta | Não iniciada
@@ -267,6 +272,17 @@ Sprint | Nome da tarefa | Prioridade | Status
 #3 | Controle de hierarquia (CRUD) | Alta | Completa
 #3 | Estilizar páginas | Médio | Completa
 #3 | Ajustes no banco de dados | Alta | Completa
+ 
+Sprint | Nome da tarefa | Prioridade | Status
+-------|----------------|------------|-------
+#4 | Introdução da funcionalidade total dos filtros | Alta | Em andamento
+#4 | Introdução da função "arquivar" | Média | Não iniciada
+#4 | Introdução da função "anexar" | Alta | Não iniciada
+#4 | Automatização das hierarquias | Alta | Não iniciada
+#4 | Testes unitários do sistema | Alta | Em andamento
+#4 | Testes de integração | Alta | Em andamento
+#4 | Testes de aceitação | Alta | Em andamento
+#4 | Melhorias contínuas | Alta | Em andamento
  
 ↑ [Voltar ao início](#inicio) 
  
