@@ -66,13 +66,9 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
 <span id="execucao">
 
 ### :hammer: Executando a aplicação:
-### IMPORTANTE
-#### Conta com privilégios de administrador da aplicação:
-### Email: adm@fatec.sp.gov.br
-### Senha: fatec
+
 #### Você pode acessar por esse link: <a href="https://api-theachievers-2021.herokuapp.com/">aqui!</a>
  
-
 #### Ou então,
  
 #### Primeiramente, certifique-se se tem o Python, caso não tenha, acesse <a href="https://www.python.org/downloads/">aqui</a> 
@@ -117,6 +113,11 @@ Dev Team | Rikio Anzai | <a href="https://github.com/rikioanzai">GitHub</a>
  # Acesse o link no qual a aplicação está hospedada;
    
  http://127.0.0.1:5000/
+ 
+# Para acessar como administrador use:
+ 
+## E-mail: adm@fatec.sp.gov.br
+## Senha: fatec
 ```
  
 <span id="organizacao">
