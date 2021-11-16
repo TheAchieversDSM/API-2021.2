@@ -25,40 +25,20 @@ create table if not exists `fatec_api`.`curso` (
 
 select * from curso;
 
-/* TABELA DA TURMA */
-
-create table if not exists `fatec_api`.`turma` (
-	`tur_id` varchar (4) not null,
-    `tur_semestre` int not null,
-    `cur_id` int not null,
-    primary key (tur_id),
-    constraint `fk_cur_id_2`
-		foreign key (`cur_id`)
-        references `curso`(`cur_id`)
-);
-
-select * from turma;
-
-/* TABELA DA RELACAO ENTRE USUARIO E TURMA */
+/* TABELA DA RELACAO ENTRE USUARIO E CURSO */
 
 create table if not exists `fatec_api`.`participa` (
-	`tur_id`  varchar (4) not null,
+	`cur_id` int,
     `user_id` int not null,
-    constraint `fk_tur_id_2`
-		foreign key (`tur_id`)
-        references `turma`(`tur_id`)
+    constraint `fk_cur_id_2`
+		foreign key (`cur_id`)
+        references `curso`(`cur_id`),
+	constraint `fk_user_id`
+		foreign key (`user_id`)
+        references `usuario`(`user_id`)
 );
 
 select * from participa;
-
-/* TABELA DE CARGOS */
-
-create table if not exists `fatec_api`.`cargo` (
-	`car_id` int not null,
-    `car_nome` varchar (20) not null,
-    `per_id` int not null,
-    primary key (car_id)
-);
 
 /* TABELA DE PERMISSOES */
 
@@ -66,6 +46,18 @@ create table if not exists `fatec_api`.`permissoes` (
 	`per_id` int not null,
     `per_desc`varchar (250),
     primary key (per_id)
+);
+
+/* TABELA DE CARGOS */
+
+create table if not exists `fatec_api`.`cargo` (
+	`car_id` int not null,
+    `car_nome` varchar (20) not null,
+    `per_id` int not null,
+    primary key (car_id),
+    constraint `fk_per_id`
+		foreign key (`per_id`)
+        references `permissoes`(`per_id`)
 );
 
 /* TABELA DA RELACAO ENTRE USUARIO E CARGO */
@@ -106,7 +98,10 @@ create table if not exists `fatec_api`.`publica` (
     `post_id` int not null,
     constraint `fk_user_id_5`
 		foreign key (`user_id`)
-        references `usuario`(`user_id`)
+        references `usuario`(`user_id`),
+	constraint `fk_post_id`
+		foreign key (`post_id`)
+        references `feed`(`post_id`)
 );
 
 select * from publica;
@@ -115,8 +110,8 @@ select * from publica;
 
 create table if not exists `fatec_api`.`recebe` (
 	`post_id` int not null,
-    `tur_id` varchar (4) not null,
-    constraint `fk_post_id`
+    `cur_id` varchar (4) not null,
+    constraint `fk_post_id_2`
 		foreign key (`post_id`)
         references `feed`(`post_id`)
 );
