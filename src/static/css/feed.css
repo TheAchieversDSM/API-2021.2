@@ -100,6 +100,7 @@ textarea:focus, input:focus, select:focus {
 
 .container {
   display: flex;
+  justify-content: center;
 }
 
 #inicial,
@@ -391,23 +392,15 @@ label {
   }
   
   .divExterna{
-    width: 80%;
-    height: 800px;
+    padding: 20px;
   }
-}
 
-@media screen and (max-width: 330px){
   .info{
-    width: 80%;
-    margin: auto;
+    width: fit-content;
   }
-  .titulo{
-    width: 80%;
-  }
-  footer{
-    top: 1170px;
-  }
-  .divExterna{
-    width: 80%;
+  .container{
+    max-width: 60%;
+    min-width: 300px;
+    display: block;
   }
 }
