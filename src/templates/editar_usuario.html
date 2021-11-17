@@ -33,12 +33,14 @@
                     <p>E-mail</p>
                     <input class="resp" type="text" name="e-mail" id="email">
                     <p>Cargo</p>
-                    <select class="selectpicker" name="cargo" data-width='330px' multiple id="cargo" title="Cargo">
-                        <option value="1">Diretor</option>
-                        <option value="2">Secretaria</option>
-                        <option value="3">Coordenadores</option>
-                        <option value="4">Professores</option>
-                    </select>
+                    <div class="cargo">
+                        <select class="selectpicker" name="cargo" data-width='330px' multiple id="cargo" title="Cargo">
+                            <option value="1">Diretor</option>
+                            <option value="2">Secretaria</option>
+                            <option value="3">Coordenadores</option>
+                            <option value="4">Professores</option>
+                        </select>
+                    </div>
 
                     <p>Turma(s)</p>
                     <div class="turma">
@@ -54,9 +56,10 @@
                             <option value="8">Projetos de Estruturas Aeronáuticas</option>
 
                         </select>
-                        
-                        <button type="alter" class="botao">Confirmar alterações</button>
                     </div>
+                        
+                    <button type="alter" class="botao">Confirmar alterações</button>
+                </div>
             </form>
         </main>
     </body>

@@ -33,28 +33,30 @@
                 <form method="POST">
                     <section class="filter">
 
-                        <select class="selectpicker" name="assunto" data-width="255px" multiple data-actions-box="true"
-                            title="Assunto">
-                            <option value="Covid-19">Covid-19</option>
-                            <option value="Estágio">Estágio</option>
-                            <option value="Evento">Evento</option>
-                            <option value="Notas & similares">Notas & similares</option>
-                            <option value="Recados">Recados</option>
-                            <option value="Reunião">Reunião</option>
-                            <option value="Urgente">Urgente</option>
-                        </select>
+                        <div class="assuntos">
+                            <select class="selectpicker" name="assunto" data-width="255px" multiple data-actions-box="true" title="Assunto">
+                                <option value="Covid-19">Covid-19</option>
+                                <option value="Estágio">Estágio</option>
+                                <option value="Evento">Evento</option>
+                                <option value="Notas & similares">Notas & similares</option>
+                                <option value="Recados">Recados</option>
+                                <option value="Reunião">Reunião</option>
+                                <option value="Urgente">Urgente</option>
+                            </select>
+                        </div>
 
-                        <select class="selectpicker" name="destinatario" data-width=255px multiple
-                            data-actions-box="true" title="Destinatário">
-                            <option value="Diretor">Diretor</option>
-                            <option value="Secretaria">Secretaria</option>
-                            <option value="Coordenadores">Coordenadores</option>
-                            <option value="Professores">Professores</option>
-                            <option value="Alunos">Alunos</option>
+                        <div class="dest">
+                            <select class="selectpicker" name="destinatario" data-width=255px multiple data-actions-box="true" title="Destinatário">
+                                <option value="Diretor">Diretor</option>
+                                <option value="Secretaria">Secretaria</option>
+                                <option value="Coordenadores">Coordenadores</option>
+                                <option value="Professores">Professores</option>
+                                <option value="Alunos">Alunos</option>
+                            </select>
+                        </div>
 
-                        </select>
-
-                        <select name="curso" class="selectpicker" data-width='255px' data-actions-box="true" multiple
+                        <div class="curso">
+                            <select name="curso" class="selectpicker" data-width='255px' data-actions-box="true" multiple
                             title="Curso">
                             <option value="1">Análise e Desenvolvimento de Sistemas</option>
                             <option value="2">Banco de Dados</option>
@@ -65,6 +67,7 @@
                             <option value="7">Manutenção de Aeronaves</option>
                             <option value="8">Projetos de Estruturas Aeronáuticas</option>
                         </select>
+                        </div>
 
                     </section>
                     {% if info %}
@@ -91,19 +94,11 @@
                     <div class="info-buttons">
                         <input type="file" name="arquivo">
                         </input>
-                        <input type="submit" class="enviar" style="margin-left: 260px;">
+                        <input type="submit" class="enviar" >
                     </div>
                 </form>
             </div>
         </div>
-
-        <section>
-            <a href="/feed">
-                <button class="btn5 button5">
-                    <i class="fas fa-sign-out-alt"></i>
-                </button>
-            </a>
-        </section>
 
     </main>
     {% endif %}

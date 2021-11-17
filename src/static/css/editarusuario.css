@@ -105,3 +105,28 @@ input {
 .botao a:hover {
     color: black;
 }
+
+.turma, .cargo{
+    display: flex;
+    margin: auto;
+    border: 0;
+    height: 40px;
+    width: 330px;
+}
+
+@media screen and (max-width: 420px){
+    .edicao{
+        width: 100%;
+    }
+    .campos > input{
+        width: 90%
+    }
+    .campos{
+        min-width: 300px;
+        max-width: 100%;
+    }
+    .turma, .cargo{
+        max-width: 90%;
+        min-width: 300px;
+    }
+}    

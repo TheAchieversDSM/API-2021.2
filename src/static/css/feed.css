@@ -36,6 +36,10 @@ main {
   text-align: center;
 }
 
+.logo{
+  margin: 40px;
+}
+
 .divExterna {
   background-color: #3A4952;
   border-radius: 10px;
@@ -129,37 +133,57 @@ select {
   transition: 0.5s;
 }
 
-.mostrar {
-  position: relative;
-  display: inline;
-  border: 0;
-  color: #000000;
-  font-size: 18px;
-  text-decoration: none;
-  transition: 0.5s;
-  padding-left: 50px;
-  right: 250px; 
-  top: 23px;
-}
-
-.mostrar:hover{
-  transition: 0.5s;
-  color: #ab101a;
-  text-decoration: none;
-} 
-
 .fas.fa-ellipsis-v{
   position: relative;
   cursor: pointer;
-  -webkit-transition: 0.5s  ease-in-out;
-  padding-bottom: 30px;
+  display: inline-block;
+}
+
+.dropdown {
+  width: 5px;
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn{
+  padding: 0; 
+  border: none; 
+  background: none;
+  width: 20px;
 }
 
 .fas.fa-ellipsis-v:hover{
-  -webkit-transition: 0.5s;
   cursor: pointer;
   color: #ab101a;
 }
+
+.dropdown-content a:hover {background-color: #929292}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  color: #ab101a;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 
 .info {
   background-color: #C4C4C4;
@@ -251,96 +275,36 @@ div.contents {
   margin: auto;
 }
 
-nav {
-  width: 0px;
-  height: 50px;
-  position: relative;
-  left: 100px;
-  top: 40px;
-  background: #c4c4c4;
-  overflow: hidden;
-  transition: 0.3s ease-in-out;
-}
-
-input{
-  display:none;
+nav{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nav-menu{
-  width: 750px;
-  float: left;
+  max-width: 80%;
+  min-width: 400px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.nav-menu ul li{
-  float: left;
+.nav-menu > ul, li{
+  display: inline;
   list-style: none;
-}
-
-.nav-menu li{
-  box-sizing: border-box;
-  margin: 1.5% 3%;
   font-size: 20px;
 }
 
-.nav-menu ul li a{
-  text-decoration: none;
-  color: black;
+.nav-menu > li{
+  margin-right: 40px;
 }
 
-.nav-menu ul li a:hover{
+li:hover{
   color: #ab101a;
-}
-
-label, label:before, label:after{
-  width: 30px;
-  height: 25px;
-  position: absolute;
-}
-
-label{
-  top: 40px;
-  left: 100px;
-  background: #ab101a;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-label:before, label:after{
-  content:'';
-  height: 5px;
-  top: 5px;
-  width: 30px;
-  background: black;
-  left: 0px;
-}
-
-label:after{
-  top: 15px;
-}
-
-input:checked ~ label{
-  background: transparent;
-}
-
-input:checked ~ label:before, input:checked ~ label:after{
-  background: #ab101a;
-  transform: rotate(-45deg);
-}
-
-input:checked ~ label:after{
-  transform: rotate(45deg);
-  top: 23px;
-}
-
-input:checked ~ nav{
-  width: 800px;
-  border-radius: 10px;
-}
-
-label {
-  position: relative;
-  top: 150px;
-  left: -100px;
 }
 
 @media screen and (max-width: 420px) {
@@ -359,7 +323,6 @@ label {
 
   .corpo-info{
     font-size: 18px;
-  
   }
 
   .user-info{
@@ -402,5 +365,13 @@ label {
     max-width: 60%;
     min-width: 300px;
     display: block;
+  }
+  .datainicial{
+    position: relative;
+    left: -25px;
+  }
+  footer{
+    margin-top: 60px;
+    height: 300px;
   }
 }

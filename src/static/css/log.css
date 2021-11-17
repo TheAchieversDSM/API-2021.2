@@ -17,11 +17,14 @@ main {
     position: relative;
     margin: auto;
     min-width: 300px;
-    max-width: 1000px;
+    max-width: 100%;
     margin-bottom: 50px;
     margin-top: 50px;
     padding: 10px;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 header img {
@@ -77,6 +80,9 @@ form {
     background-color: #3A4952;
     border-radius: 10px;
     color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 #codigo {
@@ -166,8 +172,37 @@ p {
     border-radius: 10px;
 }
 
-@media screen and (max-width: 415px){
+@media screen and (max-width: 420px){
     input{
         width: 80%;
+    }
+    .login{
+        max-width: 85%;
+        min-width: 200px;
+    }
+    .campos{
+        max-width: 100%;
+        min-width: 200px;
+    }
+    .alerta{
+        max-width: 85%;
+        min-width: 200px;
+    }
+    .cad{
+        padding-left: 10px;
+        max-width: 100%;
+        min-width: 250px;
+        padding-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    .confirmacao{
+        max-width: 90%;
+        min-width: 320px;
+        height: fit-content;
+    }
+    .ticonf{
+        font-size: 30px;
     }
 }

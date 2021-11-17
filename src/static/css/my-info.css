@@ -147,3 +147,12 @@ footer p {
  padding: 10px;
  margin: auto;
 }
+
+@media screen and (max-width: 420px) {
+    footer{
+        height: 300px;
+      }
+    .info h2{
+        font-size: 25px;
+    }
+}

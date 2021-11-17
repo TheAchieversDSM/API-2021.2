@@ -165,11 +165,15 @@ p {
     color: black;
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 420px) {
     input{
         width: 80%;
     }
     .cadastro{
         width: 100%;
+    }
+    .curso{
+        min-width: 250px;
+        max-width: 80%;
     }
 }
