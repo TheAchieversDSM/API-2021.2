@@ -218,16 +218,19 @@ def feed():
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
         autoria = cursor.fetchall()
 
+        # Checando Se o Usuário possui Mensagens arquivadas.
         cursor = mysql.connection.cursor()
         cursor.execute(
             "SELECT * FROM arquivado where user_id = %s", (user_id,))
         possui = cursor.fetchall()
 
+        # Se o Usuário possuir Mensagens arquivadas, Exibir somente as que não estão arquivadas
         if possui:
             cursor = mysql.connection.cursor()
             info = cursor.execute(
-                "SELECT feed.post_id,post_titulo, post_data, post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed INNER JOIN arquivado ON arquivado.user_id = %s", (user_id,))
-        # Puxando informações do banco de dados.
+                "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC", )
+
+        # Se o Usuário Não possuir Mensagens arquivadas, Exibir todas as mensagens.
         else:
             cursor = mysql.connection.cursor()
             info = cursor.execute(
@@ -293,9 +296,9 @@ def envio_informacao():
             cursor.execute("select * from feed where post_assunto = %s and post_titulo = %s and post_mensagem = %s and post_remetente = %s and car_nome = %s",
                            (assunto, titulo, mensagem, remetente, destinatario))
             info = cursor.fetchone()
+            post_id = info[0]
 
             for cur in curso:
-                post_id = info[0]
                 cursor = mysql.connection.cursor()
                 cursor.execute(
                     "insert into recebe (post_id,cur_id) values(%s, %s)", (post_id, cur))
@@ -432,7 +435,6 @@ def edit():
 
 ###### Rota para a página de alteração de senha ######
 
-
 @app.route('/logout')
 def logout():
     # Deslogando o usuário da Sessão.
@@ -552,7 +554,18 @@ def filtrar_feed_ajax():
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
 
-        sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
+        # Checando Se o Usuário possui Mensagens arquivadas.
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            "SELECT * FROM arquivado where user_id = %s", (user_id,))
+        possui = cursor.fetchall()
+
+        # Se o Usuário possuir Mensagens arquivadas, Exibir somente as que não estão arquivadas
+        if possui:
+            sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id))"
+
+        else:
+            sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
 
         assuntosSelecionados = getValoresSelecionadosParaSQL(
             request.form['hidden_assunto'])
@@ -562,7 +575,10 @@ def filtrar_feed_ajax():
             request.form['hidden_destinatario'])
 
         if(existemFiltrosSelecionados()):
-            sql = sql + " WHERE "
+            if possui:
+                sql = sql + "AND"
+            else:
+                sql = sql + " WHERE "
             if(assuntoFoiSelecionado()):
                 sql = sql + " post_assunto IN (" + assuntosSelecionados + ") "
 
