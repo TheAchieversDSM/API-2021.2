@@ -143,6 +143,7 @@ select {
   width: 5px;
   position: relative;
   display: inline-block;
+  float: left;
 }
 
 .dropbtn{
@@ -286,23 +287,25 @@ nav{
   background-color: white;
   padding: 5px;
   border-radius: 10px;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  display:block;
+  text-align: center;
 }
 
 .nav-menu > ul{
   padding-left:10px;
   padding-right: 10px;
+  text-align: center;
 }
 
 .nav-menu > ul, li{
   display: inline;
   list-style: none;
   font-size: 20px;
-
 }
 
 .nav-menu a {
-  text-decoration: none;
   margin-right: 15px;
 }
 
@@ -310,7 +313,7 @@ i {
   margin-right: 10px;
 }
 
-.nav-menu > a:hover{
+.nav-menu .esconder-mobile:hover{
   color: #ab101a;
   cursor: pointer;  
 }
