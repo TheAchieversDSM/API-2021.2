@@ -91,12 +91,12 @@
             <div class="container">
               <div id="inicial" class="datainicial">
                 <p>Entre: </p>
-                <input type="date" name="" max="" id="fromDate">
+                <input type="date" name="dataInicial" id="dataInicial">
               </div>
 
               <div id="final" class="datafim">
                 <p>Até: </p>
-                <input type="date" name="" min="" id="toDate">
+                <input type="date" name="dataFinal" id="dataFinal">
               </div>
             </div>
           </form>
@@ -203,6 +203,14 @@
 
       $('#select_destinatario').change(function () {
         $('#hidden_destinatario').val($('#select_destinatario').val());
+        $('#form_filtros').submit();
+      });
+
+      $('#dataInicial').change(function () {
+        $('#form_filtros').submit();
+      });
+
+      $('#dataFinal').change(function () {
         $('#form_filtros').submit();
       });
 

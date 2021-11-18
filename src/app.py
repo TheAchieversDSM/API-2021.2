@@ -217,8 +217,9 @@ def feed():
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
         autoria = cursor.fetchall()
-
-        cursor = mysql.connection.cursor()
+        
+        ##Código comentado porque a tabela arquivado não existe no bd
+        '''cursor = mysql.connection.cursor()
         cursor.execute(
             "SELECT * FROM arquivado where user_id = %s", (user_id,))
         possui = cursor.fetchall()
@@ -228,10 +229,10 @@ def feed():
             info = cursor.execute(
                 "SELECT feed.post_id,post_titulo, post_data, post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed INNER JOIN arquivado ON arquivado.user_id = %s", (user_id,))
         # Puxando informações do banco de dados.
-        else:
-            cursor = mysql.connection.cursor()
-            info = cursor.execute(
-                "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
+        else:'''
+        cursor = mysql.connection.cursor()
+        info = cursor.execute(
+            "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
         if info > 0:
             infoDetails = cursor.fetchall()
 
@@ -551,7 +552,11 @@ def filtrar_feed_ajax():
     autoria = cursor.fetchall()
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
+        dataInicial = request.form['dataInicial']
+        print(dataInicial)
 
+        dataFinal = request.form['dataFinal']
+        print(dataFinal)
         sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
 
         assuntosSelecionados = getValoresSelecionadosParaSQL(
