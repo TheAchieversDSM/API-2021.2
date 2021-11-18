@@ -227,13 +227,13 @@ Controle de hierarquia (CRUD) | Alta | Completa
 Estilizar páginas | Média | Completa
 Ajustes no banco de dados | Alta | Completa
 Introdução da funcionalidade total dos filtros | Alta | Em andamento
-Introdução da função "arquivar" | Média | Não iniciada
-Introdução da função "anexar" | Alta | Não iniciada
+Introdução da função "arquivar" | Média | Completa
+Introdução da função "anexar" | Alta | Em andamento
 Automatização das hierarquias | Alta | Não iniciada
-Testes unitários do sistema | Alta | Não iniciada
-Testes de integração | Alta | Não iniciada
-Testes de aceitação | Alta | Não iniciada
-Melhorias contínuas | Alta | Não iniciada
+Testes unitários do sistema | Alta | Em andamento
+Testes de integração | Alta | Em andamento
+Testes de aceitação | Alta | Em andamento
+Melhorias contínuas | Alta | Em andamento
  
 ↑ [Voltar ao início](#inicio) 
 
@@ -276,8 +276,8 @@ Sprint | Nome da tarefa | Prioridade | Status
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
 #4 | Introdução da funcionalidade total dos filtros | Alta | Em andamento
-#4 | Introdução da função "arquivar" | Média | Não iniciada
-#4 | Introdução da função "anexar" | Alta | Não iniciada
+#4 | Introdução da função "arquivar" | Média | Completa
+#4 | Introdução da função "anexar" | Alta | Em andamento
 #4 | Automatização das hierarquias | Alta | Não iniciada
 #4 | Testes unitários do sistema | Alta | Em andamento
 #4 | Testes de integração | Alta | Em andamento
