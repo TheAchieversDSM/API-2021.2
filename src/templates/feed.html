@@ -32,13 +32,13 @@
     <nav>
       <div class="nav-menu">
         <ul>
-          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
           <li><a href="/area-usuario"><i class="fas fa-user"></i> Minha área</a></li>
           {% if perm == 1 or perm == 2 %}
-          <li><a href="/envio-informacao"><i class="fas fa-pen"></i> Escrever publicação</a></li>
+          <li><a href="/envio-informacao"><i class="fas fa-pen"></i>Escrever publicação</a></li>
           {% endif %}
           {% if perm == 2 %}
-          <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i> Editar usuário</a></li>
+          <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i>Editar usuário</a></li>
           {% endif %}
         </ul>
       </div>

@@ -374,4 +374,8 @@ li:hover{
     margin-top: 60px;
     height: 300px;
   }
+  nav a{
+    display: none;
+    visibility: hidden;
+  }
 }
