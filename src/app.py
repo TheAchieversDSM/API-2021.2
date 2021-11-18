@@ -513,8 +513,11 @@ def arquivar_post(id):
     return redirect(url_for('feed'))
 
 
+def periodoFeedFoiSelecionado():
+    return request.form['dataInicial'] != "" and request.form['dataFinal'] != ""
+
 def existemFiltrosSelecionados():
-    return assuntoFoiSelecionado() or cursoFoiSelecionada() or destinatarioFoiSelecionado()
+    return assuntoFoiSelecionado() or cursoFoiSelecionada() or destinatarioFoiSelecionado() or periodoFeedFoiSelecionado()
 
 
 def assuntoFoiSelecionado():
@@ -554,6 +557,8 @@ def filtrar_feed_ajax():
 
         dataInicial = request.form['dataInicial']
         dataFinal = request.form['dataFinal']
+        print("Data Inicial: " + dataInicial)
+        print("Data Final: " + dataFinal)
 
         sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
 
