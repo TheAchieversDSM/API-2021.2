@@ -5,7 +5,7 @@ from random import randint
 from flask_mail import *
 from MySQLdb.cursors import Cursor
 
-app = Flask(__name__, template_folder="src/templates", static_folder="src/static")
+app = Flask(__name__)
 
 
 ###### Configuração FlaskMySQLdb ######
@@ -218,10 +218,20 @@ def feed():
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
         autoria = cursor.fetchall()
 
-    # Puxando informações do banco de dados.
         cursor = mysql.connection.cursor()
-        info = cursor.execute(
-            "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
+        cursor.execute(
+            "SELECT * FROM arquivado where user_id = %s", (user_id,))
+        possui = cursor.fetchall()
+
+        if possui:
+            cursor = mysql.connection.cursor()
+            info = cursor.execute(
+                "SELECT feed.post_id,post_titulo, post_data, post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed INNER JOIN arquivado ON arquivado.user_id = %s", (user_id,))
+        # Puxando informações do banco de dados.
+        else:
+            cursor = mysql.connection.cursor()
+            info = cursor.execute(
+                "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
         if info > 0:
             infoDetails = cursor.fetchall()
 
@@ -310,7 +320,7 @@ def envio_informacao():
 ###### Rota para a página de recuperação de senha ######
 
 
-@ app.route('/recuperar-senha/', methods=['GET', 'POST'])
+@app.route('/recuperar-senha/', methods=['GET', 'POST'])
 def recsenha():
     if request.method == 'POST':
         # Solicitando o email do usuario do formulario.
@@ -344,7 +354,7 @@ def recsenha():
 ###### Rota para a página de alteração de senha ######
 
 
-@ app.route('/alterar-senha/', methods=['GET', 'POST'])
+@app.route('/alterar-senha/', methods=['GET', 'POST'])
 def novasenha():
     if request.method == 'POST':
         # Solicitando email (argumentos da url) e senha (formulário)
@@ -364,7 +374,7 @@ def novasenha():
 ###### Rota para a página de edição de usuário ######
 
 
-@ app.route("/editar-usuario/", methods=['GET', "POST"])
+@app.route("/editar-usuario/", methods=['GET', "POST"])
 def edit():
     # Checando se o usuário está logado.
     if 'loggedin' in session:
@@ -487,8 +497,19 @@ def editar_post(id):
                        (titulo, assunto, mensagem, destinatario, id_post))
 
         return redirect(url_for('feed'))
-
     return render_template("send-info.html", perm=perm, info=info)
+
+
+@app.route("/arquivar-post/<id>")
+def arquivar_post(id):
+    id_usuario = session['id']
+    id_post = id
+
+    cursor = mysql.connection.cursor()
+    cursor.execute(
+        "INSERT into arquivado (post_id,user_id) values (%s,%s)", (id_post, id_usuario))
+    mysql.connection.commit()
+    return redirect(url_for('feed'))
 
 
 def existemFiltrosSelecionados():

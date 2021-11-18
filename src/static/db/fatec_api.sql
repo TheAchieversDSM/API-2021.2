@@ -106,7 +106,7 @@ create table if not exists `fatec_api`.`publica` (
 
 select * from publica;
 
-/* TABELA */
+/* TABELA DE MENSAGENS RECEBIDAS */
 
 create table if not exists `fatec_api`.`recebe` (
 	`post_id` int not null,
@@ -116,4 +116,19 @@ create table if not exists `fatec_api`.`recebe` (
         references `feed`(`post_id`)
 );
 
-select * from recebe
+select * from recebe;
+
+/* TABELA DE MENSAGENS ARQUIVADAS */
+
+create table if not exists `fatec_api`.`arquivado` (
+	`post_id` int not null,
+	`user_id` int not null,
+    constraint `fk_post_id_3`
+		foreign key (`post_id`)
+        references`feed`(`post_id`),
+	constraint `fk_user_id_2`
+		foreign key (`user_id`)
+        references `usuario`(`user_id`)
+);
+
+select * from arquivado

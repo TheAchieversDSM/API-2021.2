@@ -184,7 +184,6 @@ select {
   display: block;
 }
 
-
 .info {
   background-color: #C4C4C4;
   border-radius: 10px;
@@ -287,24 +286,37 @@ nav{
   background-color: white;
   padding: 5px;
   border-radius: 10px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
+}
+
+.nav-menu > ul{
+  padding-left:10px;
+  padding-right: 10px;
 }
 
 .nav-menu > ul, li{
   display: inline;
   list-style: none;
   font-size: 20px;
+
 }
 
-.nav-menu > li{
-  margin-right: 40px;
+.nav-menu a {
+  text-decoration: none;
+  margin-right: 15px;
 }
 
-li:hover{
+i {
+  margin-right: 10px;
+}
+
+.nav-menu > a:hover{
   color: #ab101a;
-  cursor: pointer;
+  cursor: pointer;  
+}
+
+.esconder-mobile {
+  display: inline-block;
 }
 
 @media screen and (max-width: 420px) {
@@ -348,6 +360,10 @@ li:hover{
     width: 100%;
   }
 
+  .esconder-mobile {
+    display: none;
+  }
+
   .env{
     position: absolute;
     top: 900px;
@@ -374,8 +390,7 @@ li:hover{
     margin-top: 60px;
     height: 300px;
   }
-  nav a{
-    display: none;
-    visibility: hidden;
+  .nav-menu i{
+    font-size: 30px;
   }
 }

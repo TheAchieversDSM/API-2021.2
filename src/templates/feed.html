@@ -32,13 +32,13 @@
     <nav>
       <div class="nav-menu">
         <ul>
-          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
-          <li><a href="/area-usuario"><i class="fas fa-user"></i> Minha área</a></li>
+          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile"> Sair</div></a></li>
+          <li><a href="/area-usuario"><i class="fas fa-user"></i><div class="esconder-mobile"> Minha área</div></a></li>
           {% if perm == 1 or perm == 2 %}
-          <li><a href="/envio-informacao"><i class="fas fa-pen"></i>Escrever publicação</a></li>
+            <li><a href="/envio-informacao"><i class="fas fa-pen"></i><div class="esconder-mobile"> Escrever publicação</div></a></li>
           {% endif %}
           {% if perm == 2 %}
-          <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i>Editar usuário</a></li>
+            <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i><div class="esconder-mobile"> Editar usuário</div></a></li>
           {% endif %}
         </ul>
       </div>
@@ -64,7 +64,8 @@
 
               <input type="hidden" name="hidden_assunto" id="hidden_assunto" />
 
-              <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=240px multiple title="Destinatário">
+              <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=240px multiple
+                title="Destinatário">
                 {% for cargo in cargos %}
                 <option value="{{cargo[0]}}">{{cargo[1]}}</option>
                 {% endfor %}
@@ -84,9 +85,9 @@
                 <option value="8">Projetos de Estruturas Aeronáuticas</option>
               </select>
             </div>
-            
+
             <input type="hidden" name="hidden_curso" id="hidden_curso" />
-            
+
             <div class="container">
               <div id="inicial" class="datainicial">
                 <p>Entre: </p>
@@ -98,10 +99,6 @@
                 <input type="date" name="" min="" id="toDate">
               </div>
             </div>
-
-            
-
-
           </form>
         </section>
 
@@ -114,36 +111,38 @@
         <div id="divContent" class='contents'>
           {% for info in infoDetails %}
           <section class="info">
-            {% endif %}
-            {% endfor %}
-            <div class="user-info">
+            
               <div class="dropdown">
                 <button class="dropbtn"><i onclick="mostrar()" class="fas fa-ellipsis-v"></i></button>
                 <div class="dropdown-content">
+                  <a href="/arquivar-post/{{info[0]}}" class="mostrar"><i class="fas fa-archive">Arquivar</i></a>
                   {% for aut in autoria %}
-                  {% if aut[1] == info[0] %}
-                  <a href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i>Editar</a>
-                  <a href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i>Excluir</a>
+                    {% if aut[1] == info[0] %}
+                      <a href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i>Editar</a>
+                      <a href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i>Excluir</a>
+                    {% endif %}
+                  {% endfor %}
                 </div>
               </div>
-              
+
               <div class="titulo">
                 <h3>{{info[1]}}</h3>
               </div>
 
-              <div>
+              <div class="user-info">
                 <p><em>{{info[6]}}</em> enviou para <em>{{info[5]}}</em></p>
                 <p class="data">{{info[2]}}</p>
               </div>
 
-            </div>
-            <div class="corpo-info">
-              <p> {{info[4]}}</p>
-            </div>
+              <div class="corpo-info">
+                <p> {{info[4]}}</p>
+              </div>
+            
           </section>
           {% endfor %}
         </div>
       </div>
+   
       <!--fim bloco em python para display-->
 
   </main>
