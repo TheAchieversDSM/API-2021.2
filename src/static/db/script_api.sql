@@ -36,3 +36,8 @@ select * from cargo;
 
 insert into usuario (user_id, user_email, user_nome, user_senha, confirmacao) values (1, 'adm@fatec.sp.gov.br', 'Administrador', 'fatec', 1);
 insert into exerce (car_id, user_id) values (1, 1);
+insert into exerce (car_id, user_id) values (2, 1);
+insert into exerce (car_id, user_id) values (3, 1);
+
+insert into participa (cur_id,user_id) values (2, 1);
+insert into participa (cur_id,user_id) values (3, 1); 

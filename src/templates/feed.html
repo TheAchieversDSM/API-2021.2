@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' type="text/css" href='../static/css/feed.css'>
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-  <script src="../static/js/script.js"></script>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
@@ -51,8 +50,7 @@
         <section class="filter">
           <form method="post" id="form_filtros">
             <div id="top" class="filtros">
-              <select id="select_assunto" name="select_assunto" class="selectpicker" data-width=240px multiple
-                title="Assunto">
+              <select id="select_assunto" name="select_assunto" class="selectpicker" data-width=240px multiple title="Assunto">
                 <option value="Covid-19">Covid-19</option>
                 <option value="Estágio">Estágio</option>
                 <option value="Evento">Evento</option>
@@ -64,8 +62,7 @@
 
               <input type="hidden" name="hidden_assunto" id="hidden_assunto" />
 
-              <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=240px multiple
-                title="Destinatário">
+              <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=240px multiple title="Destinatário">
                 {% for cargo in cargos %}
                 <option value="{{cargo[0]}}">{{cargo[1]}}</option>
                 {% endfor %}
@@ -73,16 +70,10 @@
 
               <input type="hidden" name="hidden_destinatario" id="hidden_destinatario" />
 
-              <select id="select_curso" name="select_curso" class="selectpicker" data-width='240px' multiple
-                title="Curso">
-                <option value="1">Análise e Desenvolvimento de Sistemas</option>
-                <option value="2">Banco de Dados</option>
-                <option value="3">Desenvolvimento de Software Multiplataforma</option>
-                <option value="4">Gestão da Produção Industrial</option>
-                <option value="5">Logística</option>
-                <option value="6">Manufatura Avançada</option>
-                <option value="7">Manutenção de Aeronaves</option>
-                <option value="8">Projetos de Estruturas Aeronáuticas</option>
+              <select id="select_curso" name="select_curso" class="selectpicker" data-width='240px' multiple title="Curso">
+                {% for curso in cursos %}
+                <option value="{{curso[0]}}">{{curso[1]}}</option>
+                {% endfor %}
               </select>
             </div>
 

@@ -182,13 +182,15 @@ def myinfo():
 
 def listarCursos():
     cur = mysql.connection.cursor()
-    cur.execute("select cur_id, cur_nome from curso")
+    cur.execute("select c.cur_id, c.cur_nome from curso c WHERE cur_id IN (SELECT p.cur_id from participa p WHERE p.user_id = %s)", (session['id'],))
+    
     return cur.fetchall()
 
 
 def listarCargos():
     cur = mysql.connection.cursor()
-    cur.execute("select car_id, car_nome from cargo")
+    cur.execute("select c.car_id, c.car_nome from cargo c WHERE c.car_id IN (SELECT e.car_id from exerce e WHERE e.user_id=%s)", (session['id'],))
+    
     return cur.fetchall()
 
 ###### Rota para a página do feed ######
@@ -219,7 +221,7 @@ def feed():
         autoria = cursor.fetchall()
         
         ##Código comentado porque a tabela arquivado não existe no bd
-        '''cursor = mysql.connection.cursor()
+        cursor = mysql.connection.cursor()
         cursor.execute(
             "SELECT * FROM arquivado where user_id = %s", (user_id,))
         possui = cursor.fetchall()
@@ -229,10 +231,10 @@ def feed():
             info = cursor.execute(
                 "SELECT feed.post_id,post_titulo, post_data, post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed INNER JOIN arquivado ON arquivado.user_id = %s", (user_id,))
         # Puxando informações do banco de dados.
-        else:'''
-        cursor = mysql.connection.cursor()
-        info = cursor.execute(
-            "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
+        else:
+            cursor = mysql.connection.cursor()
+            info = cursor.execute(
+                "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
         if info > 0:
             infoDetails = cursor.fetchall()
 
@@ -552,14 +554,14 @@ def filtrar_feed_ajax():
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
     autoria = cursor.fetchall()
+
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
-
-        dataInicial = request.form['dataInicial']
-        dataFinal = request.form['dataFinal']
         
         sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
 
+        dataInicial = request.form['dataInicial']
+        dataFinal = request.form['dataFinal']
         assuntosSelecionados = getValoresSelecionadosParaSQL(
             request.form['hidden_assunto'])
         cursoSelecionadas = getValoresSelecionadosParaSQL(
