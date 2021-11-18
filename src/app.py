@@ -557,9 +557,7 @@ def filtrar_feed_ajax():
 
         dataInicial = request.form['dataInicial']
         dataFinal = request.form['dataFinal']
-        print("Data Inicial: " + dataInicial)
-        print("Data Final: " + dataFinal)
-
+        
         sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
 
         assuntosSelecionados = getValoresSelecionadosParaSQL(
@@ -573,6 +571,10 @@ def filtrar_feed_ajax():
             sql = sql + " WHERE "
 
             if(periodoFeedFoiSelecionado()):
+                dataInicial = dataInicial + " 00:00"
+                dataFinal = dataFinal + " 23:59"
+                print("Data Inicial: " + dataInicial)
+                print("Data Final: " + dataFinal)
                 sql = sql + " (post_data BETWEEN '" + dataInicial + "' AND '" + dataFinal + "')"
 
             if(assuntoFoiSelecionado()):
