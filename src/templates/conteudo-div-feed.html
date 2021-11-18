@@ -1,11 +1,11 @@
 {% for info in infoDetails %}
 <section class="info">
+    <a href="/arquivar-post/{{info[0]}}" class="mostrar"><i class="fas fa-archive">Arquivar</i></a>
     {% for aut in autoria %}
-    {% if aut[1] == info[0] %}
-    <a  href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i> Editar</a>
-    <a  href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i> Excluir</a>
-
-    {% endif %}
+        {% if aut[1] == info[0] %}
+            <a  href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i> Editar</a>
+            <a  href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i> Excluir</a>
+        {% endif %} 
     {% endfor %}
     <div class="user-info">
         <i onclick="mostrar()" class="fas fa-ellipsis-v"></i>

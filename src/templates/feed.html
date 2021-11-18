@@ -32,13 +32,13 @@
     <nav>
       <div class="nav-menu">
         <ul>
-          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile"> Sair</div></a></li>
-          <li><a href="/area-usuario"><i class="fas fa-user"></i><div class="esconder-mobile"> Minha área</div></a></li>
+          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile">Sair</div></a></li>
+          <li><a href="/area-usuario"><i class="fas fa-user"></i><div class="esconder-mobile">Minha área</div></a></li>
           {% if perm == 1 or perm == 2 %}
-            <li><a href="/envio-informacao"><i class="fas fa-pen"></i><div class="esconder-mobile"> Escrever publicação</div></a></li>
+            <li><a href="/envio-informacao"><i class="fas fa-pen"></i><div class="esconder-mobile">Escrever publicação</div></a></li>
           {% endif %}
           {% if perm == 2 %}
-            <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i><div class="esconder-mobile"> Editar usuário</div></a></li>
+            <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i><div class="esconder-mobile">Editar usuário</div></a></li>
           {% endif %}
         </ul>
       </div>
@@ -51,38 +51,35 @@
         <section class="filter">
           <form method="post" id="form_filtros">
             <div id="top" class="filtros">
-              <select id="select_assunto" name="select_assunto" class="selectpicker" data-width=240px multiple
-                title="Assunto">
-                <option value="Covid-19">Covid-19</option>
-                <option value="Estágio">Estágio</option>
-                <option value="Evento">Evento</option>
-                <option value="Notas & similares">Notas & similares</option>
-                <option value="Recados">Recados</option>
-                <option value="Reunião">Reunião</option>
-                <option value="Urgente">Urgente</option>
+              <select id="select_assunto" name="select_assunto" class="selectpicker" data-width=240px multiple data-actions-box="true" title="Assunto">
+                <option value="Covid-19" style="font-size: 16px;">Covid-19</option>
+                <option value="Estágio" style="font-size: 16px;">Estágio</option>
+                <option value="Evento" style="font-size: 16px;">Evento</option>
+                <option value="Notas & similares" style="font-size: 16px;">Notas & similares</option>
+                <option value="Recados" style="font-size: 16px;">Recados</option>
+                <option value="Reunião" style="font-size: 16px;">Reunião</option>
+                <option value="Urgente" style="font-size: 16px;">Urgente</option>
               </select>
 
               <input type="hidden" name="hidden_assunto" id="hidden_assunto" />
 
-              <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=240px multiple
-                title="Destinatário">
+              <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=240px multiple data-actions-box="true" title="Destinatário">
                 {% for cargo in cargos %}
-                <option value="{{cargo[0]}}">{{cargo[1]}}</option>
+                <option value="{{cargo[0]}}" style="font-size: 16px;">{{cargo[1]}}</option>
                 {% endfor %}
               </select>
 
               <input type="hidden" name="hidden_destinatario" id="hidden_destinatario" />
 
-              <select id="select_curso" name="select_curso" class="selectpicker" data-width='240px' multiple
-                title="Curso">
-                <option value="1">Análise e Desenvolvimento de Sistemas</option>
-                <option value="2">Banco de Dados</option>
-                <option value="3">Desenvolvimento de Software Multiplataforma</option>
-                <option value="4">Gestão da Produção Industrial</option>
-                <option value="5">Logística</option>
-                <option value="6">Manufatura Avançada</option>
-                <option value="7">Manutenção de Aeronaves</option>
-                <option value="8">Projetos de Estruturas Aeronáuticas</option>
+              <select id="select_curso" name="select_curso" class="selectpicker" data-width='240px' multiple data-actions-box="true" title="Curso">
+                <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
+                <option value="2" style="font-size: 16px;">Banco de Dados</option>
+                <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
+                <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
+                <option value="5" style="font-size: 16px;">Logística</option>
+                <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
+                <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
+                <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
               </select>
             </div>
 
@@ -137,7 +134,6 @@
               <div class="corpo-info">
                 <p> {{info[4]}}</p>
               </div>
-            
           </section>
           {% endfor %}
         </div>

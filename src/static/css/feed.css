@@ -72,6 +72,7 @@ main {
   padding-top: 15px;
   padding-bottom: 15px;
   line-height: 50px;
+  font-size: 16px;
 }
 
 .bootstrap-select .btn {
@@ -125,7 +126,7 @@ textarea:focus, input:focus, select:focus {
 select {  
   background-color: #C4C4C4;
   border: #C4C4C4;
-  font-size: 14pt;
+  font-size: 16px;
 }
 
 .escondido{
@@ -133,7 +134,7 @@ select {
   transition: 0.5s;
 }
 
-.fas.fa-ellipsis-v{
+.fas.fa-ellipsis-v {
   position: relative;
   cursor: pointer;
   display: inline-block;
@@ -146,7 +147,7 @@ select {
   float: left;
 }
 
-.dropbtn{
+.dropbtn {
   padding: 0; 
   border: none; 
   background: none;
@@ -158,7 +159,9 @@ select {
   color: #ab101a;
 }
 
-.dropdown-content a:hover {background-color: #929292}
+.dropdown-content a:hover {
+  background-color: #929292
+}
 
 .dropdown-content {
   display: none;
@@ -204,7 +207,8 @@ select {
 .titulo {
   font-size: 18px;
   margin-bottom: 5px;
-
+  margin-left: 20px;
+  text-align: left;
 }
 
 em {
@@ -287,9 +291,10 @@ nav{
   background-color: white;
   padding: 5px;
   border-radius: 10px;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  display:block;
+  display: block;
   text-align: center;
 }
 
@@ -309,12 +314,11 @@ nav{
   margin-right: 15px;
 }
 
-i {
-  margin-right: 10px;
-}
 
-.nav-menu .esconder-mobile:hover{
-  color: #ab101a;
+.nav-menu a:hover{
+  background-color: #ab101a;
+  border-radius: 5px;
+  padding: 8px;
   cursor: pointer;  
 }
 
@@ -395,5 +399,9 @@ i {
   }
   .nav-menu i{
     font-size: 30px;
+  }
+  .nav-menu{
+    max-width: 80%;
+    min-width: 300px;
   }
 }
