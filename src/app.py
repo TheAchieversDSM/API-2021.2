@@ -543,7 +543,6 @@ def getValoresSelecionadosParaSQL(valorCampoHidden):
 
     return valoresSelecionados
 
-
 @app.route("/filtrar_feed_ajax", methods=["POST", "GET"])
 def filtrar_feed_ajax():
     user_id = session['id']
@@ -552,11 +551,10 @@ def filtrar_feed_ajax():
     autoria = cursor.fetchall()
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
-        dataInicial = request.form['dataInicial']
-        print(dataInicial)
 
+        dataInicial = request.form['dataInicial']
         dataFinal = request.form['dataFinal']
-        print(dataFinal)
+
         sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
 
         assuntosSelecionados = getValoresSelecionadosParaSQL(
@@ -568,12 +566,20 @@ def filtrar_feed_ajax():
 
         if(existemFiltrosSelecionados()):
             sql = sql + " WHERE "
+
+            if(periodoFeedFoiSelecionado()):
+                sql = sql + " (post_data BETWEEN '" + dataInicial + "' AND '" + dataFinal + "')"
+
             if(assuntoFoiSelecionado()):
+
+                if(periodoFeedFoiSelecionado()):
+                    sql = sql + " AND "
+
                 sql = sql + " post_assunto IN (" + assuntosSelecionados + ") "
 
             if(cursoFoiSelecionada()):
 
-                if(assuntoFoiSelecionado()):
+                if(assuntoFoiSelecionado() or periodoFeedFoiSelecionado()):
                     sql = sql + " AND "
 
                 sql = sql + \
@@ -584,7 +590,7 @@ def filtrar_feed_ajax():
 
                 print("Cargos selecionados: " + destinatariosSelecionados)
 
-                if(assuntoFoiSelecionado() or cursoFoiSelecionada()):
+                if(assuntoFoiSelecionado() or cursoFoiSelecionada() or periodoFeedFoiSelecionado()):
                     sql = sql + " AND "
                 # TODO criar SQL para filtrar com base nos destinatarios selecionados
                 sql = sql + " 1 = 1 "
@@ -598,6 +604,7 @@ def filtrar_feed_ajax():
         infoDetails = cursor.fetchall()
 
     return render_template('conteudo-div-feed.html', infoDetails=infoDetails, autoria=autoria)
+
 
 
 if __name__ == '__main__':

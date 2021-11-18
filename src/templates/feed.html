@@ -173,22 +173,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <script>
-    var fromDate;
-    $('#fromDate').on('change', function () {
-      fromDate = $(this).val();
-      $('#toDate').prop('max', function () {
-        return fromDate;
-      })
-    });
-
-    var toDate;
-    $('#toDate').on('change', function () {
-      toDate = $(this).val();
-      $('#fromDate').prop('min', function () {
-        return toDate;
-      })
-    });
-
+   
     $(document).ready(function () {
 
       $('#select_assunto').change(function () {
