@@ -182,13 +182,15 @@ def myinfo():
 
 def listarCursos():
     cur = mysql.connection.cursor()
-    cur.execute("select cur_id, cur_nome from curso")
+    cur.execute("select c.cur_id, c.cur_nome from curso c WHERE cur_id IN (SELECT p.cur_id from participa p WHERE p.user_id = %s)", (session['id'],))
+    
     return cur.fetchall()
 
 
 def listarCargos():
     cur = mysql.connection.cursor()
-    cur.execute("select car_id, car_nome from cargo")
+    cur.execute("select c.car_id, c.car_nome from cargo c WHERE c.car_id IN (SELECT e.car_id from exerce e WHERE e.user_id=%s)", (session['id'],))
+    
     return cur.fetchall()
 
 ###### Rota para a página do feed ######
@@ -514,8 +516,11 @@ def arquivar_post(id):
     return redirect(url_for('feed'))
 
 
+def periodoFeedFoiSelecionado():
+    return request.form['dataInicial'] != "" and request.form['dataFinal'] != ""
+
 def existemFiltrosSelecionados():
-    return assuntoFoiSelecionado() or cursoFoiSelecionada() or destinatarioFoiSelecionado()
+    return assuntoFoiSelecionado() or cursoFoiSelecionada() or destinatarioFoiSelecionado() or periodoFeedFoiSelecionado()
 
 
 def assuntoFoiSelecionado():
@@ -544,13 +549,13 @@ def getValoresSelecionadosParaSQL(valorCampoHidden):
 
     return valoresSelecionados
 
-
 @app.route("/filtrar_feed_ajax", methods=["POST", "GET"])
 def filtrar_feed_ajax():
     user_id = session['id']
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
     autoria = cursor.fetchall()
+
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
 
@@ -567,6 +572,8 @@ def filtrar_feed_ajax():
         else:
             sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
 
+        dataInicial = request.form['dataInicial']
+        dataFinal = request.form['dataFinal']
         assuntosSelecionados = getValoresSelecionadosParaSQL(
             request.form['hidden_assunto'])
         cursoSelecionadas = getValoresSelecionadosParaSQL(
@@ -576,15 +583,28 @@ def filtrar_feed_ajax():
 
         if(existemFiltrosSelecionados()):
             if possui:
-                sql = sql + "AND"
+                sql = sql + " AND"
             else:
                 sql = sql + " WHERE "
+             
+
+            if(periodoFeedFoiSelecionado()):
+                dataInicial = dataInicial + " 00:00"
+                dataFinal = dataFinal + " 23:59"
+                print("Data Inicial: " + dataInicial)
+                print("Data Final: " + dataFinal)
+                sql = sql + " (post_data BETWEEN '" + dataInicial + "' AND '" + dataFinal + "')"
+
             if(assuntoFoiSelecionado()):
+
+                if(periodoFeedFoiSelecionado()):
+                    sql = sql + " AND "
+
                 sql = sql + " post_assunto IN (" + assuntosSelecionados + ") "
 
             if(cursoFoiSelecionada()):
 
-                if(assuntoFoiSelecionado()):
+                if(assuntoFoiSelecionado() or periodoFeedFoiSelecionado()):
                     sql = sql + " AND "
 
                 sql = sql + \
@@ -595,7 +615,7 @@ def filtrar_feed_ajax():
 
                 print("Cargos selecionados: " + destinatariosSelecionados)
 
-                if(assuntoFoiSelecionado() or cursoFoiSelecionada()):
+                if(assuntoFoiSelecionado() or cursoFoiSelecionada() or periodoFeedFoiSelecionado()):
                     sql = sql + " AND "
                 # TODO criar SQL para filtrar com base nos destinatarios selecionados
                 sql = sql + " 1 = 1 "
@@ -609,6 +629,7 @@ def filtrar_feed_ajax():
         infoDetails = cursor.fetchall()
 
     return render_template('conteudo-div-feed.html', infoDetails=infoDetails, autoria=autoria)
+
 
 
 if __name__ == '__main__':

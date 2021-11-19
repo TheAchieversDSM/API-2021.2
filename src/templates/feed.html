@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' type="text/css" href='../static/css/feed.css'>
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-  <script src="../static/js/script.js"></script>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
@@ -72,14 +71,9 @@
               <input type="hidden" name="hidden_destinatario" id="hidden_destinatario" />
 
               <select id="select_curso" name="select_curso" class="selectpicker" data-width='240px' multiple data-actions-box="true" title="Curso">
-                <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
-                <option value="2" style="font-size: 16px;">Banco de Dados</option>
-                <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
-                <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
-                <option value="5" style="font-size: 16px;">Logística</option>
-                <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
-                <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
-                <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
+                {% for curso in cursos %}
+                <option value="{{curso[0]}}">{{curso[1]}}</option>
+                {% endfor %}
               </select>
             </div>
 
@@ -88,12 +82,12 @@
             <div class="container">
               <div id="inicial" class="datainicial">
                 <p>Entre: </p>
-                <input type="date" name="" max="" id="fromDate">
+                <input type="date" name="dataInicial" id="dataInicial">
               </div>
 
               <div id="final" class="datafim">
                 <p>Até: </p>
-                <input type="date" name="" min="" id="toDate">
+                <input type="date" name="dataFinal" id="dataFinal">
               </div>
             </div>
           </form>
@@ -169,22 +163,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <script>
-    var fromDate;
-    $('#fromDate').on('change', function () {
-      fromDate = $(this).val();
-      $('#toDate').prop('max', function () {
-        return fromDate;
-      })
-    });
-
-    var toDate;
-    $('#toDate').on('change', function () {
-      toDate = $(this).val();
-      $('#fromDate').prop('min', function () {
-        return toDate;
-      })
-    });
-
+   
     $(document).ready(function () {
 
       $('#select_assunto').change(function () {
@@ -199,6 +178,14 @@
 
       $('#select_destinatario').change(function () {
         $('#hidden_destinatario').val($('#select_destinatario').val());
+        $('#form_filtros').submit();
+      });
+
+      $('#dataInicial').change(function () {
+        $('#form_filtros').submit();
+      });
+
+      $('#dataFinal').change(function () {
         $('#form_filtros').submit();
       });
 
