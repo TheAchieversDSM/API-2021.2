@@ -157,19 +157,19 @@ Aluno | Receber informações sobre estágios e palestras | Participar dos proce
  
 ### :memo: Protótipo:
  
-Página de login e, caso ainda não o tenha e seja da FATEC, faça seu cadastro.
+#### Página de login;
 ![](https://media.giphy.com/media/BYBICx6YukGaAZqqRO/giphy.gif?cid=790b7611ca4440f776c0400150e287a10cf07c7f1f4d387c&rid=giphy.gif&ct=g)
  
-Página de cadastro com as informações necessárias para aqueles que ainda não são cadastrados no sistema.
+#### Página de cadastro;
 ![](https://media.giphy.com/media/2x23DaSJyoq0s2WAYs/giphy.gif?cid=790b7611291bb65e552d7b1ffc1159b695db9c22093acc21&rid=giphy.gif&ct=g)
  
-Página de feed para usuários sem privilégios, onde pode-se fazer uso de filtros para achar informações mais pertinentes.
+#### Página de feed para usuários sem privilégios;
 ![](https://media.giphy.com/media/f0q2ZWO3Bw9KIoaZK3/giphy.gif?cid=790b7611bcb5bdbf9291705864eadd8e56234db63dc3ae73&rid=giphy.gif&ct=g)
  
-Página de feed para usuários com função de administrador, onde pode-se fazer uso de filtros para achar informações mais pertinentes.
+#### Página de feed para administrador;
 ![](https://media.giphy.com/media/uRrSE6b9nCiwwX7iXJ/giphy.gif?cid=790b76110765ee0b19f368aabdfba3dfa0f6a8ce909fb467&rid=giphy.gif&ct=g)
  
-Página para envio de informações, onde são selecionados filtros e desenvolvida a mensagem, bem como o anexo de arquivos.</li>
+#### Página para envio de informações.
 ![](https://media.giphy.com/media/EmS6O8Zoj4J8nvOmRg/giphy.gif?cid=790b76116e7a36c813ba3718131ac0745df329028f5902b5&rid=giphy.gif&ct=g)
  
 ↑ [Voltar ao início](#inicio) 
