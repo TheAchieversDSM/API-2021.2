@@ -182,15 +182,17 @@ def myinfo():
 
 def listarCursos():
     cur = mysql.connection.cursor()
-    cur.execute("select c.cur_id, c.cur_nome from curso c WHERE cur_id IN (SELECT p.cur_id from participa p WHERE p.user_id = %s)", (session['id'],))
-    
+    cur.execute(
+        "select c.cur_id, c.cur_nome from curso c WHERE cur_id IN (SELECT p.cur_id from participa p WHERE p.user_id = %s)", (session['id'],))
+
     return cur.fetchall()
 
 
 def listarCargos():
     cur = mysql.connection.cursor()
-    cur.execute("select c.car_id, c.car_nome from cargo c WHERE c.car_id IN (SELECT e.car_id from exerce e WHERE e.user_id=%s)", (session['id'],))
-    
+    cur.execute(
+        "select c.car_id, c.car_nome from cargo c WHERE c.car_id IN (SELECT e.car_id from exerce e WHERE e.user_id=%s)", (session['id'],))
+
     return cur.fetchall()
 
 ###### Rota para a página do feed ######
@@ -230,7 +232,7 @@ def feed():
         if possui:
             cursor = mysql.connection.cursor()
             info = cursor.execute(
-                "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC", )
+                "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC")
 
         # Se o Usuário Não possuir Mensagens arquivadas, Exibir todas as mensagens.
         else:
@@ -303,7 +305,7 @@ def envio_informacao():
             for cur in curso:
                 cursor = mysql.connection.cursor()
                 cursor.execute(
-                    "insert into recebe (post_id,cur_id) values(%s, %s)", (post_id, cur))
+                    "INSERT INTO recebe (post_id,cur_id) values(%s, %s)", (post_id, cur))
                 mysql.connection.commit()
 
         # Inserindo ID do post e ID do usuario na tabela "publica"
@@ -337,7 +339,7 @@ def recsenha():
     # Checando e pegando o email do usuário do banco de dados.
         cursor = mysql.connection.cursor()
         cursor.execute(
-            'select * from usuario WHERE user_email = %s ', (email,))
+            'SELECT * from usuario WHERE user_email = %s ', (email,))
         usuario = cursor.fetchone()
 
     # Enviando um email para confirmar se o usuário solicitou a alteração.
@@ -437,6 +439,7 @@ def edit():
 
 ###### Rota para a página de alteração de senha ######
 
+
 @app.route('/logout')
 def logout():
     # Deslogando o usuário da Sessão.
@@ -513,11 +516,59 @@ def arquivar_post(id):
     cursor.execute(
         "INSERT into arquivado (post_id,user_id) values (%s,%s)", (id_post, id_usuario))
     mysql.connection.commit()
+
     return redirect(url_for('feed'))
+
+
+@app.route("/desarquivar-post/<id>")
+def desarquivar_post(id):
+    id_usuario = session['id']
+    id_post = id
+
+    cursor = mysql.connection.cursor()
+    cursor.execute(
+        "DELETE from arquivado where post_id = %s and user_id = %s", (id_post, id_usuario))
+    mysql.connection.commit()
+
+    return redirect(url_for('arquivados'))
+
+
+@app.route("/arquivados")
+def arquivados():
+    # Puxando o ID do usuário a partir de sua Sessão do Login.
+    user_id = session['id']
+
+    # Verificando o cargo do usuário
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * from exerce where user_id = %s', (user_id,))
+    cargo_user = cursor.fetchone()
+
+    # Verificando se o Cargo do usuário pode ou não enviar informações.
+    if cargo_user != None and cargo_user[0] == 5:
+        perm = 0
+    elif cargo_user != None and (cargo_user[0] == 1 or cargo_user[0] == 3):
+        perm = 2
+    else:
+        perm = 1
+
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
+    autoria = cursor.fetchall()
+
+    cursor = mysql.connection.cursor()
+    info = cursor.execute("SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC")
+
+    if info > 0:
+        infoDetails = cursor.fetchall()
+        return render_template("arquivados.html", infoDetails=infoDetails, perm=perm, autoria=autoria, cursos=listarCursos(), cargos=listarCargos())
+
+    else:
+        return render_template("arquivados.html", perm=perm, autoria=autoria, cursos=listarCursos(), cargos=listarCargos())
 
 
 def periodoFeedFoiSelecionado():
     return request.form['dataInicial'] != "" and request.form['dataFinal'] != ""
+
 
 def existemFiltrosSelecionados():
     return assuntoFoiSelecionado() or cursoFoiSelecionada() or destinatarioFoiSelecionado() or periodoFeedFoiSelecionado()
@@ -549,7 +600,8 @@ def getValoresSelecionadosParaSQL(valorCampoHidden):
 
     return valoresSelecionados
 
-@app.route("/filtrar_feed_ajax", methods=["POST", "GET"])
+
+@ app.route("/filtrar_feed_ajax", methods=["POST", "GET"])
 def filtrar_feed_ajax():
     user_id = session['id']
     cursor = mysql.connection.cursor()
@@ -586,14 +638,14 @@ def filtrar_feed_ajax():
                 sql = sql + " AND"
             else:
                 sql = sql + " WHERE "
-             
 
             if(periodoFeedFoiSelecionado()):
                 dataInicial = dataInicial + " 00:00"
                 dataFinal = dataFinal + " 23:59"
                 print("Data Inicial: " + dataInicial)
                 print("Data Final: " + dataFinal)
-                sql = sql + " (post_data BETWEEN '" + dataInicial + "' AND '" + dataFinal + "')"
+                sql = sql + " (post_data BETWEEN '" + \
+                    dataInicial + "' AND '" + dataFinal + "')"
 
             if(assuntoFoiSelecionado()):
 
@@ -629,7 +681,6 @@ def filtrar_feed_ajax():
         infoDetails = cursor.fetchall()
 
     return render_template('conteudo-div-feed.html', infoDetails=infoDetails, autoria=autoria)
-
 
 
 if __name__ == '__main__':

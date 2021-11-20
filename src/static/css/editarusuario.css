@@ -114,7 +114,59 @@ input {
     width: 330px;
 }
 
+nav{
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+.nav-menu{
+   max-width: 450px;
+   min-width: 400px;
+   background-color: white;
+   padding: 5px;
+   border-radius: 10px;
+   justify-content: center;
+   margin-left: auto;
+   margin-right: auto;
+   display: block;
+   text-align: center;
+}
+  
+ .nav-menu > ul{
+   padding-left:10px;
+   padding-right: 10px;
+   text-align: center;
+}
+  
+.nav-menu > ul, li{
+   display: inline;
+   list-style: none;
+   font-size: 20px;
+}
+  
+.nav-menu a {
+   margin-right: 15px;
+   color: black;
+} 
+  
+.nav-menu a:hover{
+   background-color: #ab101a;
+   border-radius: 5px;
+   padding: 8px;
+   cursor: pointer;  
+   color: black;
+ }
+  
+.esconder-mobile {
+   display: inline-block;
+}
+
 @media screen and (max-width: 420px){
+    .esconder-mobile {
+        display: none;
+    }
     .edicao{
         width: 100%;
     }

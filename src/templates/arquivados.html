@@ -12,13 +12,12 @@
 
   <!--links para estilização dos filtros-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-  <title>Feed</title>
+  <title>Arquivados</title>
 
 </head>
 
@@ -32,8 +31,8 @@
       <div class="nav-menu">
         <ul>
           <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile">Sair</div></a></li>
+          <li><a href="/feed"><i class="fas fa-home"></i><div class="esconder-mobile">Início</div></a></li>
           <li><a href="/area-usuario"><i class="fas fa-user"></i><div class="esconder-mobile">Minha área</div></a></li>
-          <li><a href="/arquivados"><i class="fas fa-archive"></i><div class="esconder-mobile">Arquivados</div></a></li>
           {% if perm == 1 or perm == 2 %}
             <li><a href="/envio-informacao"><i class="fas fa-pen"></i><div class="esconder-mobile">Escrever publicação</div></a></li>
           {% endif %}
@@ -107,7 +106,7 @@
               <div class="dropdown">
                 <button class="dropbtn"><i onclick="mostrar()" class="fas fa-ellipsis-v"></i></button>
                 <div class="dropdown-content">
-                  <a href="/arquivar-post/{{info[0]}}" class="mostrar"><i class="fas fa-archive"></i>Arquivar</a>
+                  <a href="/desarquivar-post/{{info[0]}}" class="mostrar"><i class="fas fa-archive"></i>Desarquivar</a>
                   {% for aut in autoria %}
                     {% if aut[1] == info[0] %}
                       <a href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i>Editar</a>

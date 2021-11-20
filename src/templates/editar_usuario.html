@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
     <link rel='stylesheet' type="text/css" href='../static/css/editarusuario.css'>
+    <script src="https://kit.fontawesome.com/b01f879dd9.js" crossorigin="anonymous"></script>
 
     <!--links para o multiselect-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
@@ -24,6 +25,20 @@
         <header>
             <img src="../static/img/logo-branca-150.png" alt="Logo" class="logo">
         </header>
+
+        <nav>
+            <div class="nav-menu">
+                <ul>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile">Sair</div></a></li>
+                    <li><a href="/feed"><i class="fas fa-home"></i><div class="esconder-mobile">Início</div></a></li>
+                    <li><a href="/area-usuario"><i class="fas fa-user"></i><div class="esconder-mobile">Minha área</div></a></li>
+                    <li><a href="/arquivados"><i class="fas fa-archive"></i><div class="esconder-mobile">Arquivados</div></a></li>
+                    {% if perm == 1 or perm == 2 %}
+                    <li><a href="/envio-informacao"><i class="fas fa-pen"></i><div class="esconder-mobile">Escrever publicação</div></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
 
         <main>
             <form method="POST" class="edicao">

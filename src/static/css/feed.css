@@ -286,7 +286,7 @@ nav{
 }
 
 .nav-menu{
-  max-width: 80%;
+  max-width: 100%;
   min-width: 400px;
   background-color: white;
   padding: 5px;
@@ -313,7 +313,6 @@ nav{
 .nav-menu a {
   margin-right: 15px;
 }
-
 
 .nav-menu a:hover{
   background-color: #ab101a;

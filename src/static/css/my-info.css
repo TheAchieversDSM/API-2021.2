@@ -6,8 +6,6 @@
 }
 
 header {
- display: flex;
- justify-content: space-between;
  padding: 10px;
  align-items: center;
  min-width: 300px;
@@ -25,7 +23,6 @@ main {
  min-width: 300px;
  max-width: 1000px;
  margin-bottom: 50px;
- margin-top: 50px;
  padding: 10px;
  text-align: center;
 }
@@ -116,6 +113,54 @@ div.contents {
  flex-direction: row;
 }
 
+nav{
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+.nav-menu{
+   max-width: 100%;
+   min-width: 400px;
+   background-color: white;
+   padding: 5px;
+   border-radius: 10px;
+   justify-content: center;
+   margin-left: auto;
+   margin-right: auto;
+   display: block;
+   text-align: center;
+}
+  
+ .nav-menu > ul{
+   padding-left:10px;
+   padding-right: 10px;
+   text-align: center;
+}
+  
+.nav-menu > ul, li{
+   display: inline;
+   list-style: none;
+   font-size: 20px;
+}
+  
+.nav-menu a {
+   margin-right: 15px;
+}
+  
+  
+.nav-menu a:hover{
+   background-color: #ab101a;
+   border-radius: 5px;
+   padding: 8px;
+   cursor: pointer;  
+ }
+  
+.esconder-mobile {
+   display: inline-block;
+}
+
 footer {
  position: absolute;
  background-color: #D3D9D9;
@@ -149,6 +194,10 @@ footer p {
 }
 
 @media screen and (max-width: 420px) {
+    .esconder-mobile {
+        display: none;
+    }
+    
     footer{
         height: 300px;
       }

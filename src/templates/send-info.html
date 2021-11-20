@@ -25,6 +25,21 @@
 
         <img src="../static/img/logo-branca-150.png" alt="Logo" class="logo">
 
+
+        <nav>
+            <div class="nav-menu">
+                <ul>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile">Sair</div></a></li>
+                    <li><a href="/feed"><i class="fas fa-home"></i><div class="esconder-mobile">Início</div></a></li>
+                    <li><a href="/area-usuario"><i class="fas fa-user"></i><div class="esconder-mobile">Minha área</div></a></li>
+                    <li><a href="/arquivados"><i class="fas fa-archive"></i><div class="esconder-mobile">Arquivados</div></a></li>
+                    {% if perm == 2 %}
+                    <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i><div class="esconder-mobile">Editar usuário</div></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
     </header>
     {% if perm == 1 or perm == 2 %}
     <main>
@@ -34,7 +49,8 @@
                     <section class="filter">
 
                         <div class="assuntos">
-                            <select class="selectpicker" name="assunto" data-width="255px" multiple data-actions-box="true" title="Assunto">
+                            <select class="selectpicker" name="assunto" data-width="255px" multiple
+                                data-actions-box="true" title="Assunto">
                                 <option value="Covid-19">Covid-19</option>
                                 <option value="Estágio">Estágio</option>
                                 <option value="Evento">Evento</option>
@@ -46,7 +62,8 @@
                         </div>
 
                         <div class="dest">
-                            <select class="selectpicker" name="destinatario" data-width=255px multiple data-actions-box="true" title="Destinatário">
+                            <select class="selectpicker" name="destinatario" data-width=255px multiple
+                                data-actions-box="true" title="Destinatário">
                                 <option value="Diretor">Diretor</option>
                                 <option value="Secretaria">Secretaria</option>
                                 <option value="Coordenadores">Coordenadores</option>
@@ -56,17 +73,17 @@
                         </div>
 
                         <div class="curso">
-                            <select name="curso" class="selectpicker" data-width='255px' data-actions-box="true" multiple
-                            title="Curso">
-                            <option value="1">Análise e Desenvolvimento de Sistemas</option>
-                            <option value="2">Banco de Dados</option>
-                            <option value="3">Desenvolvimento de Software Multiplataforma</option>
-                            <option value="4">Gestão da Produção Industrial</option>
-                            <option value="5">Logística</option>
-                            <option value="6">Manufatura Avançada</option>
-                            <option value="7">Manutenção de Aeronaves</option>
-                            <option value="8">Projetos de Estruturas Aeronáuticas</option>
-                        </select>
+                            <select name="curso" class="selectpicker" data-width='255px' data-actions-box="true"
+                                multiple title="Curso">
+                                <option value="1">Análise e Desenvolvimento de Sistemas</option>
+                                <option value="2">Banco de Dados</option>
+                                <option value="3">Desenvolvimento de Software Multiplataforma</option>
+                                <option value="4">Gestão da Produção Industrial</option>
+                                <option value="5">Logística</option>
+                                <option value="6">Manufatura Avançada</option>
+                                <option value="7">Manutenção de Aeronaves</option>
+                                <option value="8">Projetos de Estruturas Aeronáuticas</option>
+                            </select>
                         </div>
 
                     </section>
@@ -94,7 +111,7 @@
                     <div class="info-buttons">
                         <input type="file" name="arquivo">
                         </input>
-                        <input type="submit" class="enviar" >
+                        <input type="submit" class="enviar">
                     </div>
                 </form>
             </div>
