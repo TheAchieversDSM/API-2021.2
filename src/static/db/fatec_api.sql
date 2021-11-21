@@ -60,6 +60,8 @@ create table if not exists `fatec_api`.`cargo` (
         references `permissoes`(`per_id`)
 );
 
+select * from cargo;
+
 /* TABELA DA RELACAO ENTRE USUARIO E CARGO */
 
 create table if not exists `fatec_api`.`exerce` (

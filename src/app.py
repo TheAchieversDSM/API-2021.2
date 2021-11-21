@@ -13,7 +13,7 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = '20210618'
 app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
@@ -210,6 +210,7 @@ def feed():
         cursor.execute('SELECT * from exerce where user_id = %s', (user_id,))
         cargo_user = cursor.fetchone()
 
+
         # Verificando se o Cargo do usuário pode ou não enviar informações.
         if cargo_user != None and cargo_user[0] == 5:
             perm = 0
@@ -217,6 +218,10 @@ def feed():
             perm = 2
         else:
             perm = 1
+
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT car_nome from cargo WHERE car_id = %s", (cargo_user[0],))
+        cargo_nome = cursor.fetchone()
 
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
@@ -232,13 +237,13 @@ def feed():
         if possui:
             cursor = mysql.connection.cursor()
             info = cursor.execute(
-                "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC")
+                "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where car_nome LIKE '%{}%' AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC".format(cargo_nome[0]))
 
         # Se o Usuário Não possuir Mensagens arquivadas, Exibir todas as mensagens.
         else:
             cursor = mysql.connection.cursor()
             info = cursor.execute(
-                "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed ORDER BY post_data DESC")
+                "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where car_nome LIKE '%{}%' ORDER BY post_data DESC".format(cargo_nome[0]))
         if info > 0:
             infoDetails = cursor.fetchall()
 
