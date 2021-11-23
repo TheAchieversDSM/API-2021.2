@@ -1,11 +1,13 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from datetime import datetime
 from flask_mysqldb import MySQL
 from random import randint
 from flask_mail import *
 from MySQLdb.cursors import Cursor
-
+UPLOAD_FOLDER = 'uploads'
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 ###### Configuração FlaskMySQLdb ######
@@ -253,6 +255,24 @@ def feed():
 ###### Rota para a página de envio de informações ######
 
 
+def getCaminhoArquivoUpload():
+    file = request.files['arquivo']
+    return os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+
+def gravou_arquivo_upload():
+    file = request.files['arquivo']
+    print(file.filename)
+    # If the user does not select a file, the browser submits an
+    # empty file without a filename.
+    if file.filename == '':
+        
+        return False
+    if file:
+        file.save(getCaminhoArquivoUpload())
+        return True
+
+    return True
+
 @app.route('/envio-informacao/', methods=['GET', 'POST'])
 def envio_informacao():
     # Checando se o usuário está logado.
@@ -290,8 +310,17 @@ def envio_informacao():
 
         # Inserindo informações na tabela feed.
             cursor = mysql.connection.cursor()
-            cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome) values (%s, %s, %s, %s, %s, %s)",
-                           (data_inclusao, assunto, titulo, mensagem, remetente, destinatario))
+
+            if gravou_arquivo_upload():
+                print("inserindo anexo...")
+                sqlInsert = "insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome, post_anexo) values (%s, %s, %s, %s, %s, %s, LOAD_FILE(\""+ getCaminhoArquivoUpload() + "\"))"
+                print(sqlInsert)
+                cursor.execute(sqlInsert,
+                            (data_inclusao, assunto, titulo, mensagem, remetente, destinatario))
+            else:
+                cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome) values (%s, %s, %s, %s, %s, %s)",
+                            (data_inclusao, assunto, titulo, mensagem, remetente, destinatario))
+
             mysql.connection.commit()
 
         # Checando se as informações foram salvas.
