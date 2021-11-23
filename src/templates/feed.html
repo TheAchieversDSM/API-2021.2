@@ -64,9 +64,11 @@
               <input type="hidden" name="hidden_assunto" id="hidden_assunto" />
 
               <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=240px multiple data-actions-box="true" title="Destinatário">
-                {% for cargo in cargos %}
-                <option value="{{cargo[0]}}" style="font-size: 16px;">{{cargo[1]}}</option>
-                {% endfor %}
+                <option value="Diretor" style="font-size: 16px;">Diretor</option>
+                <option value="Secretaria" style="font-size: 16px;">Secretaria</option>
+                <option value="Coordenadores" style="font-size: 16px;">Coordenadores</option>
+                <option value="Professores" style="font-size: 16px;">Professores</option>
+                <option value="Alunos" style="font-size: 16px;">Alunos</option>
               </select>
 
               <input type="hidden" name="hidden_destinatario" id="hidden_destinatario" />

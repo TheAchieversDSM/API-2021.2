@@ -1,29 +1,29 @@
 {% for info in infoDetails %}
 <section class="info">
-    <div class="dropdown">
-        <button class="dropbtn"><i onclick="mostrar()" class="fas fa-ellipsis-v"></i></button>
-        <div class="dropdown-content">
-          <a href="/arquivar-post/{{info[0]}}" class="mostrar"><i class="fas fa-archive"></i>Arquivar</a>
-          {% for aut in autoria %}
-            {% if aut[1] == info[0] %}
-              <a href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i>Editar</a>
-              <a href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i>Excluir</a>
-            {% endif %}
-          {% endfor %}
-        </div>
-      </div>
+  <div class="dropdown">
+    <button class="dropbtn"><i onclick="mostrar()" class="fas fa-ellipsis-v"></i></button>
+    <div class="dropdown-content">
+      <a href="/arquivar-post/{{info[0]}}" class="mostrar"><i class="fas fa-archive"></i>Arquivar</a>
+      {% for aut in autoria %}
+      {% if aut[1] == info[0] %}
+      <a href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i>Editar</a>
+      <a href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i>Excluir</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 
-      <div class="titulo">
-        <h3>{{info[1]}}</h3>
-      </div>
+  <div class="titulo">
+    <h3>{{info[1]}}</h3>
+  </div>
 
-      <div class="user-info">
-        <p><em>{{info[6]}}</em> enviou para <em>{{info[5]}}</em></p>
-        <p class="data">{{info[2]}}</p>
-      </div>
+  <div class="user-info">
+    <p><em>{{info[6]}}</em> enviou para <em>{{info[5]}}</em></p>
+    <p class="data">{{info[2]}}</p>
+  </div>
 
-      <div class="corpo-info">
-        <p> {{info[4]}}</p>
-      </div>
-  </section>
-  {% endfor %}
+  <div class="corpo-info">
+    <p> {{info[4]}}</p>
+  </div>
+</section>
+{% endfor %}

@@ -13,7 +13,7 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '20210618'
+app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
@@ -209,41 +209,35 @@ def feed():
         cursor = mysql.connection.cursor()
         cursor.execute('SELECT * from exerce where user_id = %s', (user_id,))
         cargo_user = cursor.fetchone()
-
-
+        sql = ""
         # Verificando se o Cargo do usuário pode ou não enviar informações.
-        if cargo_user != None and cargo_user[0] == 5:
+        if cargo_user[0] == 5:
             perm = 0
-        elif cargo_user != None and (cargo_user[0] == 1 or cargo_user[0] == 3):
+            sql = "car_nome LIKE '%Alunos%'"
+        elif cargo_user[0] == 1 or cargo_user[0] == 3:
             perm = 2
+            sql = "car_nome LIKE '%Diretor%' OR car_nome LIKE '%Coordenador%' OR car_nome LIKE '%Secretaria%' OR car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+        elif cargo_user[0] == 2:
+            perm = 1
+            sql = "car_nome LIKE '%Coordenador%' OR  car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
         else:
             perm = 1
+            sql = "car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
 
-        cursor = mysql.connection.cursor()
-        cursor.execute("SELECT car_nome from cargo WHERE car_id = %s", (cargo_user[0],))
-        cargo_nome = cursor.fetchone()
+        sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where " + \
+            sql + \
+            " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
+
+        print(sql)
 
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
         autoria = cursor.fetchall()
 
-        # Checando Se o Usuário possui Mensagens arquivadas.
-        cursor = mysql.connection.cursor()
-        cursor.execute(
-            "SELECT * FROM arquivado where user_id = %s", (user_id,))
-        possui = cursor.fetchall()
-
         # Se o Usuário possuir Mensagens arquivadas, Exibir somente as que não estão arquivadas
-        if possui:
-            cursor = mysql.connection.cursor()
-            info = cursor.execute(
-                "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where car_nome LIKE '%{}%' AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC".format(cargo_nome[0]))
+        cursor = mysql.connection.cursor()
+        info = cursor.execute(sql)
 
-        # Se o Usuário Não possuir Mensagens arquivadas, Exibir todas as mensagens.
-        else:
-            cursor = mysql.connection.cursor()
-            info = cursor.execute(
-                "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where car_nome LIKE '%{}%' ORDER BY post_data DESC".format(cargo_nome[0]))
         if info > 0:
             infoDetails = cursor.fetchall()
 
@@ -381,7 +375,7 @@ def novasenha():
 
     # Redirecionando para Login.
         return redirect(url_for('login'))
-    return render_template('altersenha.html')
+    return render_template('alter.html')
 
 ###### Rota para a página de edição de usuário ######
 
@@ -592,7 +586,7 @@ def destinatarioFoiSelecionado():
 
 
 def getValoresSelecionadosParaSQL(valorCampoHidden):
-
+    print(valorCampoHidden)
     split = valorCampoHidden.split(',')
 
     valoresSelecionados = ""
@@ -601,12 +595,12 @@ def getValoresSelecionadosParaSQL(valorCampoHidden):
         if(valoresSelecionados == ""):
             valoresSelecionados = "'" + valor + "'"
         else:
-            valoresSelecionados = valoresSelecionados + ", '" + valor + "' "
+            valoresSelecionados = valoresSelecionados + ",'" + valor + "'"
 
     return valoresSelecionados
 
 
-@ app.route("/filtrar_feed_ajax", methods=["POST", "GET"])
+@app.route("/filtrar_feed_ajax", methods=["POST", "GET"])
 def filtrar_feed_ajax():
     user_id = session['id']
     cursor = mysql.connection.cursor()
@@ -615,19 +609,7 @@ def filtrar_feed_ajax():
 
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
-
-        # Checando Se o Usuário possui Mensagens arquivadas.
-        cursor = mysql.connection.cursor()
-        cursor.execute(
-            "SELECT * FROM arquivado where user_id = %s", (user_id,))
-        possui = cursor.fetchall()
-
-        # Se o Usuário possuir Mensagens arquivadas, Exibir somente as que não estão arquivadas
-        if possui:
-            sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id))"
-
-        else:
-            sql = "SELECT post_id,post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed"
+        sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id))"
 
         dataInicial = request.form['dataInicial']
         dataFinal = request.form['dataFinal']
@@ -639,11 +621,7 @@ def filtrar_feed_ajax():
             request.form['hidden_destinatario'])
 
         if(existemFiltrosSelecionados()):
-            if possui:
-                sql = sql + " AND"
-            else:
-                sql = sql + " WHERE "
-
+            sql = sql + " AND"
             if(periodoFeedFoiSelecionado()):
                 dataInicial = dataInicial + " 00:00"
                 dataFinal = dataFinal + " 23:59"
@@ -653,7 +631,6 @@ def filtrar_feed_ajax():
                     dataInicial + "' AND '" + dataFinal + "')"
 
             if(assuntoFoiSelecionado()):
-
                 if(periodoFeedFoiSelecionado()):
                     sql = sql + " AND "
 
@@ -674,11 +651,26 @@ def filtrar_feed_ajax():
 
                 if(assuntoFoiSelecionado() or cursoFoiSelecionada() or periodoFeedFoiSelecionado()):
                     sql = sql + " AND "
+
                 # TODO criar SQL para filtrar com base nos destinatarios selecionados
-                sql = sql + " 1 = 1 "
+                destinatariosSelecionados =  destinatariosSelecionados.split(',')
+                if len(destinatariosSelecionados) > 1:
+                    print(destinatariosSelecionados)
+                    cont = 0
+                    for dest in destinatariosSelecionados:
+                        dest = dest.replace("'", "")
+                        sql = sql + " car_nome LIKE '%"+dest+"%'"
+                        cont = cont + 1
+                        if cont == len(destinatariosSelecionados):
+                            break
+                        sql = sql + " OR "
 
+                else:
+                    sql = sql + " car_nome LIKE '%{}%'".format(destinatariosSelecionados[0].replace("'",""))
+            
+
+            print(sql)
             sql = sql + " ORDER BY post_data DESC"
-
         else:
             sql = sql + " ORDER BY post_data DESC"
 

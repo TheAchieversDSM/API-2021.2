@@ -210,7 +210,7 @@ Documentação do sistema | Alta | Completa
 Interface de login do sistema | Alta | Completa
 Interface de cadastro de usuário | Alta | Completa
 Interface de divulgação de informações prioritárias | Alta | Completa
-Outras interfaces conforme solicitação do cliente | Alta | Em andamento
+Outras interfaces conforme solicitação do cliente | Alta | Completa
 Ajustes na responsividade do sistema | Alta | Completa
 Tornar o protótipo navegável | Alta | Completa
 Ajustes na interface | Alta | Completa
@@ -298,7 +298,7 @@ Sprint | Nome da tarefa | Prioridade | Status
 <p><img src="./doc/burndown/burndown-2.png"></img></p>
  
 #### Sprint #3;
-<p><img src="./doc/burndown/burndown-3.png"</p>
+<p><img src="./doc/burndown/burndown-3.png"></img></p>
 
  
 ↑ [Voltar ao início](#inicio) 
