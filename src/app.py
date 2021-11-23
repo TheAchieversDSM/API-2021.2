@@ -615,20 +615,22 @@ def filtrar_feed_ajax():
     # Verificando se o Cargo do usuário pode ou não enviar informações.
     if cargo_user[0] == 5:
         perm = 0
-        sql = "car_nome LIKE '%Alunos%'"
+        sql = "car_nome IN('Alunos')"
     elif cargo_user[0] == 1 or cargo_user[0] == 3:
         perm = 2
-        sql = "car_nome LIKE '%Diretor%' OR car_nome LIKE '%Coordenador%' OR car_nome LIKE '%Secretaria%' OR car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+        sql = "car_nome IN('Diretor', 'Coordenadores', 'Secretaria', 'Professores', 'Alunos')"
     elif cargo_user[0] == 2:
         perm = 1
-        sql = "car_nome LIKE '%Coordenador%' OR  car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+        sql = "car_nome IN('Coordenadores', 'Professores', 'Alunos')"
     else:
         perm = 1
-        sql = "car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+        sql = "car_nome IN('Professores','Alunos')"
 
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
-        sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where " + sql + " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) "
+        sql = "SELECT post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente FROM feed where " + \
+            sql + \
+            " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id))"
 
         dataInicial = request.form['dataInicial']
         dataFinal = request.form['dataFinal']
@@ -690,12 +692,15 @@ def filtrar_feed_ajax():
                         " car_nome LIKE '%{}%'".format(
                             destinatariosSelecionados[0].replace("'", ""))
 
-            print(sql)
             sql = sql + " ORDER BY post_data DESC"
         else:
             sql = sql + " ORDER BY post_data DESC"
-        info = cursor.execute(sql)
+
+        cursor.execute(sql)
         infoDetails = cursor.fetchall()
+        print(sql)
+        if infoDetails:
+            print("UE TA INDO UAI")
 
     return render_template('conteudo-div-feed.html', infoDetails=infoDetails, autoria=autoria)
 
