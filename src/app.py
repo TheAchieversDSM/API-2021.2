@@ -607,9 +607,28 @@ def filtrar_feed_ajax():
     cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
     autoria = cursor.fetchall()
 
+    # Verificando o cargo do usuário
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * from exerce where user_id = %s', (user_id,))
+    cargo_user = cursor.fetchone()
+    sql = ""
+    # Verificando se o Cargo do usuário pode ou não enviar informações.
+    if cargo_user[0] == 5:
+        perm = 0
+        sql = "car_nome LIKE '%Alunos%'"
+    elif cargo_user[0] == 1 or cargo_user[0] == 3:
+        perm = 2
+        sql = "car_nome LIKE '%Diretor%' OR car_nome LIKE '%Coordenador%' OR car_nome LIKE '%Secretaria%' OR car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+    elif cargo_user[0] == 2:
+        perm = 1
+        sql = "car_nome LIKE '%Coordenador%' OR  car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+    else:
+        perm = 1
+        sql = "car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
-        sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id))"
+        sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where " + sql + " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) "
 
         dataInicial = request.form['dataInicial']
         dataFinal = request.form['dataFinal']
@@ -653,7 +672,8 @@ def filtrar_feed_ajax():
                     sql = sql + " AND "
 
                 # TODO criar SQL para filtrar com base nos destinatarios selecionados
-                destinatariosSelecionados =  destinatariosSelecionados.split(',')
+                destinatariosSelecionados = destinatariosSelecionados.split(
+                    ',')
                 if len(destinatariosSelecionados) > 1:
                     print(destinatariosSelecionados)
                     cont = 0
@@ -666,14 +686,14 @@ def filtrar_feed_ajax():
                         sql = sql + " OR "
 
                 else:
-                    sql = sql + " car_nome LIKE '%{}%'".format(destinatariosSelecionados[0].replace("'",""))
-            
+                    sql = sql + \
+                        " car_nome LIKE '%{}%'".format(
+                            destinatariosSelecionados[0].replace("'", ""))
 
             print(sql)
             sql = sql + " ORDER BY post_data DESC"
         else:
             sql = sql + " ORDER BY post_data DESC"
-
         info = cursor.execute(sql)
         infoDetails = cursor.fetchall()
 
