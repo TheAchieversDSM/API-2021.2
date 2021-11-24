@@ -41,3 +41,6 @@ insert into exerce (car_id, user_id) values (3, 1);
 
 insert into participa (cur_id,user_id) values (2, 1);
 insert into participa (cur_id,user_id) values (3, 1); 
+
+alter table feed drop column post_anexo;
+alter table feed add column nome_anexo varchar(255);

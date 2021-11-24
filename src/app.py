@@ -5,7 +5,8 @@ from flask_mysqldb import MySQL
 from random import randint
 from flask_mail import *
 from MySQLdb.cursors import Cursor
-UPLOAD_FOLDER = 'uploads'
+from werkzeug.utils import send_file
+UPLOAD_FOLDER = 'static/uploads'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -226,7 +227,7 @@ def feed():
             perm = 1
             sql = "car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
 
-        sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where " + \
+        sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,nome_anexo FROM feed where " + \
             sql + \
             " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
 
@@ -255,23 +256,16 @@ def feed():
 ###### Rota para a página de envio de informações ######
 
 
-def getCaminhoArquivoUpload():
-    file = request.files['arquivo']
-    return os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+def getCaminhoArquivoUpload(nome_anexo):
+    return os.path.join(app.config['UPLOAD_FOLDER'], nome_anexo)
 
-def gravou_arquivo_upload():
+def gravar_arquivo_upload():
     file = request.files['arquivo']
     print(file.filename)
     # If the user does not select a file, the browser submits an
     # empty file without a filename.
-    if file.filename == '':
-        
-        return False
-    if file:
-        file.save(getCaminhoArquivoUpload())
-        return True
-
-    return True
+    if file.filename != '':
+        file.save(getCaminhoArquivoUpload(file.filename))
 
 @app.route('/envio-informacao/', methods=['GET', 'POST'])
 def envio_informacao():
@@ -311,15 +305,11 @@ def envio_informacao():
         # Inserindo informações na tabela feed.
             cursor = mysql.connection.cursor()
 
-            if gravou_arquivo_upload():
-                print("inserindo anexo...")
-                sqlInsert = "insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome, post_anexo) values (%s, %s, %s, %s, %s, %s, LOAD_FILE(\""+ getCaminhoArquivoUpload() + "\"))"
-                print(sqlInsert)
-                cursor.execute(sqlInsert,
-                            (data_inclusao, assunto, titulo, mensagem, remetente, destinatario))
-            else:
-                cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome) values (%s, %s, %s, %s, %s, %s)",
-                            (data_inclusao, assunto, titulo, mensagem, remetente, destinatario))
+            gravar_arquivo_upload()
+            file = request.files['arquivo']
+            
+            cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome, nome_anexo) values (%s, %s, %s, %s, %s, %s, %s)",
+                        (data_inclusao, assunto, titulo, mensagem, remetente, destinatario, file.filename))
 
             mysql.connection.commit()
 
@@ -560,6 +550,11 @@ def desarquivar_post(id):
 
     return redirect(url_for('arquivados'))
 
+@app.route("/download/<nomeAnexo>")
+def download_anexo(nomeAnexo):
+    print(nomeAnexo)
+    send_file(getCaminhoArquivoUpload(nomeAnexo), as_attachment=True, environ=request.environ)
+
 
 @app.route("/arquivados")
 def arquivados():
@@ -584,7 +579,7 @@ def arquivados():
     autoria = cursor.fetchall()
 
     cursor = mysql.connection.cursor()
-    info = cursor.execute("SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,post_anexo FROM feed where post_id IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC")
+    info = cursor.execute("SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente, nome_anexo FROM feed where post_id IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC")
 
     if info > 0:
         infoDetails = cursor.fetchall()

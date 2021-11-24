@@ -130,6 +130,9 @@
 
               <div class="corpo-info">
                 <p> {{info[4]}}</p>
+                {% if info[7] != None %}
+                   <p> <a href="/download/{{info[7]}}">{{info[7]}}</a> </p>
+                {% endif %}
               </div>
           </section>
           {% endfor %}
