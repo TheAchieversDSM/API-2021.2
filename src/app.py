@@ -147,15 +147,32 @@ def confirmacao():
 def myinfo():
     # Checando se o usuário está logado.
     if 'loggedin' in session:
-        user_id = session['id']
+        # Puxando o ID do usuário a partir de sua Sessão do Login.
+        id_usuario = session['id']
+        # Verificando o cargo do usuário
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            'SELECT * from exerce where user_id = %s', (id_usuario,))
+        cargo_user = cursor.fetchone()
+
+        # Verificando se o Cargo do usuário pode ou não enviar informações.
+        if cargo_user != None:
+            if cargo_user[0] == 5:
+                perm = 0
+            elif cargo_user[0] == 1 or cargo_user[0] == 3:
+                perm = 2
+            else:
+                perm = 1
+        else:
+            perm = 1
 
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM usuario WHERE user_id = %s", (user_id,))
+        cursor.execute("SELECT * FROM usuario WHERE user_id = %s", (id_usuario,))
         usuario = cursor.fetchone()
 
         cursor = mysql.connection.cursor()
         cursor.execute(
-            "SELECT * FROM participa WHERE user_id = %s", (user_id,))
+            "SELECT * FROM participa WHERE user_id = %s", (id_usuario,))
         id_curso = cursor.fetchall()
 
         cursos = []
@@ -167,14 +184,14 @@ def myinfo():
             cursos.append(curso[0])
         cursor = mysql.connection.cursor()
         cursor.execute(
-            "SELECT car_id FROM exerce WHERE user_id = %s", (user_id,))
+            "SELECT car_id FROM exerce WHERE user_id = %s", (id_usuario,))
         cargo_id = cursor.fetchone()
 
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * FROM cargo where car_id = %s", (cargo_id,))
         cargo = cursor.fetchone()
 
-        return render_template('my_info.html', usuario=usuario, cursos=cursos, cargo=cargo)
+        return render_template('my_info.html', usuario=usuario, cursos=cursos, cargo=cargo, perm=perm)
 
     else:
         flash('Faça o login antes de continuar.')

@@ -233,6 +233,19 @@ em {
   word-break: keep-all;
 }
 
+.anexo a{
+  color: #1B1C21;
+}
+
+.anexo a:hover {
+  color: #ab101a;
+  text-decoration: none;
+}
+
+.anexo i {
+  margin-right: 10px;
+}
+
 footer {
   position: absolute;
   background-color: #D3D9D9;
@@ -286,7 +299,7 @@ nav{
 }
 
 .nav-menu{
-  max-width: 100%;
+  max-width: 90%;
   min-width: 400px;
   background-color: white;
   padding: 5px;
@@ -296,6 +309,10 @@ nav{
   margin-right: auto;
   display: block;
   text-align: center;
+}
+
+.nav-menu i {
+  margin-right: 5px;
 }
 
 .nav-menu > ul{

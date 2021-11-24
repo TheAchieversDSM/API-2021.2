@@ -121,9 +121,10 @@ nav{
     margin-right: auto;
   }
   
-.nav-menu{
+.nav-menu {
    max-width: 450px;
    min-width: 400px;
+   height: 100px;
    background-color: white;
    padding: 5px;
    border-radius: 10px;
@@ -132,6 +133,11 @@ nav{
    margin-right: auto;
    display: block;
    text-align: center;
+   line-height: 40px;
+}
+
+.nav-menu i {
+    margin-right: 5px;
 }
   
  .nav-menu > ul{

@@ -121,16 +121,20 @@ nav{
   }
   
 .nav-menu{
-   max-width: 100%;
+   max-width: 90%;
    min-width: 400px;
    background-color: white;
-   padding: 5px;
+   padding: 10px;
    border-radius: 10px;
    justify-content: center;
    margin-left: auto;
    margin-right: auto;
    display: block;
    text-align: center;
+}
+
+.nav-menu i {
+   margin-right: 5px;
 }
   
  .nav-menu > ul{
