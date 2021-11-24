@@ -550,10 +550,11 @@ def desarquivar_post(id):
 
     return redirect(url_for('arquivados'))
 
-@app.route("/download/<nomeAnexo>")
+@app.route("/download/<nomeAnexo>", methods=["GET", "POST"])
 def download_anexo(nomeAnexo):
-    print(nomeAnexo)
-    send_file(getCaminhoArquivoUpload(nomeAnexo), as_attachment=True, environ=request.environ)
+    caminho = getCaminhoArquivoUpload(nomeAnexo)
+    print(caminho)
+    return send_file(caminho, as_attachment=True, environ=request.environ)
 
 
 @app.route("/arquivados")
