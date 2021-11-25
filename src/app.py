@@ -6,6 +6,7 @@ from random import randint
 from flask_mail import *
 from MySQLdb.cursors import Cursor
 from werkzeug.utils import send_file
+
 UPLOAD_FOLDER = 'static/uploads'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -16,7 +17,7 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = '20210618'
 app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
@@ -248,7 +249,6 @@ def feed():
             sql + \
             " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
 
-        print(sql)
 
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
@@ -277,12 +277,15 @@ def getCaminhoArquivoUpload(nome_anexo):
     return os.path.join(app.config['UPLOAD_FOLDER'], nome_anexo)
 
 def gravar_arquivo_upload():
-    file = request.files['arquivo']
-    print(file.filename)
+    files = request.files.getlist('arquivo')
+    print(files)
+
     # If the user does not select a file, the browser submits an
     # empty file without a filename.
-    if file.filename != '':
-        file.save(getCaminhoArquivoUpload(file.filename))
+    for file in files:
+        if file.filename != '':
+            print(file)
+            file.save(getCaminhoArquivoUpload(file.filename))
 
 @app.route('/envio-informacao/', methods=['GET', 'POST'])
 def envio_informacao():
@@ -323,10 +326,17 @@ def envio_informacao():
             cursor = mysql.connection.cursor()
 
             gravar_arquivo_upload()
-            file = request.files['arquivo']
-            
+            files = request.files.getlist('arquivo')
+            print(files)
+            arq=[]
+            for file in files:
+                x = file.filename
+                arq.append(x)
+            arquivos = ",".join(str(x) for x in arq)
+            print(arquivos)
+
             cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome, nome_anexo) values (%s, %s, %s, %s, %s, %s, %s)",
-                        (data_inclusao, assunto, titulo, mensagem, remetente, destinatario, file.filename))
+                        (data_inclusao, assunto, titulo, mensagem, remetente, destinatario, arquivos))
 
             mysql.connection.commit()
 
