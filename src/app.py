@@ -6,6 +6,7 @@ from random import randint
 from flask_mail import *
 from MySQLdb.cursors import Cursor
 from werkzeug.utils import send_file
+
 UPLOAD_FOLDER = 'static/uploads'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -248,7 +249,7 @@ def feed():
             sql + \
             " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
 
-        print(sql)
+
 
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
@@ -261,9 +262,9 @@ def feed():
         if info > 0:
             infoDetails = cursor.fetchall()
 
-            return render_template("feed.html", infoDetails=infoDetails, perm=perm, autoria=autoria, cursos=listarCursos(), cargos=listarCargos())
+            return render_template("feed.html", infoDetails=infoDetails, perm=perm, autoria=autoria, cargo_user=cargo_user)
         else:
-            return render_template("feed.html", cursos=listarCursos(), perm=perm, cargos=listarCargos())
+            return render_template("feed.html",perm=perm, cargo_user=cargo_user )
 
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:

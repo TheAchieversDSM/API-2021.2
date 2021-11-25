@@ -38,7 +38,7 @@ textarea:focus, input:focus, select:focus {
 .edicao {
     margin: auto;
     width: 450px;
-    height: 510px;
+    height: 440px;
     top: 250px;    
     background-color: rgba(66, 85, 95, 0.8) ;
     border-radius: 10px;
