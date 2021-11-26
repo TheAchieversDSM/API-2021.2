@@ -77,6 +77,19 @@ create table if not exists `fatec_api`.`exerce` (
 
 select * from exerce;
 
+create table if not exists `fatec_api`.`coordena`(
+	`user_id` int not null,
+    `cur_id` int not null,
+	constraint `fk_user_id_6`
+		foreign key (`user_id`)
+        references `usuario`(`user_id`),
+    constraint `fk_cur_id_3`
+		foreign key (`cur_id`)
+        references `curso`(`cur_id`)
+);
+
+select * from coordena;
+
 /* TABELA DO FEED */ 
 
 create table if not exists `fatec_api`.`feed` (

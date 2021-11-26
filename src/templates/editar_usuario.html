@@ -15,6 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script src="../static/js/script.js"></script>
 
     <title>Editar Usuário</title>
 </head>
@@ -47,7 +48,7 @@
                     <input class="resp" type="text" name="e-mail" id="email">
                     <p>Cargo</p>
                     <div class="cargo">
-                        <select class="selectpicker" name="cargo" data-width='330px' multiple id="cargo" title="Cargo">
+                        <select class="selectpicker" id="curso" name="cargo" data-width='330px' multiple id="cargo" title="Cargo" onchange="coordenador()">
                             <option value="1" style="font-size: 16px;">Diretor</option>
                             <option value="3" style="font-size: 16px;">Secretaria</option>
                             <option value="2" style="font-size: 16px;">Coordenadores</option>
@@ -55,10 +56,24 @@
                         </select>
                     </div>
 
-                    <p>Turma(s)</p>
+                    <p>Curso(s)</p>
                     <div class="turma">
-                        <select name="curso" class="selectpicker" data-width='330px' multiple title="Curso">
+                        <select  name="curso" class="selectpicker" data-width='330px' multiple title="Curso">
 
+                            <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
+                            <option value="2" style="font-size: 16px;">Banco de Dados</option>
+                            <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
+                            <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
+                            <option value="5" style="font-size: 16px;">Logística</option>
+                            <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
+                            <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
+                            <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
+
+                        </select>
+                    </div>
+                    <p class="cursohidden" id="curcoord" >Curso Coordenado</p>
+                    <div class="cursohidden" id="curso2"><br>
+                        <select name="curcoord" class="selectpicker" data-width='330px' multiple title="Curso">
                             <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
                             <option value="2" style="font-size: 16px;">Banco de Dados</option>
                             <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>

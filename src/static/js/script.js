@@ -74,4 +74,15 @@ function mostrar() {
     document.getElementById("olho").className = 'fas fa-eye-slash';
   }
 }
+function coordenador(){
 
+  if(document.getElementById('curso').value == "2") {
+    document.getElementById("curcoord").className ="curcoord"
+    document.getElementById("curso2").className = "turma";
+    
+  }
+  else {
+    document.getElementById("curcoord").className = "cursohidden"
+    document.getElementById("curso2").className = "cursohidden";
+  }
+}

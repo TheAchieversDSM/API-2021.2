@@ -17,7 +17,7 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = '20210618'
 app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
@@ -466,8 +466,10 @@ def edit():
             email = request.form["e-mail"]
             cargo = request.form["cargo"]
             curso = request.form.getlist("curso")
+            curso_cord = request.form.get("curcoord")
+            
 
-        # Selecionando o ID do usuário inserido.
+        # Selecionando o ID do usuário que foi inserido.
             cursor = mysql.connection.cursor()
             cursor.execute(
                 'SELECT user_id from usuario WHERE user_email = %s', (email,))
@@ -478,12 +480,19 @@ def edit():
                 cursor = mysql.connection.cursor()
                 cursor.execute(
                     'UPDATE exerce SET car_id = %s WHERE user_id = %s', (cargo, user))
-                for x in curso:
-                    mysql.connection.commit()
-                    cursor = mysql.connection.cursor()
-                    cursor.execute(
-                        'INSERT INTO participa (cur_id,user_id) values (%s, %s)', (x, user))
-                    mysql.connection.commit()
+                if curso != None:
+                        for x in curso:
+                            mysql.connection.commit()
+                            cursor = mysql.connection.cursor()
+                            cursor.execute(
+                                'INSERT INTO participa (cur_id,user_id) values (%s, %s)', (x, user))
+                            mysql.connection.commit()
+                if curso_cord != None:
+                        mysql.connection.commit()
+                        cursor = mysql.connection.cursor()
+                        cursor.execute(
+                            'INSERT INTO coordena (cur_id,user_id) values (%s, %s)', (curso_cord, user))
+                        mysql.connection.commit()
 
                 return redirect(url_for('feed'))
 
