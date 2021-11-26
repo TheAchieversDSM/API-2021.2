@@ -226,10 +226,9 @@ Ajustes dos filtros | Alta | Completa
 Controle de hierarquia (CRUD) | Alta | Completa
 Estilizar páginas | Média | Completa
 Ajustes no banco de dados | Alta | Completa
-Introdução da funcionalidade total dos filtros | Alta | Em andamento
+Introdução da funcionalidade total dos filtros | Alta | Completa
 Introdução da função "arquivar" | Média | Completa
-Introdução da função "anexar" | Alta | Em andamento
-Automatização das hierarquias | Alta | Não iniciada
+Introdução da função "anexar" | Alta | Completa
 Testes unitários do sistema | Alta | Em andamento
 Testes de integração | Alta | Em andamento
 Testes de aceitação | Alta | Em andamento
@@ -275,10 +274,9 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 Sprint | Nome da tarefa | Prioridade | Status
 -------|----------------|------------|-------
-#4 | Introdução da funcionalidade total dos filtros | Alta | Em andamento
+#4 | Introdução da funcionalidade total dos filtros | Alta | Completa
 #4 | Introdução da função "arquivar" | Média | Completa
-#4 | Introdução da função "anexar" | Alta | Em andamento
-#4 | Automatização das hierarquias | Alta | Não iniciada
+#4 | Introdução da função "anexar" | Alta | Completa
 #4 | Testes unitários do sistema | Alta | Em andamento
 #4 | Testes de integração | Alta | Em andamento
 #4 | Testes de aceitação | Alta | Em andamento
@@ -299,6 +297,9 @@ Sprint | Nome da tarefa | Prioridade | Status
  
 #### Sprint #3;
 <p><img src="./doc/burndown/burndown-3.png"></img></p>
+ 
+#### Sprint #4;
+<p><img src="./doc/burndown/burndown-4.png"></img></p>
 
  
 ↑ [Voltar ao início](#inicio) 
@@ -312,6 +313,6 @@ Sprint | Data Início | Data Entrega | Links |
 #1 | 30.08.2021  |  19.09.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v1.0) |
 #2 | 20.09.2021  |  10.10.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v2.0) |
 #3 | 18.10.2021  |  07.11.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v3.0) |
-#4 | 08.11.2021  |  28.11.2021  | :construction: |
+#4 | 08.11.2021  |  28.11.2021  | [:checkered_flag:](https://github.com/TheAchieversDSM/A.P.I-2021-2/releases/tag/v4.0) |
  
 ↑ [Voltar ao início](#inicio) 
