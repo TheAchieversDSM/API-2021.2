@@ -31,14 +31,24 @@
     <nav>
       <div class="nav-menu">
         <ul>
-          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile">Sair</div></a></li>
-          <li><a href="/area-usuario"><i class="fas fa-user"></i><div class="esconder-mobile">Minha área</div></a></li>
-          <li><a href="/arquivados"><i class="fas fa-archive"></i><div class="esconder-mobile">Arquivados</div></a></li>
+          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>
+              <div class="esconder-mobile">Sair</div>
+            </a></li>
+          <li><a href="/area-usuario"><i class="fas fa-user"></i>
+              <div class="esconder-mobile">Minha área</div>
+            </a></li>
+          <li><a href="/arquivados"><i class="fas fa-archive"></i>
+              <div class="esconder-mobile">Arquivados</div>
+            </a></li>
           {% if perm == 1 or perm == 2 %}
-            <li><a href="/envio-informacao"><i class="fas fa-pen"></i><div class="esconder-mobile">Escrever publicação</div></a></li>
+          <li><a href="/envio-informacao"><i class="fas fa-pen"></i>
+              <div class="esconder-mobile">Escrever publicação</div>
+            </a></li>
           {% endif %}
           {% if perm == 2 %}
-            <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i><div class="esconder-mobile">Editar usuário</div></a></li>
+          <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i>
+              <div class="esconder-mobile">Editar usuário</div>
+            </a></li>
           {% endif %}
         </ul>
       </div>
@@ -51,7 +61,8 @@
         <section class="filter">
           <form method="post" id="form_filtros">
             <div id="top" class="filtros">
-              <select id="select_assunto" name="select_assunto" class="selectpicker" data-width=240px multiple data-actions-box="true" title="Assunto">
+              <select id="select_assunto" name="select_assunto" class="selectpicker" data-width=240px multiple
+                data-actions-box="true" title="Assunto">
                 <option value="Covid-19" style="font-size: 16px;">Covid-19</option>
                 <option value="Estágio" style="font-size: 16px;">Estágio</option>
                 <option value="Evento" style="font-size: 16px;">Evento</option>
@@ -63,21 +74,23 @@
 
               <input type="hidden" name="hidden_assunto" id="hidden_assunto" />
               {% if perm == 1 or perm == 2 %}
-              <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=240px multiple data-actions-box="true" title="Destinatário">
-                  {% if cargo_user[0] == 1 or cargo_user[0] == 3 %}
-                    <option value="Diretor" style="font-size: 16px;">Diretor</option>
-                    <option value="Secretaria" style="font-size: 16px;">Secretaria</option>
-                  {% endif %}
-                  {% if cargo_user[0] == 2 or cargo_user[0] == 1 or cargo_user[0] == 3 %}
-                    <option value="Coordenadores" style="font-size: 16px;">Coordenadores</option>
-                  {% endif %}
-                    <option value="Professores" style="font-size: 16px;">Professores</option>
-                    <option value="Alunos" style="font-size: 16px;">Alunos</option>
+              <select id="select_destinatario" name="select_destinatario" class="selectpicker" data-width=240px multiple
+                data-actions-box="true" title="Destinatário">
+                {% if cargo_user[0] == 1 or cargo_user[0] == 3 %}
+                <option value="Diretor" style="font-size: 16px;">Diretor</option>
+                <option value="Secretaria" style="font-size: 16px;">Secretaria</option>
+                {% endif %}
+                {% if cargo_user[0] == 2 or cargo_user[0] == 1 or cargo_user[0] == 3 %}
+                <option value="Coordenadores" style="font-size: 16px;">Coordenadores</option>
+                {% endif %}
+                <option value="Professores" style="font-size: 16px;">Professores</option>
+                <option value="Alunos" style="font-size: 16px;">Alunos</option>
               </select>
               <input type="hidden" name="hidden_destinatario" id="hidden_destinatario" />
               {% endif %}
 
-              <select id="select_curso" name="select_curso" class="selectpicker" data-width='240px' multiple data-actions-box="true" title="Curso">
+              <select id="select_curso" name="select_curso" class="selectpicker" data-width='240px' multiple
+                data-actions-box="true" title="Curso">
                 <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
                 <option value="2" style="font-size: 16px;">Banco de Dados</option>
                 <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
@@ -114,43 +127,47 @@
         <div id="divContent" class='contents'>
           {% for info in infoDetails %}
           <section class="info">
-            
-              <div class="dropdown">
-                <button class="dropbtn"><i onclick="mostrar()" class="fas fa-ellipsis-v"></i></button>
-                <div class="dropdown-content">
-                  <a href="/arquivar-post/{{info[0]}}" class="mostrar"><i class="fas fa-archive"></i>Arquivar</a>
-                  {% for aut in autoria %}
-                    {% if aut[1] == info[0] %}
-                      <a href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i>Editar</a>
-                      <a href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i>Excluir</a>
-                    {% endif %}
-                  {% endfor %}
-                </div>
-              </div>
 
-              <div class="titulo">
-                <h3>{{info[1]}}</h3>
-              </div>
-
-              <div class="user-info">
-                <p><em>{{info[6]}}</em> enviou para <em>{{info[5]}}</em></p>
-                <p class="data">{{info[2]}}</p>
-              </div>
-
-              <div class="corpo-info">
-                <p> {{info[4]}}</p>
-                {% if info[7] != None %}
-                  <div class="anexo">
-                    <p><a href="/download/{{info[7]}}" id="anexo"><i class="fas fa-file-download"></i>  {{info[7]}}</a></p>
-                  </div>
+            <div class="dropdown">
+              <button class="dropbtn"><i onclick="mostrar()" class="fas fa-ellipsis-v"></i></button>
+              <div class="dropdown-content">
+                <a href="/arquivar-post/{{info[0]}}" class="mostrar"><i class="fas fa-archive"></i>Arquivar</a>
+                {% for aut in autoria %}
+                {% if aut[1] == info[0] %}
+                <a href="/editar-post/{{info[0]}}" class="mostrar"><i class="fas fa-edit"></i>Editar</a>
+                <a href="/excluir-post/{{info[0]}}" class="mostrar"><i class="fas fa-trash-alt"></i>Excluir</a>
                 {% endif %}
-                
+                {% endfor %}
               </div>
+            </div>
+
+            <div class="titulo">
+              <h3>{{info[1]}}</h3>
+            </div>
+
+            <div class="user-info">
+              <p><em>{{info[6]}}</em> enviou para <em>{{info[5]}}</em></p>
+              <p class="data">{{info[2]}}</p>
+            </div>
+
+            <div class="corpo-info">
+              <p> {{info[4]}}</p>
+              <div class="anexo">
+                {% if info[7] != '' %}
+                {% set arquivo = info[7].split(',') %}
+                {% for file in arquivo %}
+                <p><a href="/download/{{file}}" id="anexo"><i class="fas fa-file-download"></i> {{file}}</a></p>
+                {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+
+
           </section>
           {% endfor %}
         </div>
       </div>
-   
+
       <!--fim bloco em python para display-->
 
   </main>
@@ -181,7 +198,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <script>
-   
+
     $(document).ready(function () {
 
       $('#select_assunto').change(function () {

@@ -127,6 +127,14 @@
 
               <div class="corpo-info">
                 <p> {{info[4]}}</p>
+                <div class="anexo">
+                  {% if info[7]  != '' %}
+                    {% set arquivo = info[7].split(',') %}
+                      {% for file in arquivo %}              
+                        <p><a href="/download/{{file}}" id="anexo"><i class="fas fa-file-download"></i> {{file}}</a></p>
+                      {% endfor %}
+                  {% endif %}
+                </div>
               </div>
           </section>
           {% endfor %}

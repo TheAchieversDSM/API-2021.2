@@ -233,8 +233,9 @@ em {
   word-break: keep-all;
 }
 
-.anexo a{
+.anexo a {
   color: #1B1C21;
+  font-size: 18px;
 }
 
 .anexo a:hover {
@@ -298,7 +299,7 @@ nav{
   margin-right: auto;
 }
 
-.nav-menu{
+.nav-menu {
   max-width: 90%;
   min-width: 400px;
   background-color: white;
@@ -336,6 +337,7 @@ nav{
   border-radius: 5px;
   padding: 8px;
   cursor: pointer;  
+  text-decoration: none;
 }
 
 .esconder-mobile {

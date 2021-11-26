@@ -29,12 +29,22 @@
         <nav>
             <div class="nav-menu">
                 <ul>
-                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile">Sair</div></a></li>
-                    <li><a href="/feed"><i class="fas fa-home"></i><div class="esconder-mobile">Início</div></a></li>
-                    <li><a href="/area-usuario"><i class="fas fa-user"></i><div class="esconder-mobile">Minha área</div></a></li>
-                    <li><a href="/arquivados"><i class="fas fa-archive"></i><div class="esconder-mobile">Arquivados</div></a></li>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>
+                            <div class="esconder-mobile">Sair</div>
+                        </a></li>
+                    <li><a href="/feed"><i class="fas fa-home"></i>
+                            <div class="esconder-mobile">Início</div>
+                        </a></li>
+                    <li><a href="/area-usuario"><i class="fas fa-user"></i>
+                            <div class="esconder-mobile">Minha área</div>
+                        </a></li>
+                    <li><a href="/arquivados"><i class="fas fa-archive"></i>
+                            <div class="esconder-mobile">Arquivados</div>
+                        </a></li>
                     {% if perm == 2 %}
-                    <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i><div class="esconder-mobile">Editar usuário</div></a></li>
+                    <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i>
+                            <div class="esconder-mobile">Editar usuário</div>
+                        </a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -64,25 +74,39 @@
                         <div class="dest">
                             <select class="selectpicker" name="destinatario" data-width=255px multiple
                                 data-actions-box="true" title="Destinatário">
+                                {% if cargo_user[0] == 1 or cargo_user[0] == 3 %}
                                 <option value="Diretor" style="font-size: 16px;">Diretor</option>
                                 <option value="Secretaria" style="font-size: 16px;">Secretaria</option>
                                 <option value="Coordenadores" style="font-size: 16px;">Coordenadores</option>
+                                {% endif %}
+                                {% if cargo_user[0] == 2 or cargo_user[0] == 1 or cargo_user[0] == 3 %}
                                 <option value="Professores" style="font-size: 16px;">Professores</option>
+                                {% endif %}
+                                {% if cargo_user[0] == 2 or cargo_user[0] == 1 or cargo_user[0] == 3 or cargo_user[0] == 4 %}
                                 <option value="Alunos" style="font-size: 16px;">Alunos</option>
+                                {% endif %}
                             </select>
                         </div>
-                        
+
                         <div class="curso">
                             <select name="curso" class="selectpicker" data-width='255px' data-actions-box="true"
-                            multiple title="Curso">
-                                <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
+                                multiple title="Curso">
+                                {% if perm == 2 %}
+                                <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas
+                                </option>
                                 <option value="2" style="font-size: 16px;">Banco de Dados</option>
-                                <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
+                                <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma
+                                </option>
                                 <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
                                 <option value="5" style="font-size: 16px;">Logística</option>
                                 <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
                                 <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
                                 <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
+                                {% else %}
+                                {% for curso in cursos %}
+                                <option value="{{curso[0]}}" style="font-size: 16px;">{{curso[1]}}</option>
+                                {% endfor %}
+                                {% endif %}
                             </select>
                         </div>
 

@@ -151,50 +151,53 @@ input[type=submit] {
 
 nav{
     display: block;
-    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
-}
+    margin-top: 50px;
+  }
   
-.nav-menu{
-   max-width: 90%;
-   min-width: 400px;
-   background-color: white;
-   padding: 5px;
-   border-radius: 10px;
-   justify-content: center;
-   margin-left: auto;
-   margin-right: auto;
-   display: block;
-   text-align: center;
+  .nav-menu {
+    max-width: 90%;
+    min-width: 400px;
+    background-color: white;
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .nav-menu i {
+    margin-right: 5px;
+  }
+  
+  .nav-menu > ul{
+    padding-left:10px;
+    padding-right: 10px;
+    text-align: center;
 }
 
-.nav-menu i {
-    margin-right: 5px;
-}
-  
- .nav-menu > ul{
-   padding-left:10px;
-   padding-right: 10px;
-   text-align: center;
-}
-  
 .nav-menu > ul, li{
-   display: inline;
-   list-style: none;
-   font-size: 20px;
-}
+    display: inline;
+    list-style: none;
+    font-size: 20px;
+  }
   
-.nav-menu a {
-   margin-right: 15px;
-} 
+  .nav-menu a {
+    margin-right: 15px;
+  }
   
-.nav-menu a:hover{
-   background-color: #ab101a;
-   border-radius: 5px;
-   padding: 8px;
-   cursor: pointer;  
-}
+  .nav-menu a:hover{
+    background-color: #ab101a;
+    border-radius: 5px;
+    padding: 8px;
+    cursor: pointer;  
+    text-decoration: none;
+  }
   
 .esconder-mobile {
    display: inline-block;

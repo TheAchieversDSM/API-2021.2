@@ -17,7 +17,7 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
@@ -168,7 +168,8 @@ def myinfo():
             perm = 1
 
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM usuario WHERE user_id = %s", (id_usuario,))
+        cursor.execute(
+            "SELECT * FROM usuario WHERE user_id = %s", (id_usuario,))
         usuario = cursor.fetchone()
 
         cursor = mysql.connection.cursor()
@@ -230,6 +231,7 @@ def feed():
         cursor = mysql.connection.cursor()
         cursor.execute('SELECT * from exerce where user_id = %s', (user_id,))
         cargo_user = cursor.fetchone()
+
         sql = ""
         # Verificando se o Cargo do usuário pode ou não enviar informações.
         if cargo_user[0] == 5:
@@ -249,7 +251,6 @@ def feed():
             sql + \
             " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
 
-
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
         autoria = cursor.fetchall()
@@ -263,7 +264,7 @@ def feed():
 
             return render_template("feed.html", infoDetails=infoDetails, perm=perm, autoria=autoria, cargo_user=cargo_user)
         else:
-            return render_template("feed.html",perm=perm, cargo_user=cargo_user )
+            return render_template("feed.html", perm=perm, cargo_user=cargo_user)
 
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
@@ -276,6 +277,7 @@ def feed():
 def getCaminhoArquivoUpload(nome_anexo):
     return os.path.join(app.config['UPLOAD_FOLDER'], nome_anexo)
 
+
 def gravar_arquivo_upload():
     files = request.files.getlist('arquivo')
     print(files)
@@ -286,6 +288,7 @@ def gravar_arquivo_upload():
         if file.filename != '':
             print(file)
             file.save(getCaminhoArquivoUpload(file.filename))
+
 
 @app.route('/envio-informacao/', methods=['GET', 'POST'])
 def envio_informacao():
@@ -299,6 +302,18 @@ def envio_informacao():
         cursor.execute(
             'SELECT * from exerce where user_id = %s', (id_usuario,))
         cargo_user = cursor.fetchone()
+
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            "SELECT cur_id FROM participa where user_id=%s", (id_usuario,))
+        cur_id = cursor.fetchall()
+
+        cursos = []
+        for id in cur_id:
+            cursor = mysql.connection.cursor()
+            cursor.execute("SELECT * FROM curso where cur_id=%s", (id,))
+            curso = cursor.fetchone()
+            cursos.append(curso)
 
         # Verificando se o Cargo do usuário pode ou não enviar informações.
         if cargo_user != None:
@@ -328,7 +343,7 @@ def envio_informacao():
             gravar_arquivo_upload()
             files = request.files.getlist('arquivo')
             print(files)
-            arq=[]
+            arq = []
             for file in files:
                 x = file.filename
                 arq.append(x)
@@ -336,7 +351,7 @@ def envio_informacao():
             print(arquivos)
 
             cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome, nome_anexo) values (%s, %s, %s, %s, %s, %s, %s)",
-                        (data_inclusao, assunto, titulo, mensagem, remetente, destinatario, arquivos))
+                           (data_inclusao, assunto, titulo, mensagem, remetente, destinatario, arquivos))
 
             mysql.connection.commit()
 
@@ -363,7 +378,7 @@ def envio_informacao():
         # Redirecionando o Usuário para a página de Feed caso as informações foram salvas.
             if info:
                 return redirect(url_for('feed'))
-        return render_template('send-info.html', perm=perm, cursos=listarCursos(), cargos=listarCargos())
+        return render_template("send-info.html", perm=perm, cursos=cursos, cargo_user=cargo_user)
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
         flash('Faça o login antes de continuar.')
@@ -576,6 +591,7 @@ def desarquivar_post(id):
     mysql.connection.commit()
 
     return redirect(url_for('arquivados'))
+
 
 @app.route("/download/<nomeAnexo>", methods=["GET", "POST"])
 def download_anexo(nomeAnexo):
