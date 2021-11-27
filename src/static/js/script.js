@@ -74,15 +74,28 @@ function mostrar() {
     document.getElementById("olho").className = 'fas fa-eye-slash';
   }
 }
-function coordenador(){
+function opcao() {
 
-  if(document.getElementById('curso').value == "2") {
-    document.getElementById("curcoord").className ="curcoord"
+  if (document.getElementById('selecionar').value == "2") {
+    document.getElementById("curcoord").className = "curcoord"
     document.getElementById("curso2").className = "turma";
-    
+
+
   }
   else {
-    document.getElementById("curcoord").className = "cursohidden"
-    document.getElementById("curso2").className = "cursohidden";
+    document.getElementById("curcoord").className = "hidden"
+    document.getElementById("curso2").className = "hidden";
+
   }
+}
+
+function opcao2(){
+if (document.getElementById('selecionar').value == "2") {
+  document.getElementById("rm").className = "show"
+  document.getElementById("rm2").className = "resp";
+  }
+else{
+  document.getElementById("rm").className = "hidden"
+  document.getElementById("rm2").className = "hidden";
+}
 }

@@ -32,9 +32,17 @@ insert into cargo (car_id, car_nome, per_id) values (5, 'Alunos', 4);
 
 select * from cargo;
 
+/* INSERINDO REGISTROS */
+
+insert into registro (user_rm, car_id) values (11111, 1);
+insert into registro (user_rm, car_id) values (22222, 2);
+insert into registro (user_rm, car_id) values (33333, 3);
+insert into registro (user_rm, car_id) values (44444, 4);
+
 /* INSERINDO INFORMAÇÕES DO ADMINISTRADOR */
 
 insert into usuario (user_id, user_email, user_nome, user_senha, confirmacao) values (1, 'adm@fatec.sp.gov.br', 'Administrador', 'fatec', 1);
+
 insert into exerce (car_id, user_id) values (1, 1);
 insert into exerce (car_id, user_id) values (2, 1);
 insert into exerce (car_id, user_id) values (3, 1);

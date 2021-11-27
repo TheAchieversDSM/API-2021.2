@@ -24,6 +24,7 @@
         <img class="logo" src="../static/img/logo-branca-150.png">
     </header>
     <main>
+ 
 
         <form class="cadastro" method="POST" onsubmit="return validar()">
             <div class="campos">
@@ -36,23 +37,21 @@
                 <p>Curso</p>
 
                 <div class="curso">
-                    <select name="curso" class="selectpicker" data-width='330px' multiple title="Curso">
-                        <option value="1">Análise e Desenvolvimento de Sistemas</option>
-                        <option value="2">Banco de Dados</option>
-                        <option value="3">Desenvolvimento de Software Multiplataforma</option>
-                        <option value="4">Gestão da Produção Industrial</option>
-                        <option value="5">Logística</option>
-                        <option value="6">Manufatura Avançada</option>
-                        <option value="7">Manutenção de Aeronaves</option>
-                        <option value="8">Projetos de Estruturas Aeronáuticas</option>
+                    <select name="cargo" id="selecionar" class="selectpicker" data-width='330px' title="..." required
+                        onchange="opcao2()">
+                        <option value="1">Aluno</option>
+                        <option value="2">Funcionário</option>
                     </select>
                 </div>
 
-                    <p>Senha</p>
-                    <input class="resp" type="password" name="senha" id="senha"><br>
+                <p id="rm" class="hidden">RM</p>
+                <input id="rm2" class="hidden" type="text" name="rm" maxlength="5">
 
-                    <input type="submit" class="botao">
-                </div>
+                <p>Senha</p>
+                <input type="password" name="senha" id="senha"><br>
+
+                <input type="submit" class="botao">
+            </div>
         </form>
 
     </main>

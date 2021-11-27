@@ -65,6 +65,14 @@ textarea:focus, input:focus, select:focus {
     outline: 0;
 } 
 
+.hidden{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
 form {
     align-items: center;
     margin: auto;
@@ -78,7 +86,8 @@ form {
 
 .cadastro {
     width: 450px;
-    height: 500px;
+    min-height: 500px;
+    max-height: fit-content;
     top: 250px;    
     background-color: rgba(66, 85, 95, 0.8) ;
     border-radius: 10px;
@@ -147,6 +156,7 @@ p {
     width: 150px;
     height: 50px;
     margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .botao a { 

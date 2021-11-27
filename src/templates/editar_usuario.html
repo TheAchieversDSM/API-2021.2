@@ -11,7 +11,8 @@
 
     <!--links para o multiselect-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
@@ -20,76 +21,89 @@
     <title>Editar Usuário</title>
 </head>
 
-{% if perm == 1 or perm == 2 %} 
-    <body style="background-color: #1b1c21;">
+{% if perm == 1 or perm == 2 %}
 
-        <header>
-            <img src="../static/img/logo-branca-150.png" alt="Logo" class="logo">
-        </header>
+<body style="background-color: #1b1c21;">
 
-        <nav>
-            <div class="nav-menu">
-                <ul>
-                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile">Sair</div></a></li>
-                    <li><a href="/feed"><i class="fas fa-home"></i><div class="esconder-mobile">Início</div></a></li>
-                    <li><a href="/area-usuario"><i class="fas fa-user"></i><div class="esconder-mobile">Minha área</div></a></li>
-                    <li><a href="/arquivados"><i class="fas fa-archive"></i><div class="esconder-mobile">Arquivados</div></a></li>
-                    {% if perm == 1 or perm == 2 %}
-                    <li><a href="/envio-informacao"><i class="fas fa-pen"></i><div class="esconder-mobile">Escrever publicação</div></a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
+    <header>
+        <img src="../static/img/logo-branca-150.png" alt="Logo" class="logo">
+    </header>
 
-        <main>
-            <form method="POST" class="edicao">
-                <div class="campos">
-                    <p>E-mail</p>
-                    <input class="resp" type="text" name="e-mail" id="email">
-                    <p>Cargo</p>
-                    <div class="cargo">
-                        <select class="selectpicker" id="curso" name="cargo" data-width='330px' multiple id="cargo" title="Cargo" onchange="coordenador()">
-                            <option value="1" style="font-size: 16px;">Diretor</option>
-                            <option value="3" style="font-size: 16px;">Secretaria</option>
-                            <option value="2" style="font-size: 16px;">Coordenadores</option>
-                            <option value="4" style="font-size: 16px;">Professores</option>
-                        </select>
-                    </div>
+    <nav>
+        <div class="nav-menu">
+            <ul>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>
+                        <div class="esconder-mobile">Sair</div>
+                    </a></li>
+                <li><a href="/feed"><i class="fas fa-home"></i>
+                        <div class="esconder-mobile">Início</div>
+                    </a></li>
+                <li><a href="/area-usuario"><i class="fas fa-user"></i>
+                        <div class="esconder-mobile">Minha área</div>
+                    </a></li>
+                <li><a href="/arquivados"><i class="fas fa-archive"></i>
+                        <div class="esconder-mobile">Arquivados</div>
+                    </a></li>
+                {% if perm == 1 or perm == 2 %}
+                <li><a href="/envio-informacao"><i class="fas fa-pen"></i>
+                        <div class="esconder-mobile">Escrever publicação</div>
+                    </a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
 
-                    <p>Curso(s)</p>
-                    <div class="turma">
-                        <select  name="curso" class="selectpicker" data-width='330px' multiple title="Curso">
-
-                            <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
-                            <option value="2" style="font-size: 16px;">Banco de Dados</option>
-                            <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
-                            <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
-                            <option value="5" style="font-size: 16px;">Logística</option>
-                            <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
-                            <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
-                            <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
-
-                        </select>
-                    </div>
-                    <p class="cursohidden" id="curcoord" >Curso Coordenado</p>
-                    <div class="cursohidden" id="curso2"><br>
-                        <select name="curcoord" class="selectpicker" data-width='330px' multiple title="Curso">
-                            <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
-                            <option value="2" style="font-size: 16px;">Banco de Dados</option>
-                            <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
-                            <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
-                            <option value="5" style="font-size: 16px;">Logística</option>
-                            <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
-                            <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
-                            <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
-
-                        </select>
-                    </div>
-                        
-                    <button type="alter" class="botao">Confirmar alterações</button>
+    <main>
+        <form method="POST" class="edicao">
+            <div class="campos">
+                <p>E-mail</p>
+                <input class="resp" type="text" name="e-mail" id="email">
+                <p>Cargo</p>
+                <div class="cargo">
+                    <select class="selectpicker" id="selecionar" name="cargo" data-width='330px' multiple id="cargo"
+                        title="Cargo" onchange="opcao()">
+                        <option value="1" style="font-size: 16px;">Diretor</option>
+                        <option value="3" style="font-size: 16px;">Secretaria</option>
+                        <option value="2" style="font-size: 16px;">Coordenadores</option>
+                        <option value="4" style="font-size: 16px;">Professores</option>
+                    </select>
                 </div>
-            </form>
-        </main>
-    </body>
+
+                <p>Curso(s)</p>
+                <div class="turma">
+                    <select name="curso" class="selectpicker" data-width='330px' multiple title="Curso">
+
+                        <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
+                        <option value="2" style="font-size: 16px;">Banco de Dados</option>
+                        <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
+                        <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
+                        <option value="5" style="font-size: 16px;">Logística</option>
+                        <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
+                        <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
+                        <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
+                    </select>
+                </div>
+
+                <p class="hidden" id="curcoord">Curso Coordenado</p>
+                <div class="hidden" id="curso2"><br>
+                    <select name="curcoord" class="selectpicker" data-width='330px' multiple title="Curso">
+                        <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
+                        <option value="2" style="font-size: 16px;">Banco de Dados</option>
+                        <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
+                        <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
+                        <option value="5" style="font-size: 16px;">Logística</option>
+                        <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
+                        <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
+                        <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
+
+                    </select>
+                </div>
+
+                <button type="alter" class="botao">Confirmar alterações</button>
+            </div>
+        </form>
+    </main>
+</body>
 {% endif %}
+
 </html>

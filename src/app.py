@@ -17,7 +17,7 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '20210618'
+app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
@@ -76,10 +76,25 @@ def login():
 def cadastro():
     # Solicitando informações do usuário no formulário.
     if request.method == 'POST':
-        curso = request.form['curso']
+        rm = request.form.get('rm')
         nome = request.form['nome']
         email = request.form['e-mail']
         senha = request.form['senha']
+        if rm != None:
+            cursor = mysql.connection.cursor()
+            cursor.execute("SELECT * from registro")
+            info_regi = cursor.fetchall()
+
+            confirmacao = False
+            for regis in info_regi:
+                reg_rm = regis[0]
+
+                if str(rm) == str(reg_rm):
+                    print("TEM RM SIM MANO")
+                    confirmacao = True
+            if confirmacao == False: 
+                flash("RM Incorreto!")
+                return redirect(url_for("cadastro"))
 
     # Inserindo informações na tabela Usuário.
         cursor = mysql.connection.cursor()
@@ -91,13 +106,22 @@ def cadastro():
         cursor.execute(
             'SELECT * from usuario WHERE user_email = %s and user_senha = %s ', (email, senha))
         usuario = cursor.fetchone()
+        if info_regi:
+            cursor.execute(
+                "INSERT INTO funcionario (user_rm,user_id) values (%s,%s)", (rm, usuario[0]))
+            mysql.connection.commit()
 
-    # Inserindo o ID do usuário e seu respectivo curso na tabela tur_user
-        cursor.execute(
-            'INSERT into participa (cur_id, user_id) values(%s, %s) ', (curso, usuario[0]))
-        mysql.connection.commit()
+            cursor = mysql.connection.cursor()
+            cursor.execute(
+                "SELECT car_id from registro where user_rm = %s", (rm,))
+            regi_car = cursor.fetchone()
 
-    # Inserindo o ID do usuário e o cargo padrão na tabela cargo_user
+            # Inserindo o ID do usuário e o cargo padrão na tabela cargo_user
+            cursor.execute(
+                'INSERT into exerce (car_id, user_id) values(%s, %s) ', (regi_car, usuario[0]))
+            mysql.connection.commit()
+
+        # Inserindo o ID do usuário e o cargo padrão na tabela cargo_user
         cursor.execute(
             'INSERT into exerce (car_id, user_id) values("5", %s) ', (usuario[0],))
         mysql.connection.commit()
@@ -236,18 +260,18 @@ def feed():
         # Verificando se o Cargo do usuário pode ou não enviar informações.
         if cargo_user[0] == 5:
             perm = 0
-            sql = "car_nome LIKE '%Alunos%'"
+            sql = "car_nome IN('Alunos')"
         elif cargo_user[0] == 1 or cargo_user[0] == 3:
             perm = 2
-            sql = "car_nome LIKE '%Diretor%' OR car_nome LIKE '%Coordenador%' OR car_nome LIKE '%Secretaria%' OR car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+            sql = "car_nome IN('Diretor', 'Coordenadores', 'Secretaria', 'Professores', 'Alunos')"
         elif cargo_user[0] == 2:
             perm = 1
-            sql = "car_nome LIKE '%Coordenador%' OR  car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+            sql = "car_nome IN('Coordenadores', 'Professores', 'Alunos')"
         else:
             perm = 1
-            sql = "car_nome LIKE '%Professores%' OR car_nome LIKE '%Alunos%'"
+            sql = "car_nome IN('Professores','Alunos')"
 
-        sql = "SELECT feed.post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,nome_anexo FROM feed where " + \
+        sql = "SELECT post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,nome_anexo FROM feed where " + \
             sql + \
             " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
 
@@ -445,8 +469,10 @@ def novasenha():
 def edit():
     # Checando se o usuário está logado.
     if 'loggedin' in session:
+
         # Puxando o ID do usuário a partir de sua Sessão do Login.
         id_usuario = session['id']
+
         # Verificando o cargo do usuário
         cursor = mysql.connection.cursor()
         cursor.execute(
@@ -467,7 +493,6 @@ def edit():
             cargo = request.form["cargo"]
             curso = request.form.getlist("curso")
             curso_cord = request.form.get("curcoord")
-            
 
         # Selecionando o ID do usuário que foi inserido.
             cursor = mysql.connection.cursor()
@@ -481,18 +506,18 @@ def edit():
                 cursor.execute(
                     'UPDATE exerce SET car_id = %s WHERE user_id = %s', (cargo, user))
                 if curso != None:
-                        for x in curso:
-                            mysql.connection.commit()
-                            cursor = mysql.connection.cursor()
-                            cursor.execute(
-                                'INSERT INTO participa (cur_id,user_id) values (%s, %s)', (x, user))
-                            mysql.connection.commit()
-                if curso_cord != None:
+                    for x in curso:
                         mysql.connection.commit()
                         cursor = mysql.connection.cursor()
                         cursor.execute(
-                            'INSERT INTO coordena (cur_id,user_id) values (%s, %s)', (curso_cord, user))
+                            'INSERT INTO participa (cur_id,user_id) values (%s, %s)', (x, user))
                         mysql.connection.commit()
+                if curso_cord != None:
+                    mysql.connection.commit()
+                    cursor = mysql.connection.cursor()
+                    cursor.execute(
+                        'INSERT INTO coordena (cur_id,user_id) values (%s, %s)', (curso_cord, user))
+                    mysql.connection.commit()
 
                 return redirect(url_for('feed'))
 
@@ -571,9 +596,10 @@ def editar_post(id):
         cursor = mysql.connection.cursor()
         cursor.execute("UPDATE feed SET post_titulo = %s, post_assunto = %s, post_mensagem = %s,  car_nome = %s WHERE post_id = %s",
                        (titulo, assunto, mensagem, destinatario, id_post))
+        mysql.connection.commit()
 
         return redirect(url_for('feed'))
-    return render_template("send-info.html", perm=perm, info=info)
+    return render_template("send-info.html", perm=perm, info=info, cargo_user=cargo_user)
 
 
 @app.route("/arquivar-post/<id>")

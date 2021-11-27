@@ -75,15 +75,16 @@
                             <select class="selectpicker" name="destinatario" data-width=255px multiple
                                 data-actions-box="true" title="Destinatário">
                                 {% if cargo_user[0] == 1 or cargo_user[0] == 3 %}
-                                <option value="Diretor" style="font-size: 16px;">Diretor</option>
-                                <option value="Secretaria" style="font-size: 16px;">Secretaria</option>
-                                <option value="Coordenadores" style="font-size: 16px;">Coordenadores</option>
+                                    <option value="Diretor" style="font-size: 16px;">Diretor</option>
+                                    <option value="Secretaria" style="font-size: 16px;">Secretaria</option>
+                                    <option value="Coordenadores" style="font-size: 16px;">Coordenadores</option>
                                 {% endif %}
                                 {% if cargo_user[0] == 2 or cargo_user[0] == 1 or cargo_user[0] == 3 %}
-                                <option value="Professores" style="font-size: 16px;">Professores</option>
+                                    <option value="Professores" style="font-size: 16px;">Professores</option>
                                 {% endif %}
-                                {% if cargo_user[0] == 2 or cargo_user[0] == 1 or cargo_user[0] == 3 or cargo_user[0] == 4 %}
-                                <option value="Alunos" style="font-size: 16px;">Alunos</option>
+                                {% if cargo_user[0] == 2 or cargo_user[0] == 1 or cargo_user[0] == 3 or cargo_user[0] ==
+                                4 %}
+                                    <option value="Alunos" style="font-size: 16px;">Alunos</option>
                                 {% endif %}
                             </select>
                         </div>

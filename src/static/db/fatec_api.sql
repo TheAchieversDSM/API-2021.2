@@ -1,7 +1,7 @@
 create schema if not exists `fatec_api`;
 use `fatec_api`;
 
-/* TABELA USUARIO */
+/* TABELA DO USUARIO */
 
 create table if not exists `fatec_api`.`usuario` (
 	`user_id` int not null auto_increment,
@@ -36,6 +36,7 @@ create table if not exists `fatec_api`.`participa` (
 	constraint `fk_user_id`
 		foreign key (`user_id`)
         references `usuario`(`user_id`)
+        
 );
 
 select * from participa;
@@ -76,6 +77,34 @@ create table if not exists `fatec_api`.`exerce` (
 );
 
 select * from exerce;
+
+/* TABELA DE REGISTRO */
+
+create table if not exists `fatec_api`.`registro` (
+	`user_rm` int not null,
+    `car_id` int not null,
+    primary key (user_rm),
+    constraint `car_id_3`
+		foreign key (`car_id`)
+        references `cargo`(`car_id`)
+);
+
+select * from registro;
+
+/* TABELA DE FUNCIONARIO */
+
+create table if not exists `fatec_api`.`funcionario` (
+	`user_id` int not null,
+    `user_rm` int not null,
+    constraint `user_id_7`
+		foreign key (`user_id`)
+        references `usuario`(`user_id`),
+	constraint `user_rm` 
+		foreign key (`user_rm`)
+        references `registro`(`user_rm`)
+);
+
+select * from funcionario;
 
 create table if not exists `fatec_api`.`coordena`(
 	`user_id` int not null,

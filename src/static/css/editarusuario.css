@@ -80,7 +80,7 @@ input {
     height: 40px;
     width: 330px;
 }
-.cursohidden{
+.hidden{
     display: none;
 }
 .botao {
