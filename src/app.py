@@ -251,6 +251,7 @@ def myinfo():
         else:
             perm = 1
 
+        cursos_coord = []
         if cargo_user[0] == 2:
             cursor = mysql.connection.cursor()
             cursor.execute(
@@ -258,12 +259,12 @@ def myinfo():
             curso_coord = cursor.fetchall()
 
             cursos_coord = []
-        for cur in curso_coord:
-            cursor = mysql.connection.cursor()
-            cursor.execute(
-                "SELECT cur_nome FROM curso where cur_id = %s", (cur[0],))
-            curso = cursor.fetchall()
-            cursos_coord.append(curso[0])
+            for cur in curso_coord:
+                cursor = mysql.connection.cursor()
+                cursor.execute(
+                    "SELECT cur_nome FROM curso where cur_id = %s", (cur[0],))
+                curso = cursor.fetchall()
+                cursos_coord.append(curso[0])
 
         cursor = mysql.connection.cursor()
         cursor.execute(
