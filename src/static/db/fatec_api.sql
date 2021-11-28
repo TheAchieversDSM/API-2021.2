@@ -36,7 +36,6 @@ create table if not exists `fatec_api`.`participa` (
 	constraint `fk_user_id`
 		foreign key (`user_id`)
         references `usuario`(`user_id`)
-        
 );
 
 select * from participa;
@@ -88,7 +87,6 @@ create table if not exists `fatec_api`.`registro` (
     constraint `car_id_3`
 		foreign key (`car_id`)
         references `cargo`(`car_id`)
-	
 );
 
 select * from registro;

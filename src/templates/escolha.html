@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+ <link rel='stylesheet' type="text/css" href='../static/css/editarusuario.css'>
+ <script src="https://kit.fontawesome.com/b01f879dd9.js" crossorigin="anonymous"></script>
+
+ <!--links para o multiselect-->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+ <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+ <script src="../static/js/script.js"></script>
+
+ <title>Escolha de Cursos</title>
+</head>
+
+<body style="background-color: #1b1c21;">
+
+ <header>
+  <img src="../static/img/logo-branca-150.png" alt="Logo" class="logo">
+ </header>
+
+ <main>
+  <form method="POST" class="edicao">
+   <div class="campos">
+    <h1>Bem-vindo!</h1>
+    <p>Curso que você leciona:</p>
+
+    <select name="curso-leciona" class="selectpicker" id="selecionar" data-width='330px' multiple id="cargo"
+     title="Curso que leciona">
+     <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
+     <option value="2" style="font-size: 16px;">Banco de Dados</option>
+     <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
+     <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
+     <option value="5" style="font-size: 16px;">Logística</option>
+     <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
+     <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
+     <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
+    </select>
+
+    {% if cargo == '2' %}
+    <p>Curso que você coordena:</p>
+
+    <div class="cargo">
+     <select name="curso-coord" class="selectpicker" id="selecionar" data-width='330px' multiple id="cargo"
+      title="Curso que coordena">
+      <option value="1" style="font-size: 16px;">Análise e Desenvolvimento de Sistemas</option>
+      <option value="2" style="font-size: 16px;">Banco de Dados</option>
+      <option value="3" style="font-size: 16px;">Desenvolvimento de Software Multiplataforma</option>
+      <option value="4" style="font-size: 16px;">Gestão da Produção Industrial</option>
+      <option value="5" style="font-size: 16px;">Logística</option>
+      <option value="6" style="font-size: 16px;">Manufatura Avançada</option>
+      <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
+      <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
+     </select>
+    </div>
+   </div>
+   {% endif %}
+
+   <input type="submit" class="botao">
+   </div>
+  </form>
+ </main>
+</body>
+
+
+</html>

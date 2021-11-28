@@ -17,7 +17,7 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '20210618'
+app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
@@ -59,8 +59,32 @@ def login():
                 session['loggedin'] = True
                 session['id'] = user[0]
                 session['username'] = user[2]
-                return redirect(url_for('feed'))
 
+                # Puxando o ID do usuário a partir de sua Sessão do Login.
+                id_usuario = session['id']
+                # Verificando o cargo do usuário
+                cursor = mysql.connection.cursor()
+                cursor.execute(
+                    'SELECT * from exerce where user_id = %s', (id_usuario,))
+                cargo_user = cursor.fetchone()
+                if cargo_user[0] == 2 or cargo_user[0] == 4:
+                    cursor = mysql.connection.cursor()
+                    cursor.execute(
+                        "SELECT * FROM participa WHERE user_id = %s", (user[0],))
+                    possui_curso = cursor.fetchall()
+
+                    if cargo_user[0] == 2:
+                        cursor = mysql.connection.cursor()
+                        cursor.execute(
+                            "SELECT * FROM coordena WHERE user_id = %s", (user[0],))
+                        possui_curso2 = cursor.fetchall()
+
+                    if len(possui_curso) > 1 or len(possui_curso2) > 1:
+                        return redirect(url_for("feed"))
+                    else:
+                        return redirect(url_for("escolha", cargo_user=cargo_user))
+                else:
+                    return redirect(url_for("feed"))
             else:
                 flash("Senha/Email inválido ou usuário não registrado", "erro")
         else:
@@ -80,7 +104,9 @@ def cadastro():
         nome = request.form['nome']
         email = request.form['e-mail']
         senha = request.form['senha']
-        if rm != None:
+
+        info_regi = []
+        if rm:
             cursor = mysql.connection.cursor()
             cursor.execute("SELECT * from registro")
             info_regi = cursor.fetchall()
@@ -91,7 +117,7 @@ def cadastro():
 
                 if str(rm) == str(reg_rm):
                     confirmacao = True
-            if confirmacao == False: 
+            if confirmacao == False:
                 flash("RM Incorreto!")
                 return redirect(url_for("cadastro"))
 
@@ -164,6 +190,41 @@ def confirmacao():
             return redirect(url_for('login'))
     return render_template('confirmacao.html')
 
+
+@app.route('/curso_escolha/', methods=['GET', 'POST'])
+def escolha():
+    cargo = request.args.get("cargo_user")
+    cargo_nome = ""
+    if request.method == 'POST':
+        cur_leciona = request.form.getlist("curso-leciona")
+        cur_coord = request.form.getlist("curso-coord")
+
+        nome = session['username']
+        id = session['id']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute(
+            "SELECT car_nome FROM cargo where car_id = %s", (cargo,))
+        cargo_nome = cursor.fetchone()
+
+        for cur in cur_leciona:
+            for cur2 in cur_coord:
+                if cur == cur2:
+                    cur_leciona.remove(cur)
+
+        if cur_leciona:
+            for cur in cur_leciona:
+                cursor.execute(
+                    "INSERT INTO participa (cur_id, user_id) values (%s,%s)", (cur, id))
+                mysql.connection.commit()
+        if cur_coord:
+            for cur in cur_coord:
+                cursor.execute(
+                    "INSERT INTO coordena (cur_id, user_id) values (%s,%s)", (cur, id))
+                mysql.connection.commit()
+        return redirect(url_for("feed"))
+    return render_template("escolha.html", cargo=cargo, cargo_nome=cargo_nome)
+
 ###### Rota para a página do feed ######
 
 
@@ -190,6 +251,20 @@ def myinfo():
         else:
             perm = 1
 
+        if cargo_user[0] == 2:
+            cursor = mysql.connection.cursor()
+            cursor.execute(
+                "SELECT cur_id from coordena where user_id = %s", (id_usuario,))
+            curso_coord = cursor.fetchall()
+
+            cursos_coord = []
+        for cur in curso_coord:
+            cursor = mysql.connection.cursor()
+            cursor.execute(
+                "SELECT cur_nome FROM curso where cur_id = %s", (cur[0],))
+            curso = cursor.fetchall()
+            cursos_coord.append(curso[0])
+
         cursor = mysql.connection.cursor()
         cursor.execute(
             "SELECT * FROM usuario WHERE user_id = %s", (id_usuario,))
@@ -207,6 +282,7 @@ def myinfo():
                 "SELECT cur_nome FROM curso where cur_id = %s", (cur[0],))
             curso = cursor.fetchall()
             cursos.append(curso[0])
+
         cursor = mysql.connection.cursor()
         cursor.execute(
             "SELECT car_id FROM exerce WHERE user_id = %s", (id_usuario,))
@@ -216,7 +292,7 @@ def myinfo():
         cursor.execute("SELECT * FROM cargo where car_id = %s", (cargo_id,))
         cargo = cursor.fetchone()
 
-        return render_template('my_info.html', usuario=usuario, cursos=cursos, cargo=cargo, perm=perm)
+        return render_template('my_info.html', usuario=usuario, cursos=cursos, cargo=cargo, perm=perm, cargo_user=cargo_user,  cursos_coord=cursos_coord)
 
     else:
         flash('Faça o login antes de continuar.')
@@ -271,8 +347,9 @@ def feed():
             perm = 1
             sql = "car_nome IN('Professores','Alunos')"
 
-
-        sql = "SELECT post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,nome_anexo FROM feed where " + sql + " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
+        sql = "SELECT post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,nome_anexo FROM feed where " + \
+            sql + \
+            " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
 
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
@@ -303,13 +380,11 @@ def getCaminhoArquivoUpload(nome_anexo):
 
 def gravar_arquivo_upload():
     files = request.files.getlist('arquivo')
-    print(files)
 
     # If the user does not select a file, the browser submits an
     # empty file without a filename.
     for file in files:
         if file.filename != '':
-            print(file)
             file.save(getCaminhoArquivoUpload(file.filename))
 
 
@@ -351,13 +426,15 @@ def envio_informacao():
 
         if cargo_user[0] == 2:
             cursor = mysql.connection.cursor()
-            cursor.execute('SELECT cur_id from coordena where user_id = %s', (id_usuario,))
+            cursor.execute(
+                'SELECT cur_id from coordena where user_id = %s', (id_usuario,))
             cur_coord = cursor.fetchall()
 
             cur_coord_nomes = []
             for cur_id in cur_coord:
                 cursor = mysql.connection.cursor()
-                cursor.execute("SELECT * from curso where cur_id = %s", (cur_id,))
+                cursor.execute(
+                    "SELECT * from curso where cur_id = %s", (cur_id,))
                 cur_coord_nome = cursor.fetchone()
                 cur_coord_nomes.append(cur_coord_nome)
 
@@ -369,8 +446,9 @@ def envio_informacao():
             assunto = request.form['assunto']
             curso = request.form.getlist('curso')
             des = request.form.getlist('destinatario')
+
             coordenador = False
-            
+
             for d in des:
                 if d == "Professores" and cargo_user[0] == 2:
                     for cur in curso:
@@ -378,22 +456,19 @@ def envio_informacao():
                             if str(cur[0]) == str(cur2[0]) and len(curso) > 1:
                                 des.remove("Professores")
                                 coordenador = True
-                                print("DEU")
+
             mensagem = request.form['mensagem']
-            print(des)
             destinatario = ",".join(str(x) for x in des)
 
         # Inserindo informações na tabela feed.
             cursor = mysql.connection.cursor()
             gravar_arquivo_upload()
             files = request.files.getlist('arquivo')
-            print(files)
             arq = []
             for file in files:
                 x = file.filename
                 arq.append(x)
             arquivos = ",".join(str(x) for x in arq)
-            print(arquivos)
 
             cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome, nome_anexo) values (%s, %s, %s, %s, %s, %s, %s)",
                            (data_inclusao, assunto, titulo, mensagem, remetente, destinatario, arquivos))
@@ -413,8 +488,6 @@ def envio_informacao():
                     "INSERT INTO recebe (post_id,cur_id) values(%s, %s)", (post_id, cur))
                 mysql.connection.commit()
 
-
-
         # Inserindo ID do post e ID do usuario na tabela "publica"
 
             cursor = mysql.connection.cursor()
@@ -423,12 +496,13 @@ def envio_informacao():
             mysql.connection.commit()
 
             if coordenador == True:
-                cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome, nome_anexo) values (%s, %s, %s, %s, %s, %s, %s)",(data_inclusao, assunto, titulo, mensagem, remetente, "Professores", arquivos))
+                cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome, nome_anexo) values (%s, %s, %s, %s, %s, %s, %s)", (
+                    data_inclusao, assunto, titulo, mensagem, remetente, "Professores", arquivos))
                 mysql.connection.commit()
-                
+
                 cursor = mysql.connection.cursor()
                 cursor.execute("select * from feed where post_assunto = %s and post_titulo = %s and post_mensagem = %s and post_remetente = %s and car_nome = %s",
-                           (assunto, titulo, mensagem, remetente, "Professores"))
+                               (assunto, titulo, mensagem, remetente, "Professores"))
                 info = cursor.fetchone()
                 post_id = info[0]
 
@@ -441,8 +515,6 @@ def envio_informacao():
                 cursor.execute(
                     "INSERT INTO publica (user_id,post_id) values (%s,%s)", (id_usuario, post_id))
                 mysql.connection.commit()
-
-
 
         # Redirecionando o Usuário para a página de Feed caso as informações foram salvas.
             if info:
@@ -545,6 +617,29 @@ def edit():
                 'SELECT user_id from usuario WHERE user_email = %s', (email,))
             user = cursor.fetchone()
 
+            cursor.execute(
+                "SELECT cur_id from participa where user_id = %s", (user))
+            cur_user_atual = cursor.fetchall()
+
+            cursor.execute(
+                "SELECT cur_id from coordena WHERE user_id = %s", (user))
+            cur_coord_atual = cursor.fetchall()
+
+            for cur in curso:
+                for cur2 in curso_cord:
+                    if cur == cur2:
+                        curso.remove(cur)
+
+            for cur in curso:
+                for cur2 in cur_user_atual:
+                    if cur == cur2:
+                        curso.remove(cur)
+
+            for cur in curso_cord:
+                for cur2 in cur_coord_atual:
+                    if cur == cur2:
+                        curso_cord.remove(cur)
+            
         # Alterando os cursos e o cargo do usuário se solicitado.
             if user:
                 cursor = mysql.connection.cursor()
@@ -633,7 +728,7 @@ def editar_post(id):
         remetente = session['username']
         titulo = request.form['titulo']
         assunto = request.form['assunto']
-        curso = request.form['curso']
+        curso = request.form.getlist('curso')
         des = request.form.getlist('destinatario')
         mensagem = request.form['mensagem']
         destinatario = ",".join(str(x) for x in des)
@@ -676,7 +771,6 @@ def desarquivar_post(id):
 @app.route("/download/<nomeAnexo>", methods=["GET", "POST"])
 def download_anexo(nomeAnexo):
     caminho = getCaminhoArquivoUpload(nomeAnexo)
-    print(caminho)
     return send_file(caminho, as_attachment=True, environ=request.environ)
 
 
@@ -734,7 +828,6 @@ def destinatarioFoiSelecionado():
 
 
 def getValoresSelecionadosParaSQL(valorCampoHidden):
-    print(valorCampoHidden)
     split = valorCampoHidden.split(',')
 
     valoresSelecionados = ""
@@ -794,8 +887,7 @@ def filtrar_feed_ajax():
             if(periodoFeedFoiSelecionado()):
                 dataInicial = dataInicial + " 00:00"
                 dataFinal = dataFinal + " 23:59"
-                print("Data Inicial: " + dataInicial)
-                print("Data Final: " + dataFinal)
+
                 sql = sql + " (post_data BETWEEN '" + \
                     dataInicial + "' AND '" + dataFinal + "')"
 
@@ -816,8 +908,6 @@ def filtrar_feed_ajax():
 
             if(destinatarioFoiSelecionado()):
 
-                print("Cargos selecionados: " + destinatariosSelecionados)
-
                 if(assuntoFoiSelecionado() or cursoFoiSelecionada() or periodoFeedFoiSelecionado()):
                     sql = sql + " AND "
 
@@ -825,7 +915,6 @@ def filtrar_feed_ajax():
                 destinatariosSelecionados = destinatariosSelecionados.split(
                     ',')
                 if len(destinatariosSelecionados) > 1:
-                    print(destinatariosSelecionados)
                     cont = 0
                     for dest in destinatariosSelecionados:
                         dest = dest.replace("'", "")
@@ -846,9 +935,6 @@ def filtrar_feed_ajax():
 
         cursor.execute(sql)
         infoDetails = cursor.fetchall()
-        print(sql)
-        if infoDetails:
-            print("UE TA INDO UAI")
 
     return render_template('conteudo-div-feed.html', infoDetails=infoDetails, autoria=autoria)
 

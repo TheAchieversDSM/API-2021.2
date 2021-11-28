@@ -34,13 +34,16 @@ textarea:focus, input:focus, select:focus {
     border: 0 none;
     outline: 0;
 } 
+
 .curcoord{
     display: block;
 }
+
 .edicao {
     margin: auto;
     width: 450px;
-    height: 500px;
+    min-height: fit-content;
+    max-height: 550px;
     top: 250px;    
     background-color: rgba(66, 85, 95, 0.8) ;
     border-radius: 10px;
@@ -80,9 +83,11 @@ input {
     height: 40px;
     width: 330px;
 }
+
 .hidden{
     display: none;
 }
+
 .botao {
     border: none;
     border-radius: 10px;
@@ -92,6 +97,7 @@ input {
     width: 280px;
     height: 50px;
     margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .botao a { 

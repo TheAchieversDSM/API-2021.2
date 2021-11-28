@@ -23,14 +23,24 @@
     <nav>
       <div class="nav-menu">
         <ul>
-          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><div class="esconder-mobile">Sair</div></a></li>
-          <li><a href="/feed"><i class="fas fa-home"></i><div class="esconder-mobile">Início</div></a></li>
-          <li><a href="/arquivados"><i class="fas fa-archive"></i><div class="esconder-mobile">Arquivados</div></a></li>
+          <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>
+              <div class="esconder-mobile">Sair</div>
+            </a></li>
+          <li><a href="/feed"><i class="fas fa-home"></i>
+              <div class="esconder-mobile">Início</div>
+            </a></li>
+          <li><a href="/arquivados"><i class="fas fa-archive"></i>
+              <div class="esconder-mobile">Arquivados</div>
+            </a></li>
           {% if perm == 1 or perm == 2 %}
-            <li><a href="/envio-informacao"><i class="fas fa-pen"></i><div class="esconder-mobile">Escrever publicação</div></a></li>
+          <li><a href="/envio-informacao"><i class="fas fa-pen"></i>
+              <div class="esconder-mobile">Escrever publicação</div>
+            </a></li>
           {% endif %}
           {% if perm == 2 %}
-            <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i><div class="esconder-mobile">Editar usuário</div></a></li>
+          <li><a href="/editar-usuario"><i class="fas fa-user-edit"></i>
+              <div class="esconder-mobile">Editar usuário</div>
+            </a></li>
           {% endif %}
         </ul>
       </div>
@@ -58,16 +68,26 @@
                 class="fas fa-eye-slash"></i></h3>
           </div>
 
+          {% if perm == 1 or perm == 2 %}
           <div class="info">
             <h2>Informações acadêmicas</h2>
             <h3>Cargo: {{cargo[1]}}</h3>
-            <h3>Cursos: </h3>
+            <h3>Cursos que leciona: </h3>
             {% for cur in cursos %}
             </h3>{{cur[0]}} </h3><br>
             {% endfor %}
-          </div>
-        </div>
+          {% endif %}
 
+          {% if cargo_user[0] == 2 %}
+            <h3>Cursos que coordena: </h3>
+            {% for cur in cursos_coord %}
+              </h3>{{cur[0]}} </h3><br>
+            {% endfor %}
+          {% endif %}
+          </div>
+
+        </div>
+        
       </div>
     </div>
 
