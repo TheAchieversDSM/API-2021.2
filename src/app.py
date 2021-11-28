@@ -17,7 +17,7 @@ app.config['SECRET_KEY'] = 'TheAchieversDSM'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = '20210618'
 app.config['MYSQL_DB'] = 'fatec_api'
 
 mysql = MySQL(app)
@@ -90,7 +90,6 @@ def cadastro():
                 reg_rm = regis[0]
 
                 if str(rm) == str(reg_rm):
-                    print("TEM RM SIM MANO")
                     confirmacao = True
             if confirmacao == False: 
                 flash("RM Incorreto!")
@@ -267,13 +266,13 @@ def feed():
         elif cargo_user[0] == 2:
             perm = 1
             sql = "car_nome IN('Coordenadores', 'Professores', 'Alunos')"
+
         else:
             perm = 1
             sql = "car_nome IN('Professores','Alunos')"
 
-        sql = "SELECT post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,nome_anexo FROM feed where " + \
-            sql + \
-            " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
+
+        sql = "SELECT post_id, post_titulo, DATE_FORMAT(post_data, '%d/%m/%Y'), post_assunto, post_mensagem, car_nome, post_remetente,nome_anexo FROM feed where " + sql + " AND post_id NOT IN(SELECT post_id from arquivado where user_id = (user_id)) ORDER BY post_data DESC"
 
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from publica where user_id = %s", (user_id,))
@@ -331,7 +330,7 @@ def envio_informacao():
         cursor.execute(
             "SELECT cur_id FROM participa where user_id=%s", (id_usuario,))
         cur_id = cursor.fetchall()
-
+        cur_coord_nomes = []
         cursos = []
         for id in cur_id:
             cursor = mysql.connection.cursor()
@@ -350,6 +349,18 @@ def envio_informacao():
         else:
             perm = 1
 
+        if cargo_user[0] == 2:
+            cursor = mysql.connection.cursor()
+            cursor.execute('SELECT cur_id from coordena where user_id = %s', (id_usuario,))
+            cur_coord = cursor.fetchall()
+
+            cur_coord_nomes = []
+            for cur_id in cur_coord:
+                cursor = mysql.connection.cursor()
+                cursor.execute("SELECT * from curso where cur_id = %s", (cur_id,))
+                cur_coord_nome = cursor.fetchone()
+                cur_coord_nomes.append(cur_coord_nome)
+
         # Solicitando informações da mensagem no formulário.
         if request.method == 'POST':
             remetente = session['username']
@@ -358,12 +369,22 @@ def envio_informacao():
             assunto = request.form['assunto']
             curso = request.form.getlist('curso')
             des = request.form.getlist('destinatario')
+            coordenador = False
+            
+            for d in des:
+                if d == "Professores" and cargo_user[0] == 2:
+                    for cur in curso:
+                        for cur2 in cur_coord:
+                            if str(cur[0]) == str(cur2[0]) and len(curso) > 1:
+                                des.remove("Professores")
+                                coordenador = True
+                                print("DEU")
             mensagem = request.form['mensagem']
+            print(des)
             destinatario = ",".join(str(x) for x in des)
 
         # Inserindo informações na tabela feed.
             cursor = mysql.connection.cursor()
-
             gravar_arquivo_upload()
             files = request.files.getlist('arquivo')
             print(files)
@@ -392,6 +413,8 @@ def envio_informacao():
                     "INSERT INTO recebe (post_id,cur_id) values(%s, %s)", (post_id, cur))
                 mysql.connection.commit()
 
+
+
         # Inserindo ID do post e ID do usuario na tabela "publica"
 
             cursor = mysql.connection.cursor()
@@ -399,10 +422,32 @@ def envio_informacao():
                 "INSERT INTO publica (user_id,post_id) values (%s,%s)", (id_usuario, post_id))
             mysql.connection.commit()
 
+            if coordenador == True:
+                cursor.execute("insert into feed (post_data, post_assunto, post_titulo, post_mensagem, post_remetente,car_nome, nome_anexo) values (%s, %s, %s, %s, %s, %s, %s)",(data_inclusao, assunto, titulo, mensagem, remetente, "Professores", arquivos))
+                mysql.connection.commit()
+                
+                cursor = mysql.connection.cursor()
+                cursor.execute("select * from feed where post_assunto = %s and post_titulo = %s and post_mensagem = %s and post_remetente = %s and car_nome = %s",
+                           (assunto, titulo, mensagem, remetente, "Professores"))
+                info = cursor.fetchone()
+                post_id = info[0]
+
+                cursor = mysql.connection.cursor()
+                cursor.execute(
+                    "INSERT INTO recebe (post_id,cur_id) values(%s, %s)", (post_id, cur_coord))
+                mysql.connection.commit()
+
+                cursor = mysql.connection.cursor()
+                cursor.execute(
+                    "INSERT INTO publica (user_id,post_id) values (%s,%s)", (id_usuario, post_id))
+                mysql.connection.commit()
+
+
+
         # Redirecionando o Usuário para a página de Feed caso as informações foram salvas.
             if info:
                 return redirect(url_for('feed'))
-        return render_template("send-info.html", perm=perm, cursos=cursos, cargo_user=cargo_user)
+        return render_template("send-info.html", perm=perm, cursos=cursos, cargo_user=cargo_user, cur_coord_nomes=cur_coord_nomes)
     # Redirecionando o Usuário para a página de login caso ele não esteja logado.
     else:
         flash('Faça o login antes de continuar.')

@@ -84,9 +84,11 @@ create table if not exists `fatec_api`.`registro` (
 	`user_rm` int not null,
     `car_id` int not null,
     primary key (user_rm),
+    unique index `user_rm_unique` (`user_rm` asc) visible,
     constraint `car_id_3`
 		foreign key (`car_id`)
         references `cargo`(`car_id`)
+	
 );
 
 select * from registro;
@@ -96,6 +98,7 @@ select * from registro;
 create table if not exists `fatec_api`.`funcionario` (
 	`user_id` int not null,
     `user_rm` int not null,
+	unique index `user_rm_unique` (`user_rm` asc) visible,
     constraint `user_id_7`
 		foreign key (`user_id`)
         references `usuario`(`user_id`),

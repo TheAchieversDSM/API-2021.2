@@ -104,9 +104,18 @@
                                 <option value="7" style="font-size: 16px;">Manutenção de Aeronaves</option>
                                 <option value="8" style="font-size: 16px;">Projetos de Estruturas Aeronáuticas</option>
                                 {% else %}
+
                                 {% for curso in cursos %}
                                 <option value="{{curso[0]}}" style="font-size: 16px;">{{curso[1]}}</option>
                                 {% endfor %}
+
+                                {% if cargo_user[0] == 2 %}
+
+                                {% for cur_coord in cur_coord_nomes %}
+                                <option  value="{{cur_coord[0]}}"  style="font-size: 16px;">{{cur_coord[1]}}</option>
+                                {% endfor %}
+
+                                {% endif %}
                                 {% endif %}
                             </select>
                         </div>
