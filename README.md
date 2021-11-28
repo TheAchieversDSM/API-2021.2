@@ -41,7 +41,7 @@ Dev Team | Rikio Anzai | [<img src="https://img.shields.io/badge/github%20-%2312
  
  <span id="status">
 
- ### :bookmark_tabs: Status do projeto: em andamento... :hourglass_flowing_sand:
+ ### :bookmark_tabs: Status do projeto: concluído :heavy_check_mark:
   
  <span id="tecnologias">
 
@@ -116,8 +116,15 @@ Dev Team | Rikio Anzai | [<img src="https://img.shields.io/badge/github%20-%2312
  
 # Para acessar como administrador use:
  
-## E-mail: adm@fatec.sp.gov.br
-## Senha: fatec
+> E-mail: adm@fatec.sp.gov.br
+> Senha: fatec
+ 
+# RM para funcionários:
+
+ > Diretor: 11111
+ > Coordenador: 22222
+ > Secretaria: 33333
+ > Professor: 44444
 ```
  
 <span id="organizacao">
@@ -229,10 +236,10 @@ Ajustes no banco de dados | Alta | Completa
 Introdução da funcionalidade total dos filtros | Alta | Completa
 Introdução da função "arquivar" | Média | Completa
 Introdução da função "anexar" | Alta | Completa
-Testes unitários do sistema | Alta | Em andamento
-Testes de integração | Alta | Em andamento
-Testes de aceitação | Alta | Em andamento
-Melhorias contínuas | Alta | Em andamento
+Testes unitários do sistema | Alta | Completa
+Testes de integração | Alta | Completa
+Testes de aceitação | Alta | Completa
+Melhorias contínuas | Alta | Completa
  
 ↑ [Voltar ao início](#inicio) 
 
@@ -277,10 +284,10 @@ Sprint | Nome da tarefa | Prioridade | Status
 #4 | Introdução da funcionalidade total dos filtros | Alta | Completa
 #4 | Introdução da função "arquivar" | Média | Completa
 #4 | Introdução da função "anexar" | Alta | Completa
-#4 | Testes unitários do sistema | Alta | Em andamento
-#4 | Testes de integração | Alta | Em andamento
-#4 | Testes de aceitação | Alta | Em andamento
-#4 | Melhorias contínuas | Alta | Em andamento
+#4 | Testes unitários do sistema | Alta | Completa
+#4 | Testes de integração | Alta | Completa
+#4 | Testes de aceitação | Alta | Completa
+#4 | Melhorias contínuas | Alta | Completa
  
 ↑ [Voltar ao início](#inicio) 
  
