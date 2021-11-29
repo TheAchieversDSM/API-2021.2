@@ -22,7 +22,7 @@
 ### :busts_in_silhouette: Equipe:
 Função | Nome | GitHub & LinkedIn
 -------|------|------------------
-Scrum Master | Evora de Castro | [<img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white&color=100000"/>](https://github.com/MinEvora)
+Scrum Master | Evora de Castro | [<img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white&color=100000"/>](https://github.com/MinEvora) [<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white&color=0A66C2" />](https://www.linkedin.com/in/evora-castro-704911133/)
 Product Owner | Fernando Satoru Eto | [<img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white&color=100000"/>](https://github.com/fernandoeto)
 Dev Team | Gizeli Martins Fonseca | [<img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white&color=100000"/>](https://github.com/gizelifonseca)
 Dev Team | Maria Clara Alves de Faria | [<img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white&color=100000"/>](https://github.com/mclaralvs) [<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white&color=0A66C2" />](https://www.linkedin.com/in/mclaralvs/)
